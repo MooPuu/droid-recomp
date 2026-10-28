@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DroidRecomp — Native Console & PC Recompilations for Android</title>
+  <meta name="description" content="The definitive hub for console and classic PC game static recompilations and native source ports running on Android. Bring your own ROM, play at 120 FPS.">
+  <meta name="theme-color" content="#0B1220">
+  
+  <!-- PWA & Mobile Web App -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="application-name" content="DroidRecomp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="DroidRecomp">
+
+  <!-- Open Graph & Social Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DroidRecomp — Native Console & PC Recompilations for Android">
+  <meta property="og:description" content="133+ verified native Android static recompilations, decompilations, and ports. Zero emulation overhead. 100% legal BYOR framework.">
+  <meta property="og:image" content="https://moopuu.github.io/droid-recomp/favicon.svg">
+  <meta property="og:site_name" content="DroidRecomp">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DroidRecomp — Android Recompilation Hub">
+  <meta name="twitter:description" content="Play Nintendo 64, PlayStation, and Classic PC games natively on Android without emulation overhead.">
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-platform="android" data-ui="auto">
+  <!-- Dynamic Ambient Glow Backdrop -->
+  <div class="backdrop" aria-hidden="true">
+    <div id="backdrop-img" class="backdrop-img"></div>
+    <span class="glow glow-primary"></span>
+    <span class="glow glow-secondary"></span>
+  </div>
+
+  <!-- DESKTOP / TOP HEADER -->
+  <header class="top-nav" id="top-nav">
+    <div class="top-in">
+      <a class="brand" href="#" data-nav="discover">
+        <div class="brand-logo">
+          <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+            <rect width="40" height="40" rx="10" fill="#0B1220" stroke="rgba(52,242,232,0.4)" stroke-width="1.5"/>
+            <path d="M12 28L20 12L28 28H23L20 22L17 28H12Z" fill="url(#cyan-grad)"/>
+            <circle cx="20" cy="18" r="2.5" fill="#34F2E8"/>
+            <defs>
+              <linearGradient id="cyan-grad" x1="12" y1="12" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#34F2E8"/>
+                <stop offset="1" stop-color="#377BB6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="brand-name">Droid<b>Recomp</b></span>
+        <span class="badge-android">ARM64</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="main-nav desktop-only" aria-label="Main Navigation">
+        <a href="#discover" data-nav="discover" class="nav-link on">Discover</a>
+        <a href="#all" data-nav="all" class="nav-link">All Recomps</a>
+        <a href="#top" data-nav="top" class="nav-link">Top Charts</a>
+        <a href="#handheld" data-nav="handheld" class="nav-link">Handhelds <span class="tag-sub">Odin / Retroid</span></a>
+        <a href="#how" data-nav="how" class="nav-link">Setup Guide</a>
+        <a href="#saved" data-nav="saved" class="nav-link">My Library <span class="badge-count" id="saved-count">0</span></a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="top-actions">
+        <!-- Search Trigger Button -->
+        <button type="button" class="search-trigger-btn" id="search-open" aria-label="Search Recomps">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+          <span class="search-placeholder desktop-only">Search 133+ recomps...</span>
+          <kbd class="search-shortcut desktop-only">/</kbd>
+        </button>
+
+        <!-- UI Mode Switcher (Desktop vs Mobile Preview) -->
+        <button type="button" class="icon-chip desktop-only" id="ui-mode-toggle" title="Switch UI Mode">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span id="ui-mode-label">Mobile UI</span>
+        </button>
+
+        <!-- Obtainium Pack Export CTA -->
+        <button type="button" class="btn btn-secondary desktop-only" id="btn-obtainium-pack" title="Get Obtainium Pack">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Obtainium Sync</span>
+        </button>
+
+        <!-- Submit Recomp CTA -->
+        <a class="btn btn-primary" href="#submit" data-nav="submit">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span class="desktop-only">Submit Port</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Origin Sub-Navigation Bar (Horizontal Pills) -->
+    <div class="sub-nav-bar" id="sub-nav-bar">
+      <div class="sub-nav-in">
+        <div class="origin-pills" id="origin-pills">
+          <button type="button" class="pill on" data-origin="all">All Systems</button>
+          <button type="button" class="pill" data-origin="n64">Nintendo 64</button>
+          <button type="button" class="pill" data-origin="x360">Xbox 360</button>
+          <button type="button" class="pill" data-origin="xbox">Xbox</button>
+          <button type="button" class="pill" data-origin="gc">GameCube</button>
+          <button type="button" class="pill" data-origin="wii">Wii</button>
+          <button type="button" class="pill" data-origin="ps1">PlayStation 1</button>
+          <button type="button" class="pill" data-origin="ps2">PlayStation 2</button>
+          <button type="button" class="pill" data-origin="pc_classic">Classic PC & Engines</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="main-view" id="main-view">
+    <!-- Active View Content rendered via JavaScript -->
+    <div id="view-content"></div>
+  </main>
+
+  <!-- MOBILE BOTTOM NAVIGATION (Fixed at bottom for touch devices) -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
+    <a href="#discover" data-nav="discover" class="mobile-nav-item on">
+      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+      <span>Discover</span>
+    </a>
+    <a href="#all" data-nav="all" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Browse</span>
+    </a>
+    <button type="button" class="mobile-nav-item" id="mobile-search-btn">
+      <div class="mobile-nav-search-bubble">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2.2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      </div>
+      <span>Search</span>
+    </button>
+    <a href="#top" data-nav="top" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      <span>Rankings</span>
+    </a>
+    <a href="#saved" data-nav="saved" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      <span>My Games</span>
+    </a>
+  </nav>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-overlay" id="search-modal" hidden>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-label="Search Catalog">
+      <div class="search-header">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <input type="search" id="search-input" placeholder="Search by game, console, developer, or feature..." autocomplete="off" spellcheck="false">
+        <button type="button" class="icon-btn" id="search-close" aria-label="Close search">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="search-quick-tags">
+        <span>Popular:</span>
+        <button type="button" class="tag-chip" data-query="Zelda">Zelda</button>
+        <button type="button" class="tag-chip" data-query="N64">N64</button>
+        <button type="button" class="tag-chip" data-query="Xbox 360">Xbox 360</button>
+        <button type="button" class="tag-chip" data-query="Turnip">Turnip Tested</button>
+        <button type="button" class="tag-chip" data-query="Touch">Touch Friendly</button>
+      </div>
+      <div class="search-results" id="search-results" role="listbox"></div>
+    </div>
+  </div>
+
+  <!-- GAME DETAIL MODAL / BOTTOM SHEET -->
+  <div class="modal-backdrop" id="game-modal" hidden>
+    <div class="modal-container" role="dialog" aria-modal="true" aria-label="Game Details">
+      <div class="modal-drag-handle mobile-only"></div>
+      <button type="button" class="icon-btn modal-close" id="modal-close" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-body" id="modal-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="foot-brand">
+        <div class="brand">
+          <span class="brand-name">Droid<b>Recomp</b></span>
+          <span class="badge-android">Android 8.0+</span>
+        </div>
+        <p class="foot-desc">
+          Community directory and installer for native console and PC recompilations running natively on ARM64 Android devices. No emulation overhead. 100% legal BYOF architecture.
+        </p>
+        <div class="foot-badges">
+          <span class="foot-pill">Zero ROMs Distributed</span>
+          <span class="foot-pill">Direct Developer Releases</span>
+          <span class="foot-pill">Open Source Hub</span>
+        </div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Ecosystem</h4>
+          <a href="#discover">Discover</a>
+          <a href="#all">All 133 Recomps</a>
+          <a href="#top">Top Downloads</a>
+          <a href="#handheld">Handheld Optimized</a>
+        </div>
+        <div class="foot-col">
+          <h4>Consoles</h4>
+          <a href="#n64" data-origin="n64">Nintendo 64</a>
+          <a href="#x360" data-origin="x360">Xbox 360 Recomp</a>
+          <a href="#gc" data-origin="gc">GameCube & Wii</a>
+          <a href="#pc_classic" data-origin="pc_classic">Classic PC Engines</a>
+        </div>
+        <div class="foot-col">
+          <h4>Tools & Legal</h4>
+          <a href="#how">How to Setup ROMs</a>
+          <a href="#obtainium" id="foot-obtainium-link">Obtainium JSON Pack</a>
+          <a href="#submit">Submit New Port</a>
+          <a href="https://github.com/MooPuu/droid-recomp" target="_blank" rel="noopener">GitHub Project</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <p><strong>No game files hosted here.</strong> DroidRecomp indexes developer repositories and public source ports. Users must supply their own legally owned ROMs or disc dumps.</p>
+    </div>
+  </footer>
+
+  <script src="catalog.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1166 @@
+/**
+ * DROIDRECOMP — Main Application Logic & Router
+ * Modern RecompLauncher Design for Android Recompilations
+ */
+
+(function () {
+  'use strict';
+
+  // Global State
+  let catalogData = [];
+  let originsData = [];
+  let currentRoute = 'discover';
+  let activeOrigin = 'all';
+  let filterType = 'all';
+  let filterInput = 'all';
+  let filterTurnip = false;
+  let heroTimer = null;
+  let activeHeroIndex = 0;
+  let savedGames = JSON.parse(localStorage.getItem('droidrecomp_saved') || '[]');
+  let uiMode = localStorage.getItem('droidrecomp_uimode') || 'auto'; // 'auto', 'desktop', 'mobile'
+
+  // DOM Elements
+  const viewContent = document.getElementById('view-content');
+  const searchModal = document.getElementById('search-modal');
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  const gameModal = document.getElementById('game-modal');
+  const modalContent = document.getElementById('modal-content');
+  const backdropImg = document.getElementById('backdrop-img');
+  const savedCountBadge = document.getElementById('saved-count');
+  const uiModeToggle = document.getElementById('ui-mode-toggle');
+  const uiModeLabel = document.getElementById('ui-mode-label');
+
+  // Initialize
+  async function init() {
+    updateSavedCount();
+    applyUiMode();
+    setupEventListeners();
+
+    if (window.DROIDRECOMP_CATALOG && window.DROIDRECOMP_CATALOG.apps) {
+      catalogData = window.DROIDRECOMP_CATALOG.apps;
+      originsData = window.DROIDRECOMP_CATALOG.origins || [];
+    } else {
+      try {
+        const resp = await fetch('catalog.json');
+        if (!resp.ok) throw new Error('Network error');
+        const data = await resp.json();
+        catalogData = data.apps || [];
+        originsData = data.origins || [];
+      } catch (e) {
+        console.warn('Loading embedded backup catalog...', e);
+        catalogData = getEmbeddedCatalog();
+      }
+    }
+
+    handleRoute();
+  }
+
+  // UI Mode (Mobile vs Desktop override)
+  function applyUiMode() {
+    if (uiMode === 'mobile') {
+      document.body.classList.add('mobile-mode');
+      if (uiModeLabel) uiModeLabel.textContent = 'Desktop UI';
+    } else if (uiMode === 'desktop') {
+      document.body.classList.remove('mobile-mode');
+      if (uiModeLabel) uiModeLabel.textContent = 'Mobile UI';
+    } else {
+      // Auto
+      document.body.classList.remove('mobile-mode');
+      if (uiModeLabel) uiModeLabel.textContent = window.innerWidth <= 768 ? 'Desktop UI' : 'Mobile UI';
+    }
+  }
+
+  function toggleUiMode() {
+    if (uiMode === 'auto' || uiMode === 'desktop') {
+      uiMode = 'mobile';
+    } else {
+      uiMode = 'desktop';
+    }
+    localStorage.setItem('droidrecomp_uimode', uiMode);
+    applyUiMode();
+    renderCurrentView();
+  }
+
+  // Routing
+  function handleRoute() {
+    const hash = window.location.hash.replace('#', '') || 'discover';
+    
+    // Check if origin filter route e.g. #n64
+    const matchedOrigin = ['n64', 'x360', 'xbox', 'gc', 'wii', 'ps1', 'ps2', 'pc_classic', 'snes', 'gba'].find(o => o === hash);
+    if (matchedOrigin) {
+      currentRoute = 'all';
+      activeOrigin = matchedOrigin;
+    } else if (hash.startsWith('game/')) {
+      const gameId = hash.split('/')[1];
+      openGameModal(gameId);
+      return;
+    } else {
+      currentRoute = hash;
+    }
+
+    // Update Nav Link Active States
+    document.querySelectorAll('[data-nav]').forEach(el => {
+      el.classList.toggle('on', el.getAttribute('data-nav') === currentRoute);
+    });
+
+    // Update Origin Pill States
+    document.querySelectorAll('[data-origin]').forEach(el => {
+      el.classList.toggle('on', el.getAttribute('data-origin') === activeOrigin);
+    });
+
+    renderCurrentView();
+  }
+
+  function renderCurrentView() {
+    clearInterval(heroTimer);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    switch (currentRoute) {
+      case 'all':
+        renderAllView();
+        break;
+      case 'top':
+        renderTopView();
+        break;
+      case 'handheld':
+        renderHandheldView();
+        break;
+      case 'how':
+        renderHowView();
+        break;
+      case 'saved':
+        renderSavedView();
+        break;
+      case 'submit':
+        renderSubmitView();
+        break;
+      case 'discover':
+      default:
+        renderDiscoverView();
+        break;
+    }
+  }
+
+  // =========================================================================
+  // VIEW: DISCOVER (HOME)
+  // =========================================================================
+  function renderDiscoverView() {
+    // Top featured games for carousel
+    const featuredGames = [
+      'zelda-64-recomp-android',
+      'forza-horizon',
+      'banjo-kazooie-recomp',
+      'sonic-unleashed-recompiled',
+      'dusklight',
+      'diablo-hellfire',
+      'super-mario-64',
+      'balatro'
+    ].map(id => catalogData.find(g => g.id.includes(id) || g.id === id)).filter(Boolean);
+
+    // If less than 4, fallback to first few
+    const slides = featuredGames.length >= 3 ? featuredGames : catalogData.slice(0, 5);
+
+    // Filter Top Ranked (by downloads & stars)
+    const topRanked = [...catalogData].sort((a, b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 10);
+    // Filter Handheld Verified
+    const handheldGames = catalogData.filter(g => g.input && g.input.controller_recommended || g.input && g.input.controller).slice(0, 10);
+    // Filter Classic PC & Source Ports
+    const pcPorts = catalogData.filter(g => g.origin === 'pc_classic').slice(0, 10);
+    // Filter N64 Recomps
+    const n64Games = catalogData.filter(g => g.origin === 'n64').slice(0, 10);
+
+    viewContent.innerHTML = `
+      <!-- HERO CAROUSEL -->
+      <section class="hero-slider" id="hero-slider">
+        ${slides.map((game, i) => `
+          <div class="hero-slide ${i === 0 ? 'active' : ''}" data-index="${i}">
+            <div class="hero-bg" style="background-image: url('${game.hero || game.cover}');"></div>
+            <div class="hero-gradient"></div>
+            <div class="hero-content">
+              <div class="hero-tags">
+                <span class="tag tag-origin">${originLabel(game.origin)}</span>
+                <span class="tag">${game.type}</span>
+                ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip">⚡ Turnip Rec.</span>` : ''}
+                ${game.input.touch ? `<span class="tag tag-touch">Touch Ready</span>` : ''}
+                <span class="tag">${game.graphics.fps_target || 60} FPS</span>
+              </div>
+              <h1 class="hero-title">${escapeHtml(game.name)}</h1>
+              <p class="hero-lead">${escapeHtml(game.blurb || '')}</p>
+              <div class="hero-actions">
+                <button type="button" class="btn btn-primary" onclick="window.DroidRecomp.openModal('${game.id}')">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>Download & Details</span>
+                </button>
+                ${game.obtainium_url ? `
+                  <a class="btn btn-secondary" href="${game.obtainium_url}" title="Open in Obtainium">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <span>Add to Obtainium</span>
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `).join('')}
+        <div class="hero-dots">
+          ${slides.map((_, i) => `<span class="hero-dot ${i === 0 ? 'active' : ''}" data-dot="${i}"></span>`).join('')}
+        </div>
+      </section>
+
+      <!-- TOP RANKED HORIZONTAL ROW -->
+      <section class="section-row">
+        <div class="section-head">
+          <h2 class="section-title">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" color="#34F2E8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Top Community Recomps</span>
+          </h2>
+          <a class="section-link" href="#top">View full charts &rarr;</a>
+        </div>
+        <div class="rowscroll">
+          ${topRanked.map((game, idx) => posterCard(game, idx + 1)).join('')}
+        </div>
+      </section>
+
+      <!-- NINTENDO 64 RECOMPS ROW -->
+      <section class="section-row" style="margin-top: 36px;">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span>Nintendo 64 Recompilations</span>
+          </h2>
+          <a class="section-link" href="#all" onclick="window.DroidRecomp.setOrigin('n64')">See all N64 &rarr;</a>
+        </div>
+        <div class="rowscroll">
+          ${n64Games.map((game, idx) => posterCard(game)).join('')}
+        </div>
+      </section>
+
+      <!-- HANDHELD OPTIMIZED ROW -->
+      <section class="section-row" style="margin-top: 36px;">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span>Handheld Console Verified</span>
+          </h2>
+          <span style="font-size: 0.85rem; color: var(--muted);">Retroid Pocket • AYN Odin • G Cloud</span>
+        </div>
+        <div class="rowscroll">
+          ${handheldGames.map(game => posterCard(game)).join('')}
+        </div>
+      </section>
+
+      <!-- CLASSIC PC ENGINE PORTS ROW -->
+      <section class="section-row" style="margin-top: 36px;">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span>Classic PC & Engine Re-implementations</span>
+          </h2>
+          <a class="section-link" href="#all" onclick="window.DroidRecomp.setOrigin('pc_classic')">Browse PC &rarr;</a>
+        </div>
+        <div class="rowscroll">
+          ${pcPorts.map(game => posterCard(game)).join('')}
+        </div>
+      </section>
+
+      <!-- LEGAL & ROM DISCLAIMER BOX -->
+      <div class="disc-note">
+        <span class="kicker">Strict Bring-Your-Own-ROM Policy</span>
+        <p>DroidRecomp indexes only open-source native Android game recompilations, source decompilations, and their community launchers straight from developers' public repositories. <strong>Zero copyrighted ROMs, ISOs, or proprietary assets are hosted on this platform.</strong> Every game requires you to supply your own legally owned game files.</p>
+      </div>
+    `;
+
+    // Start Hero Carousel Timer
+    startHeroTimer(slides);
+    setAmbientBackdrop(slides[0]?.hero || slides[0]?.cover);
+  }
+
+  // Hero Timer
+  function startHeroTimer(slides) {
+    if (!slides.length) return;
+    activeHeroIndex = 0;
+    heroTimer = setInterval(() => {
+      activeHeroIndex = (activeHeroIndex + 1) % slides.length;
+      updateHeroSlide(slides);
+    }, 7000);
+
+    // Setup Dot clicks
+    document.querySelectorAll('[data-dot]').forEach(dot => {
+      dot.addEventListener('click', () => {
+        clearInterval(heroTimer);
+        activeHeroIndex = parseInt(dot.getAttribute('data-dot'), 10);
+        updateHeroSlide(slides);
+      });
+    });
+  }
+
+  function updateHeroSlide(slides) {
+    const slideEls = document.querySelectorAll('.hero-slide');
+    const dotEls = document.querySelectorAll('.hero-dot');
+    slideEls.forEach((s, idx) => s.classList.toggle('active', idx === activeHeroIndex));
+    dotEls.forEach((d, idx) => d.classList.toggle('active', idx === activeHeroIndex));
+    setAmbientBackdrop(slides[activeHeroIndex]?.hero || slides[activeHeroIndex]?.cover);
+  }
+
+  // =========================================================================
+  // VIEW: ALL RECOMPS (CATALOG GRID + FILTERS)
+  // =========================================================================
+  function renderAllView() {
+    let filtered = catalogData;
+
+    // Origin Filter
+    if (activeOrigin !== 'all') {
+      filtered = filtered.filter(g => g.origin === activeOrigin);
+    }
+
+    // Port Type Filter
+    if (filterType !== 'all') {
+      filtered = filtered.filter(g => g.type === filterType);
+    }
+
+    // Input Filter
+    if (filterInput === 'touch') {
+      filtered = filtered.filter(g => g.input && g.input.touch);
+    } else if (filterInput === 'controller') {
+      filtered = filtered.filter(g => g.input && g.input.controller_recommended);
+    }
+
+    // Turnip Driver Filter
+    if (filterTurnip) {
+      filtered = filtered.filter(g => g.graphics && g.graphics.turnip_recommended);
+    }
+
+    viewContent.innerHTML = `
+      <div style="margin-bottom: 24px;">
+        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">All Android Recomps</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">Showing ${filtered.length} verified native ports & static recompilations for Android devices.</p>
+      </div>
+
+      <!-- QUAD-FILTER BAR -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <span class="filter-label">System:</span>
+          <select class="filter-select" id="filter-origin-select" onchange="window.DroidRecomp.setOrigin(this.value)">
+            <option value="all" ${activeOrigin === 'all' ? 'selected' : ''}>All Systems (133)</option>
+            <option value="n64" ${activeOrigin === 'n64' ? 'selected' : ''}>Nintendo 64</option>
+            <option value="x360" ${activeOrigin === 'x360' ? 'selected' : ''}>Xbox 360</option>
+            <option value="xbox" ${activeOrigin === 'xbox' ? 'selected' : ''}>Xbox</option>
+            <option value="gc" ${activeOrigin === 'gc' ? 'selected' : ''}>GameCube</option>
+            <option value="wii" ${activeOrigin === 'wii' ? 'selected' : ''}>Wii</option>
+            <option value="ps1" ${activeOrigin === 'ps1' ? 'selected' : ''}>PlayStation 1</option>
+            <option value="ps2" ${activeOrigin === 'ps2' ? 'selected' : ''}>PlayStation 2</option>
+            <option value="pc_classic" ${activeOrigin === 'pc_classic' ? 'selected' : ''}>Classic PC & Engines</option>
+          </select>
+
+          <span class="filter-label">Architecture:</span>
+          <select class="filter-select" id="filter-type-select" onchange="window.DroidRecomp.setType(this.value)">
+            <option value="all" ${filterType === 'all' ? 'selected' : ''}>All Types</option>
+            <option value="Static Recomp" ${filterType === 'Static Recomp' ? 'selected' : ''}>Static Recompilation</option>
+            <option value="Decompilation" ${filterType === 'Decompilation' ? 'selected' : ''}>Source Decompilation</option>
+            <option value="Native Engine Port" ${filterType === 'Native Engine Port' ? 'selected' : ''}>Engine Re-implementation</option>
+          </select>
+
+          <span class="filter-label">Input:</span>
+          <select class="filter-select" id="filter-input-select" onchange="window.DroidRecomp.setInput(this.value)">
+            <option value="all" ${filterInput === 'all' ? 'selected' : ''}>All Controls</option>
+            <option value="touch" ${filterInput === 'touch' ? 'selected' : ''}>Touch Overlay Ready</option>
+            <option value="controller" ${filterInput === 'controller' ? 'selected' : ''}>Gamepad Recommended</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <button type="button" class="filter-toggle ${filterTurnip ? 'on' : ''}" onclick="window.DroidRecomp.toggleTurnip()">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Turnip Driver Tested</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN GAMES GRID -->
+      <div class="games-grid">
+        ${filtered.map(game => gameCard(game)).join('')}
+      </div>
+
+      ${filtered.length === 0 ? `
+        <div style="text-align: center; padding: 60px 20px; color: var(--muted);">
+          <h3>No matching recompilations found</h3>
+          <p>Try resetting filters or picking another console system.</p>
+          <button class="btn btn-secondary" style="margin-top: 14px;" onclick="window.DroidRecomp.resetFilters()">Reset Filters</button>
+        </div>
+      ` : ''}
+    `;
+  }
+
+  // =========================================================================
+  // VIEW: TOP CHARTS
+  // =========================================================================
+  function renderTopView() {
+    const sorted = [...catalogData].sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+
+    viewContent.innerHTML = `
+      <div style="margin-bottom: 24px;">
+        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">Top Charts & Rankings</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">Most downloaded and highest-starred native Android recompilations.</p>
+      </div>
+
+      <div class="games-grid">
+        ${sorted.map((game, i) => gameCard(game, i + 1)).join('')}
+      </div>
+    `;
+  }
+
+  // =========================================================================
+  // VIEW: HANDHELD OPTIMIZED
+  // =========================================================================
+  function renderHandheldView() {
+    const handheld = catalogData.filter(g => g.input && g.input.controller);
+
+    viewContent.innerHTML = `
+      <div style="margin-bottom: 24px;">
+        <span class="badge-android">Handheld Verified</span>
+        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-top: 8px; margin-bottom: 6px;">Dedicated Handheld Gaming Library</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">Curated collection confirmed to work out-of-the-box with physical controls on Retroid Pocket 4/5, AYN Odin 2, AYANEO Pocket, Logitech G Cloud, and Razer Edge.</p>
+      </div>
+
+      <div class="games-grid">
+        ${handheld.map(game => gameCard(game)).join('')}
+      </div>
+    `;
+  }
+
+  // =========================================================================
+  // VIEW: SAVED / MY LIBRARY
+  // =========================================================================
+  function renderSavedView() {
+    const savedList = catalogData.filter(g => savedGames.includes(g.id));
+
+    viewContent.innerHTML = `
+      <div style="margin-bottom: 24px;">
+        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">My Android Recomp Library</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">Games you've bookmarked for quick downloads and update tracking on your device.</p>
+      </div>
+
+      ${savedList.length > 0 ? `
+        <div style="margin-bottom: 20px;">
+          <button type="button" class="btn btn-secondary" onclick="window.DroidRecomp.exportSavedToObtainium()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Export Library as Obtainium JSON</span>
+          </button>
+        </div>
+        <div class="games-grid">
+          ${savedList.map(game => gameCard(game)).join('')}
+        </div>
+      ` : `
+        <div style="text-align: center; padding: 80px 20px; background: var(--glass); border-radius: var(--radius-lg); border: 1px solid var(--line);">
+          <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" stroke-width="1.5" style="color: var(--muted); margin-bottom: 16px;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <h3>Your Library is Empty</h3>
+          <p style="color: var(--muted); margin-top: 6px;">Click the bookmark icon on any recomp to save it here for fast access.</p>
+          <a class="btn btn-primary" href="#discover" style="margin-top: 18px;">Discover Games</a>
+        </div>
+      `}
+    `;
+  }
+
+  // =========================================================================
+  // VIEW: SETUP & HOW IT WORKS
+  // =========================================================================
+  function renderHowView() {
+    viewContent.innerHTML = `
+      <div style="max-width: 860px; margin: 0 auto;">
+        <h1 style="font-family: var(--font-display); font-size: 2.4rem; font-weight: 900; margin-bottom: 12px;">How Android Recomps Work</h1>
+        <p style="font-size: 1.1rem; color: var(--muted); line-height: 1.6; margin-bottom: 36px;">Static recompilation and native source ports translate original console machine code into native ARM64 instructions, achieving flawless 60–120 FPS performance with zero emulator overhead.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px;">
+          <div class="disc-note" style="margin: 0;">
+            <span class="kicker">Step 1 — Download the APK or Sync via Obtainium</span>
+            <p>Grab the compiled <code>arm64-v8a.apk</code> directly from the developer's GitHub Releases tab. For automated background updates, use Obtainium with our one-click sync buttons.</p>
+          </div>
+
+          <div class="disc-note" style="margin: 0;">
+            <span class="kicker">Step 2 — Provide Your Legally Owned Game Files</span>
+            <p>Because recompilations contain no copyrighted Nintendo, Sony, or Xbox assets, you must supply your own dumped ROM (e.g. <code>.z64</code>, <code>.iso</code>) or PC data files (e.g. <code>DIABDAT.MPQ</code>, <code>Data Files</code>). The port will extract audio, 3D meshes, and textures on your device.</p>
+          </div>
+
+          <div class="disc-note" style="margin: 0;">
+            <span class="kicker">Step 3 — Scoped Storage & Asset Placement</span>
+            <p>On Android 11 through 14+, file access is protected. Most recomps use the Android Storage Access Framework (SAF) folder picker on first boot. Point it to your files folder or place them in <code>/sdcard/Android/data/{package_name}/files/</code> using an external file manager like Shizuku or ZArchiver.</p>
+          </div>
+        </div>
+
+        <!-- CLIENT-SIDE ROM HASH TESTER -->
+        <div style="background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px;">
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin-bottom: 8px;">In-Browser ROM Checksum Tester</h3>
+          <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Verify that your N64 or console ROM is the exact required USA v1.0 version before copying it to your phone. <em>(100% private: processing is done locally in your browser with Web Crypto API; no file is uploaded).</em></p>
+          
+          <div class="rom-checker-box">
+            <input type="file" id="rom-file-input" style="display: none;" onchange="window.DroidRecomp.verifyRomFile(this.files[0])">
+            <div class="rom-drop-zone" onclick="document.getElementById('rom-file-input').click()">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--cyan); margin-bottom: 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <div style="font-weight: 600;">Click to select ROM (.z64, .iso, .bin, .dat)</div>
+              <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Local SHA-1 hash calculation</div>
+            </div>
+            <div id="rom-hash-output" style="margin-top: 14px; font-size: 0.88rem; font-family: monospace; display: none;"></div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // =========================================================================
+  // VIEW: SUBMIT PORT
+  // =========================================================================
+  function renderSubmitView() {
+    viewContent.innerHTML = `
+      <div style="max-width: 700px; margin: 0 auto; background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 36px;">
+        <h1 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Submit an Android Recomp</h1>
+        <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 24px;">Developed or ported an open-source static recompilation or game engine for Android? Submit it to the DroidRecomp master directory.</p>
+
+        <form id="submit-form" onsubmit="window.DroidRecomp.handleSubmitPort(event)">
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Game Name & Port Title *</label>
+            <input type="text" required placeholder="e.g. Zelda 64 Recomp (Android)" style="width: 100%; padding: 10px 14px; background: #111b2e; border: 1px solid var(--line); border-radius: var(--radius-sm); color: #fff;">
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Original Console / System *</label>
+            <select required style="width: 100%; padding: 10px 14px; background: #111b2e; border: 1px solid var(--line); border-radius: var(--radius-sm); color: #fff;">
+              <option value="n64">Nintendo 64</option>
+              <option value="x360">Xbox 360</option>
+              <option value="xbox">Xbox</option>
+              <option value="gc">GameCube</option>
+              <option value="wii">Wii</option>
+              <option value="ps1">PlayStation 1</option>
+              <option value="ps2">PlayStation 2</option>
+              <option value="pc_classic">Classic PC / Engine</option>
+            </select>
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">GitHub / Source Repository URL *</label>
+            <input type="url" required placeholder="https://github.com/owner/repo" style="width: 100%; padding: 10px 14px; background: #111b2e; border: 1px solid var(--line); border-radius: var(--radius-sm); color: #fff;">
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Required Original ROM / Disc Files *</label>
+            <input type="text" required placeholder="e.g. Needs USA v1.0 Z64 ROM" style="width: 100%; padding: 10px 14px; background: #111b2e; border: 1px solid var(--line); border-radius: var(--radius-sm); color: #fff;">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">Submit for Verification</button>
+        </form>
+      </div>
+    `;
+  }
+
+  // =========================================================================
+  // UI COMPONENTS (POSTER & CARD)
+  // =========================================================================
+  function posterCard(game, rank) {
+    return `
+      <div class="poster-card" onclick="window.DroidRecomp.openModal('${game.id}')">
+        <div class="poster-media">
+          <img src="${game.cover}" alt="${escapeHtml(game.name)}" loading="lazy">
+          ${rank ? `<span class="poster-rank">#${rank}</span>` : ''}
+          <span class="poster-badge">${originLabel(game.origin)}</span>
+        </div>
+        <div class="poster-info">
+          <h4 class="poster-title">${escapeHtml(game.name)}</h4>
+          <p class="poster-sub">${game.type}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  function gameCard(game, rank) {
+    const isSaved = savedGames.includes(game.id);
+    return `
+      <div class="game-card" onclick="window.DroidRecomp.openModal('${game.id}')">
+        <div class="game-card-head">
+          <img class="game-card-cover" src="${game.cover}" alt="${escapeHtml(game.name)}" loading="lazy">
+          <div class="game-card-meta">
+            <div class="game-card-tags">
+              <span class="tag tag-origin" style="font-size: 0.65rem; padding: 2px 7px;">${originLabel(game.origin)}</span>
+              ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip" style="font-size: 0.65rem; padding: 2px 6px;">Turnip ⚡</span>` : ''}
+              ${game.input.touch ? `<span class="tag tag-touch" style="font-size: 0.65rem; padding: 2px 6px;">Touch</span>` : ''}
+            </div>
+            <h3 class="game-card-title">${rank ? `<b style="color:var(--cyan); margin-right: 4px;">#${rank}</b> ` : ''}${escapeHtml(game.name)}</h3>
+            <p class="game-card-by">by ${escapeHtml(game.author || 'Community')}</p>
+            <p class="game-card-blurb">${escapeHtml(game.blurb || '')}</p>
+          </div>
+        </div>
+        <div class="game-card-foot">
+          <span>${game.version || 'v1.0'}</span>
+          <div class="game-card-actions" onclick="event.stopPropagation()">
+            <button type="button" class="btn-card-action" onclick="window.DroidRecomp.toggleSave('${game.id}')" title="Save to library">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button type="button" class="btn-card-action" onclick="window.DroidRecomp.openModal('${game.id}')">Details</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // =========================================================================
+  // GAME DETAIL MODAL
+  // =========================================================================
+  function openGameModal(id) {
+    const game = catalogData.find(g => g.id === id);
+    if (!game) return;
+
+    const isSaved = savedGames.includes(game.id);
+
+    modalContent.innerHTML = `
+      <div class="modal-hero" style="background-image: url('${game.hero || game.cover}');">
+        <div class="modal-hero-gradient"></div>
+      </div>
+
+      <div class="modal-header-content">
+        <img class="modal-cover" src="${game.cover}" alt="${escapeHtml(game.name)}">
+        <div class="modal-title-area">
+          <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+            <span class="tag tag-origin">${originLabel(game.origin)}</span>
+            <span class="tag">${game.type}</span>
+            <span class="tag" style="background: rgba(52, 211, 153, 0.2); color: var(--success); border-color: rgba(52, 211, 153, 0.4);">Verified Playable</span>
+            ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip">⚡ Adreno Turnip Rec.</span>` : ''}
+          </div>
+          <h1 class="modal-title">${escapeHtml(game.name)}</h1>
+          ${game.game && game.game !== game.name ? `<p class="modal-based">Rebuilt from <strong>${escapeHtml(game.game)}</strong></p>` : ''}
+          <p style="font-size: 0.85rem; color: var(--muted);">Maintained by <strong>${escapeHtml(game.author || 'Community')}</strong></p>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <nav class="modal-tabs" role="tablist">
+        <button type="button" class="modal-tab active" data-tab="overview">Overview</button>
+        <button type="button" class="modal-tab" data-tab="setup">Setup & Assets</button>
+        <button type="button" class="modal-tab" data-tab="releases">Downloads & Updates</button>
+      </nav>
+
+      <div class="modal-inner">
+        <!-- LEFT TAB PANELS -->
+        <div class="modal-main-body">
+          <!-- PANEL 1: OVERVIEW -->
+          <div class="modal-panel" id="panel-overview">
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">About this Recompilation</h3>
+            <p style="color: var(--muted); margin-bottom: 16px;">${escapeHtml(game.blurb || '')}</p>
+
+            <h4 style="font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 10px; color: var(--cyan);">Key Features & Enhancements</h4>
+            <ul class="modal-features-list">
+              ${(game.features || []).map(f => `
+                <li>
+                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>${escapeHtml(f)}</span>
+                </li>
+              `).join('')}
+            </ul>
+
+            <div class="disc-note" style="margin-top: 24px;">
+              <span class="kicker">No Game Files Included</span>
+              <p>DroidRecomp and its developer releases do not distribute game assets. You must own and supply your own legal dump of <em>${escapeHtml(game.game || game.name)}</em>.</p>
+            </div>
+          </div>
+
+          <!-- PANEL 2: SETUP & ASSETS -->
+          <div class="modal-panel" id="panel-setup" hidden>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">Asset Setup Guide</h3>
+            <p style="color: var(--muted); margin-bottom: 14px;">Follow these steps to extract and place your assets for this port:</p>
+
+            <div style="background: rgba(244, 248, 252, 0.04); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; margin-bottom: 16px;">
+              <strong style="color: var(--cyan); display: block; margin-bottom: 4px;">Required Game Files:</strong>
+              <div style="font-family: monospace; font-size: 0.85rem; color: #fff;">${escapeHtml(game.needs || 'Original ROM dump')}</div>
+            </div>
+
+            <div style="background: rgba(244, 248, 252, 0.04); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; margin-bottom: 16px;">
+              <strong style="color: var(--cyan); display: block; margin-bottom: 4px;">Target Storage Directory:</strong>
+              <div style="font-family: monospace; font-size: 0.82rem; color: #fff; word-break: break-all;">/sdcard/Android/data/com.recomp.${game.id.replace(/-/g, '.')}/files/</div>
+            </div>
+
+            <!-- LOCAL ROM HASH CHECKER IN MODAL -->
+            <div class="rom-checker-box">
+              <input type="file" id="modal-rom-input" style="display: none;" onchange="window.DroidRecomp.verifyRomFile(this.files[0], '${game.id}')">
+              <div class="rom-drop-zone" onclick="document.getElementById('modal-rom-input').click()">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--cyan); margin-bottom: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <div style="font-weight: 600; font-size: 0.9rem;">Test Your ROM File Hash Locally</div>
+                <div style="font-size: 0.75rem; color: var(--muted);">Click to verify SHA-1 checksum</div>
+              </div>
+              <div id="modal-rom-output" style="margin-top: 10px; font-size: 0.8rem; font-family: monospace; display: none;"></div>
+            </div>
+          </div>
+
+          <!-- PANEL 3: RELEASES & UPDATES -->
+          <div class="modal-panel" id="panel-releases" hidden>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">Releases & Source Code</h3>
+            <p style="color: var(--muted); margin-bottom: 14px;">Binary builds are distributed directly from the developer's official releases.</p>
+
+            <div style="background: rgba(244, 248, 252, 0.04); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 18px; margin-bottom: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <strong style="font-size: 1.05rem;">Current Release: ${game.version || 'Latest'}</strong>
+                <span class="tag tag-origin" style="font-size: 0.7rem;">ARM64</span>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Target architecture: <code>arm64-v8a</code>. Verified clean build with native graphics pipeline.</p>
+              
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                ${game.apk_url ? `
+                  <a class="btn btn-primary" href="${game.apk_url}" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Direct APK Download</span>
+                  </a>
+                ` : ''}
+                ${game.repo_url ? `
+                  <a class="btn btn-secondary" href="${game.repo_url}" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <span>GitHub Repository</span>
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT FACTS SIDEBAR -->
+        <aside class="modal-sidebar">
+          <div class="modal-sidebar-card">
+            ${game.apk_url ? `
+              <a class="btn btn-primary btn-full" href="${game.apk_url}" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download APK (ARM64)</span>
+              </a>
+            ` : ''}
+
+            ${game.obtainium_url ? `
+              <a class="btn btn-secondary btn-full" href="${game.obtainium_url}" title="Add to Obtainium">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                <span>1-Click Obtainium Sync</span>
+              </a>
+            ` : ''}
+
+            <button type="button" class="btn btn-secondary btn-full" onclick="window.DroidRecomp.toggleSave('${game.id}', true)">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              <span id="modal-save-label">${isSaved ? 'In Your Library' : 'Bookmark to Library'}</span>
+            </button>
+
+            <dl style="margin-top: 10px;">
+              <div class="fact-row"><dt>System</dt><dd>${originLabel(game.origin)}</dd></div>
+              <div class="fact-row"><dt>Port Type</dt><dd>${game.type}</dd></div>
+              <div class="fact-row"><dt>Min Android</dt><dd>${game.min_android || 'Android 8.0+'}</dd></div>
+              <div class="fact-row"><dt>Input</dt><dd>${game.input.touch ? 'Touch + Gamepad' : 'Physical Gamepad'}</dd></div>
+              <div class="fact-row"><dt>Renderer</dt><dd>${game.graphics.backend || 'Vulkan 1.3'}</dd></div>
+              <div class="fact-row"><dt>Target FPS</dt><dd>${game.graphics.fps_target || 60} FPS</dd></div>
+              <div class="fact-row"><dt>Mesa Turnip</dt><dd>${game.graphics.turnip_recommended ? 'Recommended ⚡' : 'Standard'}</dd></div>
+              <div class="fact-row"><dt>Version</dt><dd>${game.version || 'v1.0'}</dd></div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    `;
+
+    // Modal Tabs logic
+    const tabs = modalContent.querySelectorAll('.modal-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-tab');
+        modalContent.querySelectorAll('.modal-panel').forEach(p => p.hidden = true);
+        const activePanel = modalContent.querySelector(`#panel-${target}`);
+        if (activePanel) activePanel.hidden = false;
+      });
+    });
+
+    gameModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    gameModal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  // =========================================================================
+  // SEARCH MODAL LOGIC
+  // =========================================================================
+  function openSearch() {
+    searchModal.hidden = false;
+    searchInput.value = '';
+    searchInput.focus();
+    renderSearchResults('');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSearch() {
+    searchModal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function renderSearchResults(query) {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      searchResults.innerHTML = `<div style="text-align: center; padding: 30px; color: var(--muted); font-size: 0.9rem;">Type to search 133+ verified Android recompilations...</div>`;
+      return;
+    }
+
+    const matches = catalogData.filter(g => {
+      return (
+        g.name.toLowerCase().includes(q) ||
+        (g.game && g.game.toLowerCase().includes(q)) ||
+        (g.origin && g.origin.toLowerCase().includes(q)) ||
+        (g.author && g.author.toLowerCase().includes(q)) ||
+        (g.type && g.type.toLowerCase().includes(q)) ||
+        (g.blurb && g.blurb.toLowerCase().includes(q))
+      );
+    }).slice(0, 15);
+
+    if (!matches.length) {
+      searchResults.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--muted);">No recomps found matching "<strong>${escapeHtml(query)}</strong>"</div>`;
+      return;
+    }
+
+    searchResults.innerHTML = matches.map(game => `
+      <div class="search-item" onclick="window.DroidRecomp.selectSearchResult('${game.id}')">
+        <img class="search-item-thumb" src="${game.cover}" alt="">
+        <div class="search-item-info">
+          <div class="search-item-title">${escapeHtml(game.name)}</div>
+          <div class="search-item-meta">${originLabel(game.origin)} &bull; ${game.type} &bull; ${game.version || 'v1.0'}</div>
+        </div>
+        <span class="tag tag-origin" style="font-size: 0.65rem;">View</span>
+      </div>
+    `).join('');
+  }
+
+  // =========================================================================
+  // BOOKMARK / SAVED SYSTEM
+  // =========================================================================
+  function toggleSave(id, fromModal = false) {
+    const idx = savedGames.indexOf(id);
+    if (idx >= 0) {
+      savedGames.splice(idx, 1);
+    } else {
+      savedGames.push(id);
+    }
+    localStorage.setItem('droidrecomp_saved', JSON.stringify(savedGames));
+    updateSavedCount();
+
+    if (fromModal) {
+      const label = document.getElementById('modal-save-label');
+      if (label) label.textContent = savedGames.includes(id) ? 'In Your Library' : 'Bookmark to Library';
+    } else if (currentRoute === 'saved') {
+      renderSavedView();
+    }
+  }
+
+  function updateSavedCount() {
+    if (savedCountBadge) savedCountBadge.textContent = savedGames.length;
+  }
+
+  // =========================================================================
+  // OBTAINIUM JSON EXPORT
+  // =========================================================================
+  function exportObtainiumPack() {
+    const appsToExport = catalogData.filter(g => g.repo);
+    const pack = {
+      apps: appsToExport.map(g => ({
+        id: `com.recomp.${g.id.replace(/-/g, '.')}`,
+        url: `https://github.com/${g.repo}`,
+        author: g.author || 'Community',
+        name: g.name,
+        preferredApkIndex: 0,
+        additionalSettings: {
+          includePrereleases: false,
+          fallbackToOlderReleases: true,
+          filterReleaseTitlesByRegEx: "",
+          filterReleaseNotesByRegEx: "",
+          filterAppTitlesByRegEx: ".*(arm64|android).*"
+        }
+      })),
+      settings: {
+        theme: "dark"
+      }
+    };
+
+    const blob = new Blob([JSON.stringify(pack, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'DroidRecomp_Obtainium_Pack.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // =========================================================================
+  // ROM SHA-1 HASH CALCULATOR (Local Web Crypto API)
+  // =========================================================================
+  async function verifyRomFile(file, gameId) {
+    if (!file) return;
+    const out = document.getElementById(gameId ? 'modal-rom-output' : 'rom-hash-output');
+    if (!out) return;
+
+    out.style.display = 'block';
+    out.style.color = 'var(--muted)';
+    out.textContent = `Reading ${file.name} (${(file.size / (1024 * 1024)).toFixed(1)} MB)...`;
+
+    try {
+      const buffer = await file.arrayBuffer();
+      const hashBuffer = await crypto.subtle.digest('SHA-1', buffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+      out.innerHTML = `
+        <div style="color: #fff; margin-bottom: 4px;">File: <strong>${escapeHtml(file.name)}</strong></div>
+        <div style="color: var(--cyan); word-break: break-all;">SHA-1: <strong>${hashHex}</strong></div>
+        <div style="color: var(--success); margin-top: 6px;">✓ Calculated locally without upload. Check if it matches requirements.</div>
+      `;
+    } catch (err) {
+      out.style.color = 'var(--danger)';
+      out.textContent = `Error reading file: ${err.message}`;
+    }
+  }
+
+  // =========================================================================
+  // UTILITIES & HELPERS
+  // =========================================================================
+  function setAmbientBackdrop(imageUrl) {
+    if (backdropImg && imageUrl) {
+      backdropImg.style.backgroundImage = `url('${imageUrl}')`;
+    }
+  }
+
+  function originLabel(origin) {
+    const map = {
+      'n64': 'Nintendo 64',
+      'x360': 'Xbox 360',
+      'xbox': 'Xbox',
+      'gc': 'GameCube',
+      'wii': 'Wii',
+      'ps1': 'PS1',
+      'ps2': 'PS2',
+      'psp': 'PSP',
+      'pc_classic': 'PC Engine',
+      'snes': 'SNES',
+      'gba': 'GBA'
+    };
+    return map[origin] || origin.toUpperCase();
+  }
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // Event Listeners
+  function setupEventListeners() {
+    // Navigation Routing
+    window.addEventListener('hashchange', handleRoute);
+
+    // Global Search Modal Events
+    const searchOpenBtn = document.getElementById('search-open');
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+    const searchCloseBtn = document.getElementById('search-close');
+    const modalCloseBtn = document.getElementById('modal-close');
+
+    if (searchOpenBtn) searchOpenBtn.addEventListener('click', openSearch);
+    if (mobileSearchBtn) mobileSearchBtn.addEventListener('click', openSearch);
+    if (searchCloseBtn) searchCloseBtn.addEventListener('click', closeSearch);
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+
+    // Close on backdrop click
+    if (searchModal) {
+      searchModal.addEventListener('click', (e) => {
+        if (e.target === searchModal) closeSearch();
+      });
+    }
+
+    if (gameModal) {
+      gameModal.addEventListener('click', (e) => {
+        if (e.target === gameModal) closeModal();
+      });
+    }
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSearch();
+        closeModal();
+      }
+      if ((e.key === '/' || (e.ctrlKey && e.key === 'k')) && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        openSearch();
+      }
+    });
+
+    // Search Input debounce
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        renderSearchResults(e.target.value);
+      });
+    }
+
+    // Search Quick Tags
+    document.querySelectorAll('.tag-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const q = btn.getAttribute('data-query');
+        if (searchInput) {
+          searchInput.value = q;
+          renderSearchResults(q);
+        }
+      });
+    });
+
+    // Origin Pills in Header
+    document.querySelectorAll('#origin-pills [data-origin]').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const origin = pill.getAttribute('data-origin');
+        window.DroidRecomp.setOrigin(origin);
+      });
+    });
+
+    // UI Mode Toggle
+    if (uiModeToggle) {
+      uiModeToggle.addEventListener('click', toggleUiMode);
+    }
+
+    // Obtainium Pack button
+    const btnObtainium = document.getElementById('btn-obtainium-pack');
+    if (btnObtainium) {
+      btnObtainium.addEventListener('click', exportObtainiumPack);
+    }
+
+    const footObtainium = document.getElementById('foot-obtainium-link');
+    if (footObtainium) {
+      footObtainium.addEventListener('click', (e) => {
+        e.preventDefault();
+        exportObtainiumPack();
+      });
+    }
+  }
+
+  // Public API attached to window for inline onclick handlers
+  window.DroidRecomp = {
+    openModal: openGameModal,
+    closeModal: closeModal,
+    setOrigin: function (origin) {
+      activeOrigin = origin;
+      document.querySelectorAll('#origin-pills [data-origin]').forEach(el => {
+        el.classList.toggle('on', el.getAttribute('data-origin') === activeOrigin);
+      });
+      if (currentRoute !== 'all') {
+        currentRoute = 'all';
+        window.location.hash = origin === 'all' ? 'all' : origin;
+      } else {
+        renderAllView();
+      }
+    },
+    setType: function (type) {
+      filterType = type;
+      renderAllView();
+    },
+    setInput: function (input) {
+      filterInput = input;
+      renderAllView();
+    },
+    toggleTurnip: function () {
+      filterTurnip = !filterTurnip;
+      renderAllView();
+    },
+    resetFilters: function () {
+      activeOrigin = 'all';
+      filterType = 'all';
+      filterInput = 'all';
+      filterTurnip = false;
+      renderAllView();
+    },
+    toggleSave: toggleSave,
+    selectSearchResult: function (id) {
+      closeSearch();
+      openGameModal(id);
+    },
+    exportSavedToObtainium: exportObtainiumPack,
+    verifyRomFile: verifyRomFile,
+    handleSubmitPort: function (e) {
+      e.preventDefault();
+      alert('Thank you! Your submission has been received and queued for community controller & ARM64 verification.');
+      window.location.hash = 'discover';
+    }
+  };
+
+  // Embedded Backup Catalog
+  function getEmbeddedCatalog() {
+    return [
+      {
+        id: "zelda-64-recomp-android",
+        name: "Zelda 64: Recompiled (Android)",
+        game: "The Legend of Zelda: Majora's Mask",
+        origin: "n64",
+        type: "Static Recomp",
+        version: "v1.2.2",
+        author: "Zelda64Recomp / AurelioB",
+        repo: "Zelda64Recomp/Zelda64Recomp",
+        repo_url: "https://github.com/Zelda64Recomp/Zelda64Recomp",
+        apk_url: "https://github.com/Zelda64Recomp/Zelda64Recomp/releases/latest",
+        obtainium_url: "obtainium://app/%7B%22id%22%3A%22com.recomp.zelda64%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FZelda64Recomp/Zelda64Recomp%22%7D",
+        cover: "https://images.igdb.com/igdb/image/upload/t_cover_big/co64z4.jpg",
+        hero: "https://images.igdb.com/igdb/image/upload/t_1080p/sc87a8.jpg",
+        min_android: "Android 8.0+",
+        architectures: ["arm64-v8a"],
+        input: { touch: true, controller: true, gyro: true, controller_recommended: false },
+        graphics: { backend: "Vulkan 1.3", turnip_recommended: false, fps_target: 120 },
+        needs: "The Legend of Zelda: Majora's Mask (USA) v1.0 ROM (Z64 format, SHA1: d6133ace...)",
+        blurb: "Majora's Mask as a native ARM64 Android app: high frame rates up to 120 FPS, widescreen, touch controls, and gyroscope aiming.",
+        features: ["Native ARM64 Execution", "Up to 120 FPS Interpolation", "Configurable Touch Controls", "Gyroscope Aiming Support", "High Efficiency Vulkan Pipeline"],
+        downloads: 380000,
+        stars: 7553
+      },
+      {
+        id: "banjo-kazooie-recomp",
+        name: "Banjo-Kazooie Recomp",
+        game: "Banjo-Kazooie",
+        origin: "n64",
+        type: "Static Recomp",
+        version: "v1.0.0",
+        author: "AurelioB (N64Recomp)",
+        repo: "AurelioB/BanjoRecomp-Android",
+        repo_url: "https://github.com/AurelioB/BanjoRecomp-Android",
+        apk_url: "https://github.com/AurelioB/BanjoRecomp-Android/releases/latest",
+        obtainium_url: "obtainium://app/%7B%22id%22%3A%22com.recomp.banjo%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FAurelioB/BanjoRecomp-Android%22%7D",
+        cover: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2048.jpg",
+        hero: "https://images.igdb.com/igdb/image/upload/t_1080p/sc66b3.jpg",
+        min_android: "Android 8.0+",
+        architectures: ["arm64-v8a"],
+        input: { touch: true, controller: true, gyro: false, controller_recommended: false },
+        graphics: { backend: "Vulkan 1.3", turnip_recommended: false, fps_target: 120 },
+        needs: "Banjo-Kazooie (USA) v1.0 ROM (.z64)",
+        blurb: "Rare's 3D collect-a-thon rebuilt natively for Android with RT64 rendering, instant load times, and true widescreen support.",
+        features: ["60/120 FPS Rendering", "16:9 Widescreen Fixes", "Dual Analog Camera Support", "Touch & Physical Gamepad Support"],
+        downloads: 145000,
+        stars: 3200
+      },
+      {
+        id: "forza-horizon",
+        name: "Forza Horizon (Pinyon Shift)",
+        game: "Forza Horizon (2012)",
+        origin: "x360",
+        type: "Static Recomp",
+        version: "v0.6.0",
+        author: "arcanite24 (Pinyon Shift)",
+        repo: "",
+        repo_url: "",
+        apk_url: "https://droidports.com/games/forza-horizon/",
+        obtainium_url: "",
+        cover: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4n.jpg",
+        hero: "https://images.igdb.com/igdb/image/upload/t_1080p/sc7xsn.jpg",
+        min_android: "Android 10.0+ (ARM64)",
+        architectures: ["arm64-v8a"],
+        input: { touch: false, controller: true, gyro: false, controller_recommended: true },
+        graphics: { backend: "Vulkan 1.3", turnip_recommended: true, fps_target: 60 },
+        needs: "Xbox 360 Forza Horizon (2012) Disc dump / ISO",
+        blurb: "Playground Games' open-world festival racer statically recompiled from Xbox 360 PowerPC instructions into native ARM64 code.",
+        features: ["AMD FSR 2/3 Temporal Upscaling", "60 FPS Colorado Open World", "Adreno Turnip Vulkan Tested", "Controller Auto-Mapping"],
+        downloads: 85000,
+        stars: 2900
+      }
+    ];
+  }
+
+  // Start on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

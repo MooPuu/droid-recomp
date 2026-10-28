@@ -1,0 +1,19 @@
+{
+  "name": "DroidRecomp — Native Android Recompilations",
+  "short_name": "DroidRecomp",
+  "description": "The definitive hub for console and classic PC game static recompilations and native source ports on Android.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0B1220",
+  "theme_color": "#0B1220",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "utilities", "entertainment"]
+}

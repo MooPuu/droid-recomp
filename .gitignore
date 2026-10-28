@@ -1,0 +1,19 @@
+# Binaries & Large Build Outputs
+*.apk
+*.aab
+*.zip
+*.tar.gz
+
+# Flutter & Android Native Project
+droid_recomp_app/
+.dart_tool/
+.idea/
+*.log
+
+# Scrapers & Local Temporary Artifacts
+scrapers_and_raw_data/
+build_apk.ps1
+
+# System & OS Files
+.DS_Store
+Thumbs.db
