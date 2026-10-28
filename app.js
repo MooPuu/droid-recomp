@@ -37,6 +37,15 @@
 
   // Initialize
   async function init() {
+    if (searchModal) {
+      searchModal.hidden = true;
+      searchModal.style.display = 'none';
+    }
+    if (gameModal) {
+      gameModal.hidden = true;
+      gameModal.style.display = 'none';
+    }
+
     updateSavedCount();
     applyTheme();
     applyUiMode();
@@ -798,11 +807,13 @@
     });
 
     gameModal.hidden = false;
+    gameModal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
     gameModal.hidden = true;
+    gameModal.style.display = 'none';
     document.body.style.overflow = '';
   }
 
@@ -811,6 +822,7 @@
   // =========================================================================
   function openSearch() {
     searchModal.hidden = false;
+    searchModal.style.display = 'flex';
     searchInput.value = '';
     searchInput.focus();
     renderSearchResults('');
@@ -819,13 +831,14 @@
 
   function closeSearch() {
     searchModal.hidden = true;
+    searchModal.style.display = 'none';
     document.body.style.overflow = '';
   }
 
   function renderSearchResults(query) {
     const q = query.trim().toLowerCase();
     if (!q) {
-      searchResults.innerHTML = `<div style="text-align: center; padding: 30px; color: var(--muted); font-size: 0.9rem;">Type to search 133+ verified Android recompilations...</div>`;
+      searchResults.innerHTML = `<div style="text-align: center; padding: 30px; color: var(--muted); font-size: 0.9rem;">Type to search 370+ verified Android recompilations & ports...</div>`;
       return;
     }
 

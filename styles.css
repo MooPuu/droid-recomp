@@ -105,6 +105,12 @@
   padding: 0;
 }
 
+[hidden],
+.search-overlay[hidden],
+.modal-backdrop[hidden] {
+  display: none !important;
+}
+
 html {
   font-family: var(--font-sans);
   background-color: var(--midnight);
@@ -1141,7 +1147,7 @@ img {
 }
 
 .search-dialog {
-  background: #0E172A;
+  background: var(--modal-bg);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-lg);
   width: 100%;
