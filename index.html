@@ -76,8 +76,14 @@
         <!-- Search Trigger Button -->
         <button type="button" class="search-trigger-btn" id="search-open" aria-label="Search Recomps">
           <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-          <span class="search-placeholder desktop-only">Search 133+ recomps...</span>
+          <span class="search-placeholder desktop-only">Search 370+ recomps & ports...</span>
           <kbd class="search-shortcut desktop-only">/</kbd>
+        </button>
+
+        <!-- Theme Switcher Button -->
+        <button type="button" class="icon-chip" id="theme-toggle" title="Switch Theme (Midnight / Light / OLED)" aria-label="Switch Theme">
+          <svg class="theme-icon" id="theme-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <span id="theme-label" class="desktop-only">Midnight</span>
         </button>
 
         <!-- UI Mode Switcher (Desktop vs Mobile Preview) -->
@@ -110,8 +116,11 @@
           <button type="button" class="pill" data-origin="xbox">Xbox</button>
           <button type="button" class="pill" data-origin="gc">GameCube</button>
           <button type="button" class="pill" data-origin="wii">Wii</button>
-          <button type="button" class="pill" data-origin="ps1">PlayStation 1</button>
+          <button type="button" class="pill" data-origin="ps1">PlayStation</button>
           <button type="button" class="pill" data-origin="ps2">PlayStation 2</button>
+          <button type="button" class="pill" data-origin="psp">PSP</button>
+          <button type="button" class="pill" data-origin="snes">SNES</button>
+          <button type="button" class="pill" data-origin="gba">GBA</button>
           <button type="button" class="pill" data-origin="pc_classic">Classic PC & Engines</button>
         </div>
       </div>
@@ -206,7 +215,7 @@
         <div class="foot-col">
           <h4>Ecosystem</h4>
           <a href="#discover">Discover</a>
-          <a href="#all">All 133 Recomps</a>
+          <a href="#all">All 370+ Recomps & Ports</a>
           <a href="#top">Top Downloads</a>
           <a href="#handheld">Handheld Optimized</a>
         </div>

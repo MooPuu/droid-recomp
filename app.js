@@ -18,6 +18,7 @@
   let activeHeroIndex = 0;
   let savedGames = JSON.parse(localStorage.getItem('droidrecomp_saved') || '[]');
   let uiMode = localStorage.getItem('droidrecomp_uimode') || 'auto'; // 'auto', 'desktop', 'mobile'
+  let currentTheme = localStorage.getItem('droidrecomp_theme') || 'dark'; // 'dark', 'light', 'oled'
 
   // DOM Elements
   const viewContent = document.getElementById('view-content');
@@ -30,10 +31,14 @@
   const savedCountBadge = document.getElementById('saved-count');
   const uiModeToggle = document.getElementById('ui-mode-toggle');
   const uiModeLabel = document.getElementById('ui-mode-label');
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeLabel = document.getElementById('theme-label');
+  const themeIcon = document.getElementById('theme-icon');
 
   // Initialize
   async function init() {
     updateSavedCount();
+    applyTheme();
     applyUiMode();
     setupEventListeners();
 
@@ -54,6 +59,38 @@
     }
 
     handleRoute();
+  }
+
+  // Theme Engine (Dark Midnight / Clean Light / AMOLED OLED)
+  function applyTheme() {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('droidrecomp_theme', currentTheme);
+
+    const icons = {
+      dark: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>', // Moon
+      light: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>', // Sun
+      oled: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' // Lightning
+    };
+
+    const labels = {
+      dark: 'Midnight',
+      light: 'Light',
+      oled: 'OLED'
+    };
+
+    if (themeIcon) themeIcon.innerHTML = icons[currentTheme] || icons.dark;
+    if (themeLabel) themeLabel.textContent = labels[currentTheme] || 'Theme';
+  }
+
+  function toggleTheme() {
+    if (currentTheme === 'dark') {
+      currentTheme = 'light';
+    } else if (currentTheme === 'light') {
+      currentTheme = 'oled';
+    } else {
+      currentTheme = 'dark';
+    }
+    applyTheme();
   }
 
   // UI Mode (Mobile vs Desktop override)
@@ -1010,6 +1047,11 @@
       });
     });
 
+    // Theme Toggle
+    if (themeToggle) {
+      themeToggle.addEventListener('click', toggleTheme);
+    }
+
     // UI Mode Toggle
     if (uiModeToggle) {
       uiModeToggle.addEventListener('click', toggleUiMode);
@@ -1034,6 +1076,8 @@
   window.DroidRecomp = {
     openModal: openGameModal,
     closeModal: closeModal,
+    toggleTheme: toggleTheme,
+    toggleUiMode: toggleUiMode,
     setOrigin: function (origin) {
       activeOrigin = origin;
       document.querySelectorAll('#origin-pills [data-origin]').forEach(el => {

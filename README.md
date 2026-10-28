@@ -7,15 +7,16 @@
 [![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-34F2E8?style=for-the-badge&logo=github&logoColor=0B1220)](https://moopuu.github.io/droid-recomp/)
 [![Platform](https://img.shields.io/badge/Platform-Android%208.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://moopuu.github.io/droid-recomp/)
 [![License](https://img.shields.io/badge/License-MIT-377BB6?style=for-the-badge)](LICENSE)
-[![Catalog Size](https://img.shields.io/badge/Verified%20Recomps-133%20Playable-34F2E8?style=for-the-badge)](catalog.json)
+[![Catalog Size](https://img.shields.io/badge/Verified%20Recomps-370%2B%20Playable-34F2E8?style=for-the-badge)](catalog.json)
 [![BYOR Legal](https://img.shields.io/badge/Zero%20ROMs-100%25%20Legal%20BYOR-52B788?style=for-the-badge)](#-legal-compliance--byor-architecture)
+[![Themes](https://img.shields.io/badge/Themes-Midnight%20%7C%20Light%20%7C%20OLED-377BB6?style=for-the-badge)](https://moopuu.github.io/droid-recomp/)
 [![Obtainium Ready](https://img.shields.io/badge/Sync-Obtainium%20Ready-F77F00?style=for-the-badge)](https://github.com/ImranR98/Obtainium)
 
 <p align="center">
   <b>Play Nintendo 64, PlayStation, and PC classics running natively on ARM64 silicon — zero emulation overhead, uncapped frame rates, and native Android touch/controller controls.</b>
 </p>
 
-[**🌐 Launch Live Web App**](https://moopuu.github.io/droid-recomp/) • [**🎮 Browse 133+ Recomps**](https://moopuu.github.io/droid-recomp/#all) • [**📖 Setup Guide**](https://moopuu.github.io/droid-recomp/#how) • [**📥 Obtainium Pack**](https://moopuu.github.io/droid-recomp/#obtainium)
+[**🌐 Launch Live Web App**](https://moopuu.github.io/droid-recomp/) • [**🎮 Browse 370+ Recomps**](https://moopuu.github.io/droid-recomp/#all) • [**📖 Setup Guide**](https://moopuu.github.io/droid-recomp/#how) • [**📥 Obtainium Pack**](https://moopuu.github.io/droid-recomp/#obtainium)
 
 ---
 
@@ -25,7 +26,7 @@
 
 **DroidRecomp** is a high-performance web catalog and setup assistant inspired by the clean, cyberpunk aesthetic of [RecompLauncher](https://recomplauncher.com/). While traditional emulators translate machine instructions on the fly with massive performance hits, **static recompilations and decompilations** recompile original game machine code into native C/C++ or compile cleanly from reverse-engineered source code.
 
-DroidRecomp indexes **133 verified, 100% playable native Android ports and static recompilations** with comprehensive setup guides, hardware compatibility flags, and instant deep-linking into the **Obtainium** app manager for seamless updates.
+DroidRecomp indexes **371 verified, 100% playable native Android ports and static recompilations** (aggregated and deduplicated across OpenPortsGames, APKVision, DroidPorts, Pocket-Gaming, Codeberg, and GitHub) with comprehensive setup guides, hardware compatibility flags, triple-theme switching (Midnight Slate, Cyber Frost Light, and Pure AMOLED Black), and instant deep-linking into the **Obtainium** app manager for seamless updates.
 
 ---
 

@@ -31,6 +31,71 @@
   --font-display: 'Archivo', var(--font-sans);
   --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 25px rgba(52, 242, 232, 0.25);
+  --nav-bg: rgba(11, 18, 32, 0.85);
+  --card-bg: rgba(14, 23, 42, 0.75);
+  --input-bg: rgba(11, 18, 32, 0.6);
+  --modal-bg: #0E172A;
+  --modal-overlay: rgba(5, 9, 16, 0.8);
+  --mobile-nav-bg: rgba(11, 18, 32, 0.94);
+  --hero-fade: linear-gradient(90deg, #0B1220 0%, rgba(11, 18, 32, 0.85) 45%, rgba(11, 18, 32, 0.2) 100%);
+  --poster-fade: linear-gradient(0deg, #0E172A 0%, rgba(14, 23, 42, 0.7) 60%, rgba(14, 23, 42, 0.2) 100%);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="light"] {
+  --midnight: #F8FAFC;
+  --midnight-alt: #FFFFFF;
+  --frost: #0F172A;
+  --cyan: #0284C7;
+  --cyan-glow: rgba(2, 132, 199, 0.25);
+  --muted: #475569;
+  --line: rgba(15, 23, 42, 0.12);
+  --line-strong: rgba(15, 23, 42, 0.24);
+  --glass: rgba(15, 23, 42, 0.05);
+  --glass-hover: rgba(15, 23, 42, 0.09);
+  --glass-active: rgba(2, 132, 199, 0.12);
+  --acc: #0284C7;
+  --acc2: #2563EB;
+  --brand: linear-gradient(180deg, var(--acc), var(--acc2));
+  --brand-h: linear-gradient(135deg, #0284C7 0%, #2563EB 100%);
+  --nav-bg: rgba(248, 250, 252, 0.88);
+  --card-bg: #FFFFFF;
+  --input-bg: #FFFFFF;
+  --modal-bg: #FFFFFF;
+  --modal-overlay: rgba(15, 23, 42, 0.6);
+  --mobile-nav-bg: rgba(248, 250, 252, 0.96);
+  --hero-fade: linear-gradient(90deg, #F8FAFC 0%, rgba(248, 250, 252, 0.9) 45%, rgba(248, 250, 252, 0.3) 100%);
+  --poster-fade: linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 60%, rgba(255, 255, 255, 0.2) 100%);
+  --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 1px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.2);
+}
+
+[data-theme="oled"] {
+  --midnight: #000000;
+  --midnight-alt: #050505;
+  --frost: #FFFFFF;
+  --cyan: #00FFCC;
+  --cyan-glow: rgba(0, 255, 204, 0.45);
+  --muted: #8E9BAE;
+  --line: rgba(255, 255, 255, 0.15);
+  --line-strong: rgba(255, 255, 255, 0.3);
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-hover: rgba(255, 255, 255, 0.12);
+  --glass-active: rgba(0, 255, 204, 0.2);
+  --acc: #00FFCC;
+  --acc2: #0099FF;
+  --brand: linear-gradient(180deg, var(--acc), var(--acc2));
+  --brand-h: linear-gradient(135deg, #00FFCC 0%, #0099FF 100%);
+  --nav-bg: rgba(0, 0, 0, 0.92);
+  --card-bg: #050505;
+  --input-bg: #000000;
+  --modal-bg: #050505;
+  --modal-overlay: rgba(0, 0, 0, 0.88);
+  --mobile-nav-bg: rgba(0, 0, 0, 0.96);
+  --hero-fade: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.88) 45%, rgba(0, 0, 0, 0.2) 100%);
+  --poster-fade: linear-gradient(0deg, #050505 0%, rgba(5, 5, 5, 0.8) 60%, rgba(5, 5, 5, 0.2) 100%);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.95);
+  --shadow-glow: 0 0 25px rgba(0, 255, 204, 0.35);
 }
 
 /* Base Reset */
@@ -136,7 +201,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11, 18, 32, 0.82);
+  background: var(--nav-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--line);
@@ -320,8 +385,8 @@ img {
    SUB-NAV BAR (Origin Pills)
    ========================================================================== */
 .sub-nav-bar {
-  background: rgba(11, 18, 32, 0.6);
-  border-top: 1px solid rgba(244, 248, 252, 0.05);
+  background: var(--nav-bg);
+  border-top: 1px solid var(--line);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -384,7 +449,7 @@ img {
   border-radius: var(--radius-lg);
   overflow: hidden;
   margin-bottom: 40px;
-  background: rgba(14, 23, 42, 0.8);
+  background: var(--card-bg);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-card);
 }
@@ -415,7 +480,7 @@ img {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, #0B1220 0%, rgba(11, 18, 32, 0.85) 45%, rgba(11, 18, 32, 0.2) 100%);
+  background: var(--hero-fade);
 }
 
 .hero-content {
@@ -870,7 +935,7 @@ img {
 }
 
 .modal-container {
-  background: #0E172A;
+  background: var(--modal-bg);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-lg);
   width: 100%;
@@ -1198,7 +1263,7 @@ img {
     left: 0;
     right: 0;
     z-index: 150;
-    background: rgba(11, 18, 32, 0.94);
+    background: var(--mobile-nav-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid var(--line);
