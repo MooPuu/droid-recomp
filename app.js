@@ -17,6 +17,12 @@
   let heroTimer = null;
   let activeHeroIndex = 0;
   let savedGames = JSON.parse(localStorage.getItem('droidrecomp_saved') || '[]');
+  let installedGames = JSON.parse(localStorage.getItem('droidrecomp_installed') || 'null');
+  if (installedGames === null) {
+    installedGames = ['super-mario-64-ghostship', 'zelda-ocarina-of-time-shipwright', 'another-metroid-2-remake-am2r'];
+    localStorage.setItem('droidrecomp_installed', JSON.stringify(installedGames));
+  }
+  let librarySubTab = 'installed';
   let uiMode = localStorage.getItem('droidrecomp_uimode') || 'auto'; // 'auto', 'desktop', 'mobile'
   let currentTheme = localStorage.getItem('droidrecomp_theme') || 'dark'; // 'dark', 'light', 'oled'
 
@@ -149,7 +155,10 @@
 
     // Update Nav Link Active States
     document.querySelectorAll('[data-nav]').forEach(el => {
-      el.classList.toggle('on', el.getAttribute('data-nav') === currentRoute);
+      const dnav = el.getAttribute('data-nav');
+      const isMatch = (dnav === currentRoute) || 
+                      ((currentRoute === 'library' || currentRoute === 'saved') && (dnav === 'library' || dnav === 'saved'));
+      el.classList.toggle('on', isMatch);
     });
 
     // Update Origin Pill States
@@ -177,8 +186,9 @@
       case 'how':
         renderHowView();
         break;
+      case 'library':
       case 'saved':
-        renderSavedView();
+        renderLibraryView();
         break;
       case 'submit':
         renderSubmitView();
@@ -474,34 +484,198 @@
   }
 
   // =========================================================================
-  // VIEW: SAVED / MY LIBRARY
+  // VIEW: LIBRARY & GAME LAUNCHER
   // =========================================================================
-  function renderSavedView() {
+  const KNOWN_PACKAGES = {
+    'super-mario-64-ghostship': 'com.n64.sm64',
+    'zelda-ocarina-of-time-shipwright': 'com.soh.android',
+    '2-ship-2-harkinian-2s2h': 'com.soh.twoship',
+    'another-metroid-2-remake-am2r': 'com.am2r.android',
+    'morrowind-openmw': 'org.libsdl.app',
+    'diablo-1-devilutionx': 'org.diasurgical.devilutionx',
+    'sonic-mania-decompilation-android': 'org.sonicteam.sonicmania',
+    'sonic-1-forever': 'com.sonic1.forever',
+    'half-life-amp-goldsrc-games': 'in.celest.xash3d.hl',
+    'half-life-2-amp-portal': 'org.srceng.source',
+    'fallout-1': 'com.alexander.fo1',
+    'fallout-2': 'com.alexander.fo2',
+    'celeste-classic-android': 'com.celeste.android',
+    'hollow-knight-mobile': 'com.teamcherry.hollowknight',
+    'balatro-mobile': 'com.localthunk.balatro',
+    'pizza-tower-android': 'com.tourdepizza.pizzatower',
+    'crash-team-racing': 'com.recomp.ctr',
+    'silent-hill': 'com.recomp.silenthill',
+    'halo-combat-evolved': 'com.recomp.halo',
+    'resident-evil-4': 'com.recomp.re4',
+    'metroid-prime': 'com.recomp.metroidprime',
+    'banjo-kazooie-recomp': 'com.recomp.bk',
+    'perfect-dark-recomp': 'com.recomp.perfectdark'
+  };
+
+  function getPackageName(game) {
+    if (!game) return 'com.recomp.app';
+    if (KNOWN_PACKAGES[game.id]) return KNOWN_PACKAGES[game.id];
+    const custom = localStorage.getItem('pkg_' + game.id);
+    if (custom) return custom;
+    return 'com.recomp.' + game.id.replace(/[^a-zA-Z0-9]/g, '_');
+  }
+
+  function launchGame(id, event) {
+    if (event) event.stopPropagation();
+    const game = catalogData.find(g => g.id === id);
+    if (!game) return;
+    const pkg = getPackageName(game);
+
+    showToast(`🚀 Launching ${game.name}...`);
+
+    // On Android mobile devices, trigger intent URL
+    const intentUri = `intent:#Intent;package=${pkg};category=android.intent.category.LAUNCHER;action=android.intent.action.MAIN;end`;
+    
+    // Attempt launch via invisible frame
+    const launchFrame = document.createElement('iframe');
+    launchFrame.style.display = 'none';
+    launchFrame.src = intentUri;
+    document.body.appendChild(launchFrame);
+    setTimeout(() => {
+      if (launchFrame.parentNode) launchFrame.parentNode.removeChild(launchFrame);
+    }, 1000);
+
+    // Fallback direct redirection
+    setTimeout(() => {
+      window.location.href = intentUri;
+    }, 120);
+  }
+
+  function toggleInstalled(id, event) {
+    if (event) event.stopPropagation();
+    const idx = installedGames.indexOf(id);
+    if (idx >= 0) {
+      installedGames.splice(idx, 1);
+      showToast('Removed from Installed Games');
+    } else {
+      installedGames.push(id);
+      showToast('Added to Installed Games');
+    }
+    localStorage.setItem('droidrecomp_installed', JSON.stringify(installedGames));
+    updateSavedCount();
+    if (currentRoute === 'library' || currentRoute === 'saved') {
+      renderLibraryView();
+    }
+    if (gameModal && !gameModal.hasAttribute('hidden')) {
+      const g = catalogData.find(item => item.id === id);
+      if (g) openModal(id);
+    }
+  }
+
+  function setLibraryTab(tab) {
+    librarySubTab = tab;
+    renderLibraryView();
+  }
+
+  function showToast(message) {
+    const existing = document.getElementById('dr-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'dr-toast';
+    toast.className = 'toast-container';
+    toast.innerHTML = `<span>${escapeHtml(message)}</span>`;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 3200);
+  }
+
+  function renderLibraryView() {
+    const installedList = catalogData.filter(g => installedGames.includes(g.id));
     const savedList = catalogData.filter(g => savedGames.includes(g.id));
 
     viewContent.innerHTML = `
-      <div style="margin-bottom: 24px;">
-        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">My Android Recomp Library</h1>
-        <p style="color: var(--muted); font-size: 0.95rem;">Games you've bookmarked for quick downloads and update tracking on your device.</p>
+      <div class="library-header">
+        <div>
+          <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">My Game Library</h1>
+          <p style="color: var(--muted); font-size: 0.95rem;">Launch your installed recompilations directly or manage your tracked games.</p>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+          <div class="library-tabs-nav">
+            <button type="button" class="library-tab-btn ${librarySubTab === 'installed' ? 'active' : ''}" onclick="window.DroidRecomp.setLibraryTab('installed')">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/><path d="M12 9v6M9 12h6"/></svg>
+              <span>Installed</span>
+              <span class="library-tab-badge">${installedList.length}</span>
+            </button>
+            <button type="button" class="library-tab-btn ${librarySubTab === 'bookmarks' ? 'active' : ''}" onclick="window.DroidRecomp.setLibraryTab('bookmarks')">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              <span>Saved</span>
+              <span class="library-tab-badge">${savedList.length}</span>
+            </button>
+          </div>
+
+          <a class="btn btn-secondary" href="#all" title="Browse Catalog">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>Browse All Recomps</span>
+          </a>
+        </div>
       </div>
 
-      ${savedList.length > 0 ? `
-        <div style="margin-bottom: 20px;">
-          <button type="button" class="btn btn-secondary" onclick="window.DroidRecomp.exportSavedToObtainium()">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            <span>Export Library as Obtainium JSON</span>
-          </button>
-        </div>
-        <div class="games-grid">
-          ${savedList.map(game => gameCard(game)).join('')}
-        </div>
+      ${librarySubTab === 'installed' ? `
+        ${installedList.length > 0 ? `
+          <div class="library-installed-grid">
+            ${installedList.map(game => `
+              <div class="installed-card" onclick="window.DroidRecomp.openModal('${game.id}')">
+                <div class="installed-card-top">
+                  <img class="installed-card-cover" src="${game.cover}" alt="${escapeHtml(game.name)}" loading="lazy" referrerpolicy="no-referrer">
+                  <div class="installed-card-body">
+                    <div>
+                      <h3 class="installed-card-title">${escapeHtml(game.name)}</h3>
+                      <div class="installed-badge-row">
+                        <span class="badge-installed">✓ Installed</span>
+                        <span class="tag tag-origin" style="font-size: 0.65rem; padding: 1px 6px;">${originLabel(game.origin)}</span>
+                      </div>
+                      <div class="badge-package">${getPackageName(game)}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="installed-card-actions">
+                  <button type="button" class="btn-launch-game" onclick="window.DroidRecomp.launchGame('${game.id}', event)">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>LAUNCH GAME</span>
+                  </button>
+                  <button type="button" class="btn-remove-installed" title="Remove from Installed" onclick="window.DroidRecomp.toggleInstalled('${game.id}', event)">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : `
+          <div style="text-align: center; padding: 70px 20px; background: var(--glass); border-radius: var(--radius-lg); border: 1px solid var(--line);">
+            <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" stroke-width="1.5" style="color: var(--muted); margin-bottom: 16px;"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/><path d="M12 9v6M9 12h6"/></svg>
+            <h3>No Installed Games Added</h3>
+            <p style="color: var(--muted); margin-top: 6px; max-width: 440px; margin-left: auto; margin-right: auto;">Open any game from the catalog and tap <strong>"+ Mark as Installed"</strong> to launch it directly from this library.</p>
+            <a class="btn btn-primary" href="#discover" style="margin-top: 18px;">Browse Recomps Catalog</a>
+          </div>
+        `}
       ` : `
-        <div style="text-align: center; padding: 80px 20px; background: var(--glass); border-radius: var(--radius-lg); border: 1px solid var(--line);">
-          <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" stroke-width="1.5" style="color: var(--muted); margin-bottom: 16px;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-          <h3>Your Library is Empty</h3>
-          <p style="color: var(--muted); margin-top: 6px;">Click the bookmark icon on any recomp to save it here for fast access.</p>
-          <a class="btn btn-primary" href="#discover" style="margin-top: 18px;">Discover Games</a>
-        </div>
+        ${savedList.length > 0 ? `
+          <div style="margin-bottom: 20px;">
+            <button type="button" class="btn btn-secondary" onclick="window.DroidRecomp.exportSavedToObtainium()">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export Saved as Obtainium JSON</span>
+            </button>
+          </div>
+          <div class="games-grid">
+            ${savedList.map(game => gameCard(game)).join('')}
+          </div>
+        ` : `
+          <div style="text-align: center; padding: 70px 20px; background: var(--glass); border-radius: var(--radius-lg); border: 1px solid var(--line);">
+            <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" stroke-width="1.5" style="color: var(--muted); margin-bottom: 16px;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <h3>No Saved Bookmarks</h3>
+            <p style="color: var(--muted); margin-top: 6px;">Bookmark games to sync them via Obtainium or track updates.</p>
+            <a class="btn btn-primary" href="#all" style="margin-top: 18px;">Explore All Recomps</a>
+          </div>
+        `}
       `}
     `;
   }
@@ -613,6 +787,8 @@
 
   function gameCard(game, rank) {
     const isSaved = savedGames.includes(game.id);
+    const isInstalled = installedGames.includes(game.id);
+    const pkg = getPackageName(game);
     return `
       <div class="game-card" onclick="window.DroidRecomp.openModal('${game.id}')">
         <div class="game-card-head">
@@ -649,6 +825,8 @@
     if (!game) return;
 
     const isSaved = savedGames.includes(game.id);
+    const isInstalled = installedGames.includes(game.id);
+    const pkg = getPackageName(game);
 
     modalContent.innerHTML = `
       <div class="modal-hero" style="background-image: url('${game.hero || game.cover}');">
@@ -761,6 +939,25 @@
         <!-- RIGHT FACTS SIDEBAR -->
         <aside class="modal-sidebar">
           <div class="modal-sidebar-card">
+            <div class="modal-installed-section">
+              ${isInstalled ? `
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="badge-installed">✓ Installed on Device</span>
+                    <button type="button" class="btn btn-secondary" style="padding: 3px 8px; font-size: 0.72rem;" onclick="window.DroidRecomp.toggleInstalled('${game.id}', event)">Unmark</button>
+                  </div>
+                  <button type="button" class="btn-launch-game" onclick="window.DroidRecomp.launchGame('${game.id}', event)">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>LAUNCH GAME</span>
+                  </button>
+                </div>
+              ` : `
+                <button type="button" class="btn btn-secondary btn-full" onclick="window.DroidRecomp.toggleInstalled('${game.id}', event)">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/><path d="M12 9v6M9 12h6"/></svg>
+                  <span>+ Mark as Installed</span>
+                </button>
+              `}
+            </div>
             ${game.apk_url ? `
               <a class="btn btn-primary btn-full" href="${game.apk_url}" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -1129,6 +1326,9 @@
       renderAllView();
     },
     toggleSave: toggleSave,
+    launchGame: launchGame,
+    toggleInstalled: toggleInstalled,
+    setLibraryTab: setLibraryTab,
     selectSearchResult: function (id) {
       closeSearch();
       openGameModal(id);

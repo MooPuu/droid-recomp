@@ -1477,3 +1477,232 @@ img {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
 }
+
+/* ==========================================================================
+   LIBRARY & LAUNCHER SYSTEM
+   ========================================================================== */
+.library-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.library-tabs-nav {
+  display: inline-flex;
+  gap: 8px;
+  background: var(--glass-card);
+  padding: 5px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--line);
+}
+
+.library-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.library-tab-btn:hover {
+  color: var(--frost);
+}
+
+.library-tab-btn.active {
+  background: var(--glass-highlight);
+  color: var(--brand);
+  border: 1px solid rgba(52, 242, 232, 0.3);
+  box-shadow: 0 0 16px rgba(52, 242, 232, 0.15);
+}
+
+.library-tab-badge {
+  background: rgba(52, 242, 232, 0.2);
+  color: var(--brand);
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.library-installed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+}
+
+.installed-card {
+  position: relative;
+  background: var(--glass-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+.installed-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(52, 242, 232, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(52, 242, 232, 0.12);
+}
+
+.installed-card-top {
+  display: flex;
+  gap: 14px;
+}
+
+.installed-card-cover {
+  width: 75px;
+  height: 105px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.installed-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  flex: 1;
+}
+
+.installed-card-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--frost);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.installed-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.badge-installed {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(52, 211, 153, 0.15);
+  color: var(--success);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+.badge-package {
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.installed-card-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-launch-game {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #34F2E8 0%, #1ea5b0 100%);
+  color: #0B1220 !important;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(52, 242, 232, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-launch-game:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 24px rgba(52, 242, 232, 0.55);
+}
+
+.btn-remove-installed {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248, 113, 113, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-remove-installed:hover {
+  background: rgba(248, 113, 113, 0.25);
+  border-color: var(--danger);
+}
+
+/* Modal Installed Bar */
+.modal-installed-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(52, 242, 232, 0.06);
+  border: 1px solid rgba(52, 242, 232, 0.25);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0B1220;
+  border: 1px solid var(--brand);
+  color: var(--frost);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(52, 242, 232, 0.3);
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 10000;
+  pointer-events: none;
+  animation: fadeIn 0.2s ease;
+}
+
