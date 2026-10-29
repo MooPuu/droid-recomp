@@ -1706,3 +1706,325 @@ img {
   animation: fadeIn 0.2s ease;
 }
 
+
+/* ==========================================================================
+   EMULATORS HUB STYLES
+   ========================================================================== */
+.emulators-header {
+  padding: 30px 20px 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.emulators-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(52, 242, 232, 0.12);
+  border: 1px solid rgba(52, 242, 232, 0.3);
+  color: var(--brand);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.emulators-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  color: var(--frost);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.emulators-subtitle {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 780px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.emulators-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.emulators-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+  max-width: 440px;
+}
+
+.emulators-search-box input {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  color: var(--frost);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.emulators-search-box input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 14px rgba(52, 242, 232, 0.2);
+}
+
+.emulators-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.emulators-filter-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.emulators-filter-pill {
+  padding: 7px 14px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.emulators-filter-pill:hover,
+.emulators-filter-pill.active {
+  background: var(--brand);
+  color: var(--bg);
+  border-color: var(--brand);
+}
+
+.emulators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+@media (max-width: 600px) {
+  .emulators-grid {
+    grid-template-columns: 1fr;
+    padding: 0 14px 80px;
+  }
+}
+
+.emulator-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg, #0B1220);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.emulator-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(52, 242, 232, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(52, 242, 232, 0.15);
+}
+
+.emulator-card-head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.emulator-icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: var(--glass);
+  border: 1px solid rgba(52, 242, 232, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.emulator-icon-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emulator-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.emulator-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.emulator-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--frost);
+}
+
+.emulator-version-chip {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+}
+
+.emulator-system-label {
+  font-size: 0.8rem;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.emulator-author {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.emulator-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.45;
+  margin-bottom: 14px;
+  flex: 1;
+}
+
+.emulator-features {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.emulator-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--frost);
+}
+
+.emulator-feature-item svg {
+  color: var(--brand);
+  flex-shrink: 0;
+}
+
+.emulator-specs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-bottom: 16px;
+}
+
+.emulator-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-emu-apk {
+  flex: 1;
+  min-width: 120px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--brand);
+  color: var(--bg);
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(52, 242, 232, 0.25);
+}
+
+.btn-emu-apk:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(52, 242, 232, 0.4);
+}
+
+.btn-emu-obtainium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(52, 242, 232, 0.1);
+  color: var(--brand);
+  border: 1px solid rgba(52, 242, 232, 0.3);
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-emu-obtainium:hover {
+  background: rgba(52, 242, 232, 0.2);
+  border-color: var(--brand);
+}
+
+.btn-emu-repo {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-emu-repo:hover {
+  color: var(--frost);
+  border-color: var(--brand);
+}

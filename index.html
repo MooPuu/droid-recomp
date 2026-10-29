@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css?v=2.4.0">
+  <link rel="stylesheet" href="styles.css?v=2.5.0">
 
   <!-- Immediate Critical Display Guard (Never allow overlays to render on load) -->
   <style>
@@ -82,6 +82,7 @@
       <nav class="main-nav desktop-only" aria-label="Main Navigation">
         <a href="#discover" data-nav="discover" class="nav-link on">Discover</a>
         <a href="#all" data-nav="all" class="nav-link">All Recomps</a>
+        <a href="#emulators" data-nav="emulators" class="nav-link">Emulators</a>
         <a href="#top" data-nav="top" class="nav-link">Top Charts</a>
         <a href="#handheld" data-nav="handheld" class="nav-link">Handhelds <span class="tag-sub">Odin / Retroid</span></a>
         <a href="#how" data-nav="how" class="nav-link">Setup Guide</a>
@@ -166,20 +167,20 @@
       <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
       <span>Browse</span>
     </a>
+    <a href="#emulators" data-nav="emulators" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+      <span>Emulators</span>
+    </a>
+    <a href="#library" data-nav="library" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/><path d="M12 9v6M9 12h6"/></svg>
+      <span>Library</span>
+    </a>
     <button type="button" class="mobile-nav-item" id="mobile-search-btn">
       <div class="mobile-nav-search-bubble">
         <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2.2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
       </div>
       <span>Search</span>
     </button>
-    <a href="#top" data-nav="top" class="mobile-nav-item">
-      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-      <span>Rankings</span>
-    </a>
-    <a href="#library" data-nav="library" class="mobile-nav-item">
-      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/><path d="M12 9v6M9 12h6"/></svg>
-      <span>Library</span>
-    </a>
   </nav>
 
   <!-- SEARCH MODAL -->
@@ -263,7 +264,8 @@
     </div>
   </footer>
 
-  <script src="catalog.js?v=2.4.0"></script>
-  <script src="app.js?v=2.4.0"></script>
+  <script src="catalog.js?v=2.5.0"></script>
+  <script src="emulators.js?v=2.5.0"></script>
+  <script src="app.js?v=2.5.0"></script>
 </body>
 </html>

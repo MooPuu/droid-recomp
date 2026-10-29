@@ -9,6 +9,7 @@
   // Global State
   let catalogData = [];
   let originsData = [];
+  let emulatorsData = [];
   let currentRoute = 'discover';
   let activeOrigin = 'all';
   let filterType = 'all';
@@ -72,6 +73,21 @@
       } catch (e) {
         console.warn('Loading embedded backup catalog...', e);
         catalogData = getEmbeddedCatalog();
+      }
+    }
+
+    // Load Emulators Data
+    if (window.DROIDRECOMP_EMULATORS && window.DROIDRECOMP_EMULATORS.emulators) {
+      emulatorsData = window.DROIDRECOMP_EMULATORS.emulators;
+    } else {
+      try {
+        const eResp = await fetch('emulators.json');
+        if (eResp.ok) {
+          const eData = await eResp.json();
+          emulatorsData = eData.emulators || [];
+        }
+      } catch (e) {
+        console.warn('Failed to fetch emulators.json', e);
       }
     }
 
@@ -179,6 +195,9 @@
         break;
       case 'top':
         renderTopView();
+        break;
+      case 'emulators':
+        renderEmulatorsView();
         break;
       case 'handheld':
         renderHandheldView();
@@ -585,6 +604,156 @@
     setTimeout(() => {
       if (toast.parentNode) toast.parentNode.removeChild(toast);
     }, 3200);
+  }
+
+  // =========================================================================
+  // VIEW: ANDROID EMULATORS HUB
+  // =========================================================================
+  let emulatorFilter = 'all';
+  let emulatorSearchQuery = '';
+
+  function renderEmulatorsView() {
+    let list = [...emulatorsData];
+
+    // Filter by System / Category
+    if (emulatorFilter !== 'all') {
+      if (emulatorFilter === 'psp_vita') {
+        list = list.filter(e => e.system === 'psp' || e.system === 'ps_vita');
+      } else if (emulatorFilter === 'ds_gba') {
+        list = list.filter(e => e.system === 'nds' || e.system === 'gba_snes');
+      } else if (emulatorFilter === 'multi') {
+        list = list.filter(e => e.system === 'multi');
+      } else if (emulatorFilter === 'drivers') {
+        list = list.filter(e => e.system === 'drivers');
+      } else {
+        list = list.filter(e => e.system === emulatorFilter);
+      }
+    }
+
+    // Filter by Search Query
+    if (emulatorSearchQuery.trim()) {
+      const q = emulatorSearchQuery.trim().toLowerCase();
+      list = list.filter(e => 
+        e.name.toLowerCase().includes(q) ||
+        e.system_name.toLowerCase().includes(q) ||
+        e.developer.toLowerCase().includes(q) ||
+        (e.description && e.description.toLowerCase().includes(q)) ||
+        (e.features && e.features.some(f => f.toLowerCase().includes(q)))
+      );
+    }
+
+    const categories = [
+      { id: 'all', label: `All Emulators (${emulatorsData.length})` },
+      { id: 'ps2', label: 'PlayStation 2' },
+      { id: 'switch', label: 'Nintendo Switch' },
+      { id: 'gc_wii', label: 'GameCube & Wii' },
+      { id: '3ds', label: 'Nintendo 3DS' },
+      { id: 'psp_vita', label: 'PSP & Vita' },
+      { id: 'ps1', label: 'PlayStation 1' },
+      { id: 'pc_win', label: 'PC / Windows' },
+      { id: 'ds_gba', label: 'DS / GBA / SNES' },
+      { id: 'multi', label: 'Multi-System' },
+      { id: 'drivers', label: '⚡ Turnip Drivers' }
+    ];
+
+    viewContent.innerHTML = `
+      <section class="emulators-header">
+        <span class="emulators-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Android Emulation Suite
+        </span>
+        <h1 class="emulators-title">Android Emulators Hub</h1>
+        <p class="emulators-subtitle">
+          The curated directory of verified, high-performance console and PC emulators for Android. Compare graphics backends, download official release APKs, sync with Obtainium, and install custom Mesa Turnip Adreno GPU drivers.
+        </p>
+
+        <div class="emulators-toolbar">
+          <div class="emulators-search-box">
+            <svg class="emulators-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+            <input type="search" id="emu-search-input" placeholder="Search emulators, systems, drivers..." value="${escapeHtml(emulatorSearchQuery)}" oninput="window.DroidRecomp.searchEmulators(this.value)">
+          </div>
+
+          <div class="emulators-filter-pills">
+            ${categories.map(c => `
+              <button type="button" class="emulators-filter-pill ${emulatorFilter === c.id ? 'active' : ''}" onclick="window.DroidRecomp.setEmulatorFilter('${c.id}')">
+                ${c.label}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      </section>
+
+      ${list.length === 0 ? `
+        <div style="text-align: center; padding: 60px 20px; color: var(--muted);">
+          <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.5; margin-bottom: 16px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <h3 style="font-size: 1.2rem; color: var(--frost); margin-bottom: 8px;">No Emulators Found</h3>
+          <p>No results matched your search or category filter.</p>
+          <button type="button" class="btn btn-secondary" style="margin-top: 14px;" onclick="window.DroidRecomp.setEmulatorFilter('all')">Reset Filter</button>
+        </div>
+      ` : `
+        <div class="emulators-grid">
+          ${list.map(emu => `
+            <div class="emulator-card">
+              <div class="emulator-card-head">
+                <div class="emulator-icon-wrap">
+                  <img src="${emu.icon}" alt="${escapeHtml(emu.name)}" loading="lazy" onerror="this.src='favicon.svg';">
+                </div>
+                <div class="emulator-meta">
+                  <div class="emulator-name-row">
+                    <span class="emulator-name">${escapeHtml(emu.name)}</span>
+                    <span class="emulator-version-chip">${escapeHtml(emu.version)}</span>
+                  </div>
+                  <div class="emulator-system-label">${escapeHtml(emu.system_name)}</div>
+                  <div class="emulator-author">by ${escapeHtml(emu.developer)}</div>
+                </div>
+              </div>
+
+              <div class="emulator-tags" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
+                <span class="tag tag-origin">${escapeHtml(emu.category)}</span>
+                <span class="tag">${escapeHtml(emu.graphics_backend.split('/')[0].trim())}</span>
+                ${emu.turnip_recommended ? `<span class="tag tag-turnip">⚡ Turnip Rec.</span>` : ''}
+              </div>
+
+              <p class="emulator-desc">${escapeHtml(emu.description)}</p>
+
+              <div class="emulator-features">
+                ${emu.features.slice(0, 4).map(f => `
+                  <div class="emulator-feature-item">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>${escapeHtml(f)}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="emulator-specs-row">
+                <span><strong>Min OS:</strong> ${escapeHtml(emu.min_android)}</span>
+                <span><strong>Graphics:</strong> ${escapeHtml(emu.graphics_backend)}</span>
+              </div>
+
+              <div class="emulator-actions">
+                ${emu.apk_url ? `
+                  <a class="btn-emu-apk" href="${emu.apk_url}" target="_blank" rel="noopener" title="Download Release APK">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Download APK</span>
+                  </a>
+                ` : ''}
+                ${emu.obtainium_url ? `
+                  <a class="btn-emu-obtainium" href="${emu.obtainium_url}" title="Add to Obtainium Updater">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <span>Obtainium</span>
+                  </a>
+                ` : ''}
+                ${emu.repo_url ? `
+                  <a class="btn-emu-repo" href="${emu.repo_url}" target="_blank" rel="noopener" title="View Source & Releases">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    `;
   }
 
   function renderLibraryView() {
@@ -1291,6 +1460,19 @@
   // Public API attached to window for inline onclick handlers
   window.DroidRecomp = {
     openModal: openGameModal,
+    setEmulatorFilter: function(system) {
+      emulatorFilter = system;
+      renderEmulatorsView();
+    },
+    searchEmulators: function(query) {
+      emulatorSearchQuery = query;
+      renderEmulatorsView();
+      const input = document.getElementById('emu-search-input');
+      if (input) {
+        input.focus();
+        input.selectionStart = input.selectionEnd = input.value.length;
+      }
+    },
     closeModal: closeModal,
     toggleTheme: toggleTheme,
     toggleUiMode: toggleUiMode,
