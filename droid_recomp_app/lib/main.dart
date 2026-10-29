@@ -808,19 +808,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 ],
               ),
             ),
-            const SizedBox(width: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-              decoration: BoxDecoration(
-                color: RecompTheme.cyan.withOpacity(0.12),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: RecompTheme.cyan.withOpacity(0.3)),
-              ),
-              child: const Text(
-                'ARM64',
-                style: TextStyle(color: RecompTheme.cyan, fontSize: 10, fontWeight: FontWeight.w800),
-              ),
-            ),
+
           ],
         ),
         actions: [
@@ -1388,7 +1376,9 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
     {'id': 'psp_vita', 'label': 'PSP & PS Vita'},
     {'id': 'ps1', 'label': 'PlayStation 1'},
     {'id': 'dc_saturn', 'label': 'Dreamcast & Saturn'},
-    {'id': 'classic_2d', 'label': 'GBA / SNES / N64'},
+    {'id': 'n64', 'label': 'Nintendo 64'},
+    {'id': 'gba', 'label': 'Game Boy Advance & Color'},
+    {'id': 'snes', 'label': 'Super Nintendo (SNES)'},
     {'id': 'multi', 'label': 'Multi-System'},
     {'id': 'drivers', 'label': '⚡ Turnip Drivers'},
   ];
@@ -1614,8 +1604,12 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
           if (!e.isPaid) return false;
         } else if (_selectedSystem == 'psp_vita') {
           if (e.system != 'psp' && e.system != 'ps_vita') return false;
-        } else if (_selectedSystem == 'classic_2d') {
-          if (e.system != 'classic_2d') return false;
+        } else if (_selectedSystem == 'n64') {
+          if (e.system != 'n64') return false;
+        } else if (_selectedSystem == 'gba') {
+          if (e.system != 'gba' && e.system != 'gbc') return false;
+        } else if (_selectedSystem == 'snes') {
+          if (e.system != 'snes') return false;
         } else if (_selectedSystem == 'dc_saturn') {
           if (e.system != 'dc_saturn') return false;
         } else if (_selectedSystem == 'engines_mobile') {

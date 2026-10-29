@@ -648,15 +648,17 @@
       } else if (emulatorFilter === 'paid') {
         list = list.filter(e => e.is_paid);
       } else if (emulatorFilter === 'psp_vita') {
-        list = list.filter(e => e.system === 'psp' || e.system === 'ps_vita');
-      } else if (emulatorFilter === 'ds_gba') {
-        list = list.filter(e => e.system === 'nds' || e.system === 'classic_2d');
+        list = list.filter(e => e.system === 'psp' || e.system === 'ps_vita' || e.system === 'psp_vita');
+      } else if (emulatorFilter === 'n64') {
+        list = list.filter(e => e.system === 'n64');
+      } else if (emulatorFilter === 'gba') {
+        list = list.filter(e => e.system === 'gba' || e.system === 'gbc');
+      } else if (emulatorFilter === 'snes') {
+        list = list.filter(e => e.system === 'snes');
       } else if (emulatorFilter === 'engines_mobile') {
         list = list.filter(e => e.system === 'engines_mobile');
       } else if (emulatorFilter === 'dc_saturn') {
         list = list.filter(e => e.system === 'dc_saturn');
-      } else if (emulatorFilter === 'classic_2d') {
-        list = list.filter(e => e.system === 'classic_2d');
       } else if (emulatorFilter === 'multi') {
         list = list.filter(e => e.system === 'multi');
       } else if (emulatorFilter === 'drivers') {
@@ -691,10 +693,12 @@
       { id: 'gc_wii', label: 'GameCube & Wii' },
       { id: '3ds', label: 'Nintendo 3DS' },
       { id: 'nds', label: 'Nintendo DS' },
+      { id: 'n64', label: 'Nintendo 64' },
+      { id: 'gba', label: 'Game Boy Advance & Color' },
+      { id: 'snes', label: 'Super Nintendo (SNES)' },
       { id: 'psp_vita', label: 'PSP & Vita' },
       { id: 'ps1', label: 'PlayStation 1' },
       { id: 'dc_saturn', label: 'Dreamcast & Saturn' },
-      { id: 'classic_2d', label: 'GBA / SNES / N64' },
       { id: 'multi', label: 'Frontends & Multi' },
       { id: 'drivers', label: '⚡ Turnip Drivers' }
     ];
@@ -831,7 +835,7 @@
 
           <button type="button" class="btn btn-primary" onclick="window.DroidRecomp.openAddCustomGameModal()" title="Add Custom / Unlisted Game">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <span>+ Add Custom Game</span>
+            <span>Add Custom Game</span>
           </button>
 
           <a class="btn btn-secondary" href="#submit" title="Submit to Official Master Catalog">
@@ -1164,10 +1168,7 @@
                 <input type="url" id="sub-cover" class="custom-form-input" placeholder="https://images.igdb.com/... (Vertical box art recommended)" oninput="window.DroidRecomp.updateSubmitPreview()">
               </div>
 
-              <div class="custom-form-group">
-                <label class="custom-form-label">Required Original Game Files *</label>
-                <input type="text" id="sub-needs" class="custom-form-input" required placeholder="e.g. Legally owned USA v1.0 ROM / PC game data files">
-              </div>
+
 
               <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 14px;">
                 <input type="checkbox" id="sub-byor" required style="margin-top: 4px; accent-color: var(--brand);">

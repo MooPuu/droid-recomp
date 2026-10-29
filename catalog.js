@@ -1,5 +1,5 @@
-// DroidRecomp Master Database - 345 Verified Playable Android Recompilations
-window.RECOMP_CATALOG = {
+// DroidRecomp Master Verified Catalog
+const CATALOG_DATA = {
   "catalogVersion": "2.0.0",
   "platform": "android",
   "updated": "2026-10-28T23:45:00Z",
@@ -344,8 +344,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy/master/Named_Boxarts/Pokemon%20-%20Red%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced).png",
-      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy/master/Named_Boxarts/Pokemon%20-%20Red%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced).png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Pokemon%20-%20Red%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Pokemon%20-%20Red%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
       "description": ""
     },
     {
@@ -387,8 +387,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/master/Named_Boxarts/Pokemon%20-%20Gold%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced).png",
-      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/master/Named_Boxarts/Pokemon%20-%20Gold%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced).png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
       "description": ""
     },
     {
@@ -473,8 +473,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4m.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4m.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Skate%203%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Skate%203%20%28USA%29.png",
       "description": ""
     },
     {
@@ -1075,8 +1075,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4s.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4s.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Metroid%20II%20-%20Return%20of%20Samus%20%28World%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Metroid%20II%20-%20Return%20of%20Samus%20%28World%29.png",
       "description": ""
     },
     {
@@ -1118,8 +1118,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7v20.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7v20.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2379780/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2379780/header.jpg",
       "description": ""
     },
     {
@@ -1204,8 +1204,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/b3/Forza_Horizon_Cover_Art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/b3/Forza_Horizon_Cover_Art.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Forza%20Horizon%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Forza%20Horizon%20%28USA%29.png",
       "description": ""
     },
     {
@@ -1247,8 +1247,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/8/8b/God_of_War_III_cover_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/8/8b/God_of_War_III_cover_art.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/694780/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/694780/header.jpg",
       "description": ""
     },
     {
@@ -1419,8 +1419,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/d/d6/Mario_Kart_Wii.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/d/d6/Mario_Kart_Wii.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Wii/Named_Boxarts/Kustom%20Mario%20Kart%20Wii%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Wii/Named_Boxarts/Kustom%20Mario%20Kart%20Wii%20%28USA%29.png",
       "description": ""
     },
     {
@@ -1806,8 +1806,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/52/Call_of_Duty_Modern_Warfare_2_%282009%29_cover.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/52/Call_of_Duty_Modern_Warfare_2_%282009%29_cover.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/10180/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/10180/header.jpg",
       "description": ""
     },
     {
@@ -1849,8 +1849,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4u.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4u.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12210/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12210/header.jpg",
       "description": ""
     },
     {
@@ -1892,8 +1892,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/1/12/Ace_Combat_3_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/1/12/Ace_Combat_3_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ace%20Combat%203%20-%20Electrosphere%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Ace%20Combat%203%20-%20Electrosphere%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -2193,8 +2193,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/d/d2/Diablo_II_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/d/d2/Diablo_II_Coverart.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20Collection%20-%20Arc%20the%20Lad%20II%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20Collection%20-%20Arc%20the%20Lad%20II%20%28USA%29.png",
       "description": ""
     },
     {
@@ -2279,8 +2279,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/74/Japanese%2C_Doraemon_no_Uta%2C_1979_album_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/74/Japanese%2C_Doraemon_no_Uta%2C_1979_album_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Doraemon%20-%20Nobita%20to%203tsu%20no%20Seireiseki%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Doraemon%20-%20Nobita%20to%203tsu%20no%20Seireiseki%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -2322,8 +2322,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/07/Dragon_Ball_Raging_Blast_2.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/07/Dragon_Ball_Raging_Blast_2.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dragon%20Ball%20Z%20-%20Sagas%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dragon%20Ball%20Z%20-%20Sagas%20%28USA%29.png",
       "description": ""
     },
     {
@@ -2451,8 +2451,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/c4/FinalFantasyTacticsAdvanceGBACoverArtUS.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/c4/FinalFantasyTacticsAdvanceGBACoverArtUS.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Final%20Fantasy%20Tactics%20%28Japan%29%20%28Rev%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Final%20Fantasy%20Tactics%20%28Japan%29%20%28Rev%201%29.png",
       "description": ""
     },
     {
@@ -2494,8 +2494,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/1/1e/Fire_Emblem_The_Sacred_Stones.JPG",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/1/1e/Fire_Emblem_The_Sacred_Stones.JPG",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Fire%20Emblem%20-%20Path%20of%20Radiance%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Fire%20Emblem%20-%20Path%20of%20Radiance%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -2537,8 +2537,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/f8/Golden_Sun_video_game_box_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/f8/Golden_Sun_video_game_box_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Colony%20Wars%20-%20Red%20Sun%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Colony%20Wars%20-%20Red%20Sun%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -2623,8 +2623,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/8/8f/NewSuperMarioBrosWiiBoxart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/8/8f/NewSuperMarioBrosWiiBoxart.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Wii/Named_Boxarts/New%20Super%20Mario%20Bros.%20Wii%20%28Asia%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Wii/Named_Boxarts/New%20Super%20Mario%20Bros.%20Wii%20%28Asia%29.png",
       "description": ""
     },
     {
@@ -2666,8 +2666,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/1/13/Pikmin_cover_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/1/13/Pikmin_cover_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Pikmin%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Pikmin%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -2881,8 +2881,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/d/d2/Sonic_Mania_%28artwork%29.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/d/d2/Sonic_Mania_%28artwork%29.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/584400/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/584400/header.jpg",
       "description": ""
     },
     {
@@ -3096,8 +3096,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/9c/Tetris_Attack_box_art.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/9c/Tetris_Attack_box_art.png",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/C.A.T.%20-%20Cyber%20Attack%20Team%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/C.A.T.%20-%20Cyber%20Attack%20Team%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -3268,8 +3268,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/4c/WWE_SmackDown_vs._Raw_2011_Cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/4/4c/WWE_SmackDown_vs._Raw_2011_Cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/WWE%20SmackDown%20vs.%20Raw%202011%20%28USA%29%20%28En%2CFr%2CEs%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/WWE%20SmackDown%20vs.%20Raw%202011%20%28USA%29%20%28En%2CFr%2CEs%29.png",
       "description": ""
     },
     {
@@ -3311,8 +3311,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/75/Zombies_Ate_My_Neighbors_box.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/75/Zombies_Ate_My_Neighbors_box.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1137970/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1137970/header.jpg",
       "description": ""
     },
     {
@@ -3440,8 +3440,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/f7/Blue_Dragon_Box_Art.jpeg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/f7/Blue_Dragon_Box_Art.jpeg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Blue%20Dragon%20%28USA%29%20%28Disc%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Blue%20Dragon%20%28USA%29%20%28Disc%201%29.png",
       "description": ""
     },
     {
@@ -3526,8 +3526,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/9e/Colin_McRae_Rally_2_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/9e/Colin_McRae_Rally_2_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1211480/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1211480/header.jpg",
       "description": ""
     },
     {
@@ -3741,8 +3741,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/6/66/Forza_Horizon_2_box_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/6/66/Forza_Horizon_2_box_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Forza%20Horizon%202%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Forza%20Horizon%202%20%28USA%29.png",
       "description": ""
     },
     {
@@ -3784,8 +3784,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/d/de/Hollow_Knight_2026_cover_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/d/de/Hollow_Knight_2026_cover_art.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg",
       "description": ""
     },
     {
@@ -3827,8 +3827,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/b6/Jak_and_Daxter_-_The_Precursor_Legacy_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/b6/Jak_and_Daxter_-_The_Precursor_Legacy_Coverart.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Jak%20and%20Daxter%20-%20The%20Precursor%20Legacy%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Jak%20and%20Daxter%20-%20The%20Precursor%20Legacy%20%28Europe%29%20%28En%2CJa%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -3913,8 +3913,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/5e/Lmbox.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/5e/Lmbox.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Luigi%27s%20Mansion%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Rev%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Luigi%27s%20Mansion%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Rev%201%29.png",
       "description": ""
     },
     {
@@ -3956,8 +3956,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/2c/Monster_Hunter_Tri_Box_Art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/2c/Monster_Hunter_Tri_Box_Art.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1346500/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1346500/header.jpg",
       "description": ""
     },
     {
@@ -4042,8 +4042,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/234670/library_600x900.jpg",
-      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/234670/library_600x900.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/234670/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/234670/header.jpg",
       "description": ""
     },
     {
@@ -4085,8 +4085,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/1/18/StormGenerationsCover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/1/18/StormGenerationsCover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Naruto%20Shippuden%20-%20Ultimate%20Ninja%204%20%28Europe%29%20%28De%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Naruto%20Shippuden%20-%20Ultimate%20Ninja%204%20%28Europe%29%20%28De%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -4257,8 +4257,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/f6/Rayman_Legends_Box_Art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/f6/Rayman_Legends_Box_Art.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242550/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242550/header.jpg",
       "description": ""
     },
     {
@@ -4429,8 +4429,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/8/8e/The_Legend_of_Zelda_Ocarina_of_Time_3D_box_art.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/8/8e/The_Legend_of_Zelda_Ocarina_of_Time_3D_box_art.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28Europe%29%20%28Beta%29%20%282003-02-13%29%20%28GameCube%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28Europe%29%20%28Beta%29%20%282003-02-13%29%20%28GameCube%29.png",
       "description": ""
     },
     {
@@ -4472,8 +4472,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/94/Transformers_-_The_Game_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/94/Transformers_-_The_Game_Coverart.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/3%2C%202%2C%201%2C%20Smurf%21%20My%20First%20Racing%20Game%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/3%2C%202%2C%201%2C%20Smurf%21%20My%20First%20Racing%20Game%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%29.png",
       "description": ""
     },
     {
@@ -4558,8 +4558,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/91/Midnight_Club_Los_Angeles_Cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/91/Midnight_Club_Los_Angeles_Cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Midnight%20Club%203%20-%20DUB%20Edition%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Midnight%20Club%203%20-%20DUB%20Edition%20%28USA%29.png",
       "description": ""
     },
     {
@@ -4687,8 +4687,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/55/Rampage_-_Total_Destruction_%28game_box_art%29.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/55/Rampage_-_Total_Destruction_%28game_box_art%29.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Action%20Man%20-%20Destruction%20X%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Action%20Man%20-%20Destruction%20X%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -4730,8 +4730,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8amw.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8amw.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Switch/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Echoes%20of%20Wisdom%20%28World%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Switch/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Echoes%20of%20Wisdom%20%28World%29.png",
       "description": ""
     },
     {
@@ -4816,8 +4816,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/27/Lost_Odyssey_box_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/27/Lost_Odyssey_box_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Lost%20Odyssey%20%28USA%29%20%28Disc%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Lost%20Odyssey%20%28USA%29%20%28Disc%201%29.png",
       "description": ""
     },
     {
@@ -4859,8 +4859,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/6/60/Sonic_Dream_Team_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/6/60/Sonic_Dream_Team_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2523270/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2523270/header.jpg",
       "description": ""
     },
     {
@@ -4902,8 +4902,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/9f/Gears_of_war_2_box_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/9f/Gears_of_war_2_box_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Gears%20of%20War%202%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Gears%20of%20War%202%20%28USA%29.png",
       "description": ""
     },
     {
@@ -5074,8 +5074,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/12210/library_600x900.jpg",
-      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/12210/library_600x900.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12210/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12210/header.jpg",
       "description": ""
     },
     {
@@ -5117,8 +5117,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/0_A.D._logo.svg/600px-0_A.D._logo.svg.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/0_A.D._logo.svg/600px-0_A.D._logo.svg.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2792170/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2792170/header.jpg",
       "description": ""
     },
     {
@@ -5203,8 +5203,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Space-cadet.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Space-cadet.png",
+      "cover": "https://raw.githubusercontent.com/k4zmu2a/SpaceCadetPinball/master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "hero": "https://raw.githubusercontent.com/k4zmu2a/SpaceCadetPinball/master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
       "description": ""
     },
     {
@@ -5246,8 +5246,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Abuse_-_launch_grenade_on_flyer.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Abuse_-_launch_grenade_on_flyer.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1360880/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1360880/header.jpg",
       "description": ""
     },
     {
@@ -5289,8 +5289,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/e/e0/Glider_PRO_box.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/e/e0/Glider_PRO_box.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Baseball%20-%20Pro-nami%20Kusayakyuu%21%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Baseball%20-%20Pro-nami%20Kusayakyuu%21%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -5418,8 +5418,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/d/d6/NetHack.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/d/d6/NetHack.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/837200/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/837200/header.jpg",
       "description": ""
     },
     {
@@ -5504,8 +5504,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/56/Caeser_III_Coverart.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/56/Caeser_III_Coverart.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/517790/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/517790/header.jpg",
       "description": ""
     },
     {
@@ -5590,8 +5590,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Bak-Again%20(USA)%20(Unl).png",
-      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Bak-Again%20(USA)%20(Unl).png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blaster%20Master%20-%20Blasting%20Again%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blaster%20Master%20-%20Blasting%20Again%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -5719,8 +5719,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/9c/Broforce.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/9c/Broforce.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/274190/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/274190/header.jpg",
       "description": ""
     },
     {
@@ -5762,8 +5762,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumb.wikimedia.org/wikipedia/en/thumb/0/0f/Brogue_title.png/960px-Brogue_title.png",
-      "hero": "https://thumb.wikimedia.org/wikipedia/en/thumb/0/0f/Brogue_title.png/960px-Brogue_title.png",
+      "cover": "https://raw.githubusercontent.com/tmewett/BrogueCE/master/bin/assets/icon.png",
+      "hero": "https://raw.githubusercontent.com/tmewett/BrogueCE/master/bin/assets/icon.png",
       "description": ""
     },
     {
@@ -5805,8 +5805,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/72/Buckshot_Roulette_Cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/72/Buckshot_Roulette_Cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2835570/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2835570/header.jpg",
       "description": ""
     },
     {
@@ -6020,8 +6020,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/99/Conkersbfdbox.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/99/Conkersbfdbox.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Conker%27s%20Bad%20Fur%20Day%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Conker%27s%20Bad%20Fur%20Day%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -6063,8 +6063,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Celeste_box_art_full.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Celeste_box_art_full.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/504230/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg",
       "description": ""
     },
     {
@@ -6106,8 +6106,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/1/12/Chex_Quest-front_cover.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/1/12/Chex_Quest-front_cover.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/804270/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/804270/header.jpg",
       "description": ""
     },
     {
@@ -6149,8 +6149,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg",
       "description": ""
     },
     {
@@ -6192,8 +6192,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/20/Cncgzh-win-cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/20/Cncgzh-win-cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2732960/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2732960/header.jpg",
       "description": ""
     },
     {
@@ -6235,8 +6235,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/71/Cncra-win-cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/71/Cncra-win-cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/17480/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/17480/header.jpg",
       "description": ""
     },
     {
@@ -6321,8 +6321,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/26/Theme_Hospital.front_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/26/Theme_Hospital.front_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/438831/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/438831/header.jpg",
       "description": ""
     },
     {
@@ -6364,8 +6364,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/6/67/Counter-Strike_Box.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/6/67/Counter-Strike_Box.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/10/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/10/header.jpg",
       "description": ""
     },
     {
@@ -6407,8 +6407,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a4/Daggerfall_Cover_art.gif",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a4/Daggerfall_Cover_art.gif",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1812390/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1812390/header.jpg",
       "description": ""
     },
     {
@@ -6450,8 +6450,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/c6/Dante%27s_Inferno.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/c6/Dante%27s_Inferno.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Devil%20May%20Cry%203%20-%20Dante%27s%20Awakening%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Special%20Edition%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Devil%20May%20Cry%203%20-%20Dante%27s%20Awakening%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Special%20Edition%29.png",
       "description": ""
     },
     {
@@ -6493,8 +6493,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/c2/Daytona_USA_arcade_flyer.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/c2/Daytona_USA_arcade_flyer.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/BattleRound%20USA%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/BattleRound%20USA%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -6536,8 +6536,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/55/Dragon_Ball_Z_Burst_Limit.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/55/Dragon_Ball_Z_Burst_Limit.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dragon%20Ball%20Z%20-%20Sagas%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dragon%20Ball%20Z%20-%20Sagas%20%28USA%29.png",
       "description": ""
     },
     {
@@ -6579,8 +6579,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/8/8d/Doaxbvbox.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/8/8d/Doaxbvbox.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dead%20or%20Alive%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dead%20or%20Alive%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -6665,8 +6665,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a9/Descent_II_cover_art.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a9/Descent_II_cover_art.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/273580/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/273580/header.jpg",
       "description": ""
     },
     {
@@ -6751,8 +6751,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/5e/The_Dishwasher_Dead_Samurai_box_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/5e/The_Dishwasher_Dead_Samurai_box_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Dead%20Rising%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Dead%20Rising%20%28USA%29.png",
       "description": ""
     },
     {
@@ -6837,8 +6837,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3017860/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3017860/header.jpg",
       "description": ""
     },
     {
@@ -6923,8 +6923,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/4e/Doom3box.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/4/4e/Doom3box.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Actua%20Soccer%20-%20Club%20Edition%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Actua%20Soccer%20-%20Club%20Edition%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -7009,8 +7009,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/29/Doom_II_-_Hell_on_Earth_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/29/Doom_II_-_Hell_on_Earth_Coverart.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2280/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2280/header.jpg",
       "description": ""
     },
     {
@@ -7052,8 +7052,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/9f/Doom_RPG_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/9f/Doom_RPG_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2950570/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2950570/header.jpg",
       "description": ""
     },
     {
@@ -7095,8 +7095,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Doraemon%203%20-%20Nobi%20Dai%20no%20Machi%20SOS%21%20(Japan).png",
-      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Doraemon%203%20-%20Nobi%20Dai%20no%20Machi%20SOS%21%20(Japan).png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Doraemon%20-%20Nobita%20to%20Fukkatsu%20no%20Hoshi%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Doraemon%20-%20Nobita%20to%20Fukkatsu%20no%20Hoshi%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -7181,8 +7181,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8e2d.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8e2d.jpg",
+      "cover": "https://thumbnails.libretro.com/Sega%20-%20Mega%20Drive%20-%20Genesis/Named_Boxarts/Sonic%20The%20Hedgehog%202%20%28World%29.png",
+      "hero": "https://thumbnails.libretro.com/Sega%20-%20Mega%20Drive%20-%20Genesis/Named_Boxarts/Sonic%20The%20Hedgehog%202%20%28World%29.png",
       "description": ""
     },
     {
@@ -7310,8 +7310,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/6/6f/Elchavokartcover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/6/6f/Elchavokartcover.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Crash%20Nitro%20Kart%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Crash%20Nitro%20Kart%20%28USA%29.png",
       "description": ""
     },
     {
@@ -7353,8 +7353,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/0c/Elfen_Lied_1.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/0c/Elfen_Lied_1.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Fighting%20Eyes%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Fighting%20Eyes%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -7439,8 +7439,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/aa/Eternal_Sonata.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/aa/Eternal_Sonata.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Atelier%20Iris%20-%20Eternal%20Mana%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Atelier%20Iris%20-%20Eternal%20Mana%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -7482,8 +7482,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/DOS/Named_Boxarts/Ultima%20VII%20-%20Part%201%20-%20The%20Black%20Gate%20%2B%20Forge%20of%20Virtue.png",
-      "hero": "https://thumbnails.libretro.com/DOS/Named_Boxarts/Ultima%20VII%20-%20Part%201%20-%20The%20Black%20Gate%20%2B%20Forge%20of%20Virtue.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/476862/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/476862/header.jpg",
       "description": ""
     },
     {
@@ -7525,8 +7525,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/6/69/Fear_%26_Hunger.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/6/69/Fear_%26_Hunger.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1002300/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1002300/header.jpg",
       "description": ""
     },
     {
@@ -7611,8 +7611,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/4b/Heroes_of_Might_and_Magic_II_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/4/4b/Heroes_of_Might_and_Magic_II_Coverart.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/297000/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/297000/header.jpg",
       "description": ""
     },
     {
@@ -7697,8 +7697,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/0d/Freespace2box.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/0d/Freespace2box.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/273620/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/273620/header.jpg",
       "description": ""
     },
     {
@@ -7740,8 +7740,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/212010/library_600x900.jpg",
-      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/212010/library_600x900.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/212010/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/212010/header.jpg",
       "description": ""
     },
     {
@@ -7826,8 +7826,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Pokemon%20-%20Red%20Version%20(USA,%20Europe)%20(SGB%20Enhanced).png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Pokemon%20-%20Red%20Version%20(USA,%20Europe)%20(SGB%20Enhanced).png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Pokemon%20-%20Red%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Pokemon%20-%20Red%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
       "description": ""
     },
     {
@@ -7869,8 +7869,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20(USA,%20Europe)%20(SGB%20Enhanced)%20(GB%20Compatible).png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20(USA,%20Europe)%20(SGB%20Enhanced)%20(GB%20Compatible).png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
       "description": ""
     },
     {
@@ -7912,8 +7912,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/55/Gish_%28video_game%29.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/55/Gish_%28video_game%29.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/9500/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/9500/header.jpg",
       "description": ""
     },
     {
@@ -7955,8 +7955,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/DOS/Named_Boxarts/God%20of%20Thunder%20(1993).png",
-      "hero": "https://thumbnails.libretro.com/DOS/Named_Boxarts/God%20of%20Thunder%20(1993).png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/738470/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/738470/header.jpg",
       "description": ""
     },
     {
@@ -8041,8 +8041,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/cb/GoldenEye_007_Reloaded_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/cb/GoldenEye_007_Reloaded_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/007%20-%20Demain%20ne%20Meurt%20Jamais%20%28France%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/007%20-%20Demain%20ne%20Meurt%20Jamais%20%28France%29.png",
       "description": ""
     },
     {
@@ -8127,8 +8127,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/91/Hacxcover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/91/Hacxcover.jpg",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3jik.jpg",
+      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3jik.jpg",
       "description": ""
     },
     {
@@ -8170,8 +8170,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Blackwood%27s_Magazine_-_1899_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Blackwood%27s_Magazine_-_1899_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1413990/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1413990/header.jpg",
       "description": ""
     },
     {
@@ -8256,8 +8256,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/3/3d/Hexenbox.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/3/3d/Hexenbox.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hexen%20-%20Beyond%20Heretic%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Hexen%20-%20Beyond%20Heretic%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -8299,8 +8299,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/b1/HexenIIbox.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/b1/HexenIIbox.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/9060/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/9060/header.jpg",
       "description": ""
     },
     {
@@ -8385,8 +8385,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/b2/Mph_cover_updated.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/b2/Mph_cover_updated.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/J.League%20Soccer%20-%20Prime%20Goal%20EX%20%28Japan%29%20%28Lawson%20Station%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/J.League%20Soccer%20-%20Prime%20Goal%20EX%20%28Japan%29%20%28Lawson%20Station%29.png",
       "description": ""
     },
     {
@@ -8557,8 +8557,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/91/Infinite_Blade_II_poster.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/91/Infinite_Blade_II_poster.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dancing%20Blade%20Katte%20ni%20Momotenshi%20II%20-%20Tears%20of%20Eden%20%28Japan%29%20%28Disc%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dancing%20Blade%20Katte%20ni%20Momotenshi%20II%20-%20Tears%20of%20Eden%20%28Japan%29%20%28Disc%201%29.png",
       "description": ""
     },
     {
@@ -8600,8 +8600,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a1/Lego-island.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a1/Lego-island.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/LEGO%20Island%202%20-%20The%20Brickster%27s%20Revenge%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/LEGO%20Island%202%20-%20The%20Brickster%27s%20Revenge%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -8686,8 +8686,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/42/Jagged_Alliance_2_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/4/42/Jagged_Alliance_2_Coverart.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/215930/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/215930/header.jpg",
       "description": ""
     },
     {
@@ -8729,8 +8729,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/f0/Jazz_Jackrabbit_2.PNG",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/f0/Jazz_Jackrabbit_2.PNG",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Jazz%20Jackrabbit%20%28USA%2C%20Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Jazz%20Jackrabbit%20%28USA%2C%20Europe%29.png",
       "description": ""
     },
     {
@@ -8858,8 +8858,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/96/Ken%27s_Labyrinth_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/96/Ken%27s_Labyrinth_Coverart.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dungeon%20Shoutenkai%20-%20Densetsu%20no%20Ken%20Hajime%20mashita%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dungeon%20Shoutenkai%20-%20Densetsu%20no%20Ken%20Hajime%20mashita%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -8987,8 +8987,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/8/87/Knytt_Stories_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/8/87/Knytt_Stories_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kizuna%20toyuu%20Na%20no%20Pendant%20with%20Toybox%20Stories%20%28Japan%29%20%28Disc%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kizuna%20toyuu%20Na%20no%20Pendant%20with%20Toybox%20Stories%20%28Japan%29%20%28Disc%201%29.png",
       "description": ""
     },
     {
@@ -9030,8 +9030,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Korokoro%20Postnin%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Korokoro%20Postnin%20%28Japan%29.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/KoroKoro%20Post%20nin%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/KoroKoro%20Post%20nin%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -9073,8 +9073,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12210/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12210/header.jpg",
       "description": ""
     },
     {
@@ -9116,8 +9116,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/c1/Link%27s_Awakening.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/c1/Link%27s_Awakening.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Majora%27s%20Mask%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%29%20%28Rev%201%29%20%28Debug%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Majora%27s%20Mask%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%29%20%28Rev%201%29%20%28Debug%29.png",
       "description": ""
     },
     {
@@ -9159,8 +9159,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/04/Look_Outside_Game_Title_Banner.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/04/Look_Outside_Game_Title_Banner.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3373660/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3373660/header.jpg",
       "description": ""
     },
     {
@@ -9202,8 +9202,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a9/American_McGee_Alice_cover.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a9/American_McGee_Alice_cover.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Alice%20in%20Cyberland%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Alice%20in%20Cyberland%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -9331,8 +9331,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a3/Marble_blast_gold.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a3/Marble_blast_gold.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Aztec%20-%20The%20Curse%20in%20the%20Heart%20of%20the%20City%20of%20Gold%20%28Europe%29%20%28En%2CNl%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Aztec%20-%20The%20Curse%20in%20the%20Heart%20of%20the%20City%20of%20Gold%20%28Europe%29%20%28En%2CNl%29.png",
       "description": ""
     },
     {
@@ -9460,8 +9460,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/07/SimCity_2000_box.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/07/SimCity_2000_box.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/SimCity%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/SimCity%20%28USA%29.png",
       "description": ""
     },
     {
@@ -9589,8 +9589,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/6/6b/Mortal_Kombat_vs._DC_Universe_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/6/6b/Mortal_Kombat_vs._DC_Universe_Coverart.png",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1y13.jpg",
+      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1y13.jpg",
       "description": ""
     },
     {
@@ -9632,8 +9632,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/52/MC2BlackPegasus.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/52/MC2BlackPegasus.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Battlefield%202%20-%20Modern%20Combat%20%28Europe%29%20%28En%2CEs%2CNl%2CSv%29%20%28v1.00%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Battlefield%202%20-%20Modern%20Combat%20%28Europe%29%20%28En%2CEs%2CNl%2CSv%29%20%28v1.00%29.png",
       "description": ""
     },
     {
@@ -9718,8 +9718,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/1/1a/Naruto_Shippuden_UNS_2_Box_Art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/1/1a/Naruto_Shippuden_UNS_2_Box_Art.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/543870/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/543870/header.jpg",
       "description": ""
     },
     {
@@ -9761,8 +9761,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/f2/NarutoStormRevolutionCover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/f2/NarutoStormRevolutionCover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/272510/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/272510/header.jpg",
       "description": ""
     },
     {
@@ -9804,8 +9804,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/fa/Naruto_ROANfront.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/fa/Naruto_ROANfront.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/America%27s%20Army%20-%20Rise%20of%20a%20Soldier%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/America%27s%20Army%20-%20Rise%20of%20a%20Soldier%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -9847,8 +9847,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/b3/Naruto_The_Broken_Bond.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/b3/Naruto_The_Broken_Bond.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Broken%20Sword%20-%20The%20Sleeping%20Dragon%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Broken%20Sword%20-%20The%20Sleeping%20Dragon%20%28USA%29.png",
       "description": ""
     },
     {
@@ -9890,8 +9890,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/0f/Naughty_Bear.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/0f/Naughty_Bear.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Paddington%20Bear%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%2CPt%2CSv%2CNo%2CDa%2CFi%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Paddington%20Bear%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%2CPt%2CSv%2CNo%2CDa%2CFi%29.png",
       "description": ""
     },
     {
@@ -9933,8 +9933,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a5/Far_Cry_1_boxshot.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a5/Far_Cry_1_boxshot.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2369390/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2369390/header.jpg",
       "description": ""
     },
     {
@@ -9976,8 +9976,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a6/NFS_III_Hot_Pursuit_%28PC%2C_US%29_cover_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a6/NFS_III_Hot_Pursuit_%28PC%2C_US%29_cover_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Need%20for%20Speed%20III%20-%20Hot%20Pursuit%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CSv%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Need%20for%20Speed%20III%20-%20Hot%20Pursuit%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CSv%29.png",
       "description": ""
     },
     {
@@ -10019,8 +10019,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/52/Need_for_Speed_Underground_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/52/Need_for_Speed_Underground_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Need%20for%20Speed%20-%20Underground%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%2CSv%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Need%20for%20Speed%20-%20Underground%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%2CSv%29.png",
       "description": ""
     },
     {
@@ -10062,8 +10062,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/7b/NFS_II_%28PC%2C_US%29_cover_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/7b/NFS_II_%28PC%2C_US%29_cover_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Need%20for%20Speed%20II%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CSv%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Need%20for%20Speed%20II%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CSv%29.png",
       "description": ""
     },
     {
@@ -10148,8 +10148,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Happy_Wheels_Logo.png/960px-Happy_Wheels_Logo.png",
-      "hero": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Happy_Wheels_Logo.png/960px-Happy_Wheels_Logo.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dr.%20Rin%20ni%20Kiite%20Mite%21%20Koi%20no%20Happy%20Four%20Seasons%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dr.%20Rin%20ni%20Kiite%20Mite%21%20Koi%20no%20Happy%20Four%20Seasons%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -10234,8 +10234,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Openarena-logo.svg/960px-Openarena-logo.svg.png",
-      "hero": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Openarena-logo.svg/960px-Openarena-logo.svg.png",
+      "cover": "https://img.itch.zone/aW1hZ2UvMjY1NDc5LzEyODY2MjEuanBn/original/PO6UGX.jpg",
+      "hero": "https://img.itch.zone/aW1hZ2UvMjY1NDc5LzEyODY2MjEuanBn/original/PO6UGX.jpg",
       "description": ""
     },
     {
@@ -10320,8 +10320,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/2f/JediKnight-cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/2f/JediKnight-cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/32380/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/32380/header.jpg",
       "description": ""
     },
     {
@@ -10406,8 +10406,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/4/43/Free_depiction_of_the_Fallout_New_Vegas_Xbox_360_box_art_%28cropped%29.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/4/43/Free_depiction_of_the_Fallout_New_Vegas_Xbox_360_box_art_%28cropped%29.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22380/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22380/header.jpg",
       "description": ""
     },
     {
@@ -10449,8 +10449,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/0/06/Starbound_Logo.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/0/06/Starbound_Logo.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/211820/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/211820/header.jpg",
       "description": ""
     },
     {
@@ -10492,8 +10492,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/7f/Transport_Tycoon_Coverart.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/7f/Transport_Tycoon_Coverart.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Transport%20Tycoon%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Transport%20Tycoon%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -10664,8 +10664,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/d/d9/Amiga_Pinball_Fantasies_cover_art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/d/d9/Amiga_Pinball_Fantasies_cover_art.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pinball%20Fantasies%20Deluxe%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Pinball%20Fantasies%20Deluxe%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -10707,8 +10707,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/9c/PlantsvsZombiesCoverArt.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/9c/PlantsvsZombiesCoverArt.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3590/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3590/header.jpg",
       "description": ""
     },
     {
@@ -10750,8 +10750,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/FTL_Faster_Than_Light_Logo.svg/960px-FTL_Faster_Than_Light_Logo.svg.png",
-      "hero": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/FTL_Faster_Than_Light_Logo.svg/960px-FTL_Faster_Than_Light_Logo.svg.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/212680/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/212680/header.jpg",
       "description": ""
     },
     {
@@ -10836,8 +10836,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/b1/Pokemon_The_First_Movie_poster.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/b1/Pokemon_The_First_Movie_poster.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Pokemon%20-%20Emerald%20Version%20%28USA%2C%20Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Pokemon%20-%20Emerald%20Version%20%28USA%2C%20Europe%29.png",
       "description": ""
     },
     {
@@ -10879,8 +10879,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/53/Pocket_Monsters_Carddass_151.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/53/Pocket_Monsters_Carddass_151.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Pokemon%20-%20FireRed%20Version%20%28USA%2C%20Europe%29%20%28Rev%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Pokemon%20-%20FireRed%20Version%20%28USA%2C%20Europe%29%20%28Rev%201%29.png",
       "description": ""
     },
     {
@@ -11094,8 +11094,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/7b/Prison_Architect_Logo.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/7b/Prison_Architect_Logo.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/233450/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/233450/header.jpg",
       "description": ""
     },
     {
@@ -11137,8 +11137,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/0c/Boxshot_of_video_game_Project_zomboid.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/0c/Boxshot_of_video_game_Project_zomboid.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/108600/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/108600/header.jpg",
       "description": ""
     },
     {
@@ -11180,8 +11180,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/8/8c/Tony_Hawk%27s_Project_8_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/8/8c/Tony_Hawk%27s_Project_8_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Tony%20Hawk%27s%20Project%208%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Tony%20Hawk%27s%20Project%208%20%28USA%29.png",
       "description": ""
     },
     {
@@ -11352,8 +11352,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/DOS/Named_Boxarts/Quake%20(1996).png",
-      "hero": "https://thumbnails.libretro.com/DOS/Named_Boxarts/Quake%20(1996).png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2320/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2320/header.jpg",
       "description": ""
     },
     {
@@ -11438,8 +11438,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a1/Quake3Title.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a1/Quake3Title.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2200/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2200/header.jpg",
       "description": ""
     },
     {
@@ -11481,8 +11481,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/4b/Quake_Mission_Pack_No_2_Dissolution_of_Eternity_Cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/4/4b/Quake_Mission_Pack_No_2_Dissolution_of_Eternity_Cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/9030/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/9030/header.jpg",
       "description": ""
     },
     {
@@ -11524,8 +11524,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/91/Quake_Mission_Pack_No_1_Scourge_of_Armagon_Cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/91/Quake_Mission_Pack_No_1_Scourge_of_Armagon_Cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/9040/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/9040/header.jpg",
       "description": ""
     },
     {
@@ -11567,8 +11567,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/1/12/R.E.P.O._cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/1/12/R.E.P.O._cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3241660/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3241660/header.jpg",
       "description": ""
     },
     {
@@ -11653,8 +11653,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/be/GTA3boxcover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/be/GTA3boxcover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1546970/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1546970/header.jpg",
       "description": ""
     },
     {
@@ -11696,8 +11696,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/e/e6/JackieChanStuntmaster.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/e/e6/JackieChanStuntmaster.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jackie%20Chan%20Stuntmaster%20%28Europe%29%20%28Recalled%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Jackie%20Chan%20Stuntmaster%20%28Europe%29%20%28Recalled%29.png",
       "description": ""
     },
     {
@@ -11782,8 +11782,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/6/63/Banjo-Kazooie_Nuts_%26_Bolts_Game_Cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/6/63/Banjo-Kazooie_Nuts_%26_Bolts_Game_Cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Banjo-Kazooie%20%28Europe%29%20%28En%2CFr%2CDe%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Banjo-Kazooie%20%28Europe%29%20%28En%2CFr%2CDe%29.png",
       "description": ""
     },
     {
@@ -11868,8 +11868,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/ce/Vice-city-cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/ce/Vice-city-cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1546990/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1546990/header.jpg",
       "description": ""
     },
     {
@@ -12040,8 +12040,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/7b/Road_Trip_Adventure_Cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/7b/Road_Trip_Adventure_Cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1998390/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1998390/header.jpg",
       "description": ""
     },
     {
@@ -12126,8 +12126,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/d/de/LSF_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/d/de/LSF_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/B.%20L.%20U.%20E.%20-%20Legend%20of%20Water%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/B.%20L.%20U.%20E.%20-%20Legend%20of%20Water%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -12169,8 +12169,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/e/eb/Sega_Rally_flyer.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/e/eb/Sega_Rally_flyer.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Mobil%201%20Rally%20Championship%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Mobil%201%20Rally%20Championship%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -12212,8 +12212,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/b/b4/Serious_Sam_-_The_First_Encounter.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/b/b4/Serious_Sam_-_The_First_Encounter.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/41000/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/41000/header.jpg",
       "description": ""
     },
     {
@@ -12255,8 +12255,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/41014/library_600x900.jpg",
-      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/41014/library_600x900.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/41014/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/41014/header.jpg",
       "description": ""
     },
     {
@@ -12298,8 +12298,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/d/dd/Pok%C3%A9mon_Generations.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/d/dd/Pok%C3%A9mon_Generations.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20DS/Named_Boxarts/Pokemon%20-%20Platinum%20Version%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20DS/Named_Boxarts/Pokemon%20-%20Platinum%20Version%20%28USA%29.png",
       "description": ""
     },
     {
@@ -12341,8 +12341,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/05/Silksong.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/05/Silksong.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030300/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030300/header.jpg",
       "description": ""
     },
     {
@@ -12384,8 +12384,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Slash%27_EM.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Slash%27_EM.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/348190/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/348190/header.jpg",
       "description": ""
     },
     {
@@ -12728,8 +12728,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/7d/SonicGenerations.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/7d/SonicGenerations.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/71340/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/71340/header.jpg",
       "description": ""
     },
     {
@@ -12814,8 +12814,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/6/6d/Srb2_22_title.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/6/6d/Srb2_22_title.png",
+      "cover": "https://thumbnails.libretro.com/Sega%20-%20Mega%20Drive%20-%20Genesis/Named_Boxarts/Sonic%20The%20Hedgehog%20%28USA%2C%20Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Sega%20-%20Mega%20Drive%20-%20Genesis/Named_Boxarts/Sonic%20The%20Hedgehog%20%28USA%2C%20Europe%29.png",
       "description": ""
     },
     {
@@ -12986,8 +12986,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Pixel_art_cloud.png/480px-Pixel_art_cloud.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Pixel_art_cloud.png/480px-Pixel_art_cloud.png",
+      "cover": "https://raw.githubusercontent.com/EXL/Spout/master/images/spout_android.png",
+      "hero": "https://raw.githubusercontent.com/EXL/Spout/master/images/spout_android.png",
       "description": ""
     },
     {
@@ -13072,8 +13072,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/48/Star_Trek_Voyager_Elite_Force.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/4/48/Star_Trek_Voyager_Elite_Force.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Star%20Trek%20-%20Voyager%20-%20Elite%20Force%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Star%20Trek%20-%20Voyager%20-%20Elite%20Force%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -13201,8 +13201,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/9c/Warcraft_-_Orcs_%26_Humans_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/9c/Warcraft_-_Orcs_%26_Humans_Coverart.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -13244,8 +13244,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/70%27s%20Robot%20Anime%20-%20Geppy-X%20-%20The%20Super%20Boosted%20Armor%20%28Japan%29%20%28Disc%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/70%27s%20Robot%20Anime%20-%20Geppy-X%20-%20The%20Super%20Boosted%20Armor%20%28Japan%29%20%28Disc%201%29.png",
       "description": ""
     },
     {
@@ -13287,8 +13287,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a3/Mariowonder.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a3/Mariowonder.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Switch/Named_Boxarts/Super%20Mario%20Bros.%20Wonder%20%28World%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Switch/Named_Boxarts/Super%20Mario%20Bros.%20Wonder%20%28World%29.png",
       "description": ""
     },
     {
@@ -13459,8 +13459,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/93/Sysshock.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/9/93/Sysshock.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/482400/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/482400/header.jpg",
       "description": ""
     },
     {
@@ -13545,8 +13545,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/21/Tekken_6_Box_Art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/21/Tekken_6_Box_Art.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/878462/header.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/878462/header.jpg",
       "description": ""
     },
     {
@@ -13588,8 +13588,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/c2/Team_Fortress_Classic_box.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/c2/Team_Fortress_Classic_box.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/20/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/20/header.jpg",
       "description": ""
     },
     {
@@ -13631,8 +13631,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/e/e1/The_Binding_of_Issac_Rebirth_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/e/e1/The_Binding_of_Issac_Rebirth_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/250900/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/250900/header.jpg",
       "description": ""
     },
     {
@@ -13674,8 +13674,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/4f/Dark_Forces_box_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/4/4f/Dark_Forces_box_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2292260/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2292260/header.jpg",
       "description": ""
     },
     {
@@ -13717,8 +13717,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Wii%20U/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Breath%20of%20the%20Wild%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Wii%20U/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Breath%20of%20the%20Wild%20%28USA%29.png",
       "description": ""
     },
     {
@@ -13760,8 +13760,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/5f/The_Simpsons_Hit_and_Run_cover.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/5f/The_Simpsons_Hit_and_Run_cover.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Chicken%20Run%20%28Europe%29%20%28Fr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Chicken%20Run%20%28Europe%29%20%28Fr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -13803,8 +13803,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vintage_pharmaceutical_bottle.jpg/480px-Vintage_pharmaceutical_bottle.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vintage_pharmaceutical_bottle.jpg/480px-Vintage_pharmaceutical_bottle.jpg",
+      "cover": "https://img.itch.zone/aW1nLzQyNDA0MDIucG5n/original/N3uBtg.png",
+      "hero": "https://img.itch.zone/aW1nLzQyNDA0MDIucG5n/original/N3uBtg.png",
       "description": ""
     },
     {
@@ -13932,8 +13932,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/8/8b/Th06cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/8/8b/Th06cover.jpg",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coc7m0.jpg",
+      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/coc7m0.jpg",
       "description": ""
     },
     {
@@ -13975,8 +13975,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/23/Tyrian_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/23/Tyrian_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/AI%20Mahjong%202000%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/AI%20Mahjong%202000%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -14018,8 +14018,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a6/UFO_50_cover.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a6/UFO_50_cover.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1147860/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1147860/header.jpg",
       "description": ""
     },
     {
@@ -14061,8 +14061,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/43/Ultima_V_Box_Art.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/4/43/Ultima_V_Box_Art.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Advanced%20Dungeons%20_%20Dragons%20-%20Iron%20_%20Blood%20-%20Warriors%20of%20Ravenloft%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Advanced%20Dungeons%20_%20Dragons%20-%20Iron%20_%20Blood%20-%20Warriors%20of%20Ravenloft%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -14104,8 +14104,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/5c/CIVILIZATION-V-FRONT-OF-BOX.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/5/5c/CIVILIZATION-V-FRONT-OF-BOX.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1295660/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1295660/header.jpg",
       "description": ""
     },
     {
@@ -14190,8 +14190,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Unreal_Engine_Logo_%28new_typeface%29.svg/960px-Unreal_Engine_Logo_%28new_typeface%29.svg.png",
-      "hero": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Unreal_Engine_Logo_%28new_typeface%29.svg/960px-Unreal_Engine_Logo_%28new_typeface%29.svg.png",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1335560/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1335560/header.jpg",
       "description": ""
     },
     {
@@ -14233,8 +14233,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/f4/Unrealtournament.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/f4/Unrealtournament.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20Collection%20-%20Arc%20Arena%20-%20Monster%20Tournament%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20Collection%20-%20Arc%20Arena%20-%20Monster%20Tournament%20%28USA%29.png",
       "description": ""
     },
     {
@@ -14276,8 +14276,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/c3/Star_Control_II_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/c3/Star_Control_II_cover.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/358920/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/358920/header.jpg",
       "description": ""
     },
     {
@@ -14319,8 +14319,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/77/Valheim_2021_logo.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/7/77/Valheim_2021_logo.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/header.jpg",
       "description": ""
     },
     {
@@ -14362,8 +14362,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/23/Warcraft_II_-_Tides_of_Darkness_Coverart.png",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/23/Warcraft_II_-_Tides_of_Darkness_Coverart.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/Silva%20Saga%20II%20-%20The%20Legend%20of%20Light%20and%20Darkness%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/Silva%20Saga%20II%20-%20The%20Legend%20of%20Light%20and%20Darkness%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -14405,8 +14405,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/c/cb/Warioland3.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/c/cb/Warioland3.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Army%20Men%20-%20Land%2C%20Sea%2C%20Air%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Army%20Men%20-%20Land%2C%20Sea%2C%20Air%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
@@ -14534,8 +14534,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/2/27/WhiteAlbum2IntroductaryChapterPackage.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/2/27/WhiteAlbum2IntroductaryChapterPackage.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/FEDA%202%20-%20White%20Surge%20the%20Platoon%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/FEDA%202%20-%20White%20Surge%20the%20Platoon%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -14577,8 +14577,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/1/1b/Wolfenstein_RPG_cover.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/1/1b/Wolfenstein_RPG_cover.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blend%20x%20Brand%20-%20Odekake%20Gousei%20RPG%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blend%20x%20Brand%20-%20Odekake%20Gousei%20RPG%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -14620,8 +14620,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a6/Woody_Woodpecker_-_Escape_from_Buzz_Buzzard_Park.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/a/a6/Woody_Woodpecker_-_Escape_from_Buzz_Buzzard_Park.jpg",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Woody%20Woodpecker%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Woody%20Woodpecker%20%28USA%29.png",
       "description": ""
     },
     {
@@ -14749,8 +14749,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/fd/Zelda_II_The_Adventure_of_Link_box.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/fd/Zelda_II_The_Adventure_of_Link_box.jpg",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Classic%20NES%20Series%20-%20Zelda%20II%20-%20The%20Adventure%20of%20Link%20%28USA%2C%20Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Classic%20NES%20Series%20-%20Zelda%20II%20-%20The%20Adventure%20of%20Link%20%28USA%2C%20Europe%29.png",
       "description": ""
     },
     {
@@ -14792,8 +14792,8 @@ window.RECOMP_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://upload.wikimedia.org/wikipedia/en/f/fb/Gloom_front.jpg",
-      "hero": "https://upload.wikimedia.org/wikipedia/en/f/fb/Gloom_front.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3271280/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3271280/header.jpg",
       "description": ""
     },
     {

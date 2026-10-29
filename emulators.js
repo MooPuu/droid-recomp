@@ -35,7 +35,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Sony PlayStation 2",
       "developer": "Tahlreth",
       "version": "v1.5-3668 (Alpha)",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://raw.githubusercontent.com/Jaffacakelover/emulator-icons-svg/master/AetherSX2%20-%20icon.svg",
       "description": "The landmark original alpha release of AetherSX2 that revolutionized PlayStation 2 emulation on Android. Delivered full 60 FPS performance in Shadow of the Colossus, Burnout 3, and God of War on ARM64.",
       "features": [
         "Legendary PCSX2-derived recompiler for ARM64",
@@ -89,7 +89,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Sony PlayStation 2",
       "developer": "DamonPS2 Emulator Studio",
       "version": "v6.0+ Pro",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/damonplay.png",
       "description": "Commercial closed-source PlayStation 2 emulator available on the Google Play Store. Highly controversial in the emulation community due to past PCSX2 GPL code disputes and heavy ads in the free edition. NetherSX2 is universally recommended instead.",
       "features": [
         "Hardware accelerated PS2 Emotion Engine execution",
@@ -170,7 +170,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Nintendo Switch",
       "developer": "Suyu Team & Contributors",
       "version": "v0.0.3+",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/suyu-emu.png",
       "description": "Open-source Nintendo Switch emulator continuation featuring improved UI, custom GPU driver management, controller profile saving, and stability enhancements for Android devices.",
       "features": [
         "Native Code Execution (NCE) for ARM64",
@@ -197,7 +197,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Nintendo Switch",
       "developer": "Team Yuzu",
       "version": "Build 278 (Final)",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/yuzu-emu.png",
       "description": "The definitive final official release of Yuzu for Android before project discontinuation. Features full NCE ARM64 execution, custom Turnip driver support, local wireless multiplayer emulation, and motion controls.",
       "features": [
         "Native Code Execution (NCE) core",
@@ -355,7 +355,7 @@ window.DROIDRECOMP_EMULATORS = {
     {
       "id": "ppsspp",
       "name": "PPSSPP (Free)",
-      "system": "psp",
+      "system": "psp_vita",
       "system_name": "Sony PlayStation Portable",
       "developer": "Henrik Rydgård",
       "version": "v1.18.1",
@@ -382,11 +382,11 @@ window.DROIDRECOMP_EMULATORS = {
     {
       "id": "ppsspp-gold",
       "name": "PPSSPP Gold",
-      "system": "psp",
+      "system": "psp_vita",
       "system_name": "Sony PlayStation Portable",
       "developer": "Henrik Rydgård",
       "version": "v1.18.1",
-      "icon": "https://github.com/hrydgard.png",
+      "icon": "https://raw.githubusercontent.com/Jaffacakelover/emulator-icons-svg/master/PPSSPP%20Gold.svg",
       "description": "The official premium supporter edition of PPSSPP on the Google Play Store. Identical feature set to PPSSPP with a prestigious gold icon, directly supporting Henrik Rydgård's decade of full-time emulator development.",
       "features": [
         "Directly supports ongoing PPSSPP open-source development",
@@ -409,7 +409,7 @@ window.DROIDRECOMP_EMULATORS = {
     {
       "id": "vita3k",
       "name": "Vita3K Android",
-      "system": "ps_vita",
+      "system": "psp_vita",
       "system_name": "Sony PlayStation Vita",
       "developer": "Macdu & Vita3K Team",
       "version": "Release v12+",
@@ -521,7 +521,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "PC / Windows & Cloud Suite",
       "developer": "GameHub Studio / Xiaoji",
       "version": "v3.2+ / Lite Edition",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/GameHub-App.png",
       "description": "All-in-one PC gaming launcher and compatibility frontend for Android. GameHub Lite delivers a streamlined, lightweight interface optimized for lower-end and mid-range devices with GPU driver configuration and controller mapping.",
       "features": [
         "Hybrid local PC translation and cloud gaming launcher",
@@ -575,7 +575,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "MS-DOS & Windows 95/98",
       "developer": "bruenor",
       "version": "v1.0.86 (Pro)",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://play-lh.googleusercontent.com/pCh9A29wFlsEBtxLQ7f_Bor5eqc4-VFHrIzeKUZV_po_fghvBs3rWtdTW7OMC_ZL8RT0qBkSReaqIbXHEsl5=s0-br30",
       "description": "The ultimate MS-DOS and early Windows 95/98 PC game emulator for Android. Offers fully customizable on-screen widgets, joystick/mouse/keyboard emulation, soundfont support, and IPX multiplayer.",
       "features": [
         "Custom on-screen widgets: buttons, D-pad, mouse wheel, hotkeys",
@@ -602,7 +602,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Classic PC / Windows (x86)",
       "developer": "Eltechs / Community Modified",
       "version": "3.0.2 Mod / ED302",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/eltechs.png",
       "description": "The pioneer of PC x86 gaming on Android. Modified extensively by the community with custom Wine versions, VirGL, and Turnip Mesa drivers to run classic 2000s PC games with exceptional 2D/3D compatibility.",
       "features": [
         "Runs classic PC titles: Fallout 1/2, Heroes of Might & Magic, Diablo II",
@@ -737,7 +737,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "KiriKiri2 / Visual Novels",
       "developer": "Zeas",
       "version": "v1.3.9+",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/zeas2.png",
       "description": "Mobile port of the popular Japanese KiriKiri2 engine for Android. Plays classic visual novels like Fate/stay night and Tsukihime natively on Android without needing a full Windows virtual machine.",
       "features": [
         "Native execution of KiriKiri2 / KAG visual novel games",
@@ -791,7 +791,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Nintendo DS",
       "developer": "Exophase (Lordus)",
       "version": "r2.6.0.4a Definitive",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/exophase.png",
       "description": "The definitive Nintendo DS emulator for Android. Celebrated for blistering fast performance even on budget phones, screen layout customization, 3D rendering upscaling, and microphone emulation. Now completely free.",
       "features": [
         "Unrivaled execution speed on all ARM processors",
@@ -872,7 +872,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Sony PlayStation 1",
       "developer": "ePSXe Software",
       "version": "v2.0.16",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://play-lh.googleusercontent.com/CkS6tKITvyy5WK8uAgALTDba-Czq7peFP-MG3iHNLkLaTdN5-To2JRRkqynKUIuGiu2giiMgOAEMzMuOiBjQ=s0-br30",
       "description": "Legendary classic PlayStation 1 emulator for Android. Offers split-screen 2-player mode on tablets, OpenGL HD plugin, multi-disc game switching, and hardware gamepad auto-configuration.",
       "features": [
         "Pioneering mobile PS1 emulator with 99%+ game compatibility",
@@ -899,7 +899,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Sony PlayStation 1",
       "developer": "LD-Studio",
       "version": "v0.11.230",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://play-lh.googleusercontent.com/H-XvVzN0BsfRXmxRZG2gkiEauZ_ofPqC-EzRoKQWV8sDng71NSQmmRyhbvCGw-VL53i8sY9bHY17kmC8slk4Y_4=s0-br30",
       "description": "Feature-heavy PS1 emulator on Google Play offering hardware accelerated OpenGL shaders, VR glasses mode (Google Cardboard), and high audio DSP quality.",
       "features": [
         "Hardware accelerated OpenGL ES 3.0 graphics engine",
@@ -1003,7 +1003,7 @@ window.DROIDRECOMP_EMULATORS = {
     {
       "id": "m64plus-fz",
       "name": "M64Plus FZ & Pro",
-      "system": "classic_2d",
+      "system": "n64",
       "system_name": "Nintendo 64",
       "developer": "Francisco Zurita",
       "version": "v3.0.330+ (Pro)",
@@ -1030,11 +1030,11 @@ window.DROIDRECOMP_EMULATORS = {
     {
       "id": "pizza-boy-gba",
       "name": "Pizza Boy GBA Basic & Pro",
-      "system": "classic_2d",
+      "system": "gba",
       "system_name": "Game Boy Advance",
       "developer": "Davide Beraldo",
       "version": "v2.7.0+ (Pro)",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/davideberaldo.png",
       "description": "Superb cycle-accurate Game Boy Advance emulator for Android. Passes 100% of GBA hardware test suites, featuring 60 FPS fast forward, rewind, OpenGL shaders, and skin customization.",
       "features": [
         "100% accuracy in GBA CPU hardware compliance test suites",
@@ -1049,19 +1049,19 @@ window.DROIDRECOMP_EMULATORS = {
       "is_paid": true,
       "price": "Free Lite / $4.99 Pro",
       "license": "Freemium / Commercial",
-      "apk_url": "https://github.com/davide-beraldo",
-      "repo_url": "https://github.com/davide-beraldo",
+      "apk_url": "https://github.com/davideberaldo",
+      "repo_url": "https://github.com/davideberaldo",
       "obtainium_url": "",
       "category": "Retro 2D"
     },
     {
       "id": "pizza-boy-gbc",
       "name": "Pizza Boy GBC Basic & Pro",
-      "system": "classic_2d",
+      "system": "gba",
       "system_name": "Game Boy & Game Boy Color",
       "developer": "Davide Beraldo",
       "version": "v2.5.0+ (Pro)",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://github.com/davideberaldo.png",
       "description": "Premier Game Boy and Game Boy Color emulator for Android. Features high-accuracy Z80 CPU emulation, custom palette coloring for original GB games, and gyroscope sensor support.",
       "features": [
         "Flawless Z80 and Game Boy Color hardware accuracy",
@@ -1076,19 +1076,19 @@ window.DROIDRECOMP_EMULATORS = {
       "is_paid": true,
       "price": "Free Lite / $3.99 Pro",
       "license": "Freemium / Commercial",
-      "apk_url": "https://github.com/davide-beraldo",
-      "repo_url": "https://github.com/davide-beraldo",
+      "apk_url": "https://github.com/davideberaldo",
+      "repo_url": "https://github.com/davideberaldo",
       "obtainium_url": "",
       "category": "Retro 2D"
     },
     {
       "id": "my-boy-gba",
       "name": "My Boy! - GBA Emulator",
-      "system": "classic_2d",
+      "system": "gba",
       "system_name": "Game Boy Advance",
       "developer": "Fast Emulator",
       "version": "v2.0.0",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://play-lh.googleusercontent.com/GmMy8HhuZPLeCep5Op5SOo7hn2S_n9520IZU0G6YStm4qIzzn7AlX1BD9S2jyQ8AOlOWX5hEuHHAM-VGaa8CrTo=s0-br30",
       "description": "Renowned GBA emulator famous for its peer-to-peer Game Boy Advance link cable emulation over Bluetooth or local Wi-Fi, allowing Pokémon trading and battles between Android phones.",
       "features": [
         "Link cable emulation over Bluetooth or local Wi-Fi",
@@ -1111,11 +1111,11 @@ window.DROIDRECOMP_EMULATORS = {
     {
       "id": "my-oldboy-gbc",
       "name": "My OldBoy! - GBC Emulator",
-      "system": "classic_2d",
+      "system": "gba",
       "system_name": "Game Boy & Game Boy Color",
       "developer": "Fast Emulator",
       "version": "v2.0.0",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://play-lh.googleusercontent.com/8MXDIivg1geazXua1Mds-9KxWv-LgVdYa5AChZpkr7MFMCZ9cOXm8Vopirmc_IXoXZI6UNBZj1cT9sXv5IlCi_k=s0-br30",
       "description": "Classic high-speed Game Boy / Game Boy Color emulator featuring link cable emulation over Bluetooth/Wi-Fi, tilt sensor emulation via Android gyroscope, and cheat support.",
       "features": [
         "Link cable emulation over Bluetooth / Wi-Fi",
@@ -1136,36 +1136,9 @@ window.DROIDRECOMP_EMULATORS = {
       "category": "Retro 2D"
     },
     {
-      "id": "snes9x-ex-plus",
-      "name": "Snes9x EX+",
-      "system": "classic_2d",
-      "system_name": "Super Nintendo (SNES)",
-      "developer": "Robert Broglia",
-      "version": "v1.5.80+",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
-      "description": "Highly compatible open-source Super Nintendo emulator based on Snes9x. Features zero audio latency, MSU-1 CD quality audio enhancement, multi-tap controller support, and Super FX acceleration.",
-      "features": [
-        "Near 100% Super Nintendo catalog compatibility",
-        "MSU-1 high-fidelity CD audio enhancement support",
-        "Super FX 1/2 hardware acceleration (Star Fox, Yoshi's Island)",
-        "Low-latency audio pipeline with custom buffer sizing",
-        "100% free and open source with zero advertisements"
-      ],
-      "min_android": "Android 4.0+",
-      "graphics_backend": "OpenGL ES / Software",
-      "turnip_recommended": false,
-      "is_paid": false,
-      "price": "Free",
-      "license": "Free / Open Source (GPLv2)",
-      "apk_url": "https://github.com/Rakashazi/emu-ex-plus-alpha/releases",
-      "repo_url": "https://github.com/Rakashazi/emu-ex-plus-alpha",
-      "obtainium_url": "obtainium://add/https://github.com/Rakashazi/emu-ex-plus-alpha",
-      "category": "Retro 2D"
-    },
-    {
       "id": "mgba",
       "name": "mGBA",
-      "system": "classic_2d",
+      "system": "gba",
       "system_name": "Game Boy Advance, Color & Classic",
       "developer": "Jeffrey Pfau (endrift)",
       "version": "0.10.3+",
@@ -1187,6 +1160,33 @@ window.DROIDRECOMP_EMULATORS = {
       "apk_url": "https://mgba.io/downloads.html",
       "repo_url": "https://github.com/mgba-emu/mgba/releases",
       "obtainium_url": "obtainium://add/https://github.com/mgba-emu/mgba",
+      "category": "Retro 2D"
+    },
+    {
+      "id": "snes9x-ex-plus",
+      "name": "Snes9x EX+",
+      "system": "snes",
+      "system_name": "Super Nintendo (SNES)",
+      "developer": "Robert Broglia",
+      "version": "v1.5.80+",
+      "icon": "https://github.com/snes9xgit.png",
+      "description": "Highly compatible open-source Super Nintendo emulator based on Snes9x. Features zero audio latency, MSU-1 CD quality audio enhancement, multi-tap controller support, and Super FX acceleration.",
+      "features": [
+        "Near 100% Super Nintendo catalog compatibility",
+        "MSU-1 high-fidelity CD audio enhancement support",
+        "Super FX 1/2 hardware acceleration (Star Fox, Yoshi's Island)",
+        "Low-latency audio pipeline with custom buffer sizing",
+        "100% free and open source with zero advertisements"
+      ],
+      "min_android": "Android 4.0+",
+      "graphics_backend": "OpenGL ES / Software",
+      "turnip_recommended": false,
+      "is_paid": false,
+      "price": "Free",
+      "license": "Free / Open Source (GPLv2)",
+      "apk_url": "https://github.com/Rakashazi/emu-ex-plus-alpha/releases",
+      "repo_url": "https://github.com/Rakashazi/emu-ex-plus-alpha",
+      "obtainium_url": "obtainium://add/https://github.com/Rakashazi/emu-ex-plus-alpha",
       "category": "Retro 2D"
     },
     {
@@ -1277,7 +1277,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Premium Retro Frontend Launcher",
       "developer": "Rayyan Khokhar",
       "version": "v1.6.0+",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://play-lh.googleusercontent.com/9k3xoQaMinZqR19EHHU5ZkrfikV9NQWvg8U8tWpiFFKbobUE_JkVc24frgqCfsbVaebJGjKwU0l3UfnmJBJdyfk=s0-br30",
       "description": "Sleek, lightweight premium launcher designed for Android phones and gaming handhelds like Retroid Pocket and Odin. Fast boxart scraping, clean aesthetics, and zero bloat.",
       "features": [
         "Ultra-clean, modern minimalist aesthetic",
@@ -1304,7 +1304,7 @@ window.DROIDRECOMP_EMULATORS = {
       "system_name": "Arcade / MAME Multi-Machine",
       "developer": "David Valdeita (Seleuco)",
       "version": "v1.15.5+",
-      "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+      "icon": "https://play-lh.googleusercontent.com/uCsgZ6hjdKMhzM3LlfaRO3z4TqN4h10fxX94F25XyFxjTC6JIAA8Xfq6eTVuDzBo-42dRIb_fsRtXw-C_RkOAQ=s0-br30",
       "description": "Arcade emulator for Android based on MAME. Supports over 8,000 vintage arcade ROMs including Capcom CPS1/2/3, Neo Geo MVS, Cave, and Namco System 16 with external controller auto-mapping.",
       "features": [
         "Over 8,000 arcade classics emulated with high accuracy",

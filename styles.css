@@ -41,8 +41,14 @@
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-full: 9999px;
+  --scrollbar-thumb: rgba(244, 248, 252, 0.22);
+  --scrollbar-thumb-hover: rgba(52, 242, 232, 0.6);
+  --scrollbar-track: transparent;
   --font-sans: 'Figtree', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: 'Archivo', var(--font-sans);
+  --scrollbar-thumb: rgba(15, 23, 42, 0.25);
+  --scrollbar-thumb-hover: rgba(2, 132, 199, 0.65);
+  --scrollbar-track: transparent;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 25px rgba(52, 242, 232, 0.25);
@@ -97,6 +103,9 @@
   --mobile-nav-bg: rgba(255, 255, 255, 0.96);
   --hero-fade: linear-gradient(90deg, #F1F5F9 0%, rgba(241, 245, 249, 0.92) 45%, rgba(241, 245, 249, 0.2) 100%);
   --poster-fade: linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.9) 60%, rgba(255, 255, 255, 0.2) 100%);
+  --scrollbar-thumb: rgba(15, 23, 42, 0.25);
+  --scrollbar-thumb-hover: rgba(2, 132, 199, 0.65);
+  --scrollbar-track: transparent;
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
   --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 0 1px rgba(15, 23, 42, 0.15);
   --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.2);
@@ -140,6 +149,9 @@
   --mobile-nav-bg: rgba(0, 0, 0, 0.96);
   --hero-fade: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.88) 45%, rgba(0, 0, 0, 0.2) 100%);
   --poster-fade: linear-gradient(0deg, #050505 0%, rgba(5, 5, 5, 0.8) 60%, rgba(5, 5, 5, 0.2) 100%);
+  --scrollbar-thumb: rgba(15, 23, 42, 0.25);
+  --scrollbar-thumb-hover: rgba(2, 132, 199, 0.65);
+  --scrollbar-track: transparent;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.8);
   --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.95);
   --shadow-glow: 0 0 25px rgba(0, 255, 204, 0.35);
@@ -480,11 +492,9 @@ img {
   background: var(--nav-bg);
   border-top: 1px solid var(--line);
   overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.sub-nav-bar::-webkit-scrollbar {
-  display: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  padding-bottom: 2px;
 }
 
 .sub-nav-in {
@@ -704,9 +714,9 @@ img {
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  padding-bottom: 16px;
+  padding-bottom: 14px;
   scrollbar-width: thin;
-  scrollbar-color: var(--line) transparent;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
 }
 
 .rowscroll::-webkit-scrollbar {
@@ -714,8 +724,12 @@ img {
 }
 
 .rowscroll::-webkit-scrollbar-thumb {
-  background: var(--line);
+  background: var(--scrollbar-thumb);
   border-radius: var(--radius-full);
+}
+
+.rowscroll::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* Poster Card (2:3 Aspect Ratio) */
