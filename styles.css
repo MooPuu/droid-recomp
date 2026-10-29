@@ -2028,3 +2028,168 @@ img {
   color: var(--frost);
   border-color: var(--brand);
 }
+
+/* ==========================================================================
+   CUSTOM UNLISTED GAMES & SUBMISSION WORKFLOW STYLES
+   ========================================================================== */
+.badge-custom {
+  display: inline-block;
+  padding: 2px 7px;
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  color: #C084FC;
+  font-size: 0.65rem;
+  font-weight: 800;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.custom-form-group {
+  margin-bottom: 16px;
+}
+
+.custom-form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--frost);
+  margin-bottom: 6px;
+}
+
+.custom-form-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.custom-form-input,
+.custom-form-select {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  color: var(--frost);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.custom-form-input:focus,
+.custom-form-select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 12px rgba(52, 242, 232, 0.25);
+}
+
+.submit-portal-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+.submit-portal-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+@media (max-width: 860px) {
+  .submit-portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.submit-preview-box {
+  position: sticky;
+  top: 90px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.submit-preview-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submit-actions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-github-issue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #238636;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-github-issue:hover {
+  background: #2ea043;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(46, 160, 67, 0.35);
+}
+
+.btn-copy-json {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--glass);
+  color: var(--frost);
+  border: 1px solid var(--line);
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-copy-json:hover {
+  background: var(--line);
+  border-color: var(--brand);
+}
+
+.btn-add-local {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--brand);
+  color: var(--bg);
+  border: none;
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-add-local:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}

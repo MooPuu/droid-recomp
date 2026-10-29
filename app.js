@@ -19,6 +19,7 @@
   let activeHeroIndex = 0;
   let savedGames = JSON.parse(localStorage.getItem('droidrecomp_saved') || '[]');
   let installedGames = JSON.parse(localStorage.getItem('droidrecomp_installed') || 'null');
+  let customGames = JSON.parse(localStorage.getItem('droidrecomp_custom_games') || '[]');
   if (installedGames === null) {
     installedGames = ['super-mario-64-ghostship', 'zelda-ocarina-of-time-shipwright', 'another-metroid-2-remake-am2r'];
     localStorage.setItem('droidrecomp_installed', JSON.stringify(installedGames));
@@ -91,7 +92,31 @@
       }
     }
 
+    // Merge user custom games into catalog
+    mergeCustomGames();
+
+    // Setup custom game modal close handlers
+    const customModalClose = document.getElementById('custom-modal-close');
+    const customModal = document.getElementById('custom-game-modal');
+    if (customModalClose && customModal) {
+      customModalClose.addEventListener('click', closeCustomGameModal);
+      customModal.addEventListener('click', (e) => {
+        if (e.target === customModal) closeCustomGameModal();
+      });
+    }
+
     handleRoute();
+  }
+
+  function mergeCustomGames() {
+    customGames.forEach(cg => {
+      const idx = catalogData.findIndex(g => g.id === cg.id);
+      if (idx === -1) {
+        catalogData.unshift(cg);
+      } else {
+        catalogData[idx] = cg;
+      }
+    });
   }
 
   // Theme Engine (Dark Midnight / Clean Light / AMOLED OLED)
@@ -533,6 +558,7 @@
 
   function getPackageName(game) {
     if (!game) return 'com.recomp.app';
+    if (game.package_name) return game.package_name;
     if (KNOWN_PACKAGES[game.id]) return KNOWN_PACKAGES[game.id];
     const custom = localStorage.getItem('pkg_' + game.id);
     if (custom) return custom;
@@ -757,6 +783,7 @@
   }
 
   function renderLibraryView() {
+    mergeCustomGames();
     const installedList = catalogData.filter(g => installedGames.includes(g.id));
     const savedList = catalogData.filter(g => savedGames.includes(g.id));
 
@@ -764,7 +791,7 @@
       <div class="library-header">
         <div>
           <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">My Game Library</h1>
-          <p style="color: var(--muted); font-size: 0.95rem;">Launch your installed recompilations directly or manage your tracked games.</p>
+          <p style="color: var(--muted); font-size: 0.95rem;">Launch your installed recompilations directly or add your own custom unlisted games.</p>
         </div>
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
@@ -781,9 +808,14 @@
             </button>
           </div>
 
-          <a class="btn btn-secondary" href="#all" title="Browse Catalog">
+          <button type="button" class="btn btn-primary" onclick="window.DroidRecomp.openAddCustomGameModal()" title="Add Custom / Unlisted Game">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <span>Browse All Recomps</span>
+            <span>+ Add Custom Game</span>
+          </button>
+
+          <a class="btn btn-secondary" href="#submit" title="Submit to Official Master Catalog">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Submit to Catalog</span>
           </a>
         </div>
       </div>
@@ -800,6 +832,7 @@
                       <h3 class="installed-card-title">${escapeHtml(game.name)}</h3>
                       <div class="installed-badge-row">
                         <span class="badge-installed">✓ Installed</span>
+                        ${game.isCustom ? '<span class="badge-custom">Custom Sideload</span>' : ''}
                         <span class="tag tag-origin" style="font-size: 0.65rem; padding: 1px 6px;">${originLabel(game.origin)}</span>
                       </div>
                       <div class="badge-package">${getPackageName(game)}</div>
@@ -811,9 +844,15 @@
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                     <span>LAUNCH GAME</span>
                   </button>
-                  <button type="button" class="btn-remove-installed" title="Remove from Installed" onclick="window.DroidRecomp.toggleInstalled('${game.id}', event)">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                  </button>
+                  ${game.isCustom ? `
+                    <button type="button" class="btn-remove-installed" title="Delete Custom Game" onclick="window.DroidRecomp.deleteCustomGame('${game.id}', event)">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </button>
+                  ` : `
+                    <button type="button" class="btn-remove-installed" title="Remove from Installed" onclick="window.DroidRecomp.toggleInstalled('${game.id}', event)">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </button>
+                  `}
                 </div>
               </div>
             `).join('')}
@@ -897,43 +936,277 @@
   // =========================================================================
   // VIEW: SUBMIT PORT
   // =========================================================================
-  function renderSubmitView() {
-    viewContent.innerHTML = `
-      <div style="max-width: 700px; margin: 0 auto; background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 36px;">
-        <h1 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Submit an Android Recomp</h1>
-        <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 24px;">Developed or ported an open-source static recompilation or game engine for Android? Submit it to the DroidRecomp master directory.</p>
+  // =========================================================================
+  // CUSTOM GAME / UNLISTED PORT MODAL WORKFLOW
+  // =========================================================================
+  function openAddCustomGameModal() {
+    const customModal = document.getElementById('custom-game-modal');
+    const customModalContent = document.getElementById('custom-modal-content');
+    if (!customModal || !customModalContent) return;
 
-        <form id="submit-form" onsubmit="window.DroidRecomp.handleSubmitPort(event)">
-          <div style="margin-bottom: 16px;">
-            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Game Name & Port Title *</label>
-            <input type="text" required placeholder="e.g. Zelda 64 Recomp (Android)" style="width: 100%; padding: 10px 14px; background: #111b2e; border: 1px solid var(--line); border-radius: var(--radius-sm); color: #fff;">
+    customModalContent.innerHTML = `
+      <div style="padding: 10px 0;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+          <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(52, 242, 232, 0.15); display: flex; align-items: center; justify-content: center; color: var(--brand);">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-          <div style="margin-bottom: 16px;">
-            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Original Console / System *</label>
-            <select required style="width: 100%; padding: 10px 14px; background: #111b2e; border: 1px solid var(--line); border-radius: var(--radius-sm); color: #fff;">
-              <option value="n64">Nintendo 64</option>
-              <option value="x360">Xbox 360</option>
-              <option value="xbox">Xbox</option>
-              <option value="gc">GameCube</option>
-              <option value="wii">Wii</option>
-              <option value="ps1">PlayStation 1</option>
-              <option value="ps2">PlayStation 2</option>
-              <option value="pc_classic">Classic PC / Engine</option>
-            </select>
+          <div>
+            <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--frost); margin: 0;">Add Custom / Unlisted Game</h2>
+            <p style="font-size: 0.8rem; color: var(--muted); margin: 0;">Add any sideloaded APK or custom recomp to your 1-tap launcher.</p>
           </div>
-          <div style="margin-bottom: 16px;">
-            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">GitHub / Source Repository URL *</label>
-            <input type="url" required placeholder="https://github.com/owner/repo" style="width: 100%; padding: 10px 14px; background: #111b2e; border: 1px solid var(--line); border-radius: var(--radius-sm); color: #fff;">
+        </div>
+
+        <form id="custom-game-form" onsubmit="window.DroidRecomp.handleSaveCustomGame(event)" style="margin-top: 18px;">
+          <div class="custom-form-group">
+            <label class="custom-form-label">Game Title *</label>
+            <input type="text" id="cg-title" class="custom-form-input" required placeholder="e.g. Portal (Source Engine), AM2R, Sonic 3 A.I.R.">
           </div>
-          <div style="margin-bottom: 16px;">
-            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Required Original ROM / Disc Files *</label>
-            <input type="text" required placeholder="e.g. Needs USA v1.0 Z64 ROM" style="width: 100%; padding: 10px 14px; background: #111b2e; border: 1px solid var(--line); border-radius: var(--radius-sm); color: #fff;">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="custom-form-group">
+              <label class="custom-form-label">Original System *</label>
+              <select id="cg-origin" class="custom-form-select" required>
+                <option value="n64">Nintendo 64</option>
+                <option value="x360">Xbox 360</option>
+                <option value="xbox">Xbox</option>
+                <option value="gc">GameCube</option>
+                <option value="wii">Wii</option>
+                <option value="ps1">PlayStation 1</option>
+                <option value="ps2">PlayStation 2</option>
+                <option value="psp">PSP</option>
+                <option value="pc_classic" selected>Classic PC / Source Port</option>
+                <option value="snes">SNES</option>
+                <option value="gba">GBA</option>
+              </select>
+            </div>
+
+            <div class="custom-form-group">
+              <label class="custom-form-label">Port Architecture</label>
+              <select id="cg-type" class="custom-form-select">
+                <option value="Custom Sideload" selected>Custom Sideload</option>
+                <option value="Static Recomp">Static Recompilation</option>
+                <option value="Native Decomp">Native Decompilation</option>
+                <option value="Source Port">Source Port</option>
+              </select>
+            </div>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">Submit for Verification</button>
+
+          <div class="custom-form-group">
+            <label class="custom-form-label">Android Package Name *</label>
+            <input type="text" id="cg-package" class="custom-form-input" required placeholder="e.g. org.srceng.source, com.am2r.android">
+            <div class="custom-form-hint">Used to launch the app directly on your Android device with 1 tap.</div>
+          </div>
+
+          <div class="custom-form-group">
+            <label class="custom-form-label">Cover Image URL (Optional)</label>
+            <input type="url" id="cg-cover" class="custom-form-input" placeholder="https://... (Leave blank for default system cover art)">
+          </div>
+
+          <div class="custom-form-group">
+            <label class="custom-form-label">APK Download URL or Notes (Optional)</label>
+            <input type="text" id="cg-apk" class="custom-form-input" placeholder="https://github.com/... or download notes">
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 22px;">
+            <button type="button" class="btn btn-secondary" onclick="window.DroidRecomp.closeCustomModal()" style="flex: 1;">Cancel</button>
+            <button type="submit" class="btn btn-primary" style="flex: 2;">Save to Launcher</button>
+          </div>
         </form>
       </div>
     `;
+
+    customModal.removeAttribute('hidden');
+    customModal.style.removeProperty('display');
+    customModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeCustomGameModal() {
+    const customModal = document.getElementById('custom-game-modal');
+    if (!customModal) return;
+    customModal.setAttribute('hidden', '');
+    customModal.classList.remove('open');
+    customModal.style.setProperty('display', 'none', 'important');
+    document.body.style.overflow = '';
+  }
+
+  function saveCustomGame(gameObj) {
+    customGames.unshift(gameObj);
+    localStorage.setItem('droidrecomp_custom_games', JSON.stringify(customGames));
+
+    if (!installedGames.includes(gameObj.id)) {
+      installedGames.unshift(gameObj.id);
+      localStorage.setItem('droidrecomp_installed', JSON.stringify(installedGames));
+    }
+
+    mergeCustomGames();
+    closeCustomGameModal();
+    showToast(`Added "${gameObj.name}" to your Library!`);
+    renderLibraryView();
+  }
+
+  function deleteCustomGame(id, event) {
+    if (event) event.stopPropagation();
+    if (!confirm('Are you sure you want to remove this custom game from your launcher?')) return;
+
+    customGames = customGames.filter(g => g.id !== id);
+    localStorage.setItem('droidrecomp_custom_games', JSON.stringify(customGames));
+    installedGames = installedGames.filter(gId => gId !== id);
+    localStorage.setItem('droidrecomp_installed', JSON.stringify(installedGames));
+    catalogData = catalogData.filter(g => g.id !== id);
+
+    showToast('Removed custom game.');
+    renderLibraryView();
+  }
+
+  // =========================================================================
+  // VIEW: COMMUNITY RECOMP SUBMISSION PORTAL
+  // =========================================================================
+  function renderSubmitView() {
+    viewContent.innerHTML = `
+      <div class="submit-portal-container">
+        <div style="margin-bottom: 24px;">
+          <span class="tag tag-origin" style="margin-bottom: 10px; display: inline-block;">Community Catalog</span>
+          <h1 style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: var(--frost); margin-bottom: 8px;">Submit a New Recomp / Port</h1>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; max-width: 650px;">
+            Ported or found an open-source static recompilation or game engine for Android? Submit it to the official master list so everyone can enjoy it.
+          </p>
+        </div>
+
+        <div class="submit-portal-grid">
+          <!-- Submission Form -->
+          <form id="submission-wizard" onsubmit="window.DroidRecomp.handleOfficialSubmit(event)">
+            <div style="background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 20px;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--frost); margin-bottom: 16px;">1. Game & Port Information</h3>
+
+              <div class="custom-form-group">
+                <label class="custom-form-label">Game Title & Port Name *</label>
+                <input type="text" id="sub-name" class="custom-form-input" required placeholder="e.g. Zelda 64 Recomp (Android)" oninput="window.DroidRecomp.updateSubmitPreview()">
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="custom-form-group">
+                  <label class="custom-form-label">Original Console / System *</label>
+                  <select id="sub-origin" class="custom-form-select" required onchange="window.DroidRecomp.updateSubmitPreview()">
+                    <option value="n64">Nintendo 64</option>
+                    <option value="x360">Xbox 360</option>
+                    <option value="xbox">Xbox</option>
+                    <option value="gc">GameCube</option>
+                    <option value="wii">Wii</option>
+                    <option value="ps1">PlayStation 1</option>
+                    <option value="ps2">PlayStation 2</option>
+                    <option value="psp">PSP</option>
+                    <option value="pc_classic" selected>Classic PC / Source Port</option>
+                    <option value="snes">SNES</option>
+                    <option value="gba">GBA</option>
+                  </select>
+                </div>
+
+                <div class="custom-form-group">
+                  <label class="custom-form-label">Port Architecture *</label>
+                  <select id="sub-type" class="custom-form-select" onchange="window.DroidRecomp.updateSubmitPreview()">
+                    <option value="Static Recomp" selected>Static Recompilation</option>
+                    <option value="Native Decomp">Native Decompilation</option>
+                    <option value="Source Port">Source Port</option>
+                    <option value="Compatibility Engine">Compatibility Engine</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="custom-form-group">
+                  <label class="custom-form-label">Author / Porter *</label>
+                  <input type="text" id="sub-author" class="custom-form-input" required placeholder="e.g. Wiseguy, Community Porters" oninput="window.DroidRecomp.updateSubmitPreview()">
+                </div>
+                <div class="custom-form-group">
+                  <label class="custom-form-label">Version</label>
+                  <input type="text" id="sub-version" class="custom-form-input" placeholder="e.g. v1.0.0" value="v1.0.0" oninput="window.DroidRecomp.updateSubmitPreview()">
+                </div>
+              </div>
+            </div>
+
+            <div style="background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 20px;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--frost); margin-bottom: 16px;">2. Release URLs & Binaries</h3>
+
+              <div class="custom-form-group">
+                <label class="custom-form-label">GitHub / Source Repository URL *</label>
+                <input type="url" id="sub-repo" class="custom-form-input" required placeholder="https://github.com/owner/repository" oninput="window.DroidRecomp.updateSubmitPreview()">
+              </div>
+
+              <div class="custom-form-group">
+                <label class="custom-form-label">Official Release APK URL</label>
+                <input type="url" id="sub-apk" class="custom-form-input" placeholder="https://github.com/.../releases/download/.../app.apk" oninput="window.DroidRecomp.updateSubmitPreview()">
+              </div>
+
+              <div class="custom-form-group">
+                <label class="custom-form-label">Box Art Cover Image URL</label>
+                <input type="url" id="sub-cover" class="custom-form-input" placeholder="https://images.igdb.com/... (Vertical box art recommended)" oninput="window.DroidRecomp.updateSubmitPreview()">
+              </div>
+
+              <div class="custom-form-group">
+                <label class="custom-form-label">Required Original Game Files *</label>
+                <input type="text" id="sub-needs" class="custom-form-input" required placeholder="e.g. Legally owned USA v1.0 ROM / PC game data files">
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 14px;">
+                <input type="checkbox" id="sub-byor" required style="margin-top: 4px; accent-color: var(--brand);">
+                <label for="sub-byor" style="font-size: 0.8rem; color: var(--muted); line-height: 1.4;">
+                  <strong>100% Legal Clean-Room Declaration:</strong> I confirm this recompilation distributes executable code only, and zero copyrighted Nintendo/Sony/publisher game assets are included.
+                </label>
+              </div>
+            </div>
+
+            <!-- Actions Row -->
+            <div class="submit-actions-row">
+              <button type="submit" class="btn-github-issue">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span>Submit to Master List (1-Click GitHub Issue)</span>
+              </button>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button type="button" class="btn-copy-json" onclick="window.DroidRecomp.copySubmissionJson()">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span>Copy Catalog JSON</span>
+                </button>
+                <button type="button" class="btn-add-local" onclick="window.DroidRecomp.addSubmissionToLocal()">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Test in My Library</span>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Live Card Preview Sidebar -->
+          <div class="submit-preview-box">
+            <div class="submit-preview-title">
+              <span>Live Card Preview</span>
+              <span class="badge-android">Preview</span>
+            </div>
+
+            <div class="poster-card" id="preview-poster" style="cursor: default; max-width: 280px; margin: 0 auto;">
+              <div class="poster-media">
+                <img id="preview-img" src="favicon.svg" alt="Preview" style="background: #111b2e;">
+                <span class="poster-badge" id="preview-badge">PC CLASSIC</span>
+              </div>
+              <div class="poster-info">
+                <div class="poster-meta">
+                  <span id="preview-type">Static Recomp</span>
+                  <span id="preview-ver">v1.0.0</span>
+                </div>
+                <h3 class="poster-title" id="preview-title">Game Title</h3>
+                <div class="poster-author" id="preview-author">by Community</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 18px; font-size: 0.8rem; color: var(--muted); line-height: 1.45; text-align: center;">
+              This preview updates live as you type. Once submitted via GitHub, community reviewers verify controller mappings and ARM64 compatibility before merging.
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
 
   // =========================================================================
   // UI COMPONENTS (POSTER & CARD)
@@ -1460,6 +1733,140 @@
   // Public API attached to window for inline onclick handlers
   window.DroidRecomp = {
     openModal: openGameModal,
+    openAddCustomGameModal: openAddCustomGameModal,
+    closeCustomModal: closeCustomGameModal,
+    handleSaveCustomGame: function(e) {
+      e.preventDefault();
+      const title = document.getElementById('cg-title').value.trim();
+      const origin = document.getElementById('cg-origin').value;
+      const type = document.getElementById('cg-type').value;
+      const pkg = document.getElementById('cg-package').value.trim();
+      const cover = document.getElementById('cg-cover').value.trim() || 'favicon.svg';
+      const apk = document.getElementById('cg-apk').value.trim();
+
+      const slug = 'custom_' + title.toLowerCase().replace(/[^a-z0-9]/g, '_') + '_' + Date.now();
+      const gameObj = {
+        id: slug,
+        name: title,
+        game: title,
+        origin: origin,
+        type: type,
+        version: "v1.0",
+        author: "User Sideload",
+        repo: "",
+        repo_url: "",
+        apk_url: apk || (pkg ? 'intent:#Intent;package=' + pkg + ';category=android.intent.category.LAUNCHER;action=android.intent.action.MAIN;end' : ''),
+        obtainium_url: "",
+        cover: cover,
+        hero: cover,
+        min_android: "Android 8.0+",
+        architectures: ["arm64-v8a"],
+        input: { touch: true, controller: true, gyro: false, controller_recommended: true },
+        graphics: { backend: "Vulkan / OpenGL", turnip_recommended: false, fps_target: 60 },
+        needs: "Custom sideloaded game files",
+        blurb: "User-added unlisted game in personal library.",
+        features: ["Personal Library Game", "1-Tap Launcher Ready"],
+        downloads: 1,
+        stars: 5,
+        package_name: pkg,
+        isCustom: true
+      };
+
+      saveCustomGame(gameObj);
+    },
+    deleteCustomGame: deleteCustomGame,
+    updateSubmitPreview: function() {
+      const name = document.getElementById('sub-name')?.value.trim() || 'Game Title';
+      const origin = document.getElementById('sub-origin')?.value || 'pc_classic';
+      const type = document.getElementById('sub-type')?.value || 'Static Recomp';
+      const author = document.getElementById('sub-author')?.value.trim() || 'Community';
+      const ver = document.getElementById('sub-version')?.value.trim() || 'v1.0.0';
+      const cover = document.getElementById('sub-cover')?.value.trim() || 'favicon.svg';
+
+      const titleEl = document.getElementById('preview-title');
+      const badgeEl = document.getElementById('preview-badge');
+      const typeEl = document.getElementById('preview-type');
+      const verEl = document.getElementById('preview-ver');
+      const authorEl = document.getElementById('preview-author');
+      const imgEl = document.getElementById('preview-img');
+
+      if (titleEl) titleEl.textContent = name;
+      if (badgeEl) badgeEl.textContent = originLabel(origin);
+      if (typeEl) typeEl.textContent = type;
+      if (verEl) verEl.textContent = ver;
+      if (authorEl) authorEl.textContent = 'by ' + author;
+      if (imgEl && cover) imgEl.src = cover;
+    },
+    buildSubmissionJson: function() {
+      const name = document.getElementById('sub-name')?.value.trim() || 'Untitled Recomp';
+      const origin = document.getElementById('sub-origin')?.value || 'pc_classic';
+      const type = document.getElementById('sub-type')?.value || 'Static Recomp';
+      const author = document.getElementById('sub-author')?.value.trim() || 'Community Porters';
+      const ver = document.getElementById('sub-version')?.value.trim() || 'v1.0.0';
+      const repo = document.getElementById('sub-repo')?.value.trim() || '';
+      const apk = document.getElementById('sub-apk')?.value.trim() || '';
+      const cover = document.getElementById('sub-cover')?.value.trim() || 'favicon.svg';
+      const needs = document.getElementById('sub-needs')?.value.trim() || 'Original game files required';
+
+      const slug = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+      return {
+        id: slug,
+        name: name,
+        game: name,
+        origin: origin,
+        type: type,
+        version: ver,
+        author: author,
+        repo: repo.replace('https://github.com/', ''),
+        repo_url: repo,
+        apk_url: apk,
+        obtainium_url: repo ? 'obtainium://add/' + repo : '',
+        cover: cover,
+        hero: cover,
+        min_android: "Android 8.0+",
+        architectures: ["arm64-v8a"],
+        input: { touch: true, controller: true, gyro: false, controller_recommended: true },
+        graphics: { backend: "Vulkan 1.3", turnip_recommended: false, fps_target: 60 },
+        needs: needs,
+        blurb: name + ' native port for Android.',
+        features: ["Native ARM64 Port", "Controller Support"],
+        downloads: 1000,
+        stars: 100
+      };
+    },
+    copySubmissionJson: function() {
+      const data = window.DroidRecomp.buildSubmissionJson();
+      const str = JSON.stringify(data, null, 2);
+      navigator.clipboard.writeText(str).then(() => {
+        showToast('Copied submission JSON to clipboard!');
+      }).catch(() => {
+        alert('Catalog JSON:\n' + str);
+      });
+    },
+    handleOfficialSubmit: function(e) {
+      e.preventDefault();
+      const data = window.DroidRecomp.buildSubmissionJson();
+      const issueTitle = encodeURIComponent('[Recomp Submission] ' + data.name + ' (' + data.origin.toUpperCase() + ')');
+      const issueBody = encodeURIComponent(
+        '### New Android Recomp Submission\n\n' +
+        '**Game Name:** ' + data.name + '\n' +
+        '**Original Console:** ' + data.origin + '\n' +
+        '**Port Architecture:** ' + data.type + '\n' +
+        '**Repository:** ' + data.repo_url + '\n' +
+        '**APK Download:** ' + data.apk_url + '\n' +
+        '**ROM / Asset Requirements:** ' + data.needs + '\n\n' +
+        '```json\n' + JSON.stringify(data, null, 2) + '\n```\n\n' +
+        '- [x] I confirm this recomp distributes clean-room binaries without copyrighted ROM assets.'
+      );
+      const url = 'https://github.com/MooPuu/droid-recomp/issues/new?title=' + issueTitle + '&body=' + issueBody;
+      window.open(url, '_blank');
+      showToast('Opened GitHub Issue generator! Complete submission on GitHub.');
+    },
+    addSubmissionToLocal: function() {
+      const data = window.DroidRecomp.buildSubmissionJson();
+      saveCustomGame(data);
+      window.location.hash = 'library';
+    },
     setEmulatorFilter: function(system) {
       emulatorFilter = system;
       renderEmulatorsView();
