@@ -933,11 +933,20 @@ img {
   z-index: 200;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(8px);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 20px;
   animation: fadeIn 0.2s ease;
+}
+
+.modal-backdrop.open,
+.modal-backdrop:not([hidden]) {
+  display: flex !important;
+}
+
+.modal-backdrop[hidden] {
+  display: none !important;
 }
 
 .modal-container {
@@ -1142,8 +1151,17 @@ img {
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(12px);
   padding: 40px 20px;
-  display: flex;
+  display: none;
   justify-content: center;
+}
+
+.search-overlay.open,
+.search-overlay:not([hidden]) {
+  display: flex !important;
+}
+
+.search-overlay[hidden] {
+  display: none !important;
 }
 
 .search-dialog {

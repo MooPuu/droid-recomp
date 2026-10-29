@@ -5,6 +5,7 @@
 ### The Definitive Hub for Native Console & PC Recompilations on Android
 
 [![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-34F2E8?style=for-the-badge&logo=github&logoColor=0B1220)](https://moopuu.github.io/droid-recomp/)
+[![Download APK](https://img.shields.io/badge/Download-Android%20APK%20(v1.0.0)-34F2E8?style=for-the-badge&logo=android&logoColor=0B1220)](https://github.com/MooPuu/droid-recomp/releases/download/v1.0.0/DroidRecomp-v1.0.0-release.apk)
 [![Platform](https://img.shields.io/badge/Platform-Android%208.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://moopuu.github.io/droid-recomp/)
 [![License](https://img.shields.io/badge/License-MIT-377BB6?style=for-the-badge)](LICENSE)
 [![Catalog Size](https://img.shields.io/badge/Verified%20Recomps-370%2B%20Playable-34F2E8?style=for-the-badge)](catalog.json)
@@ -16,7 +17,7 @@
   <b>Play Nintendo 64, PlayStation, and PC classics running natively on ARM64 silicon — zero emulation overhead, uncapped frame rates, and native Android touch/controller controls.</b>
 </p>
 
-[**🌐 Launch Live Web App**](https://moopuu.github.io/droid-recomp/) • [**🎮 Browse 370+ Recomps**](https://moopuu.github.io/droid-recomp/#all) • [**📖 Setup Guide**](https://moopuu.github.io/droid-recomp/#how) • [**📥 Obtainium Pack**](https://moopuu.github.io/droid-recomp/#obtainium)
+[**🌐 Launch Live Web App**](https://moopuu.github.io/droid-recomp/) • [**📲 Download APK (v1.0.0)**](https://github.com/MooPuu/droid-recomp/releases/download/v1.0.0/DroidRecomp-v1.0.0-release.apk) • [**🎮 Browse 370+ Recomps**](https://moopuu.github.io/droid-recomp/#all) • [**📖 Setup Guide**](https://moopuu.github.io/droid-recomp/#how) • [**📥 Obtainium Pack**](https://moopuu.github.io/droid-recomp/#obtainium)
 
 ---
 

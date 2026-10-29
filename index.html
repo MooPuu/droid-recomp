@@ -30,7 +30,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2.2.0">
+
+  <!-- Immediate Critical Display Guard (Never allow overlays to render on load) -->
+  <style>
+    #search-modal[hidden],
+    #game-modal[hidden],
+    .search-overlay[hidden],
+    .modal-backdrop[hidden],
+    .search-overlay:not(.open),
+    .modal-backdrop:not(.open),
+    [hidden] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+  </style>
 </head>
 <body data-platform="android" data-ui="auto">
   <!-- Dynamic Ambient Glow Backdrop -->
@@ -97,6 +113,12 @@
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span>Obtainium Sync</span>
         </button>
+
+        <!-- Download Android APK Button -->
+        <a class="btn btn-secondary" href="https://github.com/MooPuu/droid-recomp/releases/download/v1.0.0/DroidRecomp-v1.0.0-release.apk" target="_blank" rel="noopener" title="Download Android APK (v1.0.0)">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Get APK (v1.0)</span>
+        </a>
 
         <!-- Submit Recomp CTA -->
         <a class="btn btn-primary" href="#submit" data-nav="submit">
@@ -240,7 +262,7 @@
     </div>
   </footer>
 
-  <script src="catalog.js"></script>
-  <script src="app.js"></script>
+  <script src="catalog.js?v=2.2.0"></script>
+  <script src="app.js?v=2.2.0"></script>
 </body>
 </html>

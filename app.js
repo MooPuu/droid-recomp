@@ -38,12 +38,14 @@
   // Initialize
   async function init() {
     if (searchModal) {
-      searchModal.hidden = true;
-      searchModal.style.display = 'none';
+      searchModal.setAttribute('hidden', '');
+      searchModal.classList.remove('open');
+      searchModal.style.setProperty('display', 'none', 'important');
     }
     if (gameModal) {
-      gameModal.hidden = true;
-      gameModal.style.display = 'none';
+      gameModal.setAttribute('hidden', '');
+      gameModal.classList.remove('open');
+      gameModal.style.setProperty('display', 'none', 'important');
     }
 
     updateSavedCount();
@@ -806,14 +808,16 @@
       });
     });
 
-    gameModal.hidden = false;
-    gameModal.style.display = 'flex';
+    gameModal.removeAttribute('hidden');
+    gameModal.classList.add('open');
+    gameModal.style.setProperty('display', 'flex', 'important');
     document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
-    gameModal.hidden = true;
-    gameModal.style.display = 'none';
+    gameModal.setAttribute('hidden', '');
+    gameModal.classList.remove('open');
+    gameModal.style.setProperty('display', 'none', 'important');
     document.body.style.overflow = '';
   }
 
@@ -821,8 +825,9 @@
   // SEARCH MODAL LOGIC
   // =========================================================================
   function openSearch() {
-    searchModal.hidden = false;
-    searchModal.style.display = 'flex';
+    searchModal.removeAttribute('hidden');
+    searchModal.classList.add('open');
+    searchModal.style.setProperty('display', 'flex', 'important');
     searchInput.value = '';
     searchInput.focus();
     renderSearchResults('');
@@ -830,8 +835,9 @@
   }
 
   function closeSearch() {
-    searchModal.hidden = true;
-    searchModal.style.display = 'none';
+    searchModal.setAttribute('hidden', '');
+    searchModal.classList.remove('open');
+    searchModal.style.setProperty('display', 'none', 'important');
     document.body.style.overflow = '';
   }
 
