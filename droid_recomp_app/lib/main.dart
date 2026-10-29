@@ -32,6 +32,40 @@ class RecompTheme {
   static const Color turnipGold = Color(0xFFFBBF24);
   static const Color successGreen = Color(0xFF34D399);
 
+  // Theme-aware dynamic helpers
+  static bool isLight(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light;
+
+  static Color text(BuildContext context) =>
+      isLight(context) ? const Color(0xFF0F172A) : frost;
+
+  static Color textMuted(BuildContext context) =>
+      isLight(context) ? const Color(0xFF475569) : muted;
+
+  static Color cardBg(BuildContext context) =>
+      isLight(context) ? Colors.white : glass;
+
+  static Color cardFootBg(BuildContext context) =>
+      isLight(context) ? const Color(0xFFF8FAFC) : midnightAlt;
+
+  static Color border(BuildContext context) =>
+      isLight(context) ? const Color(0x220F172A) : line;
+
+  static Color primary(BuildContext context) =>
+      isLight(context) ? const Color(0xFF0284C7) : cyan;
+
+  static Color primaryText(BuildContext context) =>
+      isLight(context) ? Colors.white : midnight;
+
+  static Color btnSoftBg(BuildContext context) =>
+      isLight(context) ? const Color(0xFFE0F2FE) : cyan.withOpacity(0.12);
+
+  static Color btnSoftText(BuildContext context) =>
+      isLight(context) ? const Color(0xFF0369A1) : cyan;
+
+  static Color chipSelectedText(BuildContext context) =>
+      isLight(context) ? Colors.white : midnight;
+
   static ThemeData get darkTheme {
     return ThemeData(
       brightness: Brightness.dark,
@@ -75,7 +109,18 @@ class RecompTheme {
         primary: Color(0xFF0284C7),
         secondary: Color(0xFF2563EB),
         surface: Colors.white,
+        onSurface: Color(0xFF0F172A),
       ),
+      cardTheme: const CardTheme(
+        color: Colors.white,
+        elevation: 1,
+        shadowColor: Color(0x140F172A),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          side: BorderSide(color: Color(0x1F0F172A)),
+        ),
+      ),
+      dialogBackgroundColor: Colors.white,
       fontFamily: 'Roboto',
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFFF8FAFC),
@@ -1492,12 +1537,13 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                   const SizedBox(width: 8),
                   OutlinedButton.icon(
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: RecompTheme.frost,
+                      foregroundColor: RecompTheme.btnSoftText(context),
+                      backgroundColor: RecompTheme.btnSoftBg(context),
                       padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 12),
-                      side: const BorderSide(color: RecompTheme.line),
+                      side: BorderSide(color: RecompTheme.primary(context).withOpacity(0.35)),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
-                    icon: const Icon(Icons.sync, color: RecompTheme.cyan, size: 18),
+                    icon: Icon(Icons.sync, color: RecompTheme.primary(context), size: 18),
                     label: const Text('Obtainium', style: TextStyle(fontWeight: FontWeight.w700)),
                     onPressed: () => launchUrl(Uri.parse(emu.obtainiumUrl), mode: LaunchMode.externalApplication),
                   ),
@@ -1714,17 +1760,18 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                   if (emu.obtainiumUrl.isNotEmpty)
                                     OutlinedButton.icon(
                                       style: OutlinedButton.styleFrom(
-                                        foregroundColor: RecompTheme.cyan,
+                                        foregroundColor: RecompTheme.btnSoftText(context),
+                                        backgroundColor: RecompTheme.btnSoftBg(context),
                                         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                                        side: const BorderSide(color: RecompTheme.line),
+                                        side: BorderSide(color: RecompTheme.primary(context).withOpacity(0.35)),
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                       ),
-                                      icon: const Icon(Icons.sync, size: 15),
+                                      icon: Icon(Icons.sync, color: RecompTheme.primary(context), size: 15),
                                       label: const Text('Obtainium', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12)),
                                       onPressed: () => launchUrl(Uri.parse(emu.obtainiumUrl), mode: LaunchMode.externalApplication),
                                     ),
                                   IconButton(
-                                    icon: const Icon(Icons.info_outline, color: RecompTheme.frost, size: 20),
+                                    icon: Icon(Icons.info_outline, color: RecompTheme.text(context), size: 20),
                                     tooltip: 'Details',
                                     onPressed: () => _showEmulatorDetailSheet(emu),
                                   ),
@@ -2884,13 +2931,14 @@ class GameDetailScreen extends StatelessWidget {
                         Expanded(
                           child: OutlinedButton.icon(
                             style: OutlinedButton.styleFrom(
-                              foregroundColor: RecompTheme.frost,
+                              foregroundColor: RecompTheme.btnSoftText(context),
+                              backgroundColor: RecompTheme.btnSoftBg(context),
                               padding: const EdgeInsets.symmetric(vertical: 14),
-                              side: const BorderSide(color: RecompTheme.line),
+                              side: BorderSide(color: RecompTheme.primary(context).withOpacity(0.35)),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                             ),
                             onPressed: () => launchUrl(Uri.parse(game.obtainiumUrl), mode: LaunchMode.externalApplication),
-                            icon: const Icon(Icons.sync, size: 18, color: RecompTheme.cyan),
+                            icon: Icon(Icons.sync, size: 18, color: RecompTheme.primary(context)),
                             label: const Text('Add to Obtainium', style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                         ),
