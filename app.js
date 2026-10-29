@@ -214,6 +214,12 @@
     clearInterval(heroTimer);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    // Show Origin Sub-Navigation Bar ONLY on Browse tab ('all')
+    const subNavBar = document.getElementById('sub-nav-bar');
+    if (subNavBar) {
+      subNavBar.style.display = (currentRoute === 'all') ? '' : 'none';
+    }
+
     switch (currentRoute) {
       case 'all':
         renderAllView();
