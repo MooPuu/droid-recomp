@@ -599,7 +599,7 @@
     return `
       <div class="poster-card" onclick="window.DroidRecomp.openModal('${game.id}')">
         <div class="poster-media">
-          <img src="${game.cover}" alt="${escapeHtml(game.name)}" loading="lazy">
+          <img src="${game.cover}" alt="${escapeHtml(game.name)}" loading="lazy" referrerpolicy="no-referrer">
           ${rank ? `<span class="poster-rank">#${rank}</span>` : ''}
           <span class="poster-badge">${originLabel(game.origin)}</span>
         </div>
@@ -616,7 +616,7 @@
     return `
       <div class="game-card" onclick="window.DroidRecomp.openModal('${game.id}')">
         <div class="game-card-head">
-          <img class="game-card-cover" src="${game.cover}" alt="${escapeHtml(game.name)}" loading="lazy">
+          <img class="game-card-cover" src="${game.cover}" alt="${escapeHtml(game.name)}" loading="lazy" referrerpolicy="no-referrer">
           <div class="game-card-meta">
             <div class="game-card-tags">
               <span class="tag tag-origin" style="font-size: 0.65rem; padding: 2px 7px;">${originLabel(game.origin)}</span>
@@ -656,7 +656,7 @@
       </div>
 
       <div class="modal-header-content">
-        <img class="modal-cover" src="${game.cover}" alt="${escapeHtml(game.name)}">
+        <img class="modal-cover" src="${game.cover}" alt="${escapeHtml(game.name)}" referrerpolicy="no-referrer">
         <div class="modal-title-area">
           <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
             <span class="tag tag-origin">${originLabel(game.origin)}</span>
@@ -866,7 +866,7 @@
 
     searchResults.innerHTML = matches.map(game => `
       <div class="search-item" onclick="window.DroidRecomp.selectSearchResult('${game.id}')">
-        <img class="search-item-thumb" src="${game.cover}" alt="">
+        <img class="search-item-thumb" src="${game.cover}" alt="" referrerpolicy="no-referrer">
         <div class="search-item-info">
           <div class="search-item-title">${escapeHtml(game.name)}</div>
           <div class="search-item-meta">${originLabel(game.origin)} &bull; ${game.type} &bull; ${game.version || 'v1.0'}</div>
