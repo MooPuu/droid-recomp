@@ -1,18 +1,19 @@
-# Binaries & Large Build Outputs
+# Large Binaries & Packages
 *.apk
 *.aab
 *.zip
 *.tar.gz
 
-# Flutter & Android Native Project
-droid_recomp_app/
+# Flutter Build Artifacts (Source code tracked; build caches ignored)
+droid_recomp_app/build/
+droid_recomp_app/.dart_tool/
+droid_recomp_app/.idea/
+droid_recomp_app/*.iml
+droid_recomp_app/android/.gradle/
+droid_recomp_app/android/local.properties
 .dart_tool/
 .idea/
 *.log
-
-# Scrapers & Local Temporary Artifacts
-scrapers_and_raw_data/
-build_apk.ps1
 
 # System & OS Files
 .DS_Store
