@@ -288,6 +288,26 @@ img {
   gap: 12px;
 }
 
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px var(--cyan-glow));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.brand:hover .brand-logo-img {
+  transform: scale(1.08) rotate(-3deg);
+  filter: drop-shadow(0 4px 14px var(--cyan-glow));
+}
+
 .brand-name {
   font-family: var(--font-display);
   font-size: 1.35rem;

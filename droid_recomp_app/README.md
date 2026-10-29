@@ -1,16 +1,28 @@
-# droid_recomp_app
+<div align="center">
 
-A new Flutter project.
+<img src="../DroidRecomp%20Logo.svg" width="140" alt="DroidRecomp Logo" />
 
-## Getting Started
+# ⚡ DroidRecomp — Native Android Application
 
-This project is a starting point for a Flutter application.
+### Native Flutter Client for ARM64 Android Recompilations & Emulators Hub
 
-A few resources to get you started if this is your first Flutter project:
+</div>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📱 Features
+- **Native Package Detection**: Automatically scans installed recomp ports and emulators.
+- **1-Tap Launcher**: Deep-link launch into games with installed package detection.
+- **Emulators Hub**: Complete directory of verified open-source Android emulators, Turnip drivers, and BIOS guidance.
+- **Triple-Theme Engine**: Midnight Slate, Cyber Frost Light, and Pure AMOLED OLED Black.
+- **Obtainium Integration**: Instant sync for background automated GitHub release updates.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ Build & Development
+```bash
+# Analyze code
+flutter analyze
+
+# Run unit tests
+flutter test
+
+# Build release APK
+flutter build apk --release
+```

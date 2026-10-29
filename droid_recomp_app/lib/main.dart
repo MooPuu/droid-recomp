@@ -768,20 +768,33 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         title: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(6),
+              padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: RecompTheme.midnightAlt,
+                color: RecompTheme.cardBg(context),
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: RecompTheme.cyan.withOpacity(0.4)),
+                border: Border.all(color: RecompTheme.border(context)),
               ),
-              child: const Icon(Icons.videogame_asset, color: RecompTheme.cyan, size: 20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: Image.asset(
+                  'assets/logo.png',
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) => const Icon(
+                    Icons.videogame_asset,
+                    color: RecompTheme.cyan,
+                    size: 20,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(width: 10),
             RichText(
-              text: const TextSpan(
-                style: TextStyle(fontSize: 19, fontFamily: 'Roboto', color: RecompTheme.frost),
-                children: [
-                  TextSpan(text: 'Droid', style: TextStyle(fontWeight: FontWeight.w400)),
+              text: TextSpan(
+                style: TextStyle(fontSize: 19, fontFamily: 'Roboto', color: RecompTheme.text(context)),
+                children: const [
+                  TextSpan(text: 'Droid', style: TextStyle(fontWeight: FontWeight.w500)),
                   TextSpan(text: 'Recomp', style: TextStyle(fontWeight: FontWeight.w900, color: RecompTheme.cyan)),
                 ],
               ),
@@ -1150,7 +1163,7 @@ class BrowseTab extends StatefulWidget {
 
 class _BrowseTabState extends State<BrowseTab> {
   String _selectedOrigin = 'all';
-  String _selectedType = 'all';
+  final String _selectedType = 'all';
   bool _turnipOnly = false;
   bool _touchOnly = false;
 

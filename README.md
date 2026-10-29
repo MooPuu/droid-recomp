@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./DroidRecomp%20Logo.svg" width="160" alt="DroidRecomp Logo" />
+
 # ⚡ DroidRecomp
 
 ### The Definitive Hub for Native Console & PC Recompilations & Emulators on Android

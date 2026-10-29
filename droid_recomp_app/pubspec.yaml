@@ -23,3 +23,5 @@ flutter:
   assets:
     - assets/catalog.json
     - assets/emulators.json
+    - assets/logo.png
+
