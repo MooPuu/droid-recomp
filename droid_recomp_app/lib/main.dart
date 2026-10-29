@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -839,11 +840,18 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.menu_book_outlined),
+            tooltip: 'Setup & ROM Guide',
             onPressed: () {
-              showSearch(
-                context: context,
-                delegate: GameSearchDelegate(games: _allGames, onSelect: _openGameDetail),
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => Scaffold(
+                    appBar: AppBar(
+                      title: const Text('Setup & ROM Guide', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18)),
+                    ),
+                    body: const GuideTab(),
+                  ),
+                ),
               );
             },
           ),
@@ -852,14 +860,36 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) {
+          if (index == 4) {
+            showSearch(
+              context: context,
+              delegate: GameSearchDelegate(games: _allGames, onSelect: _openGameDetail),
+            );
+            return;
+          }
+          setState(() => _currentIndex = index);
+        },
         type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.explore_outlined), activeIcon: Icon(Icons.explore), label: 'Discover'),
-          BottomNavigationBarItem(icon: Icon(Icons.grid_view_outlined), activeIcon: Icon(Icons.grid_view), label: 'Browse'),
-          BottomNavigationBarItem(icon: Icon(Icons.memory_outlined), activeIcon: Icon(Icons.memory), label: 'Emulators'),
-          BottomNavigationBarItem(icon: Icon(Icons.sports_esports_outlined), activeIcon: Icon(Icons.sports_esports), label: 'Library'),
-          BottomNavigationBarItem(icon: Icon(Icons.menu_book_outlined), activeIcon: Icon(Icons.menu_book), label: 'Guide'),
+        items: [
+          const BottomNavigationBarItem(icon: Icon(Icons.explore_outlined), activeIcon: Icon(Icons.explore), label: 'Discover'),
+          const BottomNavigationBarItem(icon: Icon(Icons.grid_view_outlined), activeIcon: Icon(Icons.grid_view), label: 'Browse'),
+          const BottomNavigationBarItem(icon: Icon(Icons.memory_outlined), activeIcon: Icon(Icons.memory), label: 'Emulators'),
+          const BottomNavigationBarItem(icon: Icon(Icons.sports_esports_outlined), activeIcon: Icon(Icons.sports_esports), label: 'Library'),
+          BottomNavigationBarItem(
+            icon: Container(
+              width: 32,
+              height: 32,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  colors: [RecompTheme.cyan, RecompTheme.steelBlue],
+                ),
+              ),
+              child: const Icon(Icons.search, color: RecompTheme.midnight, size: 18),
+            ),
+            label: 'Search',
+          ),
         ],
       ),
     );
@@ -884,122 +914,338 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 // ============================================================================
 // TAB 1: DISCOVER
 // ============================================================================
-class DiscoverTab extends StatelessWidget {
+class DiscoverTab extends StatefulWidget {
   final List<RecompGame> games;
   final Function(RecompGame) onOpenDetail;
 
   const DiscoverTab({super.key, required this.games, required this.onOpenDetail});
 
   @override
+  State<DiscoverTab> createState() => _DiscoverTabState();
+}
+
+class _DiscoverTabState extends State<DiscoverTab> {
+  final PageController _pageController = PageController();
+  int _heroIndex = 0;
+  Timer? _carouselTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startCarouselTimer();
+  }
+
+  void _startCarouselTimer() {
+    _carouselTimer?.cancel();
+    _carouselTimer = Timer.periodic(const Duration(seconds: 5), (_) {
+      if (!mounted || !_pageController.hasClients) return;
+      final slidesCount = _getSlides().length;
+      if (slidesCount <= 1) return;
+      final next = (_heroIndex + 1) % slidesCount;
+      _pageController.animateToPage(
+        next,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _carouselTimer?.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  List<RecompGame> _getSlides() {
+    final featuredKeys = [
+      'zelda-64-recomp-android',
+      'forza-horizon',
+      'banjo-kazooie-recomp',
+      'sonic-unleashed-recompiled',
+      'dusklight',
+      'diablo-hellfire',
+      'super-mario-64',
+      'balatro',
+    ];
+    final List<RecompGame> featured = [];
+    for (final k in featuredKeys) {
+      try {
+        final g = widget.games.firstWhere((item) => item.id.contains(k) || item.id == k);
+        if (!featured.any((f) => f.id == g.id)) {
+          featured.add(g);
+        }
+      } catch (_) {}
+    }
+    return featured.length >= 3 ? featured : widget.games.take(5).toList();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final featured = games.take(5).toList();
-    final topRanked = [...games]..sort((a, b) => b.downloads.compareTo(a.downloads));
-    final n64Games = games.where((g) => g.origin == 'n64').toList();
-    final x360Games = games.where((g) => g.origin == 'x360').toList();
-    final pcPorts = games.where((g) => g.origin == 'pc_classic').toList();
+    final slides = _getSlides();
+    final topRanked = [...widget.games]..sort((a, b) => b.downloads.compareTo(a.downloads));
+    final n64Games = widget.games.where((g) => g.origin == 'n64').toList();
+    final handheldGames = widget.games.where((g) => g.controllerSupported || g.controllerRecommended).toList();
+    final x360Games = widget.games.where((g) => g.origin == 'x360').toList();
+    final pcPorts = widget.games.where((g) => g.origin == 'pc_classic').toList();
 
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 16),
       children: [
-        // Featured Hero Card
-        if (featured.isNotEmpty)
+        // Featured Hero Carousel matching website
+        if (slides.isNotEmpty)
           SizedBox(
-            height: 220,
-            child: PageView.builder(
-              itemCount: featured.length,
-              itemBuilder: (context, idx) {
-                final g = featured[idx];
-                return GestureDetector(
-                  onTap: () => onOpenDetail(g),
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      image: DecorationImage(
-                        image: NetworkImage(g.hero, headers: const {'User-Agent': 'Mozilla/5.0 (Linux; Android 14)'}),
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.55), BlendMode.darken),
-                      ),
-                      border: Border.all(color: RecompTheme.line),
-                    ),
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                              decoration: BoxDecoration(
-                                color: RecompTheme.cyan,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                g.originFormatted,
-                                style: const TextStyle(color: RecompTheme.midnight, fontSize: 11, fontWeight: FontWeight.w800),
-                              ),
+            height: 330,
+            child: Stack(
+              children: [
+                PageView.builder(
+                  controller: _pageController,
+                  itemCount: slides.length,
+                  onPageChanged: (idx) => setState(() => _heroIndex = idx),
+                  itemBuilder: (context, idx) {
+                    final g = slides[idx];
+                    return GestureDetector(
+                      onTap: () => widget.onOpenDetail(g),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: RecompTheme.border(context)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.18),
+                              blurRadius: 16,
+                              offset: const Offset(0, 6),
                             ),
-                            const SizedBox(width: 8),
-                            if (g.turnipRecommended)
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                                decoration: BoxDecoration(
-                                  color: RecompTheme.turnipGold.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: RecompTheme.turnipGold),
-                                ),
-                                child: const Text(
-                                  '⚡ Turnip Tested',
-                                  style: TextStyle(color: RecompTheme.turnipGold, fontSize: 11, fontWeight: FontWeight.w700),
-                                ),
-                              ),
                           ],
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          g.name,
-                          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: Colors.white),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              // Background Hero Image
+                              Image.network(
+                                g.hero.isNotEmpty ? g.hero : g.cover,
+                                headers: const {'User-Agent': 'Mozilla/5.0 (Linux; Android 14)'},
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) => Container(
+                                  color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnightAlt,
+                                  child: const Center(
+                                    child: Icon(Icons.videogame_asset, color: RecompTheme.cyan, size: 48),
+                                  ),
+                                ),
+                              ),
+                              // Cinematic Dark Gradient Overlay
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Colors.black.withOpacity(0.25),
+                                      Colors.black.withOpacity(0.70),
+                                      Colors.black.withOpacity(0.96),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              // Content
+                              Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Wrap(
+                                      spacing: 6,
+                                      runSpacing: 4,
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                          decoration: BoxDecoration(
+                                            color: RecompTheme.cyan,
+                                            borderRadius: BorderRadius.circular(16),
+                                          ),
+                                          child: Text(
+                                            g.originFormatted,
+                                            style: const TextStyle(color: RecompTheme.midnight, fontSize: 10, fontWeight: FontWeight.w800),
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(0.18),
+                                            borderRadius: BorderRadius.circular(16),
+                                          ),
+                                          child: Text(
+                                            g.type,
+                                            style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                        if (g.turnipRecommended)
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                            decoration: BoxDecoration(
+                                              color: RecompTheme.turnipGold.withOpacity(0.2),
+                                              borderRadius: BorderRadius.circular(16),
+                                              border: Border.all(color: RecompTheme.turnipGold),
+                                            ),
+                                            child: const Text(
+                                              '⚡ Turnip Rec.',
+                                              style: TextStyle(color: RecompTheme.turnipGold, fontSize: 10, fontWeight: FontWeight.w700),
+                                            ),
+                                          ),
+                                        if (g.touchSupported)
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                            decoration: BoxDecoration(
+                                              color: RecompTheme.successGreen.withOpacity(0.2),
+                                              borderRadius: BorderRadius.circular(16),
+                                              border: Border.all(color: RecompTheme.successGreen),
+                                            ),
+                                            child: const Text(
+                                              'Touch Ready',
+                                              style: TextStyle(color: RecompTheme.successGreen, fontSize: 10, fontWeight: FontWeight.w700),
+                                            ),
+                                          ),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(0.12),
+                                            borderRadius: BorderRadius.circular(16),
+                                          ),
+                                          child: Text(
+                                            '${g.fpsTarget} FPS',
+                                            style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      g.name,
+                                      style: const TextStyle(
+                                        fontSize: 21,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.white,
+                                        letterSpacing: -0.3,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      g.blurb,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xFFCBD5E1),
+                                        height: 1.35,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(height: 12),
+                                    Row(
+                                      children: [
+                                        ElevatedButton.icon(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: RecompTheme.cyan,
+                                            foregroundColor: RecompTheme.midnight,
+                                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                            elevation: 2,
+                                          ),
+                                          icon: const Icon(Icons.download, size: 16),
+                                          label: const Text(
+                                            'Download & Details',
+                                            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12),
+                                          ),
+                                          onPressed: () => widget.onOpenDetail(g),
+                                        ),
+                                        if (g.obtainiumUrl.isNotEmpty) ...[
+                                          const SizedBox(width: 8),
+                                          OutlinedButton.icon(
+                                            style: OutlinedButton.styleFrom(
+                                              backgroundColor: Colors.white.withOpacity(0.12),
+                                              foregroundColor: Colors.white,
+                                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
+                                              side: BorderSide(color: Colors.white.withOpacity(0.3)),
+                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                            ),
+                                            icon: const Icon(Icons.sync, size: 16, color: RecompTheme.cyan),
+                                            label: const Text(
+                                              'Obtainium',
+                                              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
+                                            ),
+                                            onPressed: () => launchUrl(Uri.parse(g.obtainiumUrl), mode: LaunchMode.externalApplication),
+                                          ),
+                                        ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          g.blurb,
-                          style: const TextStyle(fontSize: 12, color: RecompTheme.muted),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  },
+                ),
+                // Indicator dots
+                Positioned(
+                  bottom: 22,
+                  right: 28,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: List.generate(slides.length, (dotIdx) {
+                      final isSelected = dotIdx == _heroIndex;
+                      return AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        margin: const EdgeInsets.symmetric(horizontal: 3),
+                        width: isSelected ? 22 : 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: isSelected ? RecompTheme.cyan : Colors.white.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(3),
                         ),
-                      ],
-                    ),
+                      );
+                    }),
                   ),
-                );
-              },
+                ),
+              ],
             ),
           ),
 
-        const SizedBox(height: 28),
+        const SizedBox(height: 24),
 
         // Section: Top Ranked
-        _buildSectionHeader('Top Ranked Recomps'),
+        _buildSectionHeader(context, 'Top Community Recomps', icon: Icons.star_rounded),
         _buildHorizontalRow(topRanked.take(10).toList(), showRank: true),
 
         const SizedBox(height: 24),
 
         // Section: N64 Recomps
-        _buildSectionHeader('Nintendo 64 Recompiled'),
+        _buildSectionHeader(context, 'Nintendo 64 Recompilations', icon: Icons.sports_esports),
         _buildHorizontalRow(n64Games.take(10).toList()),
 
         const SizedBox(height: 24),
 
+        // Section: Handheld Optimized
+        _buildSectionHeader(context, 'Handheld Optimized Recomps', icon: Icons.gamepad),
+        _buildHorizontalRow(handheldGames.take(10).toList()),
+
+        const SizedBox(height: 24),
+
         // Section: Xbox 360 Static Recomps
-        _buildSectionHeader('Xbox 360 Recompilations'),
+        _buildSectionHeader(context, 'Xbox 360 Recompilations', icon: Icons.album),
         _buildHorizontalRow(x360Games.take(10).toList()),
 
         const SizedBox(height: 24),
 
         // Section: Classic PC Source Ports
-        _buildSectionHeader('Classic PC & Engine Ports'),
+        _buildSectionHeader(context, 'Classic PC & Engine Ports', icon: Icons.computer),
         _buildHorizontalRow(pcPorts.take(10).toList()),
 
         const SizedBox(height: 20),
@@ -1009,21 +1255,21 @@ class DiscoverTab extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: RecompTheme.glass,
+            color: RecompTheme.cardBg(context),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: RecompTheme.line),
+            border: Border.all(color: RecompTheme.border(context)),
           ),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'NO GAME FILES DISTRIBUTED',
-                style: TextStyle(color: RecompTheme.cyan, fontSize: 11, fontWeight: FontWeight.w800, letterSpacing: 0.8),
+                style: TextStyle(color: RecompTheme.primary(context), fontSize: 11, fontWeight: FontWeight.w800, letterSpacing: 0.8),
               ),
-              SizedBox(height: 6),
+              const SizedBox(height: 6),
               Text(
                 'DroidRecomp indexes only open-source native Android game recompilations. Zero copyrighted ROMs or disc images are hosted. Users must supply their own legally owned backups.',
-                style: TextStyle(color: RecompTheme.muted, fontSize: 12, height: 1.4),
+                style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12, height: 1.4),
               ),
             ],
           ),
@@ -1032,19 +1278,29 @@ class DiscoverTab extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionHeader(String title) {
+  Widget _buildSectionHeader(BuildContext context, String title, {IconData? icon}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Text(
-        title,
-        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.frost),
+      child: Row(
+        children: [
+          if (icon != null) ...[
+            Icon(icon, color: RecompTheme.primary(context), size: 19),
+            const SizedBox(width: 8),
+          ],
+          Expanded(
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context)),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildHorizontalRow(List<RecompGame> list, {bool showRank = false}) {
     return SizedBox(
-      height: 210,
+      height: 245,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -1052,14 +1308,21 @@ class DiscoverTab extends StatelessWidget {
         itemBuilder: (context, i) {
           final g = list[i];
           return GestureDetector(
-            onTap: () => onOpenDetail(g),
+            onTap: () => widget.onOpenDetail(g),
             child: Container(
-              width: 130,
-              margin: const EdgeInsets.symmetric(horizontal: 6),
+              width: 140,
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(
-                color: RecompTheme.glass,
+                color: RecompTheme.cardBg(context),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: RecompTheme.line),
+                border: Border.all(color: RecompTheme.border(context)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.06),
+                    blurRadius: 8,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1071,13 +1334,28 @@ class DiscoverTab extends StatelessWidget {
                         child: Image.network(
                           g.cover,
                           headers: const {'User-Agent': 'Mozilla/5.0 (Linux; Android 14)'},
-                          height: 140,
+                          height: 175,
                           width: double.infinity,
                           fit: BoxFit.cover,
                           errorBuilder: (_, __, ___) => Container(
-                            height: 140,
-                            color: RecompTheme.midnightAlt,
-                            child: const Icon(Icons.videogame_asset, color: RecompTheme.muted),
+                            height: 175,
+                            color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnightAlt,
+                            child: Icon(Icons.videogame_asset, color: RecompTheme.textMuted(context), size: 36),
+                          ),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [Colors.transparent, Colors.black.withOpacity(0.75)],
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -1086,11 +1364,11 @@ class DiscoverTab extends StatelessWidget {
                           top: 6,
                           left: 6,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                             decoration: BoxDecoration(
-                              color: RecompTheme.midnight.withOpacity(0.85),
+                              color: const Color(0xFF0B1220).withOpacity(0.88),
                               borderRadius: BorderRadius.circular(6),
-                              border: Border.all(color: RecompTheme.cyan.withOpacity(0.4)),
+                              border: Border.all(color: RecompTheme.cyan.withOpacity(0.5)),
                             ),
                             child: Text(
                               '#${i + 1}',
@@ -1104,7 +1382,7 @@ class DiscoverTab extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.75),
+                            color: Colors.black.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -1122,15 +1400,16 @@ class DiscoverTab extends StatelessWidget {
                       children: [
                         Text(
                           g.name,
-                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: RecompTheme.frost),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: RecompTheme.text(context)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 2),
                         Text(
                           g.type,
-                          style: const TextStyle(fontSize: 10, color: RecompTheme.muted),
+                          style: TextStyle(fontSize: 10, color: RecompTheme.textMuted(context)),
                           maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
@@ -1164,16 +1443,19 @@ class _BrowseTabState extends State<BrowseTab> {
   bool _turnipOnly = false;
   bool _touchOnly = false;
 
-  final origins = [
-    {'id': 'all', 'name': 'All Consoles'},
-    {'id': 'n64', 'name': 'N64'},
+  final origins = const [
+    {'id': 'all', 'name': 'All Systems'},
+    {'id': 'n64', 'name': 'Nintendo 64'},
     {'id': 'x360', 'name': 'Xbox 360'},
     {'id': 'xbox', 'name': 'Xbox'},
     {'id': 'gc', 'name': 'GameCube'},
     {'id': 'wii', 'name': 'Wii'},
-    {'id': 'ps1', 'name': 'PS1'},
-    {'id': 'ps2', 'name': 'PS2'},
-    {'id': 'pc_classic', 'name': 'PC Ports'},
+    {'id': 'ps1', 'name': 'PlayStation 1'},
+    {'id': 'ps2', 'name': 'PlayStation 2'},
+    {'id': 'psp', 'name': 'PSP'},
+    {'id': 'pc_classic', 'name': 'Classic PC'},
+    {'id': 'snes', 'name': 'SNES'},
+    {'id': 'gba', 'name': 'Game Boy Adv.'},
   ];
 
   @override
@@ -1210,15 +1492,15 @@ class _BrowseTabState extends State<BrowseTab> {
                 child: ChoiceChip(
                   label: Text(o['name']!),
                   selected: isSelected,
-                  selectedColor: RecompTheme.cyan.withOpacity(0.2),
-                  backgroundColor: RecompTheme.glass,
+                  selectedColor: RecompTheme.primary(context).withOpacity(0.18),
+                  backgroundColor: RecompTheme.cardBg(context),
                   labelStyle: TextStyle(
-                    color: isSelected ? RecompTheme.cyan : RecompTheme.muted,
+                    color: isSelected ? RecompTheme.primary(context) : RecompTheme.textMuted(context),
                     fontSize: 12,
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                   ),
                   side: BorderSide(
-                    color: isSelected ? RecompTheme.cyan : RecompTheme.line,
+                    color: isSelected ? RecompTheme.primary(context) : RecompTheme.border(context),
                   ),
                   onSelected: (val) {
                     setState(() => _selectedOrigin = o['id']!);
@@ -1239,7 +1521,9 @@ class _BrowseTabState extends State<BrowseTab> {
                 selected: _turnipOnly,
                 onSelected: (val) => setState(() => _turnipOnly = val),
                 selectedColor: RecompTheme.turnipGold.withOpacity(0.2),
-                labelStyle: TextStyle(color: _turnipOnly ? RecompTheme.turnipGold : RecompTheme.muted),
+                backgroundColor: RecompTheme.cardBg(context),
+                side: BorderSide(color: _turnipOnly ? RecompTheme.turnipGold : RecompTheme.border(context)),
+                labelStyle: TextStyle(color: _turnipOnly ? RecompTheme.turnipGold : RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
               ),
               const SizedBox(width: 8),
               FilterChip(
@@ -1247,24 +1531,26 @@ class _BrowseTabState extends State<BrowseTab> {
                 selected: _touchOnly,
                 onSelected: (val) => setState(() => _touchOnly = val),
                 selectedColor: RecompTheme.successGreen.withOpacity(0.2),
-                labelStyle: TextStyle(color: _touchOnly ? RecompTheme.successGreen : RecompTheme.muted),
+                backgroundColor: RecompTheme.cardBg(context),
+                side: BorderSide(color: _touchOnly ? RecompTheme.successGreen : RecompTheme.border(context)),
+                labelStyle: TextStyle(color: _touchOnly ? RecompTheme.successGreen : RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
               ),
               const Spacer(),
               Text(
                 '${filtered.length} Recomps',
-                style: const TextStyle(fontSize: 12, color: RecompTheme.muted, fontWeight: FontWeight.w600),
+                style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
               ),
             ],
           ),
         ),
 
-        const Divider(color: RecompTheme.line),
+        Divider(color: RecompTheme.border(context), height: 1),
 
         // Games Grid
         Expanded(
           child: filtered.isEmpty
-              ? const Center(
-                  child: Text('No recomps match your filters', style: TextStyle(color: RecompTheme.muted)),
+              ? Center(
+                  child: Text('No recomps match your filters', style: TextStyle(color: RecompTheme.textMuted(context))),
                 )
               : ListView.builder(
                   padding: const EdgeInsets.all(12),
@@ -1272,11 +1558,11 @@ class _BrowseTabState extends State<BrowseTab> {
                   itemBuilder: (context, idx) {
                     final game = filtered[idx];
                     return Card(
-                      color: RecompTheme.glass,
-                      margin: const EdgeInsets.symmetric(vertical: 6),
+                      color: RecompTheme.cardBg(context),
+                      margin: const EdgeInsets.symmetric(vertical: 5),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
-                        side: const BorderSide(color: RecompTheme.line),
+                        side: BorderSide(color: RecompTheme.border(context)),
                       ),
                       child: ListTile(
                         contentPadding: const EdgeInsets.all(10),
@@ -1291,14 +1577,14 @@ class _BrowseTabState extends State<BrowseTab> {
                             errorBuilder: (_, __, ___) => Container(
                               width: 50,
                               height: 70,
-                              color: RecompTheme.midnightAlt,
-                              child: const Icon(Icons.videogame_asset, color: RecompTheme.muted),
+                              color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnightAlt,
+                              child: Icon(Icons.videogame_asset, color: RecompTheme.textMuted(context)),
                             ),
                           ),
                         ),
                         title: Text(
                           game.name,
-                          style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.frost),
+                          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.text(context)),
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1306,7 +1592,7 @@ class _BrowseTabState extends State<BrowseTab> {
                             const SizedBox(height: 4),
                             Text(
                               '${game.originFormatted} • ${game.type}',
-                              style: const TextStyle(fontSize: 11, color: RecompTheme.muted),
+                              style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context)),
                             ),
                             const SizedBox(height: 6),
                             Row(
@@ -1319,7 +1605,7 @@ class _BrowseTabState extends State<BrowseTab> {
                                       color: RecompTheme.turnipGold.withOpacity(0.15),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
-                                    child: const Text('Turnip ⚡', style: TextStyle(color: RecompTheme.turnipGold, fontSize: 9)),
+                                    child: const Text('Turnip ⚡', style: TextStyle(color: RecompTheme.turnipGold, fontSize: 9, fontWeight: FontWeight.w700)),
                                   ),
                                 if (game.touchSupported)
                                   Container(
@@ -1328,13 +1614,13 @@ class _BrowseTabState extends State<BrowseTab> {
                                       color: RecompTheme.successGreen.withOpacity(0.15),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
-                                    child: const Text('Touch', style: TextStyle(color: RecompTheme.successGreen, fontSize: 9)),
+                                    child: const Text('Touch', style: TextStyle(color: RecompTheme.successGreen, fontSize: 9, fontWeight: FontWeight.w700)),
                                   ),
                               ],
                             ),
                           ],
                         ),
-                        trailing: const Icon(Icons.chevron_right, color: RecompTheme.cyan),
+                        trailing: Icon(Icons.chevron_right, color: RecompTheme.primary(context)),
                         onTap: () => widget.onOpenDetail(game),
                       ),
                     );
@@ -1387,7 +1673,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: RecompTheme.midnightAlt,
+      backgroundColor: RecompTheme.isLight(context) ? Colors.white : RecompTheme.midnightAlt,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -1406,7 +1692,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                 height: 4,
                 margin: const EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
-                  color: RecompTheme.muted.withOpacity(0.4),
+                  color: RecompTheme.textMuted(context).withOpacity(0.4),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -1424,8 +1710,8 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                     errorBuilder: (_, __, ___) => Container(
                       width: 60,
                       height: 60,
-                      color: RecompTheme.midnight,
-                      child: const Icon(Icons.memory, color: RecompTheme.cyan, size: 30),
+                      color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnight,
+                      child: Icon(Icons.memory, color: RecompTheme.primary(context), size: 30),
                     ),
                   ),
                 ),
@@ -1436,16 +1722,16 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                     children: [
                       Text(
                         emu.name,
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: RecompTheme.frost),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: RecompTheme.text(context)),
                       ),
                       const SizedBox(height: 3),
                       Text(
                         emu.systemName,
-                        style: const TextStyle(fontSize: 13, color: RecompTheme.cyan, fontWeight: FontWeight.w700),
+                        style: TextStyle(fontSize: 13, color: RecompTheme.primary(context), fontWeight: FontWeight.w700),
                       ),
                       Text(
                         'by ${emu.developer} • ${emu.version}',
-                        style: const TextStyle(fontSize: 12, color: RecompTheme.muted),
+                        style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context)),
                       ),
                     ],
                   ),
@@ -1458,26 +1744,33 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
               runSpacing: 6,
               children: [
                 Chip(
-                  label: Text(emu.isPaid ? emu.price : 'Free', style: TextStyle(fontSize: 11, color: emu.isPaid ? const Color(0xFFB45309) : const Color(0xFF047857), fontWeight: FontWeight.w800)),
+                  label: Text(
+                    emu.isPaid ? emu.price : 'Free',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: emu.isPaid ? const Color(0xFFB45309) : const Color(0xFF047857),
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
                   backgroundColor: emu.isPaid ? const Color(0x33F59E0B) : const Color(0x3310B981),
                   padding: EdgeInsets.zero,
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
                 Chip(
-                  label: Text(emu.license, style: const TextStyle(fontSize: 11, color: RecompTheme.frost)),
-                  backgroundColor: RecompTheme.glass,
+                  label: Text(emu.license, style: TextStyle(fontSize: 11, color: RecompTheme.text(context))),
+                  backgroundColor: RecompTheme.cardBg(context),
                   padding: EdgeInsets.zero,
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
                 Chip(
-                  label: Text(emu.category, style: const TextStyle(fontSize: 11, color: RecompTheme.midnight, fontWeight: FontWeight.w800)),
-                  backgroundColor: RecompTheme.cyan,
+                  label: Text(emu.category, style: TextStyle(fontSize: 11, color: RecompTheme.primaryText(context), fontWeight: FontWeight.w800)),
+                  backgroundColor: RecompTheme.primary(context),
                   padding: EdgeInsets.zero,
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
                 Chip(
-                  label: Text(emu.graphicsBackend, style: const TextStyle(fontSize: 11, color: RecompTheme.frost)),
-                  backgroundColor: RecompTheme.glass,
+                  label: Text(emu.graphicsBackend, style: TextStyle(fontSize: 11, color: RecompTheme.text(context))),
+                  backgroundColor: RecompTheme.cardBg(context),
                   padding: EdgeInsets.zero,
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
@@ -1491,14 +1784,14 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
               ],
             ),
             const SizedBox(height: 16),
-            const Text('Overview', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: RecompTheme.frost)),
+            Text('Overview', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
             const SizedBox(height: 6),
             Text(
               emu.description,
-              style: const TextStyle(fontSize: 13, color: RecompTheme.muted, height: 1.45),
+              style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context), height: 1.45),
             ),
             const SizedBox(height: 18),
-            const Text('Key Features', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: RecompTheme.frost)),
+            Text('Key Features', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
             const SizedBox(height: 8),
             ...emu.features.map(
               (f) => Padding(
@@ -1506,10 +1799,10 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.check_circle_outline, color: RecompTheme.cyan, size: 16),
+                    Icon(Icons.check_circle_outline, color: RecompTheme.primary(context), size: 16),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: Text(f, style: const TextStyle(fontSize: 12, color: RecompTheme.frost)),
+                      child: Text(f, style: TextStyle(fontSize: 12, color: RecompTheme.text(context))),
                     ),
                   ],
                 ),
@@ -1519,25 +1812,25 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: RecompTheme.glass,
+                color: RecompTheme.isLight(context) ? const Color(0xFFF1F5F9) : RecompTheme.glass,
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: RecompTheme.line),
+                border: Border.all(color: RecompTheme.border(context)),
               ),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Minimum Android', style: TextStyle(color: RecompTheme.muted, fontSize: 12)),
-                      Text(emu.minAndroid, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: RecompTheme.frost)),
+                      Text('Minimum Android', style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
+                      Text(emu.minAndroid, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: RecompTheme.text(context))),
                     ],
                   ),
                   const SizedBox(height: 6),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Graphics Backend', style: TextStyle(color: RecompTheme.muted, fontSize: 12)),
-                      Text(emu.graphicsBackend, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: RecompTheme.frost)),
+                      Text('Graphics Backend', style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
+                      Text(emu.graphicsBackend, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: RecompTheme.text(context))),
                     ],
                   ),
                 ],
@@ -1550,8 +1843,8 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                   Expanded(
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: emu.isPaid ? const Color(0xFFF59E0B) : RecompTheme.cyan,
-                        foregroundColor: emu.isPaid ? const Color(0xFF0B1220) : RecompTheme.midnight,
+                        backgroundColor: emu.isPaid ? const Color(0xFFF59E0B) : RecompTheme.primary(context),
+                        foregroundColor: emu.isPaid ? const Color(0xFF0B1220) : RecompTheme.primaryText(context),
                         padding: const EdgeInsets.symmetric(vertical: 13),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
@@ -1581,7 +1874,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                 if (emu.repoUrl.isNotEmpty) ...[
                   const SizedBox(width: 8),
                   IconButton(
-                    icon: const Icon(Icons.open_in_browser, color: RecompTheme.muted),
+                    icon: Icon(Icons.open_in_browser, color: RecompTheme.textMuted(context)),
                     tooltip: 'Official Releases / Repo',
                     onPressed: () => launchUrl(Uri.parse(emu.repoUrl), mode: LaunchMode.externalApplication),
                   ),
@@ -1638,22 +1931,35 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
         // Header & Search
         Container(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-          color: RecompTheme.midnightAlt,
+          decoration: BoxDecoration(
+            color: RecompTheme.isLight(context) ? Colors.white : RecompTheme.midnightAlt,
+            border: Border(bottom: BorderSide(color: RecompTheme.border(context))),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Search emulators, systems, drivers...',
-                  prefixIcon: const Icon(Icons.search, color: RecompTheme.muted),
+                  hintStyle: TextStyle(color: RecompTheme.textMuted(context), fontSize: 13),
+                  prefixIcon: Icon(Icons.search, color: RecompTheme.textMuted(context)),
                   filled: true,
-                  fillColor: RecompTheme.glass,
+                  fillColor: RecompTheme.isLight(context) ? const Color(0xFFF1F5F9) : RecompTheme.glass,
                   contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: RecompTheme.line),
+                    borderSide: BorderSide(color: RecompTheme.border(context)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: RecompTheme.border(context)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: RecompTheme.primary(context)),
                   ),
                 ),
+                style: TextStyle(color: RecompTheme.text(context), fontSize: 13),
                 onChanged: (val) => setState(() => _searchQuery = val.trim()),
               ),
               const SizedBox(height: 10),
@@ -1672,13 +1978,13 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
-                          color: isSelected ? RecompTheme.midnight : RecompTheme.frost,
+                          color: isSelected ? RecompTheme.primaryText(context) : RecompTheme.text(context),
                         ),
                       ),
                       selected: isSelected,
-                      selectedColor: RecompTheme.cyan,
-                      backgroundColor: RecompTheme.glass,
-                      side: BorderSide(color: isSelected ? RecompTheme.cyan : RecompTheme.line),
+                      selectedColor: RecompTheme.primary(context),
+                      backgroundColor: RecompTheme.isLight(context) ? const Color(0xFFF1F5F9) : RecompTheme.glass,
+                      side: BorderSide(color: isSelected ? RecompTheme.primary(context) : RecompTheme.border(context)),
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       onSelected: (_) => setState(() => _selectedSystem = cat['id']!),
                     );
@@ -1692,8 +1998,8 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
         // Emulators List
         Expanded(
           child: filtered.isEmpty
-              ? const Center(
-                  child: Text('No emulators match your filter', style: TextStyle(color: RecompTheme.muted)),
+              ? Center(
+                  child: Text('No emulators match your filter', style: TextStyle(color: RecompTheme.textMuted(context))),
                 )
               : ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -1701,11 +2007,11 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                   itemBuilder: (context, idx) {
                     final emu = filtered[idx];
                     return Card(
-                      color: RecompTheme.glass,
+                      color: RecompTheme.cardBg(context),
                       margin: const EdgeInsets.only(bottom: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
-                        side: BorderSide(color: RecompTheme.cyan.withOpacity(0.2)),
+                        side: BorderSide(color: RecompTheme.border(context)),
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(14),
@@ -1728,8 +2034,8 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                       errorBuilder: (_, __, ___) => Container(
                                         width: 48,
                                         height: 48,
-                                        color: RecompTheme.midnightAlt,
-                                        child: const Icon(Icons.memory, color: RecompTheme.cyan),
+                                        color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnightAlt,
+                                        child: Icon(Icons.memory, color: RecompTheme.primary(context)),
                                       ),
                                     ),
                                   ),
@@ -1743,10 +2049,10 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                             Expanded(
                                               child: Text(
                                                 emu.name,
-                                                style: const TextStyle(
+                                                style: TextStyle(
                                                   fontWeight: FontWeight.w800,
                                                   fontSize: 15,
-                                                  color: RecompTheme.frost,
+                                                  color: RecompTheme.text(context),
                                                 ),
                                               ),
                                             ),
@@ -1762,7 +2068,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                                 style: TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w800,
-                                                  color: emu.isPaid ? const Color(0xFFF59E0B) : const Color(0xFF10B981),
+                                                  color: emu.isPaid ? const Color(0xFFD97706) : const Color(0xFF059669),
                                                 ),
                                               ),
                                             ),
@@ -1770,12 +2076,12 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                             Container(
                                               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                                               decoration: BoxDecoration(
-                                                color: Colors.white.withOpacity(0.08),
+                                                color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : Colors.white.withOpacity(0.08),
                                                 borderRadius: BorderRadius.circular(4),
                                               ),
                                               child: Text(
                                                 emu.version,
-                                                style: const TextStyle(fontSize: 10, color: RecompTheme.muted),
+                                                style: TextStyle(fontSize: 10, color: RecompTheme.textMuted(context)),
                                               ),
                                             ),
                                           ],
@@ -1783,15 +2089,15 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                         const SizedBox(height: 2),
                                         Text(
                                           emu.systemName,
-                                          style: const TextStyle(
-                                            color: RecompTheme.cyan,
+                                          style: TextStyle(
+                                            color: RecompTheme.primary(context),
                                             fontWeight: FontWeight.w700,
                                             fontSize: 12,
                                           ),
                                         ),
                                         Text(
                                           'by ${emu.developer}',
-                                          style: const TextStyle(color: RecompTheme.muted, fontSize: 11),
+                                          style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 11),
                                         ),
                                       ],
                                     ),
@@ -1803,7 +2109,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                 emu.description,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 12, color: RecompTheme.muted, height: 1.4),
+                                style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context), height: 1.4),
                               ),
                               const SizedBox(height: 12),
                               Row(
@@ -1812,8 +2118,8 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                     Expanded(
                                       child: ElevatedButton.icon(
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: emu.isPaid ? const Color(0xFFF59E0B) : RecompTheme.cyan,
-                                          foregroundColor: emu.isPaid ? const Color(0xFF0B1220) : RecompTheme.midnight,
+                                          backgroundColor: emu.isPaid ? const Color(0xFFF59E0B) : RecompTheme.primary(context),
+                                          foregroundColor: emu.isPaid ? const Color(0xFF0B1220) : RecompTheme.primaryText(context),
                                           padding: const EdgeInsets.symmetric(vertical: 8),
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                           elevation: 2,
@@ -1841,7 +2147,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                       onPressed: () => launchUrl(Uri.parse(emu.obtainiumUrl), mode: LaunchMode.externalApplication),
                                     ),
                                   IconButton(
-                                    icon: Icon(Icons.info_outline, color: RecompTheme.text(context), size: 20),
+                                    icon: Icon(Icons.info_outline, color: RecompTheme.textMuted(context), size: 20),
                                     tooltip: 'Details',
                                     onPressed: () => _showEmulatorDetailSheet(emu),
                                   ),
@@ -1900,7 +2206,7 @@ class _LibraryTabState extends State<LibraryTab> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: RecompTheme.midnightAlt,
+      backgroundColor: RecompTheme.isLight(context) ? Colors.white : RecompTheme.midnightAlt,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -1937,18 +2243,18 @@ class _LibraryTabState extends State<LibraryTab> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         children: [
-                          Icon(Icons.add_circle_outline, color: RecompTheme.cyan),
-                          SizedBox(width: 8),
+                          Icon(Icons.add_circle_outline, color: RecompTheme.primary(context)),
+                          const SizedBox(width: 8),
                           Text(
                             'Add Game to Library',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: RecompTheme.frost),
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: RecompTheme.text(context)),
                           ),
                         ],
                       ),
                       IconButton(
-                        icon: const Icon(Icons.close, color: RecompTheme.muted),
+                        icon: Icon(Icons.close, color: RecompTheme.textMuted(context)),
                         onPressed: () => Navigator.pop(ctx),
                       ),
                     ],
@@ -1962,9 +2268,10 @@ class _LibraryTabState extends State<LibraryTab> {
                         child: ChoiceChip(
                           label: const Text('📱 Phone Apps', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700)),
                           selected: sheetTab == 0,
-                          selectedColor: RecompTheme.cyan,
-                          backgroundColor: RecompTheme.glass,
-                          labelStyle: TextStyle(color: sheetTab == 0 ? RecompTheme.midnight : RecompTheme.frost),
+                          selectedColor: RecompTheme.primary(context),
+                          backgroundColor: RecompTheme.cardBg(context),
+                          side: BorderSide(color: sheetTab == 0 ? RecompTheme.primary(context) : RecompTheme.border(context)),
+                          labelStyle: TextStyle(color: sheetTab == 0 ? RecompTheme.primaryText(context) : RecompTheme.text(context)),
                           onSelected: (_) => setModalState(() => sheetTab = 0),
                         ),
                       ),
@@ -1973,9 +2280,10 @@ class _LibraryTabState extends State<LibraryTab> {
                         child: ChoiceChip(
                           label: const Text('✍️ Manual', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700)),
                           selected: sheetTab == 1,
-                          selectedColor: RecompTheme.cyan,
-                          backgroundColor: RecompTheme.glass,
-                          labelStyle: TextStyle(color: sheetTab == 1 ? RecompTheme.midnight : RecompTheme.frost),
+                          selectedColor: RecompTheme.primary(context),
+                          backgroundColor: RecompTheme.cardBg(context),
+                          side: BorderSide(color: sheetTab == 1 ? RecompTheme.primary(context) : RecompTheme.border(context)),
+                          labelStyle: TextStyle(color: sheetTab == 1 ? RecompTheme.primaryText(context) : RecompTheme.text(context)),
                           onSelected: (_) => setModalState(() => sheetTab = 1),
                         ),
                       ),
@@ -1984,9 +2292,10 @@ class _LibraryTabState extends State<LibraryTab> {
                         child: ChoiceChip(
                           label: const Text('📋 Catalog', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700)),
                           selected: sheetTab == 2,
-                          selectedColor: RecompTheme.cyan,
-                          backgroundColor: RecompTheme.glass,
-                          labelStyle: TextStyle(color: sheetTab == 2 ? RecompTheme.midnight : RecompTheme.frost),
+                          selectedColor: RecompTheme.primary(context),
+                          backgroundColor: RecompTheme.cardBg(context),
+                          side: BorderSide(color: sheetTab == 2 ? RecompTheme.primary(context) : RecompTheme.border(context)),
+                          labelStyle: TextStyle(color: sheetTab == 2 ? RecompTheme.primaryText(context) : RecompTheme.text(context)),
                           onSelected: (_) => setModalState(() => sheetTab = 2),
                         ),
                       ),
@@ -2008,18 +2317,18 @@ class _LibraryTabState extends State<LibraryTab> {
                     margin: const EdgeInsets.only(top: 8),
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: RecompTheme.midnight,
+                      color: RecompTheme.cardBg(context),
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: RecompTheme.line),
+                      border: Border.all(color: RecompTheme.border(context)),
                     ),
                     child: Row(
                       children: [
-                        const Icon(Icons.public, color: RecompTheme.cyan, size: 18),
+                        Icon(Icons.public, color: RecompTheme.primary(context), size: 18),
                         const SizedBox(width: 8),
-                        const Expanded(
+                        Expanded(
                           child: Text(
                             'Want to submit this game to the official catalog?',
-                            style: TextStyle(fontSize: 11, color: RecompTheme.muted),
+                            style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context)),
                           ),
                         ),
                         TextButton(
@@ -2031,7 +2340,7 @@ class _LibraryTabState extends State<LibraryTab> {
                             );
                           },
                           style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4)),
-                          child: const Text('Submit via GitHub', style: TextStyle(color: RecompTheme.cyan, fontSize: 11, fontWeight: FontWeight.w800)),
+                          child: Text('Submit via GitHub', style: TextStyle(color: RecompTheme.primary(context), fontSize: 11, fontWeight: FontWeight.w800)),
                         ),
                       ],
                     ),
@@ -2047,10 +2356,10 @@ class _LibraryTabState extends State<LibraryTab> {
 
   Widget _buildPhoneAppsPicker(List<Map<dynamic, dynamic>> apps, bool loading, StateSetter setModalState, BuildContext sheetCtx) {
     if (loading && apps.isEmpty) {
-      return const Center(child: CircularProgressIndicator(color: RecompTheme.cyan));
+      return Center(child: CircularProgressIndicator(color: RecompTheme.primary(context)));
     }
     if (apps.isEmpty) {
-      return const Center(child: Text('No launchable applications found on device', style: TextStyle(color: RecompTheme.muted)));
+      return Center(child: Text('No launchable applications found on device', style: TextStyle(color: RecompTheme.textMuted(context))));
     }
 
     return ListView.builder(
@@ -2066,18 +2375,18 @@ class _LibraryTabState extends State<LibraryTab> {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: RecompTheme.glass,
+              color: RecompTheme.cardBg(context),
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: RecompTheme.line),
+              border: Border.all(color: RecompTheme.border(context)),
             ),
-            child: const Icon(Icons.android, color: RecompTheme.cyan),
+            child: Icon(Icons.android, color: RecompTheme.primary(context)),
           ),
-          title: Text(label, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
-          subtitle: Text(pkg, style: const TextStyle(fontSize: 11, color: RecompTheme.muted)),
+          title: Text(label, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.text(context))),
+          subtitle: Text(pkg, style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context))),
           trailing: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              backgroundColor: RecompTheme.cyan,
-              foregroundColor: RecompTheme.midnight,
+              backgroundColor: RecompTheme.primary(context),
+              foregroundColor: RecompTheme.primaryText(context),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             ),
@@ -2085,7 +2394,7 @@ class _LibraryTabState extends State<LibraryTab> {
             label: const Text('Add', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 11)),
             onPressed: () {
               final newGame = RecompGame(
-                id: 'custom_\${pkg.replaceAll(RegExp(r"[^a-zA-Z0-9]"), "_")}_\${DateTime.now().millisecondsSinceEpoch}',
+                id: 'custom_${pkg.replaceAll(RegExp(r"[^a-zA-Z0-9]"), "_")}_${DateTime.now().millisecondsSinceEpoch}',
                 name: label,
                 game: label,
                 origin: 'pc_classic',
@@ -2137,32 +2446,40 @@ class _LibraryTabState extends State<LibraryTab> {
       children: [
         TextField(
           controller: nameCtrl,
-          decoration: const InputDecoration(
+          style: TextStyle(color: RecompTheme.text(context)),
+          decoration: InputDecoration(
             labelText: 'Game Title *',
             hintText: 'e.g. Portal (Source Engine), AM2R',
+            hintStyle: TextStyle(color: RecompTheme.textMuted(context)),
             filled: true,
-            fillColor: RecompTheme.glass,
+            fillColor: RecompTheme.cardBg(context),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: RecompTheme.border(context))),
           ),
         ),
         const SizedBox(height: 12),
         TextField(
           controller: pkgCtrl,
-          decoration: const InputDecoration(
+          style: TextStyle(color: RecompTheme.text(context)),
+          decoration: InputDecoration(
             labelText: 'Android Package Name *',
             hintText: 'e.g. org.srceng.source, com.am2r.android',
+            hintStyle: TextStyle(color: RecompTheme.textMuted(context)),
             filled: true,
-            fillColor: RecompTheme.glass,
+            fillColor: RecompTheme.cardBg(context),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: RecompTheme.border(context))),
           ),
         ),
         const SizedBox(height: 12),
         DropdownButtonFormField<String>(
           value: selectedOrigin,
-          decoration: const InputDecoration(
+          style: TextStyle(color: RecompTheme.text(context)),
+          decoration: InputDecoration(
             labelText: 'Original Platform *',
             filled: true,
-            fillColor: RecompTheme.glass,
+            fillColor: RecompTheme.cardBg(context),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: RecompTheme.border(context))),
           ),
-          dropdownColor: RecompTheme.midnightAlt,
+          dropdownColor: RecompTheme.isLight(context) ? Colors.white : RecompTheme.midnightAlt,
           items: const [
             DropdownMenuItem(value: 'n64', child: Text('Nintendo 64')),
             DropdownMenuItem(value: 'x360', child: Text('Xbox 360')),
@@ -2181,18 +2498,21 @@ class _LibraryTabState extends State<LibraryTab> {
         const SizedBox(height: 12),
         TextField(
           controller: coverCtrl,
-          decoration: const InputDecoration(
+          style: TextStyle(color: RecompTheme.text(context)),
+          decoration: InputDecoration(
             labelText: 'Cover Box Art URL (Optional)',
             hintText: 'https://... (Leave blank for default art)',
+            hintStyle: TextStyle(color: RecompTheme.textMuted(context)),
             filled: true,
-            fillColor: RecompTheme.glass,
+            fillColor: RecompTheme.cardBg(context),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: RecompTheme.border(context))),
           ),
         ),
         const SizedBox(height: 20),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: RecompTheme.cyan,
-            foregroundColor: RecompTheme.midnight,
+            backgroundColor: RecompTheme.primary(context),
+            foregroundColor: RecompTheme.primaryText(context),
             padding: const EdgeInsets.symmetric(vertical: 14),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
@@ -2202,7 +2522,7 @@ class _LibraryTabState extends State<LibraryTab> {
             if (name.isEmpty || pkg.isEmpty) return;
 
             final newGame = RecompGame(
-              id: 'custom_\${pkg.replaceAll(RegExp(r"[^a-zA-Z0-9]"), "_")}_\${DateTime.now().millisecondsSinceEpoch}',
+              id: 'custom_${pkg.replaceAll(RegExp(r"[^a-zA-Z0-9]"), "_")}_${DateTime.now().millisecondsSinceEpoch}',
               name: name,
               game: name,
               origin: selectedOrigin,
@@ -2255,19 +2575,21 @@ class _LibraryTabState extends State<LibraryTab> {
     return Column(
       children: [
         TextField(
+          style: TextStyle(color: RecompTheme.text(context)),
           decoration: InputDecoration(
             hintText: 'Search 371+ catalog recomps...',
-            prefixIcon: const Icon(Icons.search, color: RecompTheme.muted),
+            hintStyle: TextStyle(color: RecompTheme.textMuted(context)),
+            prefixIcon: Icon(Icons.search, color: RecompTheme.textMuted(context)),
             filled: true,
-            fillColor: RecompTheme.glass,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            fillColor: RecompTheme.cardBg(context),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: RecompTheme.border(context))),
           ),
           onChanged: (val) => onFilterChange(val),
         ),
         const SizedBox(height: 10),
         Expanded(
           child: uninstalled.isEmpty
-              ? const Center(child: Text('No catalog games found', style: TextStyle(color: RecompTheme.muted)))
+              ? Center(child: Text('No catalog games found', style: TextStyle(color: RecompTheme.textMuted(context))))
               : ListView.builder(
                   itemCount: uninstalled.length,
                   itemBuilder: (ctx, idx) {
@@ -2285,17 +2607,17 @@ class _LibraryTabState extends State<LibraryTab> {
                           errorBuilder: (_, __, ___) => Container(
                             width: 44,
                             height: 60,
-                            color: RecompTheme.midnight,
-                            child: const Icon(Icons.videogame_asset, color: RecompTheme.muted),
+                            color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnight,
+                            child: Icon(Icons.videogame_asset, color: RecompTheme.textMuted(context)),
                           ),
                         ),
                       ),
-                      title: Text(game.name, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
-                      subtitle: Text('${game.originFormatted} • ${game.type}', style: const TextStyle(color: RecompTheme.muted, fontSize: 12)),
+                      title: Text(game.name, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.text(context))),
+                      subtitle: Text('${game.originFormatted} • ${game.type}', style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
                       trailing: ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: RecompTheme.cyan,
-                          foregroundColor: RecompTheme.midnight,
+                          backgroundColor: RecompTheme.primary(context),
+                          foregroundColor: RecompTheme.primaryText(context),
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                         ),
@@ -2324,9 +2646,9 @@ class _LibraryTabState extends State<LibraryTab> {
         // Top Sub-tabs Switcher
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: const BoxDecoration(
-            color: RecompTheme.midnightAlt,
-            border: Border(bottom: BorderSide(color: RecompTheme.line)),
+          decoration: BoxDecoration(
+            color: RecompTheme.isLight(context) ? Colors.white : RecompTheme.midnightAlt,
+            border: Border(bottom: BorderSide(color: RecompTheme.border(context))),
           ),
           child: Row(
             children: [
@@ -2336,10 +2658,10 @@ class _LibraryTabState extends State<LibraryTab> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
-                      color: _selectedSubTab == 0 ? RecompTheme.cyan : Colors.transparent,
+                      color: _selectedSubTab == 0 ? RecompTheme.primary(context) : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: _selectedSubTab == 0 ? RecompTheme.cyan : RecompTheme.line,
+                        color: _selectedSubTab == 0 ? RecompTheme.primary(context) : RecompTheme.border(context),
                       ),
                     ),
                     child: Row(
@@ -2348,7 +2670,7 @@ class _LibraryTabState extends State<LibraryTab> {
                         Icon(
                           Icons.sports_esports,
                           size: 18,
-                          color: _selectedSubTab == 0 ? RecompTheme.midnight : RecompTheme.frost,
+                          color: _selectedSubTab == 0 ? RecompTheme.primaryText(context) : RecompTheme.text(context),
                         ),
                         const SizedBox(width: 8),
                         Text(
@@ -2356,7 +2678,7 @@ class _LibraryTabState extends State<LibraryTab> {
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
                             fontSize: 13,
-                            color: _selectedSubTab == 0 ? RecompTheme.midnight : RecompTheme.frost,
+                            color: _selectedSubTab == 0 ? RecompTheme.primaryText(context) : RecompTheme.text(context),
                           ),
                         ),
                       ],
@@ -2371,10 +2693,10 @@ class _LibraryTabState extends State<LibraryTab> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
-                      color: _selectedSubTab == 1 ? RecompTheme.cyan : Colors.transparent,
+                      color: _selectedSubTab == 1 ? RecompTheme.primary(context) : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: _selectedSubTab == 1 ? RecompTheme.cyan : RecompTheme.line,
+                        color: _selectedSubTab == 1 ? RecompTheme.primary(context) : RecompTheme.border(context),
                       ),
                     ),
                     child: Row(
@@ -2383,7 +2705,7 @@ class _LibraryTabState extends State<LibraryTab> {
                         Icon(
                           Icons.bookmark,
                           size: 18,
-                          color: _selectedSubTab == 1 ? RecompTheme.midnight : RecompTheme.frost,
+                          color: _selectedSubTab == 1 ? RecompTheme.primaryText(context) : RecompTheme.text(context),
                         ),
                         const SizedBox(width: 8),
                         Text(
@@ -2391,7 +2713,7 @@ class _LibraryTabState extends State<LibraryTab> {
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
                             fontSize: 13,
-                            color: _selectedSubTab == 1 ? RecompTheme.midnight : RecompTheme.frost,
+                            color: _selectedSubTab == 1 ? RecompTheme.primaryText(context) : RecompTheme.text(context),
                           ),
                         ),
                       ],
@@ -2421,23 +2743,23 @@ class _LibraryTabState extends State<LibraryTab> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.sports_esports, size: 64, color: RecompTheme.cyan.withOpacity(0.5)),
+              Icon(Icons.sports_esports, size: 64, color: RecompTheme.primary(context).withOpacity(0.5)),
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 'No Installed Games Marked Yet',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: RecompTheme.frost),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: RecompTheme.text(context)),
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'Add the recompilations you have installed to launch them with 1 tap right from DroidRecomp.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13, color: RecompTheme.muted, height: 1.4),
+                style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context), height: 1.4),
               ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: RecompTheme.cyan,
-                  foregroundColor: RecompTheme.midnight,
+                  backgroundColor: RecompTheme.primary(context),
+                  foregroundColor: RecompTheme.primaryText(context),
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 ),
@@ -2462,11 +2784,11 @@ class _LibraryTabState extends State<LibraryTab> {
             children: [
               Text(
                 '${installedGames.length} Recomps Ready to Launch',
-                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: RecompTheme.muted),
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: RecompTheme.textMuted(context)),
               ),
               TextButton.icon(
                 style: TextButton.styleFrom(
-                  foregroundColor: RecompTheme.cyan,
+                  foregroundColor: RecompTheme.primary(context),
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 ),
                 icon: const Icon(Icons.add, size: 16),
@@ -2480,11 +2802,11 @@ class _LibraryTabState extends State<LibraryTab> {
         // List of Installed Games
         ...installedGames.map((game) {
           return Card(
-            color: RecompTheme.glass,
+            color: RecompTheme.cardBg(context),
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(14),
-              side: BorderSide(color: RecompTheme.cyan.withOpacity(0.25)),
+              side: BorderSide(color: RecompTheme.border(context)),
             ),
             child: InkWell(
               borderRadius: BorderRadius.circular(14),
@@ -2505,8 +2827,8 @@ class _LibraryTabState extends State<LibraryTab> {
                         errorBuilder: (_, __, ___) => Container(
                           width: 65,
                           height: 90,
-                          color: RecompTheme.midnightAlt,
-                          child: const Icon(Icons.sports_esports, color: RecompTheme.cyan),
+                          color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnightAlt,
+                          child: Icon(Icons.sports_esports, color: RecompTheme.primary(context)),
                         ),
                       ),
                     ),
@@ -2522,12 +2844,12 @@ class _LibraryTabState extends State<LibraryTab> {
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                                 decoration: BoxDecoration(
-                                  color: RecompTheme.cyan.withOpacity(0.15),
+                                  color: RecompTheme.primary(context).withOpacity(0.15),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Text(
                                   game.originFormatted,
-                                  style: const TextStyle(color: RecompTheme.cyan, fontSize: 10, fontWeight: FontWeight.w800),
+                                  style: TextStyle(color: RecompTheme.primary(context), fontSize: 10, fontWeight: FontWeight.w800),
                                 ),
                               ),
                               const Spacer(),
@@ -2545,20 +2867,20 @@ class _LibraryTabState extends State<LibraryTab> {
                             game.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: RecompTheme.frost),
+                            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: RecompTheme.text(context)),
                           ),
                           const SizedBox(height: 2),
                           Text(
                             game.type,
-                            style: const TextStyle(fontSize: 11, color: RecompTheme.muted),
+                            style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context)),
                           ),
                           const SizedBox(height: 10),
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: RecompTheme.cyan,
-                                foregroundColor: RecompTheme.midnight,
+                                backgroundColor: RecompTheme.primary(context),
+                                foregroundColor: RecompTheme.primaryText(context),
                                 padding: const EdgeInsets.symmetric(vertical: 10),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                 elevation: 3,
@@ -2590,17 +2912,17 @@ class _LibraryTabState extends State<LibraryTab> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.bookmark_border, size: 64, color: RecompTheme.muted.withOpacity(0.5)),
+            Icon(Icons.bookmark_border, size: 64, color: RecompTheme.textMuted(context).withOpacity(0.5)),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'No Bookmarks Yet',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: RecompTheme.frost),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: RecompTheme.text(context)),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Bookmark recompilations to track releases\nand quick-access their links.',
+            Text(
+              'Bookmark recompilations to track releases and quick-access their links.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: RecompTheme.muted),
+              style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context)),
             ),
           ],
         ),
@@ -2613,11 +2935,11 @@ class _LibraryTabState extends State<LibraryTab> {
       itemBuilder: (context, idx) {
         final g = bookmarkedGames[idx];
         return Card(
-          color: RecompTheme.glass,
+          color: RecompTheme.cardBg(context),
           margin: const EdgeInsets.only(bottom: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
-            side: const BorderSide(color: RecompTheme.line),
+            side: BorderSide(color: RecompTheme.border(context)),
           ),
           child: ListTile(
             contentPadding: const EdgeInsets.all(12),
@@ -2632,15 +2954,15 @@ class _LibraryTabState extends State<LibraryTab> {
                 errorBuilder: (_, __, ___) => Container(
                   width: 50,
                   height: 70,
-                  color: RecompTheme.midnightAlt,
-                  child: const Icon(Icons.videogame_asset, color: RecompTheme.muted),
+                  color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnightAlt,
+                  child: Icon(Icons.videogame_asset, color: RecompTheme.textMuted(context)),
                 ),
               ),
             ),
-            title: Text(g.name, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
-            subtitle: Text('${g.originFormatted} • ${g.version}'),
+            title: Text(g.name, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.text(context))),
+            subtitle: Text('${g.originFormatted} • ${g.version}', style: TextStyle(color: RecompTheme.textMuted(context))),
             trailing: IconButton(
-              icon: const Icon(Icons.bookmark_remove, color: RecompTheme.cyan),
+              icon: Icon(Icons.bookmark_remove, color: RecompTheme.primary(context)),
               onPressed: () => widget.onToggleBookmark(g.id),
             ),
             onTap: () => widget.onOpenDetail(g),
@@ -2662,28 +2984,31 @@ class GuideTab extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
-        const Text(
+        Text(
           'Android Recomp Setup Guide',
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: RecompTheme.frost),
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: RecompTheme.text(context)),
         ),
         const SizedBox(height: 8),
-        const Text(
+        Text(
           'Learn how static recompilations work on mobile devices and how to supply your own game assets legally.',
-          style: TextStyle(fontSize: 13, color: RecompTheme.muted, height: 1.4),
+          style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context), height: 1.4),
         ),
         const SizedBox(height: 24),
 
         _buildStepCard(
+          context,
           '1',
           'Download Native ARM64 APK',
           'Each recomp compiles to a clean, native Android APK. Download the build directly from the developer’s GitHub release or sync it using Obtainium.',
         ),
         _buildStepCard(
+          context,
           '2',
           'Extract Your Original Game ROM',
           'Because recompilations distribute zero copyrighted game assets, you must dump your own retail ROM or disc image (e.g. .z64, .iso, PC data files).',
         ),
         _buildStepCard(
+          context,
           '3',
           'Scoped Storage & Asset Placement',
           'Place your extracted assets in your internal storage directory at /Android/data/{package_name}/files/ or use the app’s built-in Storage Access Framework (SAF) folder selector.',
@@ -2694,30 +3019,30 @@ class GuideTab extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
-            color: RecompTheme.midnightAlt,
+            color: RecompTheme.cardBg(context),
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: RecompTheme.cyan.withOpacity(0.3)),
+            border: Border.all(color: RecompTheme.primary(context).withOpacity(0.3)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Icon(Icons.sync, color: RecompTheme.cyan),
-                  SizedBox(width: 8),
-                  Text('Obtainium Integration', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+                  Icon(Icons.sync, color: RecompTheme.primary(context)),
+                  const SizedBox(width: 8),
+                  Text('Obtainium Integration', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: RecompTheme.text(context))),
                 ],
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'Obtainium allows you to track and auto-update your installed recompilations straight from GitHub releases in the background without Google Play.',
-                style: TextStyle(fontSize: 12, color: RecompTheme.muted, height: 1.4),
+                style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context), height: 1.4),
               ),
               const SizedBox(height: 12),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: RecompTheme.cyan,
-                  foregroundColor: RecompTheme.midnight,
+                  backgroundColor: RecompTheme.primary(context),
+                  foregroundColor: RecompTheme.primaryText(context),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 ),
                 onPressed: () => launchUrl(Uri.parse('https://github.com/ImranR98/Obtainium')),
@@ -2731,31 +3056,31 @@ class GuideTab extends StatelessWidget {
     );
   }
 
-  Widget _buildStepCard(String number, String title, String body) {
+  Widget _buildStepCard(BuildContext context, String number, String title, String body) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: RecompTheme.glass,
+        color: RecompTheme.cardBg(context),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: RecompTheme.line),
+        border: Border.all(color: RecompTheme.border(context)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(
             radius: 14,
-            backgroundColor: RecompTheme.cyan.withOpacity(0.2),
-            child: Text(number, style: const TextStyle(color: RecompTheme.cyan, fontWeight: FontWeight.w800, fontSize: 12)),
+            backgroundColor: RecompTheme.primary(context).withOpacity(0.18),
+            child: Text(number, style: TextStyle(color: RecompTheme.primary(context), fontWeight: FontWeight.w800, fontSize: 12)),
           ),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.frost)),
+                Text(title, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.text(context))),
                 const SizedBox(height: 4),
-                Text(body, style: const TextStyle(color: RecompTheme.muted, fontSize: 12, height: 1.4)),
+                Text(body, style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12, height: 1.4)),
               ],
             ),
           ),
@@ -2799,7 +3124,7 @@ class GameDetailScreen extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Image.network(
-                    game.hero,
+                    game.hero.isNotEmpty ? game.hero : game.cover,
                     headers: const {'User-Agent': 'Mozilla/5.0 (Linux; Android 14)'},
                     fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => Container(color: RecompTheme.midnightAlt),
@@ -2811,8 +3136,8 @@ class GameDetailScreen extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          RecompTheme.midnight.withOpacity(0.9),
-                          RecompTheme.midnight,
+                          RecompTheme.isLight(context) ? Colors.white.withOpacity(0.85) : RecompTheme.midnight.withOpacity(0.9),
+                          RecompTheme.isLight(context) ? Colors.white : RecompTheme.midnight,
                         ],
                       ),
                     ),
@@ -2824,7 +3149,7 @@ class GameDetailScreen extends StatelessWidget {
               IconButton(
                 icon: Icon(
                   isInstalled ? Icons.sports_esports : Icons.sports_esports_outlined,
-                  color: isInstalled ? RecompTheme.cyan : Colors.white,
+                  color: isInstalled ? RecompTheme.primary(context) : (RecompTheme.isLight(context) ? const Color(0xFF0F172A) : Colors.white),
                 ),
                 tooltip: isInstalled ? 'Installed' : 'Mark Installed',
                 onPressed: onToggleInstalled,
@@ -2832,7 +3157,7 @@ class GameDetailScreen extends StatelessWidget {
               IconButton(
                 icon: Icon(
                   isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                  color: isBookmarked ? RecompTheme.cyan : Colors.white,
+                  color: isBookmarked ? RecompTheme.primary(context) : (RecompTheme.isLight(context) ? const Color(0xFF0F172A) : Colors.white),
                 ),
                 tooltip: isBookmarked ? 'Bookmarked' : 'Bookmark',
                 onPressed: onToggleBookmark,
@@ -2851,25 +3176,25 @@ class GameDetailScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
-                          color: RecompTheme.cyan,
+                          color: RecompTheme.primary(context),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
                           game.originFormatted,
-                          style: const TextStyle(color: RecompTheme.midnight, fontSize: 11, fontWeight: FontWeight.w800),
+                          style: TextStyle(color: RecompTheme.primaryText(context), fontSize: 11, fontWeight: FontWeight.w800),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
-                          color: RecompTheme.glass,
+                          color: RecompTheme.cardBg(context),
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: RecompTheme.line),
+                          border: Border.all(color: RecompTheme.border(context)),
                         ),
                         child: Text(
                           game.type,
-                          style: const TextStyle(color: RecompTheme.frost, fontSize: 11, fontWeight: FontWeight.w600),
+                          style: TextStyle(color: RecompTheme.text(context), fontSize: 11, fontWeight: FontWeight.w600),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -2894,12 +3219,12 @@ class GameDetailScreen extends StatelessWidget {
                   // Title
                   Text(
                     game.name,
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: RecompTheme.text(context)),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     'Maintained by ${game.author}',
-                    style: const TextStyle(fontSize: 13, color: RecompTheme.muted),
+                    style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context)),
                   ),
 
                   const SizedBox(height: 20),
@@ -2909,10 +3234,10 @@ class GameDetailScreen extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: isInstalled ? RecompTheme.cyan.withOpacity(0.12) : RecompTheme.glass,
+                      color: isInstalled ? RecompTheme.primary(context).withOpacity(0.12) : RecompTheme.cardBg(context),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: isInstalled ? RecompTheme.cyan : RecompTheme.line,
+                        color: isInstalled ? RecompTheme.primary(context) : RecompTheme.border(context),
                       ),
                     ),
                     child: Column(
@@ -2922,7 +3247,7 @@ class GameDetailScreen extends StatelessWidget {
                           children: [
                             Icon(
                               isInstalled ? Icons.check_circle : Icons.sports_esports,
-                              color: isInstalled ? RecompTheme.cyan : RecompTheme.muted,
+                              color: isInstalled ? RecompTheme.primary(context) : RecompTheme.textMuted(context),
                               size: 18,
                             ),
                             const SizedBox(width: 8),
@@ -2930,7 +3255,7 @@ class GameDetailScreen extends StatelessWidget {
                               child: Text(
                                 isInstalled ? 'Installed on This Device' : 'Not marked as installed',
                                 style: TextStyle(
-                                  color: isInstalled ? RecompTheme.cyan : RecompTheme.muted,
+                                  color: isInstalled ? RecompTheme.primary(context) : RecompTheme.textMuted(context),
                                   fontWeight: FontWeight.w700,
                                   fontSize: 13,
                                 ),
@@ -2945,7 +3270,7 @@ class GameDetailScreen extends StatelessWidget {
                               child: Text(
                                 isInstalled ? 'Remove' : '+ Mark Installed',
                                 style: TextStyle(
-                                  color: isInstalled ? Colors.redAccent : RecompTheme.cyan,
+                                  color: isInstalled ? Colors.redAccent : RecompTheme.primary(context),
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -2959,8 +3284,8 @@ class GameDetailScreen extends StatelessWidget {
                             width: double.infinity,
                             child: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: RecompTheme.cyan,
-                                foregroundColor: RecompTheme.midnight,
+                                backgroundColor: RecompTheme.primary(context),
+                                foregroundColor: RecompTheme.primaryText(context),
                                 padding: const EdgeInsets.symmetric(vertical: 12),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                               ),
@@ -2986,8 +3311,8 @@ class GameDetailScreen extends StatelessWidget {
                         Expanded(
                           child: ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: RecompTheme.cyan,
-                              foregroundColor: RecompTheme.midnight,
+                              backgroundColor: RecompTheme.primary(context),
+                              foregroundColor: RecompTheme.primaryText(context),
                               padding: const EdgeInsets.symmetric(vertical: 14),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                             ),
@@ -3018,26 +3343,26 @@ class GameDetailScreen extends StatelessWidget {
                   const SizedBox(height: 28),
 
                   // Overview / Blurb
-                  const Text('Overview', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
+                  Text('Overview', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
                   const SizedBox(height: 8),
                   Text(
                     game.blurb,
-                    style: const TextStyle(fontSize: 14, color: RecompTheme.muted, height: 1.5),
+                    style: TextStyle(fontSize: 14, color: RecompTheme.textMuted(context), height: 1.5),
                   ),
 
                   const SizedBox(height: 24),
 
                   // Features List
-                  const Text('Key Enhancements', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
+                  Text('Key Enhancements', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
                   const SizedBox(height: 10),
                   ...game.features.map(
                     (f) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Row(
                         children: [
-                          const Icon(Icons.check_circle_outline, color: RecompTheme.cyan, size: 18),
+                          Icon(Icons.check_circle_outline, color: RecompTheme.primary(context), size: 18),
                           const SizedBox(width: 10),
-                          Expanded(child: Text(f, style: const TextStyle(fontSize: 13, color: RecompTheme.frost))),
+                          Expanded(child: Text(f, style: TextStyle(fontSize: 13, color: RecompTheme.text(context)))),
                         ],
                       ),
                     ),
@@ -3049,19 +3374,19 @@ class GameDetailScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: RecompTheme.glass,
+                      color: RecompTheme.cardBg(context),
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: RecompTheme.line),
+                      border: Border.all(color: RecompTheme.border(context)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           'Required Original Files:',
-                          style: TextStyle(color: RecompTheme.cyan, fontWeight: FontWeight.w700, fontSize: 13),
+                          style: TextStyle(color: RecompTheme.primary(context), fontWeight: FontWeight.w700, fontSize: 13),
                         ),
                         const SizedBox(height: 4),
-                        Text(game.needs, style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.4)),
+                        Text(game.needs, style: TextStyle(color: RecompTheme.text(context), fontSize: 12, height: 1.4)),
                       ],
                     ),
                   ),
@@ -3072,19 +3397,19 @@ class GameDetailScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: RecompTheme.midnightAlt,
+                      color: RecompTheme.cardBg(context),
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: RecompTheme.line),
+                      border: Border.all(color: RecompTheme.border(context)),
                     ),
                     child: Column(
                       children: [
-                        _buildFactRow('Target System', game.originFormatted),
-                        _buildFactRow('Port Architecture', game.type),
-                        _buildFactRow('Min Android', game.minAndroid),
-                        _buildFactRow('Input Scheme', game.touchSupported ? 'Touch + Physical Gamepad' : 'Physical Gamepad Only'),
-                        _buildFactRow('Graphics Renderer', game.graphicsBackend),
-                        _buildFactRow('Target Framerate', '${game.fpsTarget} FPS'),
-                        _buildFactRow('Version', game.version),
+                        _buildFactRow(context, 'Target System', game.originFormatted),
+                        _buildFactRow(context, 'Port Architecture', game.type),
+                        _buildFactRow(context, 'Min Android', game.minAndroid),
+                        _buildFactRow(context, 'Input Scheme', game.touchSupported ? 'Touch + Physical Gamepad' : 'Physical Gamepad Only'),
+                        _buildFactRow(context, 'Graphics Renderer', game.graphicsBackend),
+                        _buildFactRow(context, 'Target Framerate', '${game.fpsTarget} FPS'),
+                        _buildFactRow(context, 'Version', game.version),
                       ],
                     ),
                   ),
@@ -3097,14 +3422,14 @@ class GameDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFactRow(String key, String value) {
+  Widget _buildFactRow(BuildContext context, String key, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(key, style: const TextStyle(color: RecompTheme.muted, fontSize: 12)),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.w700, color: Colors.white, fontSize: 12)),
+          Text(key, style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
+          Text(value, style: TextStyle(fontWeight: FontWeight.w700, color: RecompTheme.text(context), fontSize: 12)),
         ],
       ),
     );
@@ -3122,11 +3447,28 @@ class GameSearchDelegate extends SearchDelegate<RecompGame?> {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
+    final isLight = RecompTheme.isLight(context);
+    if (isLight) {
+      return ThemeData.light().copyWith(
+        scaffoldBackgroundColor: const Color(0xFFF8FAFC),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          iconTheme: IconThemeData(color: Color(0xFF0F172A)),
+          titleTextStyle: TextStyle(color: Color(0xFF0F172A), fontSize: 18),
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          hintStyle: TextStyle(color: Color(0xFF64748B)),
+          border: InputBorder.none,
+        ),
+      );
+    }
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: RecompTheme.midnight,
       appBarTheme: const AppBarTheme(
         backgroundColor: RecompTheme.midnightAlt,
         elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         hintStyle: TextStyle(color: RecompTheme.muted),
@@ -3149,12 +3491,12 @@ class GameSearchDelegate extends SearchDelegate<RecompGame?> {
   }
 
   @override
-  Widget buildResults(BuildContext context) => _buildSearchResults();
+  Widget buildResults(BuildContext context) => _buildSearchResults(context);
 
   @override
-  Widget buildSuggestions(BuildContext context) => _buildSearchResults();
+  Widget buildSuggestions(BuildContext context) => _buildSearchResults(context);
 
-  Widget _buildSearchResults() {
+  Widget _buildSearchResults(BuildContext context) {
     final q = query.trim().toLowerCase();
     final results = q.isEmpty
         ? []
@@ -3166,11 +3508,11 @@ class GameSearchDelegate extends SearchDelegate<RecompGame?> {
           }).toList();
 
     if (q.isEmpty) {
-      return const Center(child: Text('Search 133+ Android recompilations...', style: TextStyle(color: RecompTheme.muted)));
+      return Center(child: Text('Search 371+ Android recompilations...', style: TextStyle(color: RecompTheme.textMuted(context))));
     }
 
     if (results.isEmpty) {
-      return Center(child: Text('No results for "$query"', style: const TextStyle(color: RecompTheme.muted)));
+      return Center(child: Text('No results for "$query"', style: TextStyle(color: RecompTheme.textMuted(context))));
     }
 
     return ListView.builder(
@@ -3180,10 +3522,22 @@ class GameSearchDelegate extends SearchDelegate<RecompGame?> {
         return ListTile(
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(6),
-            child: Image.network(g.cover, width: 40, height: 55, fit: BoxFit.cover, headers: const {'User-Agent': 'Mozilla/5.0 (Linux; Android 14)'}),
+            child: Image.network(
+              g.cover,
+              width: 40,
+              height: 55,
+              fit: BoxFit.cover,
+              headers: const {'User-Agent': 'Mozilla/5.0 (Linux; Android 14)'},
+              errorBuilder: (_, __, ___) => Container(
+                width: 40,
+                height: 55,
+                color: RecompTheme.isLight(context) ? const Color(0xFFE2E8F0) : RecompTheme.midnightAlt,
+                child: Icon(Icons.videogame_asset, color: RecompTheme.textMuted(context), size: 24),
+              ),
+            ),
           ),
-          title: Text(g.name, style: const TextStyle(fontWeight: FontWeight.w700)),
-          subtitle: Text('${g.originFormatted} • ${g.type}'),
+          title: Text(g.name, style: TextStyle(fontWeight: FontWeight.w700, color: RecompTheme.text(context))),
+          subtitle: Text('${g.originFormatted} • ${g.type}', style: TextStyle(color: RecompTheme.textMuted(context))),
           onTap: () {
             close(context, g);
             onSelect(g);

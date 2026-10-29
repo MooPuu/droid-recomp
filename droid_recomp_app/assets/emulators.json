@@ -35,7 +35,7 @@
       "system_name": "Sony PlayStation 2",
       "developer": "Tahlreth",
       "version": "v1.5-3668 (Alpha)",
-      "icon": "https://raw.githubusercontent.com/Jaffacakelover/emulator-icons-svg/master/AetherSX2%20-%20icon.svg",
+      "icon": "https://archive.org/services/img/aethersx2",
       "description": "The landmark original alpha release of AetherSX2 that revolutionized PlayStation 2 emulation on Android. Delivered full 60 FPS performance in Shadow of the Colossus, Burnout 3, and God of War on ARM64.",
       "features": [
         "Legendary PCSX2-derived recompiler for ARM64",
@@ -386,7 +386,7 @@
       "system_name": "Sony PlayStation Portable",
       "developer": "Henrik Rydgård",
       "version": "v1.18.1",
-      "icon": "https://raw.githubusercontent.com/Jaffacakelover/emulator-icons-svg/master/PPSSPP%20Gold.svg",
+      "icon": "https://play-lh.googleusercontent.com/55DU6Ue1AKtzDsQWvsasyxXDASCE3vA7FebJm_8JW6O8pYi7ScPXGtqsvU0CRh7Tfa4sQPUMYdFKGAwChVR-PrM=s180-rw",
       "description": "The official premium supporter edition of PPSSPP on the Google Play Store. Identical feature set to PPSSPP with a prestigious gold icon, directly supporting Henrik Rydgård's decade of full-time emulator development.",
       "features": [
         "Directly supports ongoing PPSSPP open-source development",
