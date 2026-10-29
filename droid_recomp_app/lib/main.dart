@@ -358,6 +358,9 @@ class EmulatorApp {
   final String minAndroid;
   final String graphicsBackend;
   final bool turnipRecommended;
+  final bool isPaid;
+  final String price;
+  final String license;
   final String apkUrl;
   final String repoUrl;
   final String obtainiumUrl;
@@ -376,6 +379,9 @@ class EmulatorApp {
     required this.minAndroid,
     required this.graphicsBackend,
     required this.turnipRecommended,
+    required this.isPaid,
+    required this.price,
+    required this.license,
     required this.apkUrl,
     required this.repoUrl,
     required this.obtainiumUrl,
@@ -396,6 +402,9 @@ class EmulatorApp {
       minAndroid: json['min_android'] ?? 'Android 8.0+',
       graphicsBackend: json['graphics_backend'] ?? 'Vulkan 1.3',
       turnipRecommended: json['turnip_recommended'] ?? false,
+      isPaid: json['is_paid'] ?? false,
+      price: json['price'] ?? (json['is_paid'] == true ? 'Paid' : 'Free'),
+      license: json['license'] ?? (json['is_paid'] == true ? 'Commercial' : 'Free / Open Source'),
       apkUrl: json['apk_url'] ?? '',
       repoUrl: json['repo_url'] ?? '',
       obtainiumUrl: json['obtainium_url'] ?? '',
@@ -1367,16 +1376,19 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
 
   final List<Map<String, String>> _categories = const [
     {'id': 'all', 'label': 'All Emulators'},
+    {'id': 'free', 'label': '🎁 Free Only'},
+    {'id': 'paid', 'label': '💎 Paid / Pro'},
     {'id': 'ps2', 'label': 'PlayStation 2'},
     {'id': 'switch', 'label': 'Nintendo Switch'},
+    {'id': 'pc_win', 'label': 'PC & Translation'},
+    {'id': 'engines_mobile', 'label': 'Engines & Mobile'},
     {'id': 'gc_wii', 'label': 'GameCube & Wii'},
     {'id': '3ds', 'label': 'Nintendo 3DS'},
-    {'id': 'psp', 'label': 'PSP'},
-    {'id': 'ps_vita', 'label': 'PS Vita'},
-    {'id': 'ps1', 'label': 'PlayStation 1'},
-    {'id': 'pc_win', 'label': 'PC / Windows'},
     {'id': 'nds', 'label': 'Nintendo DS'},
-    {'id': 'gba_snes', 'label': 'GBA & SNES'},
+    {'id': 'psp_vita', 'label': 'PSP & PS Vita'},
+    {'id': 'ps1', 'label': 'PlayStation 1'},
+    {'id': 'dc_saturn', 'label': 'Dreamcast & Saturn'},
+    {'id': 'classic_2d', 'label': 'GBA / SNES / N64'},
     {'id': 'multi', 'label': 'Multi-System'},
     {'id': 'drivers', 'label': '⚡ Turnip Drivers'},
   ];
@@ -1455,6 +1467,18 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
               spacing: 8,
               runSpacing: 6,
               children: [
+                Chip(
+                  label: Text(emu.isPaid ? emu.price : 'Free', style: TextStyle(fontSize: 11, color: emu.isPaid ? const Color(0xFFB45309) : const Color(0xFF047857), fontWeight: FontWeight.w800)),
+                  backgroundColor: emu.isPaid ? const Color(0x33F59E0B) : const Color(0x3310B981),
+                  padding: EdgeInsets.zero,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                Chip(
+                  label: Text(emu.license, style: const TextStyle(fontSize: 11, color: RecompTheme.frost)),
+                  backgroundColor: RecompTheme.glass,
+                  padding: EdgeInsets.zero,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
                 Chip(
                   label: Text(emu.category, style: const TextStyle(fontSize: 11, color: RecompTheme.midnight, fontWeight: FontWeight.w800)),
                   backgroundColor: RecompTheme.cyan,
@@ -1536,13 +1560,16 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                   Expanded(
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: RecompTheme.cyan,
-                        foregroundColor: RecompTheme.midnight,
+                        backgroundColor: emu.isPaid ? const Color(0xFFF59E0B) : RecompTheme.cyan,
+                        foregroundColor: emu.isPaid ? const Color(0xFF0B1220) : RecompTheme.midnight,
                         padding: const EdgeInsets.symmetric(vertical: 13),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
-                      icon: const Icon(Icons.download, size: 18),
-                      label: const Text('Download APK', style: TextStyle(fontWeight: FontWeight.w900)),
+                      icon: Icon(emu.isPaid ? Icons.shopping_bag : Icons.download, size: 18),
+                      label: Text(
+                        emu.isPaid ? (emu.apkUrl.contains('google.com') ? 'Google Play' : 'Get App') : 'Download APK',
+                        style: const TextStyle(fontWeight: FontWeight.w900),
+                      ),
                       onPressed: () => launchUrl(Uri.parse(emu.apkUrl), mode: LaunchMode.externalApplication),
                     ),
                   ),
@@ -1580,8 +1607,22 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
   @override
   Widget build(BuildContext context) {
     var filtered = widget.emulators.where((e) {
-      if (_selectedSystem != 'all' && e.system != _selectedSystem) {
-        return false;
+      if (_selectedSystem != 'all') {
+        if (_selectedSystem == 'free') {
+          if (e.isPaid) return false;
+        } else if (_selectedSystem == 'paid') {
+          if (!e.isPaid) return false;
+        } else if (_selectedSystem == 'psp_vita') {
+          if (e.system != 'psp' && e.system != 'ps_vita') return false;
+        } else if (_selectedSystem == 'classic_2d') {
+          if (e.system != 'classic_2d') return false;
+        } else if (_selectedSystem == 'dc_saturn') {
+          if (e.system != 'dc_saturn') return false;
+        } else if (_selectedSystem == 'engines_mobile') {
+          if (e.system != 'engines_mobile') return false;
+        } else if (e.system != _selectedSystem) {
+          return false;
+        }
       }
       if (_searchQuery.isNotEmpty) {
         final q = _searchQuery.toLowerCase();
@@ -1589,7 +1630,9 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
         final matchesSys = e.systemName.toLowerCase().contains(q);
         final matchesDev = e.developer.toLowerCase().contains(q);
         final matchesDesc = e.description.toLowerCase().contains(q);
-        if (!matchesName && !matchesSys && !matchesDev && !matchesDesc) {
+        final matchesLicense = e.license.toLowerCase().contains(q);
+        final matchesPrice = e.price.toLowerCase().contains(q);
+        if (!matchesName && !matchesSys && !matchesDev && !matchesDesc && !matchesLicense && !matchesPrice) {
           return false;
         }
       }
@@ -1716,6 +1759,23 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                             Container(
                                               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                                               decoration: BoxDecoration(
+                                                color: emu.isPaid ? const Color(0x33F59E0B) : const Color(0x3310B981),
+                                                borderRadius: BorderRadius.circular(4),
+                                                border: Border.all(color: emu.isPaid ? const Color(0x66F59E0B) : const Color(0x6610B981)),
+                                              ),
+                                              child: Text(
+                                                emu.isPaid ? emu.price : 'Free',
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w800,
+                                                  color: emu.isPaid ? const Color(0xFFF59E0B) : const Color(0xFF10B981),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 4),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                              decoration: BoxDecoration(
                                                 color: Colors.white.withOpacity(0.08),
                                                 borderRadius: BorderRadius.circular(4),
                                               ),
@@ -1758,14 +1818,17 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                     Expanded(
                                       child: ElevatedButton.icon(
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: RecompTheme.cyan,
-                                          foregroundColor: RecompTheme.midnight,
+                                          backgroundColor: emu.isPaid ? const Color(0xFFF59E0B) : RecompTheme.cyan,
+                                          foregroundColor: emu.isPaid ? const Color(0xFF0B1220) : RecompTheme.midnight,
                                           padding: const EdgeInsets.symmetric(vertical: 8),
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                           elevation: 2,
                                         ),
-                                        icon: const Icon(Icons.download, size: 16),
-                                        label: const Text('Download APK', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12)),
+                                        icon: Icon(emu.isPaid ? Icons.shopping_bag : Icons.download, size: 16),
+                                        label: Text(
+                                          emu.isPaid ? (emu.apkUrl.contains('google.com') ? 'Google Play' : 'Get App') : 'Download APK',
+                                          style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12),
+                                        ),
                                         onPressed: () => launchUrl(Uri.parse(emu.apkUrl), mode: LaunchMode.externalApplication),
                                       ),
                                     ),

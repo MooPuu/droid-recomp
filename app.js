@@ -641,12 +641,22 @@
   function renderEmulatorsView() {
     let list = [...emulatorsData];
 
-    // Filter by System / Category
+    // Filter by System / Category / Price
     if (emulatorFilter !== 'all') {
-      if (emulatorFilter === 'psp_vita') {
+      if (emulatorFilter === 'free') {
+        list = list.filter(e => !e.is_paid);
+      } else if (emulatorFilter === 'paid') {
+        list = list.filter(e => e.is_paid);
+      } else if (emulatorFilter === 'psp_vita') {
         list = list.filter(e => e.system === 'psp' || e.system === 'ps_vita');
       } else if (emulatorFilter === 'ds_gba') {
-        list = list.filter(e => e.system === 'nds' || e.system === 'gba_snes');
+        list = list.filter(e => e.system === 'nds' || e.system === 'classic_2d');
+      } else if (emulatorFilter === 'engines_mobile') {
+        list = list.filter(e => e.system === 'engines_mobile');
+      } else if (emulatorFilter === 'dc_saturn') {
+        list = list.filter(e => e.system === 'dc_saturn');
+      } else if (emulatorFilter === 'classic_2d') {
+        list = list.filter(e => e.system === 'classic_2d');
       } else if (emulatorFilter === 'multi') {
         list = list.filter(e => e.system === 'multi');
       } else if (emulatorFilter === 'drivers') {
@@ -664,21 +674,28 @@
         e.system_name.toLowerCase().includes(q) ||
         e.developer.toLowerCase().includes(q) ||
         (e.description && e.description.toLowerCase().includes(q)) ||
-        (e.features && e.features.some(f => f.toLowerCase().includes(q)))
+        (e.features && e.features.some(f => f.toLowerCase().includes(q))) ||
+        (e.license && e.license.toLowerCase().includes(q)) ||
+        (e.price && e.price.toLowerCase().includes(q))
       );
     }
 
     const categories = [
       { id: 'all', label: `All Emulators (${emulatorsData.length})` },
+      { id: 'free', label: '🎁 Free Only' },
+      { id: 'paid', label: '💎 Paid / Pro' },
       { id: 'ps2', label: 'PlayStation 2' },
       { id: 'switch', label: 'Nintendo Switch' },
+      { id: 'pc_win', label: 'PC & Translation' },
+      { id: 'engines_mobile', label: 'Engines & Mobile (JoiPlay/iOS)' },
       { id: 'gc_wii', label: 'GameCube & Wii' },
       { id: '3ds', label: 'Nintendo 3DS' },
+      { id: 'nds', label: 'Nintendo DS' },
       { id: 'psp_vita', label: 'PSP & Vita' },
       { id: 'ps1', label: 'PlayStation 1' },
-      { id: 'pc_win', label: 'PC / Windows' },
-      { id: 'ds_gba', label: 'DS / GBA / SNES' },
-      { id: 'multi', label: 'Multi-System' },
+      { id: 'dc_saturn', label: 'Dreamcast & Saturn' },
+      { id: 'classic_2d', label: 'GBA / SNES / N64' },
+      { id: 'multi', label: 'Frontends & Multi' },
       { id: 'drivers', label: '⚡ Turnip Drivers' }
     ];
 
@@ -728,6 +745,9 @@
                   <div class="emulator-name-row">
                     <span class="emulator-name">${escapeHtml(emu.name)}</span>
                     <span class="emulator-version-chip">${escapeHtml(emu.version)}</span>
+                    ${emu.is_paid 
+                      ? `<span class="tag-paid">${escapeHtml(emu.price || 'Paid')}</span>` 
+                      : `<span class="tag-free">Free</span>`}
                   </div>
                   <div class="emulator-system-label">${escapeHtml(emu.system_name)}</div>
                   <div class="emulator-author">by ${escapeHtml(emu.developer)}</div>
@@ -737,6 +757,7 @@
               <div class="emulator-tags" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
                 <span class="tag tag-origin">${escapeHtml(emu.category)}</span>
                 <span class="tag">${escapeHtml(emu.graphics_backend.split('/')[0].trim())}</span>
+                <span class="tag ${emu.is_paid ? 'tag-price-paid' : 'tag-price-free'}">${escapeHtml(emu.license || (emu.is_paid ? 'Paid' : 'Free'))}</span>
                 ${emu.turnip_recommended ? `<span class="tag tag-turnip">⚡ Turnip Rec.</span>` : ''}
               </div>
 
@@ -758,9 +779,9 @@
 
               <div class="emulator-actions">
                 ${emu.apk_url ? `
-                  <a class="btn-emu-apk" href="${emu.apk_url}" target="_blank" rel="noopener" title="Download Release APK">
+                  <a class="btn-emu-apk ${emu.is_paid ? 'btn-emu-paid' : ''}" href="${emu.apk_url}" target="_blank" rel="noopener" title="${emu.is_paid ? 'Get from Store / Official Site' : 'Download Release APK'}">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span>Download APK</span>
+                    <span>${emu.is_paid ? (emu.apk_url.includes('google.com') ? 'Google Play' : 'Get App') : 'Download APK'}</span>
                   </a>
                 ` : ''}
                 ${emu.obtainium_url ? `

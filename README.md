@@ -11,7 +11,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Android%208.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://moopuu.github.io/droid-recomp/)
 [![License](https://img.shields.io/badge/License-MIT-377BB6?style=for-the-badge)](LICENSE)
 [![Catalog Size](https://img.shields.io/badge/Verified%20Recomps-345%2B%20Playable-34F2E8?style=for-the-badge)](catalog.json)
-[![Emulators Hub](https://img.shields.io/badge/Emulators-21%20Verified%20Suites-34F2E8?style=for-the-badge)](emulators.json)
+[![Emulators Hub](https://img.shields.io/badge/Emulators-50%20Verified%20Suites-34F2E8?style=for-the-badge)](emulators.json)
 [![BYOR Legal](https://img.shields.io/badge/Zero%20ROMs-100%25%20Legal%20BYOR-52B788?style=for-the-badge)](#-legal-compliance--byor-architecture)
 [![Themes](https://img.shields.io/badge/Themes-Midnight%20%7C%20Light%20%7C%20OLED-377BB6?style=for-the-badge)](https://moopuu.github.io/droid-recomp/)
 [![Obtainium Ready](https://img.shields.io/badge/Sync-Obtainium%20Ready-F77F00?style=for-the-badge)](https://github.com/ImranR98/Obtainium)
@@ -30,7 +30,7 @@
 
 **DroidRecomp** is a high-performance web catalog, launcher, and native Android application inspired by the clean, cyberpunk aesthetic of [RecompLauncher](https://recomplauncher.com/). While traditional emulators translate machine instructions on the fly with massive performance hits, **static recompilations and decompilations** recompile original game machine code into native C/C++ or compile cleanly from reverse-engineered source code.
 
-DroidRecomp indexes **345 verified native Android ports and static recompilations** and **21 top open-source Android emulators & Turnip drivers** with comprehensive setup guides, hardware compatibility flags, triple-theme switching (Midnight Slate, Cyber Frost Light, and Pure AMOLED Black), an integrated 1-tap game launcher, and instant deep-linking into the **Obtainium** app manager for seamless background updates.
+DroidRecomp indexes **345 verified native Android ports and static recompilations** and **50 top Android emulators (Free & Paid) + Turnip drivers** with comprehensive setup guides, hardware compatibility flags, triple-theme switching (Midnight Slate, Cyber Frost Light, and Pure AMOLED Black), an integrated 1-tap game launcher, and instant deep-linking into the **Obtainium** app manager for seamless background updates.
 
 ---
 

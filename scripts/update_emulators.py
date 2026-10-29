@@ -1,0 +1,1443 @@
+#!/usr/bin/env python3
+"""
+update_emulators.py
+Assembles and updates the complete Android Emulators Hub catalog for DroidRecomp.
+Outputs:
+  - emulators.json
+  - emulators.js
+  - droid_recomp_app/assets/emulators.json
+"""
+import json
+import os
+
+emulators = [
+    # =========================================================================
+    # PLAYSTATION 2 (PS2)
+    # =========================================================================
+    {
+        "id": "nethersx2",
+        "name": "NetherSX2",
+        "system": "ps2",
+        "system_name": "Sony PlayStation 2",
+        "developer": "Trixarian & Community",
+        "version": "v1.9-4248",
+        "icon": "https://github.com/Trixarian.png",
+        "description": "The definitive PlayStation 2 emulator for Android, building upon AetherSX2. Removes intrusive ads and regressions while providing updated widescreen patches, controller mapping, and custom Turnip GPU driver support.",
+        "features": [
+            "Flawless PS2 hardware & Emotion Engine emulation",
+            "Up to 4K internal resolution upscaling",
+            "Vulkan & OpenGL ES backends",
+            "Turnip Adreno custom GPU driver support",
+            "DualShock 2 pressure sensitivity mapping",
+            "Zero ads, telemetry, or Play Protect warnings"
+        ],
+        "min_android": "Android 8.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.2",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Community Patch",
+        "apk_url": "https://github.com/Trixarian/NetherSX2-patch/releases",
+        "repo_url": "https://github.com/Trixarian/NetherSX2-patch",
+        "obtainium_url": "obtainium://add/https://github.com/Trixarian/NetherSX2-patch",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "aethersx2",
+        "name": "AetherSX2 (Classic Alpha)",
+        "system": "ps2",
+        "system_name": "Sony PlayStation 2",
+        "developer": "Tahlreth",
+        "version": "v1.5-3668 (Alpha)",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "The landmark original alpha release of AetherSX2 that revolutionized PlayStation 2 emulation on Android. Delivered full 60 FPS performance in Shadow of the Colossus, Burnout 3, and God of War on ARM64.",
+        "features": [
+            "Legendary PCSX2-derived recompiler for ARM64",
+            "Vulkan rendering with multithreaded VU1",
+            "Internal resolution multiplier from 1x to 8x (4K+)",
+            "Integrated touch screen controls with tactile feedback",
+            "Save states, memory card management & cheat patches"
+        ],
+        "min_android": "Android 8.0+ (Snapdragon 845+ recommended)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.2",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Freeware Archive",
+        "apk_url": "https://archive.org/details/aethersx2_archive",
+        "repo_url": "https://archive.org/details/aethersx2_archive",
+        "obtainium_url": "",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "play-ps2",
+        "name": "Play! PS2 Emulator",
+        "system": "ps2",
+        "system_name": "Sony PlayStation 2",
+        "developer": "Jean-Philip Desjardins",
+        "version": "0.65+ Rolling",
+        "icon": "https://github.com/jpd002.png",
+        "description": "An experimental, open-source PlayStation 2 emulator written in pure C++ focusing on high-level emulation and extreme multi-platform portability without requiring a BIOS dump to boot.",
+        "features": [
+            "100% open source under the MIT License",
+            "No PS2 BIOS dump required to boot titles",
+            "Multi-platform architecture running on Android & PC",
+            "OpenGL ES and modern Vulkan graphics pipelines",
+            "Zero ads, telemetry, or commercial paywalls"
+        ],
+        "min_android": "Android 8.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.0",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (MIT)",
+        "apk_url": "https://purei.org/downloads.php",
+        "repo_url": "https://github.com/jpd002/Play-",
+        "obtainium_url": "obtainium://add/https://github.com/jpd002/Play-",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "damon-ps2-pro",
+        "name": "DamonPS2 / DamonSX2 Pro",
+        "system": "ps2",
+        "system_name": "Sony PlayStation 2",
+        "developer": "DamonPS2 Emulator Studio",
+        "version": "v6.0+ Pro",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Commercial closed-source PlayStation 2 emulator available on the Google Play Store. Highly controversial in the emulation community due to past PCSX2 GPL code disputes and heavy ads in the free edition. NetherSX2 is universally recommended instead.",
+        "features": [
+            "Hardware accelerated PS2 Emotion Engine execution",
+            "1080p / 2K rendering resolutions",
+            "Gamepad and multi-touch controller mapping",
+            "Notice: Heavy ads in free tier; in-app license required",
+            "Notice: Community strongly recommends NetherSX2 over Damon"
+        ],
+        "min_android": "Android 5.0+ (ARM64)",
+        "graphics_backend": "OpenGL ES 3.1 / Vulkan",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "$9.99 / In-App",
+        "license": "Commercial / Closed Source",
+        "apk_url": "https://play.google.com/store/apps/details?id=com.damonplay.damonps2.pro",
+        "repo_url": "https://play.google.com/store/apps/details?id=com.damonplay.damonps2.pro",
+        "obtainium_url": "",
+        "category": "Modern 3D"
+    },
+
+    # =========================================================================
+    # NINTENDO SWITCH
+    # =========================================================================
+    {
+        "id": "sudachi",
+        "name": "Sudachi",
+        "system": "switch",
+        "system_name": "Nintendo Switch",
+        "developer": "Jarrod Norwell",
+        "version": "v1.0.8+",
+        "icon": "https://github.com/jarrodnorwell.png",
+        "description": "Modern Nintendo Switch emulator for Android powered by ARM64 Native Code Execution (NCE). Features custom Turnip GPU driver loading, Docked 1080p and Handheld 720p scaling, and full controller calibration.",
+        "features": [
+            "Native Code Execution (NCE) on 64-bit ARM",
+            "Mesa Turnip custom driver switcher",
+            "Docked (1080p) & Handheld (720p) modes",
+            "Custom controller deadzone & rumble tuning",
+            "Amiibo dumping & file injection"
+        ],
+        "min_android": "Android 11.0+ (Snapdragon 8 Gen 1/2/3 recommended)",
+        "graphics_backend": "Vulkan 1.3",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://github.com/sudachi-emu/sudachi/releases",
+        "repo_url": "https://github.com/sudachi-emu/sudachi",
+        "obtainium_url": "obtainium://add/https://github.com/sudachi-emu/sudachi",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "skyline",
+        "name": "Skyline & Skyline Edge",
+        "system": "switch",
+        "system_name": "Nintendo Switch",
+        "developer": "Skyline Team (Mark, Bylaws, Lynx)",
+        "version": "Edge v69 / v0.0.3",
+        "icon": "https://github.com/skyline-emu.png",
+        "description": "Groundbreaking ARM-native Nintendo Switch emulator built from scratch for Android. Achieves incredible frame rates and battery efficiency on Snapdragon devices by executing Switch ARM64 instructions natively without JIT translation.",
+        "features": [
+            "Direct ARM64 hardware execution without dynamic recompilation overhead",
+            "Lightweight memory footprint & minimal battery drain",
+            "Custom Turnip Adreno GPU driver integration",
+            "On-screen customizable virtual controls and gamepad mapping",
+            "Remarkable performance in Celeste, Sonic Mania, Super Mario 3D World"
+        ],
+        "min_android": "Android 10.0+ (Snapdragon recommended)",
+        "graphics_backend": "Vulkan 1.3",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (MPL 2.0 Archive)",
+        "apk_url": "https://github.com/skyline-emu/skyline/releases",
+        "repo_url": "https://github.com/skyline-emu/skyline",
+        "obtainium_url": "",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "suyu",
+        "name": "Suyu",
+        "system": "switch",
+        "system_name": "Nintendo Switch",
+        "developer": "Suyu Team & Contributors",
+        "version": "v0.0.3+",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Open-source Nintendo Switch emulator continuation featuring improved UI, custom GPU driver management, controller profile saving, and stability enhancements for Android devices.",
+        "features": [
+            "Native Code Execution (NCE) for ARM64",
+            "Turnip Adreno custom GPU driver selection",
+            "In-game resolution multiplier (0.5x, 0.75x, 1x, 2x)",
+            "Controller mapping with deadzone and trigger threshold calibration",
+            "Clean ad-free interface"
+        ],
+        "min_android": "Android 11.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://git.suyu.dev/suyu/suyu/releases",
+        "repo_url": "https://git.suyu.dev/suyu/suyu",
+        "obtainium_url": "",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "yuzu-android",
+        "name": "Yuzu Android (Final Archive)",
+        "system": "switch",
+        "system_name": "Nintendo Switch",
+        "developer": "Team Yuzu",
+        "version": "Build 278 (Final)",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "The definitive final official release of Yuzu for Android before project discontinuation. Features full NCE ARM64 execution, custom Turnip driver support, local wireless multiplayer emulation, and motion controls.",
+        "features": [
+            "Native Code Execution (NCE) core",
+            "Mesa Turnip custom driver support",
+            "Docked / Handheld graphics modes",
+            "Full controller rumble & gyroscope emulation",
+            "Historic landmark in mobile console emulation"
+        ],
+        "min_android": "Android 11.0+ (Snapdragon 865+ recommended)",
+        "graphics_backend": "Vulkan 1.3",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source Archive (GPLv3)",
+        "apk_url": "https://archive.org/details/yuzu-android-apk-archive",
+        "repo_url": "https://archive.org/details/yuzu-android-apk-archive",
+        "obtainium_url": "",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "strato",
+        "name": "Strato",
+        "system": "switch",
+        "system_name": "Nintendo Switch",
+        "developer": "Strato Team",
+        "version": "In Development (Preview)",
+        "icon": "https://github.com/strato-emu.png",
+        "description": "Next-generation successor to the Skyline emulator, designed from the ground up for ARM-native Switch emulation on Android with expanded title compatibility and graphical fidelity.",
+        "features": [
+            "Direct ARM-to-ARM CPU execution",
+            "Custom Vulkan translation layer",
+            "Ultra-low latency controller input pipeline",
+            "Optimized for Snapdragon 8 Gen 2 / 8 Gen 3 handhelds"
+        ],
+        "min_android": "Android 11.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (MPL 2.0)",
+        "apk_url": "https://github.com/strato-emu/strato",
+        "repo_url": "https://github.com/strato-emu/strato",
+        "obtainium_url": "",
+        "category": "Modern 3D"
+    },
+
+    # =========================================================================
+    # GAMECUBE & WII
+    # =========================================================================
+    {
+        "id": "dolphin-official",
+        "name": "Dolphin Emulator",
+        "system": "gc_wii",
+        "system_name": "Nintendo GameCube & Wii",
+        "developer": "Dolphin Emulator Project",
+        "version": "2409 Rolling Release",
+        "icon": "https://github.com/dolphin-emu.png",
+        "description": "The gold-standard GameCube and Wii emulator for Android. Delivers ultra-smooth JIT recompilation, motion controls emulated via device gyroscope, RVZ compression support, and online multiplayer.",
+        "features": [
+            "Full GameCube & Wii library compatibility",
+            "Vulkan 1.3 & OpenGL ES backends",
+            "Custom Turnip driver loading on Snapdragon",
+            "Phone gyroscope motion controls emulation",
+            "Dual-stick gamepad auto-mapping",
+            "RVZ disc compression support"
+        ],
+        "min_android": "Android 9.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.2",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2+)",
+        "apk_url": "https://dolphin-emu.org/download/",
+        "repo_url": "https://github.com/dolphin-emu/dolphin/releases",
+        "obtainium_url": "obtainium://add/https://github.com/dolphin-emu/dolphin",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "dolphin-mmjr",
+        "name": "Dolphin MMJR & MMJR2",
+        "system": "gc_wii",
+        "system_name": "Nintendo GameCube & Wii",
+        "developer": "Bankaimaster999 & Lumince",
+        "version": "v2.0-17849",
+        "icon": "https://github.com/Bankaimaster999.png",
+        "description": "Performance-centric community modifications of Dolphin tailored specifically for Android handhelds (Retroid, Odin) and mid-range MediaTek Dimensity/Snapdragon SoCs with speed-hack presets.",
+        "features": [
+            "Aggressive performance optimizations for mid-tier chipsets",
+            "Quick-access performance hack menu",
+            "Widescreen 16:9 cheat toggles built-in",
+            "Tailored for Retroid Pocket 3+/4/4 Pro and AYN Odin",
+            "Vulkan and OpenGL rendering enhancements"
+        ],
+        "min_android": "Android 8.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.2",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2+)",
+        "apk_url": "https://github.com/Bankaimaster999/Dolphin-MMJR/releases",
+        "repo_url": "https://github.com/Bankaimaster999/Dolphin-MMJR",
+        "obtainium_url": "obtainium://add/https://github.com/Bankaimaster999/Dolphin-MMJR",
+        "category": "Modern 3D"
+    },
+
+    # =========================================================================
+    # NINTENDO 3DS
+    # =========================================================================
+    {
+        "id": "lime3ds",
+        "name": "Lime3DS",
+        "system": "3ds",
+        "system_name": "Nintendo 3DS",
+        "developer": "Lime3DS Team",
+        "version": "2118+",
+        "icon": "https://github.com/Lime3DS.png",
+        "description": "Active open-source continuation of the Citra 3DS emulator. Adds Vulkan rendering fixes, custom Adreno Turnip GPU driver support, Circle Pad Pro mapping, and stereoscopic 3D post-processing.",
+        "features": [
+            "Active fork maintaining the Citra Android codebase",
+            "Mesa Turnip custom driver support",
+            "Dual-screen layout customization (Side-by-side / Vertical)",
+            "Texture filtering and post-processing shaders",
+            "Amiibo dumping & file loading"
+        ],
+        "min_android": "Android 9.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.2",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2+)",
+        "apk_url": "https://github.com/Lime3DS/Lime3DS/releases",
+        "repo_url": "https://github.com/Lime3DS/Lime3DS",
+        "obtainium_url": "obtainium://add/https://github.com/Lime3DS/Lime3DS",
+        "category": "Handhelds"
+    },
+    {
+        "id": "citra-mmj",
+        "name": "Citra MMJ",
+        "system": "3ds",
+        "system_name": "Nintendo 3DS",
+        "developer": "weihuoya",
+        "version": "v2024 StorageAccess",
+        "icon": "https://github.com/weihuoya.png",
+        "description": "Legendary speed-optimized fork of Citra for Android by developer weihuoya. Features resolution scaling hacks, custom on-screen button layouts, and smooth 60 FPS on mid-range hardware.",
+        "features": [
+            "Industry-leading 3DS performance on mid-range chips",
+            "Custom touch layout editor with draggable buttons",
+            "Resolution scale hacks up to 4x",
+            "Storage Access Framework (SAF) integration",
+            "Extremely battery-efficient JIT CPU compiler"
+        ],
+        "min_android": "Android 8.0+ (ARM64)",
+        "graphics_backend": "OpenGL ES 3.2 / Vulkan",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2)",
+        "apk_url": "https://github.com/weihuoya/citra/releases",
+        "repo_url": "https://github.com/weihuoya/citra",
+        "obtainium_url": "obtainium://add/https://github.com/weihuoya/citra",
+        "category": "Handhelds"
+    },
+
+    # =========================================================================
+    # SONY PSP & PS VITA
+    # =========================================================================
+    {
+        "id": "ppsspp",
+        "name": "PPSSPP (Free)",
+        "system": "psp",
+        "system_name": "Sony PlayStation Portable",
+        "developer": "Henrik Rydgård",
+        "version": "v1.18.1",
+        "icon": "https://github.com/hrydgard.png",
+        "description": "The most polished and high-performance PSP emulator on Android. Runs virtually the entire PSP commercial catalog at full 60 FPS even on entry-level hardware with HD upscaling and texture packs.",
+        "features": [
+            "Flawless 60 FPS on nearly all hardware",
+            "Up to 10x PSP internal resolution upscaling",
+            "Vulkan, OpenGL ES, and Software renderers",
+            "Custom HD texture replacement packs",
+            "Cross-platform save states and cheats"
+        ],
+        "min_android": "Android 5.0+ (ARM64 / ARMv7)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.1",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2+)",
+        "apk_url": "https://github.com/hrydgard/ppsspp/releases",
+        "repo_url": "https://github.com/hrydgard/ppsspp",
+        "obtainium_url": "obtainium://add/https://github.com/hrydgard/ppsspp",
+        "category": "Handhelds"
+    },
+    {
+        "id": "ppsspp-gold",
+        "name": "PPSSPP Gold",
+        "system": "psp",
+        "system_name": "Sony PlayStation Portable",
+        "developer": "Henrik Rydgård",
+        "version": "v1.18.1",
+        "icon": "https://github.com/hrydgard.png",
+        "description": "The official premium supporter edition of PPSSPP on the Google Play Store. Identical feature set to PPSSPP with a prestigious gold icon, directly supporting Henrik Rydgård's decade of full-time emulator development.",
+        "features": [
+            "Directly supports ongoing PPSSPP open-source development",
+            "Exclusive gold app icon and prestige branding",
+            "Zero ads, tracking, or telemetry",
+            "Full feature parity with standard PPSSPP builds",
+            "Available directly through the Google Play Store"
+        ],
+        "min_android": "Android 5.0+ (ARM64 / ARMv7)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.1",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "$4.99",
+        "license": "Commercial / Supporter Edition",
+        "apk_url": "https://play.google.com/store/apps/details?id=org.ppsspp.ppssppgold",
+        "repo_url": "https://github.com/hrydgard/ppsspp",
+        "obtainium_url": "",
+        "category": "Handhelds"
+    },
+    {
+        "id": "vita3k",
+        "name": "Vita3K Android",
+        "system": "ps_vita",
+        "system_name": "Sony PlayStation Vita",
+        "developer": "Macdu & Vita3K Team",
+        "version": "Release v12+",
+        "icon": "https://github.com/Vita3K.png",
+        "description": "The world's first experimental open-source PlayStation Vita emulator for Android. Boots commercial Vita PSN and cartridge dumps with custom Turnip GPU driver support and front/rear touchscreen mapping.",
+        "features": [
+            "Boots commercial PlayStation Vita game dumps",
+            "Mesa Turnip custom driver support",
+            "Front and rear touchscreen mapping on Android",
+            "Custom internal resolution upscaling (2x, 3x)",
+            "Motion controls emulation via gyroscope"
+        ],
+        "min_android": "Android 8.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2)",
+        "apk_url": "https://github.com/Vita3K/Vita3K-Android/releases",
+        "repo_url": "https://github.com/Vita3K/Vita3K-Android",
+        "obtainium_url": "obtainium://add/https://github.com/Vita3K/Vita3K-Android",
+        "category": "Handhelds"
+    },
+
+    # =========================================================================
+    # PC / WINDOWS & TRANSLATION LAYERS
+    # =========================================================================
+    {
+        "id": "winlator",
+        "name": "Winlator",
+        "system": "pc_win",
+        "system_name": "PC / Windows (x86_64)",
+        "developer": "Bruno Freitas (brunodev85)",
+        "version": "v8.0 Official / Frost Mod",
+        "icon": "https://github.com/brunodev85.png",
+        "description": "The most user-friendly x86/x86_64 Windows PC emulator for Android powered by Wine and Box64. Features container management, direct DirectX 9/10/11 translation via DXVK 2.x, and built-in Turnip driver loader.",
+        "features": [
+            "Zero root required; completely sandboxed containers",
+            "Box64 dynarec for x86_64 instruction translation",
+            "DXVK 2.x DirectX 9/10/11 to Vulkan translation",
+            "Integrated Mesa Turnip Adreno GPU driver selector",
+            "On-screen customizable virtual gamepads and mouse trackpad"
+        ],
+        "min_android": "Android 10.0+ (Snapdragon 845+ recommended)",
+        "graphics_backend": "Vulkan 1.3 / DXVK / D8VK",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source",
+        "apk_url": "https://github.com/brunodev85/winlator/releases",
+        "repo_url": "https://github.com/brunodev85/winlator",
+        "obtainium_url": "obtainium://add/https://github.com/brunodev85/winlator",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "mobox",
+        "name": "Mobox",
+        "system": "pc_win",
+        "system_name": "PC / Windows (x86_64)",
+        "developer": "olegos2",
+        "version": "Wow64 Box64",
+        "icon": "https://github.com/olegos2.png",
+        "description": "Highly optimized Termux-based PC compatibility layer designed to achieve maximum framerates in demanding 3D PC games (GTA V, Skyrim, Fallout 4) via custom dynarec tuning and lightweight Wow64.",
+        "features": [
+            "Fastest execution speed for 3D DirectX titles",
+            "Custom tuned Box64 dynarec variables",
+            "Wine-GE / Proton compatibility layers",
+            "Turnip driver integration for Snapdragon Adreno GPUs",
+            "InputBridge virtual touch controller support"
+        ],
+        "min_android": "Android 10.0+ (Snapdragon 870+ recommended)",
+        "graphics_backend": "Vulkan 1.3 / DXVK / VirGL",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source",
+        "apk_url": "https://github.com/olegos2/mobox",
+        "repo_url": "https://github.com/olegos2/mobox",
+        "obtainium_url": "obtainium://add/https://github.com/olegos2/mobox",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "gamenative",
+        "name": "GameNative",
+        "system": "pc_win",
+        "system_name": "PC / Windows & Steam Sync",
+        "developer": "Utkarsh Dalal (utkarshdalal)",
+        "version": "v1.0.0+",
+        "icon": "https://github.com/utkarshdalal.png",
+        "description": "Open-source PC translation runner for Android evolved from Pluvia. Directly connects to your Steam, Epic Games, GOG, and Amazon accounts to download, install, and execute your purchased PC games locally with cloud saves.",
+        "features": [
+            "Local execution on ARM hardware via PC translation (no cloud streaming lag)",
+            "Direct login to Steam, Epic Games, GOG, and Amazon Games",
+            "Full cloud save synchronization across mobile and desktop",
+            "Community-optimized per-game settings and patches",
+            "Customizable on-screen touch controls & physical gamepad support"
+        ],
+        "min_android": "Android 10.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / DXVK / Box64",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://github.com/utkarshdalal/GameNative/releases",
+        "repo_url": "https://github.com/utkarshdalal/GameNative",
+        "obtainium_url": "obtainium://add/https://github.com/utkarshdalal/GameNative",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "gamehub",
+        "name": "GameHub & GameHub Lite",
+        "system": "pc_win",
+        "system_name": "PC / Windows & Cloud Suite",
+        "developer": "GameHub Studio / Xiaoji",
+        "version": "v3.2+ / Lite Edition",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "All-in-one PC gaming launcher and compatibility frontend for Android. GameHub Lite delivers a streamlined, lightweight interface optimized for lower-end and mid-range devices with GPU driver configuration and controller mapping.",
+        "features": [
+            "Hybrid local PC translation and cloud gaming launcher",
+            "GameHub Lite optimized for reduced RAM and CPU overhead",
+            "Built-in GPU driver configuration settings for mobile chipsets",
+            "Controller mapping and support for Bluetooth/Type-C gamepads",
+            "Storefront integration and retro ROM library browser"
+        ],
+        "min_android": "Android 8.0+ (ARM64)",
+        "graphics_backend": "Vulkan / OpenGL ES / Cloud",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free / Freemium",
+        "license": "Freeware / Community",
+        "apk_url": "https://github.com/GameHub-App",
+        "repo_url": "https://github.com/GameHub-App",
+        "obtainium_url": "",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "box64droid",
+        "name": "Box64Droid",
+        "system": "pc_win",
+        "system_name": "PC / Windows (x86_64)",
+        "developer": "Ilya114",
+        "version": "v2.3+",
+        "icon": "https://github.com/Ilya114.png",
+        "description": "Native Box64 + Wine runner script for Termux. Provides pure 64-bit x86 translation on Android with DXVK, D8VK, and Turnip driver integration for hardcore PC gaming on Android.",
+        "features": [
+            "Pure 64-bit Box64 translation layer",
+            "Latest Wine and Proton compatibility layers",
+            "DXVK and D8VK Vulkan translation",
+            "Adreno Turnip driver switcher",
+            "Extremely lightweight execution overhead"
+        ],
+        "min_android": "Android 10.0+ (Snapdragon 855+ recommended)",
+        "graphics_backend": "Vulkan 1.3 / DXVK",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source",
+        "apk_url": "https://github.com/Ilya114/Box64Droid/releases",
+        "repo_url": "https://github.com/Ilya114/Box64Droid",
+        "obtainium_url": "obtainium://add/https://github.com/Ilya114/Box64Droid",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "magic-dosbox",
+        "name": "Magic DOSBox (Free & Pro)",
+        "system": "pc_win",
+        "system_name": "MS-DOS & Windows 95/98",
+        "developer": "bruenor",
+        "version": "v1.0.86 (Pro)",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "The ultimate MS-DOS and early Windows 95/98 PC game emulator for Android. Offers fully customizable on-screen widgets, joystick/mouse/keyboard emulation, soundfont support, and IPX multiplayer.",
+        "features": [
+            "Custom on-screen widgets: buttons, D-pad, mouse wheel, hotkeys",
+            "Full MS-DOS, Windows 3.11, and Windows 95/98 gaming support",
+            "Roland MT-32 and General MIDI soundfont emulation",
+            "IPX network multiplayer emulation",
+            "Free Lite edition and full-featured Pro edition on Google Play"
+        ],
+        "min_android": "Android 5.0+",
+        "graphics_backend": "OpenGL ES 2.0/3.0 / Software",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "Free Lite / $3.99 Pro",
+        "license": "Freemium / Commercial (Play Store)",
+        "apk_url": "https://play.google.com/store/apps/details?id=bruenor.magicbox",
+        "repo_url": "https://play.google.com/store/apps/details?id=bruenor.magicbox.free",
+        "obtainium_url": "",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "exagear",
+        "name": "ExaGear Windows Emulator",
+        "system": "pc_win",
+        "system_name": "Classic PC / Windows (x86)",
+        "developer": "Eltechs / Community Modified",
+        "version": "3.0.2 Mod / ED302",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "The pioneer of PC x86 gaming on Android. Modified extensively by the community with custom Wine versions, VirGL, and Turnip Mesa drivers to run classic 2000s PC games with exceptional 2D/3D compatibility.",
+        "features": [
+            "Runs classic PC titles: Fallout 1/2, Heroes of Might & Magic, Diablo II",
+            "Custom Wine builds (Wine 3.x to 8.x) provided by the community",
+            "VirGL and Turnip GPU rendering acceleration",
+            "Built-in virtual touchscreen controls (Helium, Cuprum)",
+            "Legendary community-preserved abandonware emulator"
+        ],
+        "min_android": "Android 5.0+ (ARM64)",
+        "graphics_backend": "OpenGL ES / VirGL / WineD3D",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Abandonware Community",
+        "apk_url": "https://archive.org/details/exagear-windows-emulator-collection",
+        "repo_url": "https://archive.org/details/exagear-windows-emulator-collection",
+        "obtainium_url": "",
+        "category": "PC & Engines"
+    },
+
+    # =========================================================================
+    # ENGINES & MOBILE RUNNERS (JoiPlay, touchHLE, J2ME, Symbian)
+    # =========================================================================
+    {
+        "id": "joiplay",
+        "name": "JoiPlay",
+        "system": "engines_mobile",
+        "system_name": "RPG Maker & Ren'Py Engine",
+        "developer": "cyrus120 & JoiPlay Team",
+        "version": "v1.20+ (Patreon & Public)",
+        "icon": "https://github.com/joiplay.png",
+        "description": "The definitive game player and interpreter for Android. Runs games created in RPG Maker XP, VX, VX Ace, MV, MZ, Ren'Py, TyranoBuilder, and HTML5 natively with custom cheat menus, touch controls, and save state management.",
+        "features": [
+            "Native execution for RPG Maker XP, VX, VX Ace, MV, and MZ",
+            "Ren'Py visual novel and story engine support",
+            "HTML5, TyranoBuilder, and Node.js game compatibility",
+            "Built-in virtual gamepad, mouse emulation, and custom cheat engine",
+            "Plugin architecture with dedicated RPGM and Ren'Py runtimes"
+        ],
+        "min_android": "Android 7.0+ (ARM64 / ARMv7)",
+        "graphics_backend": "OpenGL ES / Hardware Accelerated",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free / Patreon Supporter",
+        "license": "Free / Patreon",
+        "apk_url": "https://joiplay.cyou/",
+        "repo_url": "https://github.com/joiplay",
+        "obtainium_url": "",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "touchhle",
+        "name": "touchHLE",
+        "system": "engines_mobile",
+        "system_name": "Early iOS / iPhone OS 2.x/3.x",
+        "developer": "hikari-no-yume & touchHLE Team",
+        "version": "v0.3.0+",
+        "icon": "https://github.com/touchHLE.png",
+        "description": "High-level emulator for early iOS apps and games (iPhone OS 2.0 to 3.1.3). Runs classic touchscreen masterpieces like Super Monkey Ball, Doom Classic, Rolando, and Crash Bandicoot Nitro Kart 3D on ARM64 Android.",
+        "features": [
+            "Emulates early 32-bit ARM iPhone OS binaries directly on Android",
+            "Plays legendary touch classics: Super Monkey Ball, Rolando, Wolfenstein 3D",
+            "Accelerometer / tilt controls emulated via Android device sensors",
+            "Built-in Documents Provider for easy .ipa/.app file placement",
+            "100% clean-room high-level emulation (no Apple copyright files needed)"
+        ],
+        "min_android": "Android 8.0+ (AArch64 / ARM64)",
+        "graphics_backend": "OpenGL ES 2.0 / Vulkan",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://github.com/touchHLE/touchHLE/releases",
+        "repo_url": "https://github.com/touchHLE/touchHLE",
+        "obtainium_url": "obtainium://add/https://github.com/touchHLE/touchHLE",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "j2me-loader",
+        "name": "J2ME Loader & JL-Mod",
+        "system": "engines_mobile",
+        "system_name": "Java ME / J2ME Retro Mobile",
+        "developer": "Nikita Shakarun & Woung",
+        "version": "v1.7.9+ / JL-Mod",
+        "icon": "https://github.com/nikita36078.png",
+        "description": "The premiere Java ME (.jar / .jad) emulator for Android. Emulates 2D and 3D Nokia and Sony Ericsson mobile games with customizable virtual keypad, soundfont synthesis, accelerometer, and 3D M3G hardware acceleration.",
+        "features": [
+            "Runs 99%+ of classic 2000s Nokia / Sony Ericsson .jar games",
+            "Mobile 3D Graphics (M3G) hardware acceleration",
+            "Full virtual keyboard & numeric keypad customization",
+            "Soundfont MIDI synthesizer and sound effects",
+            "Scaling filters and physical controller mapping"
+        ],
+        "min_android": "Android 4.4+",
+        "graphics_backend": "OpenGL ES / Software",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://github.com/nikita36078/J2ME-Loader/releases",
+        "repo_url": "https://github.com/nikita36078/J2ME-Loader",
+        "obtainium_url": "obtainium://add/https://github.com/nikita36078/J2ME-Loader",
+        "category": "Retro 2D"
+    },
+    {
+        "id": "eka2l1",
+        "name": "EKA2L1",
+        "system": "engines_mobile",
+        "system_name": "Symbian S60 & N-Gage",
+        "developer": "Playdrop & Pent0",
+        "version": "v0.0.9+",
+        "icon": "https://github.com/Playdrop.png",
+        "description": "Experimental Symbian OS emulator for Android supporting S60v1, S60v3, and Nokia N-Gage devices. Allows playing original N-Gage game cards like Pathway to Glory, Tony Hawk, and Pocket Kingdom on modern devices.",
+        "features": [
+            "Emulates Symbian OS and Nokia N-Gage hardware",
+            "Direct execution of N-Gage game cards and SIS/SISX applications",
+            "Hardware accelerated OpenGL ES 3.0 graphics",
+            "Virtual keypad layout mimicking original N-Gage button orientation",
+            "Active open-source development"
+        ],
+        "min_android": "Android 8.0+ (ARM64)",
+        "graphics_backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2)",
+        "apk_url": "https://github.com/Playdrop/EKA2L1/releases",
+        "repo_url": "https://github.com/Playdrop/EKA2L1",
+        "obtainium_url": "obtainium://add/https://github.com/Playdrop/EKA2L1",
+        "category": "Retro 2D"
+    },
+    {
+        "id": "kirikiroid2",
+        "name": "Kirikiroid2",
+        "system": "engines_mobile",
+        "system_name": "KiriKiri2 / Visual Novels",
+        "developer": "Zeas",
+        "version": "v1.3.9+",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Mobile port of the popular Japanese KiriKiri2 engine for Android. Plays classic visual novels like Fate/stay night and Tsukihime natively on Android without needing a full Windows virtual machine.",
+        "features": [
+            "Native execution of KiriKiri2 / KAG visual novel games",
+            "Touch screen gestures for text advance, backlog, and skipping",
+            "Custom font replacement and character encoding support",
+            "Low battery consumption compared to running full PC emulators",
+            "Completely free and open-source"
+        ],
+        "min_android": "Android 5.0+",
+        "graphics_backend": "OpenGL ES / Hardware Canvas",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2)",
+        "apk_url": "https://github.com/zeas2/Kirikiroid2",
+        "repo_url": "https://github.com/zeas2/Kirikiroid2",
+        "obtainium_url": "",
+        "category": "PC & Engines"
+    },
+    {
+        "id": "scummvm",
+        "name": "ScummVM",
+        "system": "engines_mobile",
+        "system_name": "Classic PC Point & Click Adventures",
+        "developer": "ScummVM Team",
+        "version": "v2.8.1",
+        "icon": "https://github.com/scummvm.png",
+        "description": "Virtual engine interpreter replacing original game executables for LucasArts (Monkey Island, Day of the Tentacle), Sierra On-Line, Humongous Entertainment, and Revolution Software adventure games on Android.",
+        "features": [
+            "Native engine replacement for hundreds of classic adventure games",
+            "LucasArts SCUMM, Sierra AGI/SCI, Humongous, and Cryo engines",
+            "Touchscreen mouse emulation with multi-touch gestures",
+            "Cloud save synchronization (Dropbox, Google Drive, OneDrive)",
+            "HD audio synthesis (Roland MT-32 and FluidSynth soundfonts)"
+        ],
+        "min_android": "Android 4.1+",
+        "graphics_backend": "OpenGL ES / Software",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://www.scummvm.org/downloads/",
+        "repo_url": "https://github.com/scummvm/scummvm/releases",
+        "obtainium_url": "obtainium://add/https://github.com/scummvm/scummvm",
+        "category": "PC & Engines"
+    },
+
+    # =========================================================================
+    # NINTENDO DS
+    # =========================================================================
+    {
+        "id": "drastic-ds",
+        "name": "DraStic DS Emulator",
+        "system": "nds",
+        "system_name": "Nintendo DS",
+        "developer": "Exophase (Lordus)",
+        "version": "r2.6.0.4a Definitive",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "The definitive Nintendo DS emulator for Android. Celebrated for blistering fast performance even on budget phones, screen layout customization, 3D rendering upscaling, and microphone emulation. Now completely free.",
+        "features": [
+            "Unrivaled execution speed on all ARM processors",
+            "Enhances 3D graphics to 2x resolution (high-resolution 3D)",
+            "Fully customizable dual-screen placement (Vertical, Horizontal, Single)",
+            "Fast-forward button with custom speeds",
+            "Zero ads, zero bloat; formerly $4.99, now 100% free"
+        ],
+        "min_android": "Android 4.1+",
+        "graphics_backend": "Custom Optimized Software / OpenGL ES",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free (Formerly $4.99)",
+        "license": "Free / Official Definitive Release",
+        "apk_url": "https://play.google.com/store/apps/details?id=com.dsemu.drastic",
+        "repo_url": "https://play.google.com/store/apps/details?id=com.dsemu.drastic",
+        "obtainium_url": "",
+        "category": "Handhelds"
+    },
+    {
+        "id": "melonds",
+        "name": "melonDS Android",
+        "system": "nds",
+        "system_name": "Nintendo DS & DSi",
+        "developer": "rafaelvcaetano & melonDS Team",
+        "version": "v1.9.3+",
+        "icon": "https://github.com/rafaelvcaetano.png",
+        "description": "Cycle-accurate Nintendo DS and DSi emulator for Android. Supports DSi NAND dumping, DSiWare games, local wireless multiplayer emulation, and OpenGL upscaling.",
+        "features": [
+            "Cycle-accurate hardware emulation for DS and DSi",
+            "DSiWare and DSi camera emulation",
+            "Local wireless ad-hoc multiplayer",
+            "OpenGL rendering with resolution upscaling",
+            "100% open source under GPLv3 with zero ads"
+        ],
+        "min_android": "Android 6.0+ (ARM64)",
+        "graphics_backend": "OpenGL ES 3.0 / Software",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://github.com/rafaelvcaetano/melonDS-android/releases",
+        "repo_url": "https://github.com/rafaelvcaetano/melonDS-android",
+        "obtainium_url": "obtainium://add/https://github.com/rafaelvcaetano/melonDS-android",
+        "category": "Handhelds"
+    },
+
+    # =========================================================================
+    # SONY PLAYSTATION 1 (PS1)
+    # =========================================================================
+    {
+        "id": "duckstation",
+        "name": "DuckStation",
+        "system": "ps1",
+        "system_name": "Sony PlayStation 1",
+        "developer": "Stenzek",
+        "version": "Rolling Release",
+        "icon": "https://github.com/stenzek.png",
+        "description": "The gold standard for PlayStation 1 emulation. Features PGXP geometry correction (eliminating polygon jitter and texture warping), up to 4K resolution, true 24-bit color, and Vulkan backend.",
+        "features": [
+            "PGXP geometry precision correction (no wobble or warped textures)",
+            "Up to 4K internal resolution upscaling",
+            "True 24-bit RGB color depth option (removes PS1 banding)",
+            "Vulkan, OpenGL ES, and Software renderers",
+            "Adaptive widescreen 16:9 rendering hacks"
+        ],
+        "min_android": "Android 7.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.1",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://github.com/stenzek/duckstation/releases",
+        "repo_url": "https://github.com/stenzek/duckstation",
+        "obtainium_url": "obtainium://add/https://github.com/stenzek/duckstation",
+        "category": "Handhelds"
+    },
+    {
+        "id": "epsxe",
+        "name": "ePSXe for Android",
+        "system": "ps1",
+        "system_name": "Sony PlayStation 1",
+        "developer": "ePSXe Software",
+        "version": "v2.0.16",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Legendary classic PlayStation 1 emulator for Android. Offers split-screen 2-player mode on tablets, OpenGL HD plugin, multi-disc game switching, and hardware gamepad auto-configuration.",
+        "features": [
+            "Pioneering mobile PS1 emulator with 99%+ game compatibility",
+            "Split-screen 2-player mode for tablets and foldable devices",
+            "OpenGL HD enhanced graphics plugin support",
+            "Multi-disc ISO switching with automatic cue parsing",
+            "Available on the Google Play Store"
+        ],
+        "min_android": "Android 4.0+",
+        "graphics_backend": "OpenGL ES / Software",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "$3.75",
+        "license": "Commercial / Paid (Play Store)",
+        "apk_url": "https://play.google.com/store/apps/details?id=com.epsxe.ePSXe",
+        "repo_url": "https://play.google.com/store/apps/details?id=com.epsxe.ePSXe",
+        "obtainium_url": "",
+        "category": "Handhelds"
+    },
+    {
+        "id": "fpse",
+        "name": "FPse / FPseNG for Android",
+        "system": "ps1",
+        "system_name": "Sony PlayStation 1",
+        "developer": "LD-Studio",
+        "version": "v0.11.230",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Feature-heavy PS1 emulator on Google Play offering hardware accelerated OpenGL shaders, VR glasses mode (Google Cardboard), and high audio DSP quality.",
+        "features": [
+            "Hardware accelerated OpenGL ES 3.0 graphics engine",
+            "VR Glasses Mode (immersive stereoscopic 3D viewing)",
+            "High-definition audio DSP with reverb and surround",
+            "Multi-player support via Bluetooth / Wi-Fi",
+            "Direct ISO, CUE, BIN, and PBP file playback"
+        ],
+        "min_android": "Android 5.0+",
+        "graphics_backend": "OpenGL ES 3.0",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "$2.99",
+        "license": "Commercial / Paid (Play Store)",
+        "apk_url": "https://play.google.com/store/apps/details?id=com.emulator.fpse",
+        "repo_url": "https://play.google.com/store/apps/details?id=com.emulator.fpse",
+        "obtainium_url": "",
+        "category": "Handhelds"
+    },
+
+    # =========================================================================
+    # SEGA DREAMCAST & SATURN
+    # =========================================================================
+    {
+        "id": "redream",
+        "name": "Redream",
+        "system": "dc_saturn",
+        "system_name": "Sega Dreamcast",
+        "developer": "inolen (Nick Van Veen)",
+        "version": "v1.1.106+ (Premium)",
+        "icon": "https://github.com/inolen.png",
+        "description": "Incredible high-performance Sega Dreamcast emulator for Android. Free version runs 85%+ of the Dreamcast library at full 60 FPS in 480p; Premium upgrade enables up to 4K internal resolution upscaling.",
+        "features": [
+            "Flawless 60 FPS in virtually all games with zero configuration",
+            "Free version includes full 480p rendering and complete library support",
+            "Premium edition unlocks up to 4K internal resolution upscaling",
+            "Widescreen cheats built-in for modern 16:9 / 20:9 displays",
+            "Available on Google Play and standalone APK from redream.io"
+        ],
+        "min_android": "Android 5.0+ (ARM64)",
+        "graphics_backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "Free Lite / $5.99 Premium",
+        "license": "Freemium / Premium Upgrade",
+        "apk_url": "https://redream.io/download",
+        "repo_url": "https://play.google.com/store/apps/details?id=io.recompiled.redream",
+        "obtainium_url": "",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "flycast",
+        "name": "Flycast",
+        "system": "dc_saturn",
+        "system_name": "Sega Dreamcast & Arcade",
+        "developer": "flyinghead & Team Flycast",
+        "version": "v2.4+",
+        "icon": "https://github.com/flyinghead.png",
+        "description": "Multi-platform Sega Dreamcast, Naomi, Naomi 2, and Atomiswave arcade emulator for Android. Features Vulkan rendering, widescreen cheats, VMU screen display, and online netplay over matchmaking.",
+        "features": [
+            "Dreamcast, Naomi, Naomi 2, and Atomiswave arcade emulation",
+            "Modern Vulkan and OpenGL ES backends",
+            "Cross-platform online netplay matchmaking",
+            "Per-pixel sorting for accurate alpha transparency",
+            "VMU screen rendering directly on your mobile display"
+        ],
+        "min_android": "Android 7.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.1",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2)",
+        "apk_url": "https://github.com/flyinghead/flycast/releases",
+        "repo_url": "https://github.com/flyinghead/flycast",
+        "obtainium_url": "obtainium://add/https://github.com/flyinghead/flycast",
+        "category": "Modern 3D"
+    },
+    {
+        "id": "yaba-sanshiro-2",
+        "name": "Yaba Sanshiro 2 & Pro",
+        "system": "dc_saturn",
+        "system_name": "Sega Saturn",
+        "developer": "devmiyax",
+        "version": "v1.12.0 (Pro)",
+        "icon": "https://github.com/devmiyax.png",
+        "description": "The premier Sega Saturn emulator for Android. Emulates Saturn's complex dual-CPU architecture with hardware-accelerated 3D polygon upscaling, cloud save sync, and Bluetooth controller support.",
+        "features": [
+            "Hardware-accelerated 3D polygon upscaling for Saturn titles",
+            "Vulkan and OpenGL ES graphics backends",
+            "Cloud save synchronization across devices",
+            "Cheat code support and state saving",
+            "Free version with ads; Pro edition available on Play Store"
+        ],
+        "min_android": "Android 8.0+ (ARM64)",
+        "graphics_backend": "Vulkan / OpenGL ES 3.0",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "Free Lite / $5.49 Pro",
+        "license": "Freemium / Commercial (Play Store)",
+        "apk_url": "https://play.google.com/store/apps/details?id=org.uoyabause.uranus.pro",
+        "repo_url": "https://github.com/devmiyax/yabause",
+        "obtainium_url": "",
+        "category": "Modern 3D"
+    },
+
+    # =========================================================================
+    # NINTENDO 64
+    # =========================================================================
+    {
+        "id": "m64plus-fz",
+        "name": "M64Plus FZ & Pro",
+        "system": "classic_2d",
+        "system_name": "Nintendo 64",
+        "developer": "Francisco Zurita",
+        "version": "v3.0.330+ (Pro)",
+        "icon": "https://github.com/fzurita.png",
+        "description": "The definitive Nintendo 64 emulator for Android based on Mupen64Plus. Bundles GLideN64 high-resolution texture pack support, netplay, Rumble Pak emulation, and Android TV optimization.",
+        "features": [
+            "GLideN64 graphics plugin with up to 4K rendering",
+            "High-resolution community texture pack loading",
+            "Rumble Pak and Controller Pak memory emulation",
+            "Local Wi-Fi and online multiplayer netplay",
+            "Free version with banner ads; Pro edition ad-free with cloud saves"
+        ],
+        "min_android": "Android 5.0+ (ARM64 / ARMv7)",
+        "graphics_backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "Free Lite / $3.99 Pro",
+        "license": "Freemium / Commercial (Play Store)",
+        "apk_url": "https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita.pro",
+        "repo_url": "https://github.com/mupen64plus-ae/mupen64plus-ae",
+        "obtainium_url": "",
+        "category": "Retro 2D"
+    },
+
+    # =========================================================================
+    # GAME BOY, GBA, SNES (CLASSIC 2D)
+    # =========================================================================
+    {
+        "id": "pizza-boy-gba",
+        "name": "Pizza Boy GBA Basic & Pro",
+        "system": "classic_2d",
+        "system_name": "Game Boy Advance",
+        "developer": "Davide Beraldo",
+        "version": "v2.7.0+ (Pro)",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Superb cycle-accurate Game Boy Advance emulator for Android. Passes 100% of GBA hardware test suites, featuring 60 FPS fast forward, rewind, OpenGL shaders, and skin customization.",
+        "features": [
+            "100% accuracy in GBA CPU hardware compliance test suites",
+            "Rewind feature (jump back in time up to 10 seconds)",
+            "OpenGL and OpenSL ES hardware video/audio shaders",
+            "Google Drive cloud save synchronization",
+            "Customizable on-screen retro handheld skins"
+        ],
+        "min_android": "Android 5.0+",
+        "graphics_backend": "OpenGL ES / Hardware Shaders",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "Free Lite / $4.99 Pro",
+        "license": "Freemium / Commercial",
+        "apk_url": "https://github.com/davide-beraldo",
+        "repo_url": "https://github.com/davide-beraldo",
+        "obtainium_url": "",
+        "category": "Retro 2D"
+    },
+    {
+        "id": "pizza-boy-gbc",
+        "name": "Pizza Boy GBC Basic & Pro",
+        "system": "classic_2d",
+        "system_name": "Game Boy & Game Boy Color",
+        "developer": "Davide Beraldo",
+        "version": "v2.5.0+ (Pro)",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Premier Game Boy and Game Boy Color emulator for Android. Features high-accuracy Z80 CPU emulation, custom palette coloring for original GB games, and gyroscope sensor support.",
+        "features": [
+            "Flawless Z80 and Game Boy Color hardware accuracy",
+            "Palette editor for monochromatic Game Boy titles",
+            "Real-time fast forward up to 16x and rewind",
+            "Tilt / motion sensor support for Kirby Tilt 'n' Tumble",
+            "Clean ad-free UI in Pro edition"
+        ],
+        "min_android": "Android 5.0+",
+        "graphics_backend": "OpenGL ES / Hardware Canvas",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "Free Lite / $3.99 Pro",
+        "license": "Freemium / Commercial",
+        "apk_url": "https://github.com/davide-beraldo",
+        "repo_url": "https://github.com/davide-beraldo",
+        "obtainium_url": "",
+        "category": "Retro 2D"
+    },
+    {
+        "id": "my-boy-gba",
+        "name": "My Boy! - GBA Emulator",
+        "system": "classic_2d",
+        "system_name": "Game Boy Advance",
+        "developer": "Fast Emulator",
+        "version": "v2.0.0",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Renowned GBA emulator famous for its peer-to-peer Game Boy Advance link cable emulation over Bluetooth or local Wi-Fi, allowing Pokémon trading and battles between Android phones.",
+        "features": [
+            "Link cable emulation over Bluetooth or local Wi-Fi",
+            "Super-fast ARM assembly recompiler running at 60 FPS on low-end chips",
+            "Gyroscope and tilt sensor emulation via device hardware",
+            "GameShark, ActionReplay, and CodeBreaker cheat codes",
+            "Free Lite version and Paid Full version on Play Store"
+        ],
+        "min_android": "Android 4.0+",
+        "graphics_backend": "OpenGL ES / JIT ARM",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "Free Lite / $4.99 Full",
+        "license": "Freemium / Commercial (Play Store)",
+        "apk_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gba",
+        "repo_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gba",
+        "obtainium_url": "",
+        "category": "Retro 2D"
+    },
+    {
+        "id": "my-oldboy-gbc",
+        "name": "My OldBoy! - GBC Emulator",
+        "system": "classic_2d",
+        "system_name": "Game Boy & Game Boy Color",
+        "developer": "Fast Emulator",
+        "version": "v2.0.0",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Classic high-speed Game Boy / Game Boy Color emulator featuring link cable emulation over Bluetooth/Wi-Fi, tilt sensor emulation via Android gyroscope, and cheat support.",
+        "features": [
+            "Link cable emulation over Bluetooth / Wi-Fi",
+            "Custom color palettes for monochrome Game Boy games",
+            "Game Boy Camera and Game Boy Printer emulation",
+            "Fast-forward through long dialogues up to 50x",
+            "Available on the Google Play Store"
+        ],
+        "min_android": "Android 4.0+",
+        "graphics_backend": "OpenGL ES",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "Free Lite / $3.99 Full",
+        "license": "Freemium / Commercial (Play Store)",
+        "apk_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gbc",
+        "repo_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gbc",
+        "obtainium_url": "",
+        "category": "Retro 2D"
+    },
+    {
+        "id": "snes9x-ex-plus",
+        "name": "Snes9x EX+",
+        "system": "classic_2d",
+        "system_name": "Super Nintendo (SNES)",
+        "developer": "Robert Broglia",
+        "version": "v1.5.80+",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Highly compatible open-source Super Nintendo emulator based on Snes9x. Features zero audio latency, MSU-1 CD quality audio enhancement, multi-tap controller support, and Super FX acceleration.",
+        "features": [
+            "Near 100% Super Nintendo catalog compatibility",
+            "MSU-1 high-fidelity CD audio enhancement support",
+            "Super FX 1/2 hardware acceleration (Star Fox, Yoshi's Island)",
+            "Low-latency audio pipeline with custom buffer sizing",
+            "100% free and open source with zero advertisements"
+        ],
+        "min_android": "Android 4.0+",
+        "graphics_backend": "OpenGL ES / Software",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv2)",
+        "apk_url": "https://github.com/Rakashazi/emu-ex-plus-alpha/releases",
+        "repo_url": "https://github.com/Rakashazi/emu-ex-plus-alpha",
+        "obtainium_url": "obtainium://add/https://github.com/Rakashazi/emu-ex-plus-alpha",
+        "category": "Retro 2D"
+    },
+    {
+        "id": "mgba",
+        "name": "mGBA",
+        "system": "classic_2d",
+        "system_name": "Game Boy Advance, Color & Classic",
+        "developer": "Jeffrey Pfau (endrift)",
+        "version": "0.10.3+",
+        "icon": "https://github.com/mgba-emu.png",
+        "description": "The definitive modern, highly accurate Game Boy Advance and Game Boy emulator. Emulates solar sensors (Boktai), rumble cartridges, and game link cable with laser-precise timing.",
+        "features": [
+            "Laser-accurate GBA timing passing obscure test suites",
+            "Solar sensor hardware emulation for Boktai 1/2/3",
+            "Game link cable and wireless adapter emulation",
+            "Game Boy Printer emulation delivering high-res PNG outputs",
+            "Available on RetroArch and standalone Android port"
+        ],
+        "min_android": "Android 5.0+",
+        "graphics_backend": "OpenGL ES / Software",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (MPL 2.0)",
+        "apk_url": "https://mgba.io/downloads.html",
+        "repo_url": "https://github.com/mgba-emu/mgba/releases",
+        "obtainium_url": "obtainium://add/https://github.com/mgba-emu/mgba",
+        "category": "Retro 2D"
+    },
+
+    # =========================================================================
+    # MULTI-SYSTEM FRONTENDS & ARCADE
+    # =========================================================================
+    {
+        "id": "retroarch-64",
+        "name": "RetroArch (64-bit Plus)",
+        "system": "multi",
+        "system_name": "All-in-One Multi-System Frontend",
+        "developer": "Libretro Team",
+        "version": "v1.19.1+",
+        "icon": "https://github.com/libretro.png",
+        "description": "The ultimate open-source cross-platform emulation engine. Gives Android users access to over 100+ libretro emulation cores, CRT scanline shaders, netplay, runahead latency reduction, and automatic controller mapping.",
+        "features": [
+            "100+ emulation cores from Atari 2600 to PlayStation and Arcade",
+            "Slang CRT scanline and retro display shaders",
+            "Runahead latency reduction (lower input lag than original hardware)",
+            "Cross-platform netplay with rollback lobby system",
+            "Automatic gamepad profile detection for 500+ controllers"
+        ],
+        "min_android": "Android 5.0+ (ARM64)",
+        "graphics_backend": "Vulkan 1.3 / OpenGL ES 3.2",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://www.retroarch.com/?page=platforms",
+        "repo_url": "https://github.com/libretro/RetroArch/releases",
+        "obtainium_url": "obtainium://add/https://github.com/libretro/RetroArch",
+        "category": "Frontend"
+    },
+    {
+        "id": "lemuroid",
+        "name": "Lemuroid",
+        "system": "multi",
+        "system_name": "All-in-One Retro Multi-System",
+        "developer": "Filippo Scognamiglio (Swordfish90)",
+        "version": "v1.16.2",
+        "icon": "https://github.com/Swordfish90.png",
+        "description": "Clean, elegant, zero-configuration retro gaming frontend powered by Libretro cores. Beautiful touch controls with haptic feedback, automatic save sync, and local multiplayer for up to 4 players.",
+        "features": [
+            "Zero configuration required; automatically scrapes ROM box art",
+            "Supports NES, SNES, GBA, GBC, N64, NDS, PS1, PSP, Arcade",
+            "Haptic feedback on virtual touch controls",
+            "Local wireless multiplayer for up to 4 players",
+            "100% free with no ads or in-app purchases"
+        ],
+        "min_android": "Android 6.0+ (ARM64 / ARMv7)",
+        "graphics_backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://github.com/Swordfish90/Lemuroid/releases",
+        "repo_url": "https://github.com/Swordfish90/Lemuroid",
+        "obtainium_url": "obtainium://add/https://github.com/Swordfish90/Lemuroid",
+        "category": "Frontend"
+    },
+    {
+        "id": "daijisho",
+        "name": "Daijishō",
+        "system": "multi",
+        "system_name": "Retro Gaming Launcher & Frontend",
+        "developer": "TapiocaFox",
+        "version": "v1.4.67+",
+        "icon": "https://github.com/TapiocaFox.png",
+        "description": "Award-winning retro launcher designed specifically for Android handhelds and TVs. Automatically scrapes boxart, synopsis, and retroachievements, seamlessly launching into RetroArch or standalone emulators.",
+        "features": [
+            "Seamless deep-link launching into standalone and RetroArch emulators",
+            "Automatic online scraper for boxart, titles, and release dates",
+            "RetroAchievements integration displaying badges and completion stats",
+            "Custom wallpaper themes with background music playback",
+            "Gamepad first navigation designed for Retroid and Odin handhelds"
+        ],
+        "min_android": "Android 7.0+",
+        "graphics_backend": "Hardware Accelerated Android UI",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (GPLv3)",
+        "apk_url": "https://github.com/TapiocaFox/Daijisho/releases",
+        "repo_url": "https://github.com/TapiocaFox/Daijisho",
+        "obtainium_url": "obtainium://add/https://github.com/TapiocaFox/Daijisho",
+        "category": "Frontend"
+    },
+    {
+        "id": "beacon-launcher",
+        "name": "Beacon Game Launcher",
+        "system": "multi",
+        "system_name": "Premium Retro Frontend Launcher",
+        "developer": "Rayyan Khokhar",
+        "version": "v1.6.0+",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Sleek, lightweight premium launcher designed for Android phones and gaming handhelds like Retroid Pocket and Odin. Fast boxart scraping, clean aesthetics, and zero bloat.",
+        "features": [
+            "Ultra-clean, modern minimalist aesthetic",
+            "Lightning fast metadata and cover art scraping",
+            "Automatic platform detection and emulator launch intent configuration",
+            "Custom game collection grouping and search filters",
+            "Premium app available on the Google Play Store"
+        ],
+        "min_android": "Android 8.0+",
+        "graphics_backend": "Hardware Accelerated Android UI",
+        "turnip_recommended": False,
+        "is_paid": True,
+        "price": "$2.99",
+        "license": "Commercial / Paid (Play Store)",
+        "apk_url": "https://play.google.com/store/apps/details?id=com.radikal.gamelauncher",
+        "repo_url": "https://play.google.com/store/apps/details?id=com.radikal.gamelauncher",
+        "obtainium_url": "",
+        "category": "Frontend"
+    },
+    {
+        "id": "mame4droid",
+        "name": "MAME4droid (0.139u1 & Current)",
+        "system": "multi",
+        "system_name": "Arcade / MAME Multi-Machine",
+        "developer": "David Valdeita (Seleuco)",
+        "version": "v1.15.5+",
+        "icon": "https://raw.githubusercontent.com/MooPuu/droid-recomp/main/favicon.svg",
+        "description": "Arcade emulator for Android based on MAME. Supports over 8,000 vintage arcade ROMs including Capcom CPS1/2/3, Neo Geo MVS, Cave, and Namco System 16 with external controller auto-mapping.",
+        "features": [
+            "Over 8,000 arcade classics emulated with high accuracy",
+            "Capcom CPS1, CPS2, CPS3, Neo Geo, and Cave hardware support",
+            "Rotatable screen orientation for vertical arcade shoot 'em ups (TATE mode)",
+            "External Bluetooth and USB gamepad auto-detection",
+            "Completely free with zero ads"
+        ],
+        "min_android": "Android 4.4+",
+        "graphics_backend": "OpenGL ES / Software",
+        "turnip_recommended": False,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Non-Commercial",
+        "apk_url": "https://play.google.com/store/apps/details?id=com.seleuco.mame4droid",
+        "repo_url": "https://play.google.com/store/apps/details?id=com.seleuco.mame4droid",
+        "obtainium_url": "",
+        "category": "Retro 2D"
+    },
+
+    # =========================================================================
+    # GPU ACCELERATION DRIVERS
+    # =========================================================================
+    {
+        "id": "adrenotools-turnip",
+        "name": "Mesa Turnip Drivers (Kimchi & Weab-chan)",
+        "system": "drivers",
+        "system_name": "Mesa Turnip GPU Drivers",
+        "developer": "Kimchi, Weab-chan, Bylaws & Mesa Team",
+        "version": "v24.3.0 Revision 19+",
+        "icon": "https://github.com/K11MCH1.png",
+        "description": "Custom open-source Vulkan GPU drivers compiled for Qualcomm Snapdragon Adreno 6xx, 7xx, and X1-85 GPUs. Resolves graphical glitches, texture flickers, and boosts framerates dramatically in NetherSX2, Sudachi, Dolphin, Winlator, and Vita3K.",
+        "features": [
+            "Direct AdrenoTools zip format; loaded at runtime without root",
+            "Supports Snapdragon 865, 870, 888, 8 Gen 1, 8 Gen 2, 8 Gen 3",
+            "Fixes texture flickering and vertex explosion in NetherSX2 and Sudachi",
+            "Massive performance gains in Winlator / Mobox DirectX titles",
+            "Updated regularly with upstream Mesa 24.x bug fixes"
+        ],
+        "min_android": "Qualcomm Snapdragon (Adreno 6xx / 7xx)",
+        "graphics_backend": "Vulkan 1.3 / Turnip Mesa",
+        "turnip_recommended": True,
+        "is_paid": False,
+        "price": "Free",
+        "license": "Free / Open Source (MIT)",
+        "apk_url": "https://github.com/K11MCH1/AdrenoToolsDrivers/releases",
+        "repo_url": "https://github.com/K11MCH1/AdrenoToolsDrivers",
+        "obtainium_url": "obtainium://add/https://github.com/K11MCH1/AdrenoToolsDrivers",
+        "category": "System Driver"
+    }
+]
+
+def main():
+    print(f"Total emulators compiled: {len(emulators)}")
+    
+    # 1. Output emulators.json
+    data = {"emulators": emulators}
+    with open("emulators.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    print("Wrote emulators.json")
+    
+    # 2. Output emulators.js
+    with open("emulators.js", "w", encoding="utf-8") as f:
+        f.write("window.DROIDRECOMP_EMULATORS = " + json.dumps(data, indent=2, ensure_ascii=False) + ";\n")
+    print("Wrote emulators.js")
+
+    # 3. Output droid_recomp_app/assets/emulators.json
+    flutter_path = os.path.join("droid_recomp_app", "assets", "emulators.json")
+    with open(flutter_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    print(f"Wrote {flutter_path}")
+
+if __name__ == "__main__":
+    main()
