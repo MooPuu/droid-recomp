@@ -14,6 +14,8 @@
   let activeOrigin = 'all';
   let filterType = 'all';
   let filterInput = 'all';
+  let filterStatus = 'all';
+  let filterSort = 'popular';
   let filterTurnip = false;
   let heroTimer = null;
   let activeHeroIndex = 0;
@@ -199,7 +201,7 @@
     },
     ar: {
       appName: 'درويد ريكومب',
-      tagline: 'منافذ وإعادات ترجمة الألعاب الأصلية للأندرويد',
+      tagline: 'بورتات ومشاريع إعادة بناء الألعاب الأصلية للأندرويد',
       discover: 'استكشاف',
       browse: 'تصفح',
       emulators: 'المحاكيات',
@@ -207,20 +209,20 @@
       handhelds: 'الأجهزة المحمولة',
       setupGuide: 'دليل التثبيت',
       library: 'المكتبة',
-      searchPlaceholder: 'ابحث في أكثر من 370+ لعبة ومنفذ...',
+      searchPlaceholder: 'ابحث في أكثر من 370+ لعبة وبورت...',
       obtainiumSync: 'مزامنة أوبتينيوم',
       getApk: 'تحميل التطبيق',
-      submitPort: 'إرسال منفذ',
+      submitPort: 'إرسال بورت',
       allSystems: 'جميع الأنظمة',
-      classicPc: 'ألعاب وحزم الحاسوب',
+      classicPc: 'ألعاب وحزم Classic PC',
       featuredRecomp: 'إصدار مميز',
       topRankedTitle: 'الأعلى تحميلاً وتقييماً',
-      topRankedSub: 'أفضل إعادات الترجمة المجتمعية والمنافذ الأصلية المؤكدة',
-      n64Title: 'إعادات ترجمة نينتندو 64',
+      topRankedSub: 'أفضل مشاريع إعادة البناء والبورتات الأصلية المؤكدة',
+      n64Title: 'مشاريع إعادة بناء نينتندو 64',
       seeAllN64: 'عرض جميع ألعاب N64',
       handheldTitle: 'متوافق مع الأجهزة المحمولة',
       handheldSub: 'Retroid Pocket • AYN Odin • G Cloud',
-      pcPortsTitle: 'منافذ ومحركات الحاسوب الكلاسيكية',
+      pcPortsTitle: 'بورتات ومحركات Classic PC',
       browsePc: 'تصفح ألعاب الحاسوب',
       emulatorsTitle: 'دليل المحاكيات',
       emulatorsSub: 'محاكيات الأندرويد الرسمية المستقلة',
@@ -234,7 +236,7 @@
       touch: 'شاشة لمس',
       controller: 'يد تحكم',
       system: 'النظام الأصلي',
-      portType: 'نوع المنفذ',
+      portType: 'نوع البورت',
       minAndroid: 'أقل إصدار أندرويد',
       architecture: 'المعمارية المدعومة',
       graphicsBackend: 'محرك الرسوميات',
@@ -246,26 +248,26 @@
       save: 'حفظ في المكتبة',
       saved: 'محفوظ في المكتبة',
       close: 'إغلاق',
-      searchPrompt: 'اكتب للبحث عن الألعاب والمنافذ والمحاكيات...',
+      searchPrompt: 'اكتب للبحث عن الألعاب والبورتات والمحاكيات...',
       noResults: 'لم يتم العثور على نتائج',
       all: 'الكل',
       search: 'بحث',
-            footDesc: 'دليل ومثبت مجتمعي لإعادات تجميع ومنافذ ألعاب الأجهزة المنزلية والحاسوب التي تعمل بشكل أصلي على أجهزة أندرويد (ARM64). بدون استهلاك المحاكي. بنية قانونية 100% قائمة على توفير ملفاتك الخاصة.',
+      footDesc: 'دليل ومثبت مجتمعي لمشاريع إعادة بناء وبورتات ألعاب الأجهزة المنزلية والحاسوب التي تعمل بشكل أصلي على أجهزة أندرويد (ARM64). بدون استهلاك المحاكي. بنية قانونية 100% قائمة على توفير ملفاتك الخاصة.',
       footZeroRoms: 'لا يتم توزيع أي ملفات ROM',
       footDirectReleases: 'إصدارات مباشرة من المطورين',
       footOpenSource: 'مركز للمشاريع مفتوحة المصدر',
       footEcosystem: 'المنظومة',
       footDiscover: 'استكشاف',
-      footAllRecomps: 'جميع الـ 379+ منفذ وإعادة تجميع',
+      footAllRecomps: 'جميع الـ 379+ بورت وإعادة بناء',
       footTopDownloads: 'الأعلى تحميلاً',
       footHandheldOpt: 'متوافق مع الأجهزة المحمولة',
       footConsoles: 'المنصات',
       footToolsLegal: 'الأدوات والشروط القانونية',
       footHowSetup: 'دليل إعداد ملفات ROM',
       footObtainiumPack: 'حزمة Obtainium التلقائية',
-      footSubmitPort: 'إرسال منفذ جديد',
+      footSubmitPort: 'إرسال بورت جديد',
       footGithubProject: 'مشروع GitHub',
-      footBaseNotice: '<strong>لا يتم استضافة أي ملفات ألعاب هنا.</strong> يفهرس DroidRecomp مستودعات المطورين والمنافذ مفتوحة المصدر فقط. يجب على المستخدمين توفير نسخهم الاحتياطية القانونية لملفات ROM أو الأقراص.',
+      footBaseNotice: '<strong>لا يتم استضافة أي ملفات ألعاب هنا.</strong> يفهرس DroidRecomp مستودعات المطورين والبورتات مفتوحة المصدر فقط. يجب على المستخدمين توفير نسخهم الاحتياطية القانونية لملفات ROM أو الأقراص.',
       langButton: 'English'
     }
   };
@@ -604,7 +606,7 @@
         <div class="section-head">
           <h2 class="section-title">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" color="#34F2E8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <span>${isAr ? 'أبرز الألعاب المعاد تجميعها' : 'Top Community Recomps'}</span>
+            <span>${isAr ? 'أبرز الألعاب المعاد بناؤها' : 'Top Community Recomps'}</span>
           </h2>
           <a class="section-link" href="#top">${isAr ? 'عرض القائمة الكاملة &larr;' : 'View full charts &rarr;'}</a>
         </div>
@@ -617,7 +619,7 @@
       <section class="section-row" style="margin-top: 36px;">
         <div class="section-head">
           <h2 class="section-title">
-            <span>${isAr ? 'ألعاب Nintendo 64 المعاد تجميعها' : 'Nintendo 64 Recompilations'}</span>
+            <span>${isAr ? 'ألعاب Nintendo 64 المعاد بناؤها' : 'Nintendo 64 Recompilations'}</span>
           </h2>
           <a class="section-link" href="#all" onclick="window.DroidRecomp.setOrigin('n64')">${isAr ? 'عرض جميع ألعاب N64 &larr;' : 'See all N64 &rarr;'}</a>
         </div>
@@ -655,7 +657,7 @@
       <!-- LEGAL & ROM DISCLAIMER BOX -->
       <div class="disc-note">
         <span class="kicker">${isAr ? 'سياسة صارمة: توفير ملفاتك الخاصة فقط (BYOR)' : 'Strict Bring-Your-Own-ROM Policy'}</span>
-        <p>${isAr ? 'يفرز DroidRecomp فقط النسخ المعاد تجميعها ومشاريع فك الشفرة المصدرية والمشغلات مفتوحة المصدر لأندرويد مباشرة من مستودعات المطورين العامة. <strong>لا تتم استضافة أي ملفات ROM أو ISO أو ملفات ذات حقوق ملكية على هذه المنصة.</strong> تتطلب كل لعبة توفير ملفات أصلية مملوكة لك بشكل قانوني.' : 'DroidRecomp indexes only open-source native Android game recompilations, source decompilations, and their community launchers straight from developers\' public repositories. <strong>Zero copyrighted ROMs, ISOs, or proprietary assets are hosted on this platform.</strong> Every game requires you to supply your own legally owned game files.'}</p>
+        <p>${isAr ? 'يفرز DroidRecomp فقط النسخ المعاد بناؤها ومشاريع فك الشفرة المصدرية والمشغلات مفتوحة المصدر لأندرويد مباشرة من مستودعات المطورين العامة. <strong>لا تتم استضافة أي ملفات ROM أو ISO أو ملفات ذات حقوق ملكية على هذه المنصة.</strong> تتطلب كل لعبة توفير ملفات أصلية مملوكة لك بشكل قانوني.' : 'DroidRecomp indexes only open-source native Android game recompilations, source decompilations, and their community launchers straight from developers\' public repositories. <strong>Zero copyrighted ROMs, ISOs, or proprietary assets are hosted on this platform.</strong> Every game requires you to supply your own legally owned game files.'}</p>
       </div>
     `;
 
@@ -714,16 +716,51 @@
       filtered = filtered.filter(g => g.input && g.input.controller_recommended);
     }
 
+    // Status / Readiness Filter
+    if (filterStatus === 'playable') {
+      filtered = filtered.filter(g => g.status === 'Verified Playable' || g.status === 'Playable');
+    } else if (filterStatus === 'indev') {
+      filtered = filtered.filter(g => g.status === 'Active Alpha' || g.status === 'Alpha' || g.status === 'In Development');
+    }
+
     // Turnip Driver Filter
     if (filterTurnip) {
       filtered = filtered.filter(g => g.graphics && g.graphics.turnip_recommended);
     }
 
+    // Sorting
+    filtered = [...filtered];
+    if (filterSort === 'popular') {
+      filtered.sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+    } else if (filterSort === 'stars') {
+      filtered.sort((a, b) => (b.stars || 0) - (a.stars || 0));
+    } else if (filterSort === 'recent') {
+      filtered.sort((a, b) => (b.updated_at || '').localeCompare(a.updated_at || ''));
+    } else if (filterSort === 'status') {
+      const score = g => (g.status === 'Verified Playable' || g.status === 'Playable' ? 1 : 0);
+      filtered.sort((a, b) => score(b) - score(a) || (b.downloads || 0) - (a.downloads || 0));
+    } else if (filterSort === 'name_asc') {
+      filtered.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    } else if (filterSort === 'name_desc') {
+      filtered.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
+    }
+
     const isAr = (currentLang === 'ar');
+    const activeOriginObj = originsData.find(o => o.id === activeOrigin);
+    const systemName = activeOriginObj ? (activeOrigin === 'all' ? (isAr ? 'جميع الأنظمة' : 'All Systems') : activeOriginObj.name) : originLabel(activeOrigin);
+
+    const pageTitle = (activeOrigin === 'all')
+      ? (isAr ? 'جميع مشاريع إعادة البناء للأندرويد' : 'All Android Recomps')
+      : (isAr ? `مشاريع إعادة البناء للأندرويد - ${systemName}` : `${systemName} Android Recomps`);
+
+    const pageSubtitle = (activeOrigin === 'all')
+      ? (isAr ? `عرض ${filtered.length} بورت ومعاد بناؤه تم التحقق منه لأجهزة أندرويد.` : `Showing ${filtered.length} verified native ports & static recompilations for Android devices.`)
+      : (isAr ? `عرض ${filtered.length} لعبة وبورت لمنصة ${systemName} لأجهزة أندرويد.` : `Showing ${filtered.length} verified native ports & static recompilations for ${systemName}.`);
+
     viewContent.innerHTML = `
       <div style="margin-bottom: 24px;">
-        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">${isAr ? 'جميع الألعاب المعاد تجميعها' : 'All Android Recomps'}</h1>
-        <p style="color: var(--muted); font-size: 0.95rem;">${isAr ? `عرض ${filtered.length} بورت ومعاد تجميعه تم التحقق منه لأجهزة أندرويد.` : `Showing ${filtered.length} verified native ports & static recompilations for Android devices.`}</p>
+        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">${pageTitle}</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">${pageSubtitle}</p>
       </div>
 
       <!-- QUAD-FILTER BAR -->
@@ -738,10 +775,27 @@
             `).join('')}
           </select>
 
+          <span class="filter-label">${isAr ? 'الترتيب:' : 'Sort By:'}</span>
+          <select class="filter-select" id="filter-sort-select" onchange="window.DroidRecomp.setSort(this.value)">
+            <option value="popular" ${filterSort === 'popular' ? 'selected' : ''}>${isAr ? 'الأكثر تحميلاً' : 'Most Downloaded'}</option>
+            <option value="stars" ${filterSort === 'stars' ? 'selected' : ''}>${isAr ? 'الأعلى تقييماً (★)' : 'Highest Rated (★)'}</option>
+            <option value="recent" ${filterSort === 'recent' ? 'selected' : ''}>${isAr ? 'الأحدث تحديثاً' : 'Recently Updated'}</option>
+            <option value="status" ${filterSort === 'status' ? 'selected' : ''}>${isAr ? 'الجاهزة للعب أولاً' : 'Playable First'}</option>
+            <option value="name_asc" ${filterSort === 'name_asc' ? 'selected' : ''}>${isAr ? 'الاسم (A–Z)' : 'Title (A–Z)'}</option>
+            <option value="name_desc" ${filterSort === 'name_desc' ? 'selected' : ''}>${isAr ? 'الاسم (Z–A)' : 'Title (Z–A)'}</option>
+          </select>
+
+          <span class="filter-label">${isAr ? 'الحالة:' : 'Status:'}</span>
+          <select class="filter-select" id="filter-status-select" onchange="window.DroidRecomp.setStatus(this.value)">
+            <option value="all" ${filterStatus === 'all' ? 'selected' : ''}>${isAr ? 'جميع الحالات' : 'All Statuses'}</option>
+            <option value="playable" ${filterStatus === 'playable' ? 'selected' : ''}>${isAr ? '✓ جاهز للعب فقط' : '✓ Playable Only'}</option>
+            <option value="indev" ${filterStatus === 'indev' ? 'selected' : ''}>${isAr ? '⚡ قيد التطوير / ألفا' : '⚡ In Dev / Alpha'}</option>
+          </select>
+
           <span class="filter-label">${isAr ? 'المعمارية:' : 'Architecture:'}</span>
           <select class="filter-select" id="filter-type-select" onchange="window.DroidRecomp.setType(this.value)">
             <option value="all" ${filterType === 'all' ? 'selected' : ''}>${isAr ? 'جميع الأنواع' : 'All Types'}</option>
-            <option value="Static Recomp" ${filterType === 'Static Recomp' ? 'selected' : ''}>${isAr ? 'إعادة تجميع ثابتة' : 'Static Recompilation'}</option>
+            <option value="Static Recomp" ${filterType === 'Static Recomp' ? 'selected' : ''}>${isAr ? 'إعادة بناء ثابتة' : 'Static Recompilation'}</option>
             <option value="Decompilation" ${filterType === 'Decompilation' ? 'selected' : ''}>${isAr ? 'فك شفرة مصدرية' : 'Source Decompilation'}</option>
             <option value="Native Engine Port" ${filterType === 'Native Engine Port' ? 'selected' : ''}>${isAr ? 'إعادة تطبيق المحرك' : 'Engine Re-implementation'}</option>
           </select>
@@ -1105,7 +1159,7 @@
       <div class="library-header">
         <div>
           <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">${isAr ? 'مكتبة ألعابي' : 'My Game Library'}</h1>
-          <p style="color: var(--muted); font-size: 0.95rem;">${isAr ? 'شغّل ألعابك المعاد تجميعها والمثبتة مباشرة أو أضف ألعابك الخاصة غير المدرجة.' : 'Launch your installed recompilations directly or add your own custom unlisted games.'}</p>
+          <p style="color: var(--muted); font-size: 0.95rem;">${isAr ? 'شغّل ألعابك المعاد بناؤها والمثبتة مباشرة أو أضف ألعابك الخاصة غير المدرجة.' : 'Launch your installed recompilations directly or add your own custom unlisted games.'}</p>
         </div>
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
@@ -1560,6 +1614,14 @@
     const isSaved = savedGames.includes(game.id);
     const isInstalled = installedGames.includes(game.id);
     const pkg = getPackageName(game);
+    const isAr = (currentLang === 'ar');
+
+    const statusBadge = (game.status === 'Active Alpha' || game.status === 'Alpha')
+      ? `<span class="tag tag-status-alpha" style="font-size: 0.65rem; padding: 2px 6px;">⚡ ${isAr ? 'ألفا نشطة' : 'Active Alpha'}</span>`
+      : ((game.status === 'In Development')
+        ? `<span class="tag tag-status-indev" style="font-size: 0.65rem; padding: 2px 6px;">⚙ ${isAr ? 'قيد التطوير' : 'In Dev'}</span>`
+        : `<span class="tag tag-status-playable" style="font-size: 0.65rem; padding: 2px 6px;">✓ ${isAr ? 'جاهز للعب' : 'Playable'}</span>`);
+
     return `
       <div class="game-card" onclick="window.DroidRecomp.openModal('${game.id}')">
         <div class="game-card-head">
@@ -1567,22 +1629,27 @@
           <div class="game-card-meta">
             <div class="game-card-tags">
               <span class="tag tag-origin" style="font-size: 0.65rem; padding: 2px 7px;">${originLabel(game.origin)}</span>
+              ${statusBadge}
               ${game.isCustom ? '<span class="badge-custom">◈ Community</span>' : '<span class="badge-master">★ Master</span>'}
-              ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip" style="font-size: 0.65rem; padding: 2px 6px;">Turnip ⚡</span>` : ''}
-              ${game.input.touch ? `<span class="tag tag-touch" style="font-size: 0.65rem; padding: 2px 6px;">Touch</span>` : ''}
+              ${game.graphics && game.graphics.turnip_recommended ? `<span class="tag tag-turnip" style="font-size: 0.65rem; padding: 2px 6px;">Turnip ⚡</span>` : ''}
+              ${game.input && game.input.touch ? `<span class="tag tag-touch" style="font-size: 0.65rem; padding: 2px 6px;">Touch</span>` : ''}
             </div>
             <h3 class="game-card-title">${rank ? `<b style="color:var(--cyan); margin-right: 4px;">#${rank}</b> ` : ''}${escapeHtml(game.name)}</h3>
             <p class="game-card-by">by ${escapeHtml(game.author || 'Community')}</p>
-            <p class="game-card-blurb">${escapeHtml(game.blurb || '')}</p>
+            <p class="game-card-blurb">${escapeHtml(getTranslatedBlurb(game))}</p>
           </div>
         </div>
         <div class="game-card-foot">
-          <span>${game.version || 'v1.0'}</span>
+          <span class="game-card-ver-date">
+            <span class="game-ver">${game.version || 'v1.0'}</span>
+            <span class="game-sep">•</span>
+            <span class="game-date">${formatGameDate(game.updated_at, isAr)}</span>
+          </span>
           <div class="game-card-actions" onclick="event.stopPropagation()">
             <button type="button" class="btn-card-action" onclick="window.DroidRecomp.toggleSave('${game.id}')" title="Save to library">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
             </button>
-            <button type="button" class="btn-card-action" onclick="window.DroidRecomp.openModal('${game.id}')">Details</button>
+            <button type="button" class="btn-card-action" onclick="window.DroidRecomp.openModal('${game.id}')">${isAr ? 'التفاصيل' : 'Details'}</button>
           </div>
         </div>
       </div>
@@ -1603,7 +1670,7 @@
 
     const isRecomp = game.type && game.type.toLowerCase().includes('recomp');
     const aboutTitle = isAr
-      ? (isRecomp ? 'حول هذه النسخة المعاد تجميعها' : 'حول هذا البورت')
+      ? (isRecomp ? 'حول هذه النسخة المعاد بناؤها' : 'حول هذا البورت')
       : (isRecomp ? 'About this Recompilation' : 'About this Port');
 
     const keyFeaturesTitle = isAr
@@ -1651,9 +1718,14 @@
         <div class="modal-title-area">
           <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
             <span class="tag tag-origin">${originLabel(game.origin)}</span>
+            ${(game.status === 'Active Alpha' || game.status === 'Alpha')
+              ? `<span class="tag tag-status-alpha" style="padding: 4px 10px; font-size: 0.75rem;">⚡ ${isAr ? 'ألفا نشطة (قيد التطوير)' : 'Active Alpha'}</span>`
+              : ((game.status === 'In Development')
+                ? `<span class="tag tag-status-indev" style="padding: 4px 10px; font-size: 0.75rem;">⚙ ${isAr ? 'قيد التطوير المستمر' : 'In Development'}</span>`
+                : `<span class="tag tag-status-playable" style="padding: 4px 10px; font-size: 0.75rem;">✓ ${isAr ? 'مؤكد قابل للعب' : 'Verified Playable'}</span>`)}
             ${game.isCustom ? `<span class="badge-custom" style="padding: 4px 10px; font-size: 0.75rem;">${isAr ? '◈ مساهمات المجتمع' : '◈ Community Sideload'}</span>` : `<span class="badge-master" style="padding: 4px 10px; font-size: 0.75rem;">${isAr ? '★ دليل معتمد' : '★ Master Verified Catalog'}</span>`}
             <span class="tag">${game.type}</span>
-            <span class="tag" style="background: rgba(52, 211, 153, 0.2); color: var(--success); border-color: rgba(52, 211, 153, 0.4);">${isAr ? 'مؤكد قابل للعب' : 'Verified Playable'}</span>
+            <span class="tag" style="background: rgba(255,255,255,0.06); color: var(--frost);">${game.version} • ${formatGameDate(game.updated_at, isAr)}</span>
             ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip">⚡ ${isAr ? 'يوصى بـ Turnip' : 'Adreno Turnip Rec.'}</span>` : ''}
           </div>
           <h1 class="modal-title">${escapeHtml(game.name)}</h1>
@@ -1986,6 +2058,17 @@
   }
 
   
+  function formatGameDate(dateStr, isAr) {
+    if (!dateStr) return '';
+    const parts = dateStr.split('-');
+    const year = parts[0];
+    const monthNum = parseInt(parts[1], 10);
+    const enMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const arMonths = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    const mName = (isAr && arMonths[monthNum - 1]) ? arMonths[monthNum - 1] : (enMonths[monthNum - 1] || '');
+    return `${mName} ${year}`;
+  }
+
   // Helper for English origin labels in fact table
   function englishOriginLabel(origin) {
     const map = {
@@ -2024,7 +2107,7 @@
     const name = game.name || game.game || '';
 
     if (blurb.includes('High-fidelity native Android recompilation')) {
-      return `نسخة أندرويد أصلية عالية الدقة ومعاد تجميعها للعبة ${name}. تعمل بشكل أصلي ومباشر بدون استهلاك المحاكي مع تحسينات حديثة.`;
+      return `نسخة أندرويد أصلية عالية الدقة ومعاد بناؤها للعبة ${name}. تعمل بشكل أصلي ومباشر بدون استهلاك المحاكي مع تحسينات حديثة.`;
     }
     if (blurb.includes('High-performance native Android port')) {
       return `بورت أندرويد أصلي عالي الأداء للعبة ${name}. يعمل بشكل أصلي ومباشر على معمارية ARM64 مع تحسينات حديثة.`;
@@ -2357,6 +2440,14 @@
       filterInput = input;
       renderAllView();
     },
+    setStatus: function (status) {
+      filterStatus = status;
+      renderAllView();
+    },
+    setSort: function (sort) {
+      filterSort = sort;
+      renderAllView();
+    },
     toggleTurnip: function () {
       filterTurnip = !filterTurnip;
       renderAllView();
@@ -2365,7 +2456,12 @@
       activeOrigin = 'all';
       filterType = 'all';
       filterInput = 'all';
+      filterStatus = 'all';
+      filterSort = 'popular';
       filterTurnip = false;
+      document.querySelectorAll('#origin-pills [data-origin]').forEach(el => {
+        el.classList.toggle('on', el.getAttribute('data-origin') === 'all');
+      });
       renderAllView();
     },
     toggleSave: toggleSave,

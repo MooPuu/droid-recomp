@@ -247,6 +247,12 @@ class RecompGame {
   final List<String> featuresAr;
   final int downloads;
   final int stars;
+  final String status;
+  final String updatedAt;
+
+  bool get isAlpha => status.toLowerCase().contains('alpha') || blurb.toLowerCase().contains('alpha');
+  bool get isInDev => status.toLowerCase().contains('dev') || blurb.toLowerCase().contains('in dev');
+  bool get isPlayable => !isAlpha && !isInDev;
 
   RecompGame({
     required this.id,
@@ -278,6 +284,8 @@ class RecompGame {
     this.featuresAr = const [],
     required this.downloads,
     required this.stars,
+    this.status = 'Verified Playable',
+    this.updatedAt = '2026-10-24',
     this.customPackageName,
     this.isCustom = false,
   });
@@ -320,6 +328,8 @@ class RecompGame {
       featuresAr: (json['features_ar'] as List<dynamic>? ?? []).map((e) => e.toString()).toList(),
       downloads: json['downloads'] ?? 10000,
       stars: json['stars'] ?? 1500,
+      status: json['status'] ?? 'Verified Playable',
+      updatedAt: json['updated_at'] ?? json['release_date'] ?? '2026-10-24',
       customPackageName: json['package_name'] ?? json['customPackageName'],
       isCustom: json['isCustom'] ?? false,
     );
@@ -333,6 +343,8 @@ class RecompGame {
       'origin': origin,
       'type': type,
       'version': version,
+      'status': status,
+      'updated_at': updatedAt,
       'author': author,
       'repo': repo,
       'repo_url': repoUrl,
@@ -555,6 +567,17 @@ class AppL10n {
       'Get Obtainium App': 'Get Obtainium App',
       'Open-Source Android Recompilation Hub': 'Open-Source Android Recompilation Hub',
       'Touch Ready': 'Touch Ready',
+      'Alpha': 'Alpha',
+      'In Dev': 'In Dev',
+      'Playable': 'Playable',
+      'Sort By': 'Sort By',
+      'Most Downloaded': 'Most Downloaded',
+      'Highest Rated (★)': 'Highest Rated (★)',
+      'Recently Updated': 'Recently Updated',
+      'Playable First': 'Playable First',
+      'Title (A–Z)': 'Title (A–Z)',
+      'All Statuses': 'All Statuses',
+      'Alpha / In Dev': 'Alpha / In Dev',
       'No recomps match your filters': 'No recomps match your filters',
       'Recomps': 'Recomps',
       'No emulators match your filter': 'No emulators match your filter',
@@ -594,7 +617,7 @@ class AppL10n {
       'Library': 'المكتبة',
       'Search': 'بحث',
       'Setup & ROM Guide': 'دليل التثبيت والملفات',
-      'Search recomps & ports...': 'ابحث في الألعاب والمنافذ...',
+      'Search recomps & ports...': 'ابحث في الألعاب والبورتات...',
       'Install': 'تثبيت',
       'Installed': 'مثبت',
       'Verified Playable': 'مؤكد قابل للعب',
@@ -613,21 +636,21 @@ class AppL10n {
       'Launch': 'تشغيل',
       'Close': 'إغلاق',
       'Cancel': 'إلغاء',
-      'Top Community Recomps': 'أفضل إعادات الترجمة المجتمعية',
-      'Nintendo 64 Recompilations': 'إعادات ترجمة نينتندو 64',
+      'Top Community Recomps': 'أفضل مشاريع إعادة البناء المجتمعية',
+      'Nintendo 64 Recompilations': 'مشاريع إعادة بناء نينتندو 64',
       'Handheld Optimized Recomps': 'متوافق مع الأجهزة المحمولة',
-      'Xbox 360 Recompilations': 'إعادات ترجمة إكس بوكس 360',
-      'Classic PC & Engine Ports': 'منافذ ومحركات الحاسوب الكلاسيكية',
+      'Xbox 360 Recompilations': 'مشاريع إعادة بناء إكس بوكس 360',
+      'Classic PC & Engine Ports': 'بورتات ومحركات Classic PC',
       'See all': 'عرض الكل',
       'View full charts': 'عرض القائمة الكاملة',
       'Browse PC': 'تصفح ألعاب الحاسوب',
       'NO GAME FILES DISTRIBUTED': 'لا يتم توزيع أي ملفات ألعاب',
-      'legalCalloutNotice': 'يفهرس DroidRecomp إعادات التجميع والمنافذ مفتوحة المصدر فقط لأجهزة أندرويد. لا يتم استضافة أي ملفات ROM أو نسخ أقراص محمية بحقوق النشر. يجب على المستخدمين توفير نسخهم الاحتياطية المملوكة قانونياً.',
+      'legalCalloutNotice': 'يفهرس DroidRecomp مشاريع إعادة البناء والبورتات مفتوحة المصدر فقط لأجهزة أندرويد. لا يتم استضافة أي ملفات ROM أو نسخ أقراص محمية بحقوق النشر. يجب على المستخدمين توفير نسخهم الاحتياطية المملوكة قانونياً.',
       'Overview': 'نظرة عامة',
       'Bookmarks': 'المفضلة',
-      'Custom Ports': 'المنافذ المخصصة',
-      'Submit Port': 'إرسال منفذ',
-      'All Recomps & Ports': 'جميع المنافذ وإعادات الترجمة',
+      'Custom Ports': 'البورتات المخصصة',
+      'Submit Port': 'إرسال بورت',
+      'All Recomps & Ports': 'جميع البورتات ومشاريع إعادة البناء',
       'No installed recomps yet': 'لا توجد ألعاب مثبتة بعد',
       'No bookmarked games yet': 'لا توجد ألعاب في المفضلة بعد',
       'Download APK (ARM64)': 'تحميل APK (ARM64)',
@@ -644,22 +667,33 @@ class AppL10n {
       '⚡ Turnip Driver Tested': 'تم اختبار تعريف Turnip ⚡',
       'All Types': 'جميع الأنواع',
       'All Controls': 'جميع أساليب التحكم',
-      'Showing verified ports': 'عرض منافذ وإعادات تجميع مؤكدة',
+      'Showing verified ports': 'عرض بورتات ومشاريع إعادة بناء مؤكدة',
       'Required Game Files:': 'ملفات اللعبة المطلوبة:',
       'Asset Setup Guide': 'دليل إعداد الملفات',
-      'Android Recomp Setup Guide': 'دليل إعداد إعادات التجميع للأندرويد',
-      'guideSub': 'تعرف على كيفية عمل إعادات التجميع المباشرة على الأجهزة المحمولة وكيفية توفير ملفات ألعابك بشكل قانوني.',
+      'Android Recomp Setup Guide': 'دليل إعداد مشاريع إعادة البناء للأندرويد',
+      'guideSub': 'تعرف على كيفية عمل مشاريع إعادة البناء المباشرة على الأجهزة المحمولة وكيفية توفير ملفات ألعابك بشكل قانوني.',
       'Download Native ARM64 APK': 'تحميل حزمة APK الأصلية لمعمارية ARM64',
-      'guideStep1Body': 'تُبنى كل إعادة تجميع كحزمة APK أصلية ومباشرة للأندرويد. حمّل الإصدار مباشرة من مستودع المطور على GitHub أو زامن عبر تطبيق أوبتينيوم.',
+      'guideStep1Body': 'تُبنى كل إعادة بناء كحزمة APK أصلية ومباشرة للأندرويد. حمّل الإصدار مباشرة من مستودع المطور على GitHub أو زامن عبر تطبيق أوبتينيوم.',
       'Extract Your Original Game ROM': 'استخراج ملفات اللعبة الأصلية (ROM)',
-      'guideStep2Body': 'نظراً لأن إعادات التجميع لا تتضمن أي ملفات ألعاب محمية بحقوق النشر، يجب عليك استخراج نسختك الخاصة من شريط اللعبة أو القرص (مثل .z64 أو .iso أو ملفات الحاسوب).',
+      'guideStep2Body': 'نظراً لأن مشاريع إعادة البناء لا تتضمن أي ملفات ألعاب محمية بحقوق النشر، يجب عليك استخراج نسختك الخاصة من شريط اللعبة أو القرص (مثل .z64 أو .iso أو ملفات الحاسوب).',
       'Scoped Storage & Asset Placement': 'التخزين المعزول ونقل الملفات',
       'guideStep3Body': 'ضع الملفات المستخرجة في مجلد التخزين الداخلي /Android/data/{package_name}/files/ أو استخدم منتقي المجلدات المدمج في اللعبة (SAF).',
       'Obtainium Integration': 'مزامنة تطبيق Obtainium',
-      'guideObtainiumBody': 'يتيح لك تطبيق Obtainium تتبع وتحديث ألعابك المعاد تجميعها تلقائياً مباشرة من إصدارات GitHub في الخلفية دون الحاجة لمتجر Google Play.',
+      'guideObtainiumBody': 'يتيح لك تطبيق Obtainium تتبع وتحديث ألعابك المعاد بناؤها تلقائياً مباشرة من إصدارات GitHub في الخلفية دون الحاجة لمتجر Google Play.',
       'Get Obtainium App': 'الحصول على تطبيق Obtainium',
-      'Open-Source Android Recompilation Hub': 'دليل ومنصة إعادات تجميع أندرويد مفتوحة المصدر',
+      'Open-Source Android Recompilation Hub': 'دليل ومنصة مشاريع إعادة بناء أندرويد مفتوحة المصدر',
       'Touch Ready': 'جاهز للمس',
+      'Alpha': 'ألفا',
+      'In Dev': 'قيد التطوير',
+      'Playable': 'جاهز للعب',
+      'Sort By': 'الترتيب',
+      'Most Downloaded': 'الأكثر تحميلاً',
+      'Highest Rated (★)': 'الأعلى تقييماً (★)',
+      'Recently Updated': 'الأحدث تحديثاً',
+      'Playable First': 'الجاهزة للعب أولاً',
+      'Title (A–Z)': 'الاسم (أ - ي)',
+      'All Statuses': 'جميع الحالات',
+      'Alpha / In Dev': 'ألفا / قيد التطوير',
       'No recomps match your filters': 'لا توجد ألعاب تطابق عوامل التصفية',
       'Recomps': 'ألعاب',
       'No emulators match your filter': 'لا توجد محاكيات تطابق عامل التصفية',
@@ -676,7 +710,7 @@ class AppL10n {
       'No catalog games found': 'لم يتم العثور على ألعاب في الكتالوج',
       'Add Installed Game': 'إضافة لعبة مثبتة',
       '+ Add Game': '+ إضافة لعبة',
-      'Search 371+ Android recompilations...': 'ابحث في أكثر من 371 لعبة أندرويد معاد تجميعها...',
+      'Search 371+ Android recompilations...': 'ابحث في أكثر من 371 لعبة أندرويد معاد بناؤها...',
       'No results for': 'لا توجد نتائج لـ',
       'Select App for': 'اختر التطبيق لـ',
       'Select the installed APK on your device to link and launch:': 'اختر حزمة APK المثبتة على هاتفك لربطها وتشغيلها:',
@@ -2103,6 +2137,8 @@ class BrowseTab extends StatefulWidget {
 class _BrowseTabState extends State<BrowseTab> {
   String _selectedOrigin = 'all';
   final String _selectedType = 'all';
+  String _selectedStatus = 'all';
+  String _selectedSort = 'popular';
   bool _turnipOnly = false;
   bool _touchOnly = false;
 
@@ -2125,6 +2161,7 @@ class _BrowseTabState extends State<BrowseTab> {
     {'id': 'gba', 'name': 'GBA'},
     {'id': 'gbc', 'name': 'Game Boy Color'},
     {'id': 'gb', 'name': 'Game Boy'},
+    {'id': 'nds', 'name': 'Nintendo DS'},
     {'id': 'genesis', 'name': 'Sega Genesis'},
     {'id': 'saturn', 'name': 'Sega Saturn'},
     {'id': 'dreamcast', 'name': 'Dreamcast'},
@@ -2141,12 +2178,35 @@ class _BrowseTabState extends State<BrowseTab> {
     if (_selectedType != 'all') {
       filtered = filtered.where((g) => g.type == _selectedType).toList();
     }
+    if (_selectedStatus == 'playable') {
+      filtered = filtered.where((g) => g.isPlayable).toList();
+    } else if (_selectedStatus == 'indev') {
+      filtered = filtered.where((g) => g.isAlpha || g.isInDev).toList();
+    }
     if (_turnipOnly) {
       filtered = filtered.where((g) => g.turnipRecommended).toList();
     }
     if (_touchOnly) {
       filtered = filtered.where((g) => g.touchSupported).toList();
     }
+
+    filtered = List<RecompGame>.from(filtered);
+    if (_selectedSort == 'popular') {
+      filtered.sort((a, b) => b.downloads.compareTo(a.downloads));
+    } else if (_selectedSort == 'stars') {
+      filtered.sort((a, b) => b.stars.compareTo(a.stars));
+    } else if (_selectedSort == 'recent') {
+      filtered.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+    } else if (_selectedSort == 'status') {
+      int score(RecompGame g) => g.isPlayable ? 1 : 0;
+      filtered.sort((a, b) => score(b).compareTo(score(a)));
+    } else if (_selectedSort == 'az') {
+      filtered.sort((a, b) => a.name.compareTo(b.name));
+    }
+
+    final sysName = _selectedOrigin == 'all'
+        ? AppL10n.tr('All Systems')
+        : origins.firstWhere((o) => o['id'] == _selectedOrigin, orElse: () => {'name': _selectedOrigin})['name']!;
 
     return Column(
       children: [
@@ -2184,36 +2244,103 @@ class _BrowseTabState extends State<BrowseTab> {
           ),
         ),
 
-        // Quick Toggle Row (Turnip & Touch)
+        // Quick Toggle Row (Turnip, Touch, Status & Sort)
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          child: Row(
-            children: [
-              FilterChip(
-                label: Text(AppL10n.tr('⚡ Turnip Driver Tested'), style: const TextStyle(fontSize: 11)),
-                selected: _turnipOnly,
-                onSelected: (val) => setState(() => _turnipOnly = val),
-                selectedColor: RecompTheme.turnipGold.withOpacity(0.2),
-                backgroundColor: RecompTheme.cardBg(context),
-                side: BorderSide(color: _turnipOnly ? RecompTheme.turnipGold : RecompTheme.border(context)),
-                labelStyle: TextStyle(color: _turnipOnly ? RecompTheme.turnipGold : RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(width: 8),
-              FilterChip(
-                label: Text(AppL10n.tr('Touch Ready'), style: const TextStyle(fontSize: 11)),
-                selected: _touchOnly,
-                onSelected: (val) => setState(() => _touchOnly = val),
-                selectedColor: RecompTheme.successGreen.withOpacity(0.2),
-                backgroundColor: RecompTheme.cardBg(context),
-                side: BorderSide(color: _touchOnly ? RecompTheme.successGreen : RecompTheme.border(context)),
-                labelStyle: TextStyle(color: _touchOnly ? RecompTheme.successGreen : RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
-              ),
-              const Spacer(),
-              Text(
-                '${filtered.length} ${AppL10n.tr('Recomps')}',
-                style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
-              ),
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                FilterChip(
+                  label: Text(
+                    _selectedStatus == 'playable'
+                        ? '✓ ${AppL10n.tr('Playable')}'
+                        : (_selectedStatus == 'indev' ? '⚡ ${AppL10n.tr('Alpha / In Dev')}' : AppL10n.tr('All Statuses')),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                  selected: _selectedStatus != 'all',
+                  onSelected: (_) {
+                    setState(() {
+                      if (_selectedStatus == 'all') {
+                        _selectedStatus = 'playable';
+                      } else if (_selectedStatus == 'playable') {
+                        _selectedStatus = 'indev';
+                      } else {
+                        _selectedStatus = 'all';
+                      }
+                    });
+                  },
+                  selectedColor: _selectedStatus == 'playable'
+                      ? RecompTheme.successGreen.withOpacity(0.2)
+                      : Colors.amber.withOpacity(0.2),
+                  backgroundColor: RecompTheme.cardBg(context),
+                  side: BorderSide(
+                    color: _selectedStatus == 'playable'
+                        ? RecompTheme.successGreen
+                        : (_selectedStatus == 'indev' ? Colors.amber : RecompTheme.border(context)),
+                  ),
+                  labelStyle: TextStyle(
+                    color: _selectedStatus == 'playable'
+                        ? RecompTheme.successGreen
+                        : (_selectedStatus == 'indev' ? Colors.amber : RecompTheme.textMuted(context)),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                PopupMenuButton<String>(
+                  tooltip: AppL10n.tr('Sort By'),
+                  onSelected: (val) => setState(() => _selectedSort = val),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(value: 'popular', child: Text(AppL10n.tr('Most Downloaded'))),
+                    PopupMenuItem(value: 'stars', child: Text(AppL10n.tr('Highest Rated (★)'))),
+                    PopupMenuItem(value: 'recent', child: Text(AppL10n.tr('Recently Updated'))),
+                    PopupMenuItem(value: 'status', child: Text(AppL10n.tr('Playable First'))),
+                    PopupMenuItem(value: 'az', child: Text(AppL10n.tr('Title (A–Z)'))),
+                  ],
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: RecompTheme.cardBg(context),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: RecompTheme.border(context)),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.sort, size: 14, color: RecompTheme.textMuted(context)),
+                        const SizedBox(width: 4),
+                        Text(AppL10n.tr('Sort By'), style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context), fontWeight: FontWeight.w600)),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: Text(AppL10n.tr('⚡ Turnip Driver Tested'), style: const TextStyle(fontSize: 11)),
+                  selected: _turnipOnly,
+                  onSelected: (val) => setState(() => _turnipOnly = val),
+                  selectedColor: RecompTheme.turnipGold.withOpacity(0.2),
+                  backgroundColor: RecompTheme.cardBg(context),
+                  side: BorderSide(color: _turnipOnly ? RecompTheme.turnipGold : RecompTheme.border(context)),
+                  labelStyle: TextStyle(color: _turnipOnly ? RecompTheme.turnipGold : RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: Text(AppL10n.tr('Touch Ready'), style: const TextStyle(fontSize: 11)),
+                  selected: _touchOnly,
+                  onSelected: (val) => setState(() => _touchOnly = val),
+                  selectedColor: RecompTheme.successGreen.withOpacity(0.2),
+                  backgroundColor: RecompTheme.cardBg(context),
+                  side: BorderSide(color: _touchOnly ? RecompTheme.successGreen : RecompTheme.border(context)),
+                  labelStyle: TextStyle(color: _touchOnly ? RecompTheme.successGreen : RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(width: 14),
+                Text(
+                  '$sysName: ${filtered.length}',
+                  style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context), fontWeight: FontWeight.w700),
+                ),
+              ],
+            ),
           ),
         ),
 
@@ -2264,12 +2391,45 @@ class _BrowseTabState extends State<BrowseTab> {
                           children: [
                             const SizedBox(height: 4),
                             Text(
-                              '${game.originFormatted} • ${game.type}',
+                              '${game.originFormatted} • ${game.version} • ${game.updatedAt}',
                               style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context)),
                             ),
                             const SizedBox(height: 6),
                             Row(
                               children: [
+                                if (game.isAlpha)
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                                    margin: const EdgeInsets.only(right: 6),
+                                    decoration: BoxDecoration(
+                                      color: Colors.amber.withOpacity(0.18),
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(color: Colors.amber.withOpacity(0.4)),
+                                    ),
+                                    child: Text('⚡ ${AppL10n.tr('Alpha')}', style: const TextStyle(color: Colors.amber, fontSize: 9, fontWeight: FontWeight.w700)),
+                                  )
+                                else if (game.isInDev)
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                                    margin: const EdgeInsets.only(right: 6),
+                                    decoration: BoxDecoration(
+                                      color: Colors.orange.withOpacity(0.18),
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(color: Colors.orange.withOpacity(0.4)),
+                                    ),
+                                    child: Text('⚙ ${AppL10n.tr('In Dev')}', style: const TextStyle(color: Colors.orange, fontSize: 9, fontWeight: FontWeight.w700)),
+                                  )
+                                else
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                                    margin: const EdgeInsets.only(right: 6),
+                                    decoration: BoxDecoration(
+                                      color: RecompTheme.successGreen.withOpacity(0.18),
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(color: RecompTheme.successGreen.withOpacity(0.4)),
+                                    ),
+                                    child: Text('✓ ${AppL10n.tr('Playable')}', style: const TextStyle(color: RecompTheme.successGreen, fontSize: 9, fontWeight: FontWeight.w700)),
+                                  ),
                                 if (game.turnipRecommended)
                                   Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
@@ -3870,7 +4030,7 @@ String getTranslatedBlurb(RecompGame game) {
   final name = game.name;
 
   if (blurb.contains('High-fidelity native Android recompilation')) {
-    return 'نسخة أندرويد أصلية عالية الدقة ومعاد تجميعها للعبة $name. تعمل بشكل أصلي ومباشر بدون استهلاك المحاكي مع تحسينات حديثة.';
+    return 'نسخة أندرويد أصلية عالية الدقة ومعاد بناؤها للعبة $name. تعمل بشكل أصلي ومباشر بدون استهلاك المحاكي مع تحسينات حديثة.';
   }
   if (blurb.contains('High-performance native Android port')) {
     return 'بورت أندرويد أصلي عالي الأداء للعبة $name. يعمل بشكل أصلي ومباشر على معمارية ARM64 مع تحسينات حديثة.';
@@ -4030,7 +4190,8 @@ class GameDetailScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      if (game.turnipRecommended)
+                      if (game.turnipRecommended) ...[
+                        const SizedBox(width: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                           decoration: BoxDecoration(
@@ -4043,6 +4204,38 @@ class GameDetailScreen extends StatelessWidget {
                             style: TextStyle(color: RecompTheme.turnipGold, fontSize: 11, fontWeight: FontWeight.w700),
                           ),
                         ),
+                      ],
+                      const SizedBox(width: 8),
+                      if (game.isAlpha)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(
+                            color: Colors.amber.withOpacity(0.18),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.amber),
+                          ),
+                          child: Text('⚡ ${AppL10n.tr('Alpha')}', style: const TextStyle(color: Colors.amber, fontSize: 11, fontWeight: FontWeight.w700)),
+                        )
+                      else if (game.isInDev)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(
+                            color: Colors.orange.withOpacity(0.18),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.orange),
+                          ),
+                          child: Text('⚙ ${AppL10n.tr('In Dev')}', style: const TextStyle(color: Colors.orange, fontSize: 11, fontWeight: FontWeight.w700)),
+                        )
+                      else
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(
+                            color: RecompTheme.successGreen.withOpacity(0.18),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: RecompTheme.successGreen),
+                          ),
+                          child: Text('✓ ${AppL10n.tr('Playable')}', style: const TextStyle(color: RecompTheme.successGreen, fontSize: 11, fontWeight: FontWeight.w700)),
+                        ),
                     ],
                   ),
 
@@ -4054,9 +4247,25 @@ class GameDetailScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: RecompTheme.text(context)),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    'Maintained by ${game.author}',
-                    style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context)),
+                  Row(
+                    children: [
+                      Text(
+                        'Maintained by ${game.author}',
+                        style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context)),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: RecompTheme.border(context).withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(
+                          '${game.version} • ${game.updatedAt}',
+                          style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: RecompTheme.text(context)),
+                        ),
+                      ),
+                    ],
                   ),
 
                   const SizedBox(height: 20),
@@ -4204,7 +4413,7 @@ class GameDetailScreen extends StatelessWidget {
                   const SizedBox(height: 28),
 
                   // Overview / Blurb
-                  Text(appLanguageNotifier.value == 'ar' ? (game.type.toLowerCase().contains('recomp') ? 'حول هذه النسخة المعاد تجميعها' : 'حول هذا البورت') : (game.type.toLowerCase().contains('recomp') ? 'About this Recompilation' : 'About this Port'), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
+                  Text(appLanguageNotifier.value == 'ar' ? (game.type.toLowerCase().contains('recomp') ? 'حول هذه النسخة المعاد بناؤها' : 'حول هذا البورت') : (game.type.toLowerCase().contains('recomp') ? 'About this Recompilation' : 'About this Port'), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
                   const SizedBox(height: 8),
                   Text(
                     getTranslatedBlurb(game),

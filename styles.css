@@ -2846,3 +2846,42 @@ html[dir="rtl"] .game-card-tags {
     display: none !important;
   }
 }
+
+
+/* Status Readiness Tags & Card Version Date */
+.tag-status-alpha, .tag-status-indev {
+  background: rgba(245, 158, 11, 0.16) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  font-weight: 700 !important;
+}
+
+.tag-status-playable {
+  background: rgba(16, 185, 129, 0.16) !important;
+  color: #10b981 !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  font-weight: 700 !important;
+}
+
+.game-card-ver-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.game-card-ver-date .game-ver {
+  font-weight: 700;
+  color: var(--frost);
+}
+
+.game-card-ver-date .game-sep {
+  opacity: 0.45;
+  font-size: 0.7rem;
+}
+
+.game-card-ver-date .game-date {
+  color: var(--muted);
+  font-weight: 500;
+}

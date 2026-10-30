@@ -23,6 +23,14 @@ void main() {
     }
     expect(success, equals(apps.length));
 
+    final dusklightJson = apps.firstWhere((a) => a['id'] == 'zelda-twilight-princess-ds-dusklight-ds');
+    expect(dusklightJson['origin'], equals('nds'));
+    expect(dusklightJson['status'], equals('Active Alpha'));
+    final duskGame = RecompGame.fromJson(dusklightJson);
+    expect(duskGame.origin, equals('nds'));
+    expect(duskGame.isAlpha, isTrue);
+    expect(duskGame.updatedAt.isNotEmpty, isTrue);
+
     final emuFile = File('assets/emulators.json');
     expect(emuFile.existsSync(), isTrue);
     final emuData = json.decode(emuFile.readAsStringSync());
@@ -49,7 +57,7 @@ void main() {
     expect(AppL10n.tr('Discover'), equals('استكشاف'));
     expect(AppL10n.tr('▶ LAUNCH GAME'), equals('▶ تشغيل اللعبة'));
     expect(AppL10n.tr('Setup & ROM Guide'), equals('دليل التثبيت والملفات'));
-    expect(AppL10n.tr('Android Recomp Setup Guide'), equals('دليل إعداد إعادات التجميع للأندرويد'));
+    expect(AppL10n.tr('Android Recomp Setup Guide'), equals('دليل إعداد مشاريع إعادة البناء للأندرويد'));
     expect(AppL10n.tr('Download Native ARM64 APK'), equals('تحميل حزمة APK الأصلية لمعمارية ARM64'));
     expect(AppL10n.tr('Extract Your Original Game ROM'), equals('استخراج ملفات اللعبة الأصلية (ROM)'));
     expect(AppL10n.tr('Scoped Storage & Asset Placement'), equals('التخزين المعزول ونقل الملفات'));
