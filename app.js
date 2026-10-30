@@ -178,6 +178,22 @@
       noResults: 'No matches found',
       all: 'All',
       search: 'Search',
+            footDesc: 'Community directory and installer for native console and PC recompilations running natively on ARM64 Android devices. No emulation overhead. 100% legal BYOF architecture.',
+      footZeroRoms: 'Zero ROMs Distributed',
+      footDirectReleases: 'Direct Developer Releases',
+      footOpenSource: 'Open Source Hub',
+      footEcosystem: 'Ecosystem',
+      footDiscover: 'Discover',
+      footAllRecomps: 'All 379+ Recomps & Ports',
+      footTopDownloads: 'Top Downloads',
+      footHandheldOpt: 'Handheld Optimized',
+      footConsoles: 'Consoles',
+      footToolsLegal: 'Tools & Legal',
+      footHowSetup: 'How to Setup ROMs',
+      footObtainiumPack: 'Obtainium JSON Pack',
+      footSubmitPort: 'Submit New Port',
+      footGithubProject: 'GitHub Project',
+      footBaseNotice: '<strong>No game files hosted here.</strong> DroidRecomp indexes developer repositories and public source ports. Users must supply their own legally owned ROMs or disc dumps.',
       langButton: 'عربي'
     },
     ar: {
@@ -233,6 +249,22 @@
       noResults: 'لم يتم العثور على نتائج',
       all: 'الكل',
       search: 'بحث',
+            footDesc: 'دليل ومثبت مجتمعي لإعادات تجميع ومنافذ ألعاب الأجهزة المنزلية والحاسوب التي تعمل بشكل أصلي على أجهزة أندرويد (ARM64). بدون استهلاك المحاكي. بنية قانونية 100% قائمة على توفير ملفاتك الخاصة.',
+      footZeroRoms: 'لا يتم توزيع أي ملفات ROM',
+      footDirectReleases: 'إصدارات مباشرة من المطورين',
+      footOpenSource: 'مركز للمشاريع مفتوحة المصدر',
+      footEcosystem: 'المنظومة',
+      footDiscover: 'استكشاف',
+      footAllRecomps: 'جميع الـ 379+ منفذ وإعادة تجميع',
+      footTopDownloads: 'الأعلى تحميلاً',
+      footHandheldOpt: 'متوافق مع الأجهزة المحمولة',
+      footConsoles: 'المنصات',
+      footToolsLegal: 'الأدوات والشروط القانونية',
+      footHowSetup: 'دليل إعداد ملفات ROM',
+      footObtainiumPack: 'حزمة Obtainium التلقائية',
+      footSubmitPort: 'إرسال منفذ جديد',
+      footGithubProject: 'مشروع GitHub',
+      footBaseNotice: '<strong>لا يتم استضافة أي ملفات ألعاب هنا.</strong> يفهرس DroidRecomp مستودعات المطورين والمنافذ مفتوحة المصدر فقط. يجب على المستخدمين توفير نسخهم الاحتياطية القانونية لملفات ROM أو الأقراص.',
       langButton: 'English'
     }
   };
@@ -317,6 +349,55 @@
 
     const pcPill = document.querySelector('.origin-pills [data-origin="pc_classic"]');
     if (pcPill) pcPill.textContent = t('classicPc');
+    // Footer Translations
+    const footDesc = document.getElementById('foot-desc');
+    if (footDesc) footDesc.textContent = t('footDesc');
+
+    const footPillRoms = document.getElementById('foot-pill-roms');
+    if (footPillRoms) footPillRoms.textContent = t('footZeroRoms');
+
+    const footPillReleases = document.getElementById('foot-pill-releases');
+    if (footPillReleases) footPillReleases.textContent = t('footDirectReleases');
+
+    const footPillOpenSource = document.getElementById('foot-pill-opensource');
+    if (footPillOpenSource) footPillOpenSource.textContent = t('footOpenSource');
+
+    const footColEcosystem = document.getElementById('foot-col-ecosystem');
+    if (footColEcosystem) footColEcosystem.textContent = t('footEcosystem');
+
+    const footLinkDiscover = document.getElementById('foot-link-discover');
+    if (footLinkDiscover) footLinkDiscover.textContent = t('footDiscover');
+
+    const footLinkAll = document.getElementById('foot-link-all');
+    if (footLinkAll) footLinkAll.textContent = t('footAllRecomps');
+
+    const footLinkTop = document.getElementById('foot-link-top');
+    if (footLinkTop) footLinkTop.textContent = t('footTopDownloads');
+
+    const footLinkHandheld = document.getElementById('foot-link-handheld');
+    if (footLinkHandheld) footLinkHandheld.textContent = t('footHandheldOpt');
+
+    const footColConsoles = document.getElementById('foot-col-consoles');
+    if (footColConsoles) footColConsoles.textContent = t('footConsoles');
+
+    const footColTools = document.getElementById('foot-col-tools');
+    if (footColTools) footColTools.textContent = t('footToolsLegal');
+
+    const footLinkHow = document.getElementById('foot-link-how');
+    if (footLinkHow) footLinkHow.textContent = t('footHowSetup');
+
+    const footObtainiumLink = document.getElementById('foot-obtainium-link');
+    if (footObtainiumLink) footObtainiumLink.textContent = t('footObtainiumPack');
+
+    const footLinkSubmit = document.getElementById('foot-link-submit');
+    if (footLinkSubmit) footLinkSubmit.textContent = t('footSubmitPort');
+
+    const footLinkGithub = document.getElementById('foot-link-github');
+    if (footLinkGithub) footLinkGithub.textContent = t('footGithubProject');
+
+    const footBaseNotice = document.getElementById('foot-base-notice');
+    if (footBaseNotice) footBaseNotice.innerHTML = t('footBaseNotice');
+
   }
 
   function applyTheme() {

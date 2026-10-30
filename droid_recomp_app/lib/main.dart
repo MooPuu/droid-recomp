@@ -467,6 +467,7 @@ class AppL10n {
       'View full charts': 'View full charts',
       'Browse PC': 'Browse PC',
       'NO GAME FILES DISTRIBUTED': 'NO GAME FILES DISTRIBUTED',
+      'legalCalloutNotice': 'DroidRecomp indexes only open-source native Android game recompilations. Zero copyrighted ROMs or disc images are hosted. Users must supply their own legally owned backups.',
       'Overview': 'Overview',
       'Bookmarks': 'Bookmarks',
       'Custom Ports': 'Custom Ports',
@@ -527,6 +528,7 @@ class AppL10n {
       'View full charts': 'عرض القائمة الكاملة',
       'Browse PC': 'تصفح ألعاب الحاسوب',
       'NO GAME FILES DISTRIBUTED': 'لا يتم توزيع أي ملفات ألعاب',
+      'legalCalloutNotice': 'يفهرس DroidRecomp إعادات التجميع والمنافذ مفتوحة المصدر فقط لأجهزة أندرويد. لا يتم استضافة أي ملفات ROM أو نسخ أقراص محمية بحقوق النشر. يجب على المستخدمين توفير نسخهم الاحتياطية المملوكة قانونياً.',
       'Overview': 'نظرة عامة',
       'Bookmarks': 'المفضلة',
       'Custom Ports': 'المنافذ المخصصة',
@@ -1468,12 +1470,12 @@ class _DiscoverTabState extends State<DiscoverTab> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'NO GAME FILES DISTRIBUTED',
+                AppL10n.tr('NO GAME FILES DISTRIBUTED'),
                 style: TextStyle(color: RecompTheme.primary(context), fontSize: 11, fontWeight: FontWeight.w800, letterSpacing: 0.8),
               ),
               const SizedBox(height: 6),
               Text(
-                'DroidRecomp indexes only open-source native Android game recompilations. Zero copyrighted ROMs or disc images are hosted. Users must supply their own legally owned backups.',
+                AppL10n.tr('legalCalloutNotice'),
                 style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12, height: 1.4),
               ),
             ],
