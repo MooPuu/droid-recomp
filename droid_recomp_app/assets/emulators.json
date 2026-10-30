@@ -26,7 +26,15 @@
       "apk_url": "https://github.com/Trixarian/NetherSX2-patch/releases",
       "repo_url": "https://github.com/Trixarian/NetherSX2-patch",
       "obtainium_url": "obtainium://add/https://github.com/Trixarian/NetherSX2-patch",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "المحاكي الأفضل لمنصة PlayStation 2 على أندرويد، مبني على أحدث نسخ AetherSX2 مع إزالة الإعلانات واستعادة دعم تعريفات Vulkan Turnip وتحسين الأداء.",
+      "features_ar": [
+        "تشغيل PS2 بسرعة 60 إطاراً في الثانية عبر واجهة Vulkan الأصلية",
+        "دعم كامل لتعريفات Mesa Turnip Adreno المخصصة",
+        "إزالة الإعلانات بالكامل واستعادة واجهة المستخدم النظيفة",
+        "دعم دقة العرض حتى 4K مع ترقية الإكساءات وتنعيم الحواف",
+        "تعيين تلقائي لأذرع التحكم الخارجية ومقابض البلوتوث"
+      ]
     },
     {
       "id": "aethersx2",
@@ -53,7 +61,13 @@
       "apk_url": "https://archive.org/details/aethersx2_archive",
       "repo_url": "https://archive.org/details/aethersx2_archive",
       "obtainium_url": "",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "محاكي AetherSX2 (Classic Alpha) عالي الأداء لمنصة Sony PlayStation 2 على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Sony PlayStation 2 بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "play-ps2",
@@ -80,7 +94,14 @@
       "apk_url": "https://purei.org/downloads.php",
       "repo_url": "https://github.com/jpd002/Play-",
       "obtainium_url": "obtainium://add/https://github.com/jpd002/Play-",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "محاكي تجريبي ومفتوح المصدر لمنصة PlayStation 2 مكتوب بلغة C++ ويركز على الدقة وسهولة النقل بين الأنظمة.",
+      "features_ar": [
+        "كود مصدري مفتوح بالكامل تحت رخصة MIT",
+        "يعمل بدون الحاجة إلى ملف BIOS أصلي للـ PS2",
+        "متوافق مع مكتبات Vulkan و OpenGL",
+        "تطوير نشط ومستمر على GitHub"
+      ]
     },
     {
       "id": "damon-ps2-pro",
@@ -107,7 +128,13 @@
       "apk_url": "https://play.google.com/store/apps/details?id=com.damonplay.damonps2.pro",
       "repo_url": "https://play.google.com/store/apps/details?id=com.damonplay.damonps2.pro",
       "obtainium_url": "",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "محاكي DamonPS2 / DamonSX2 Pro عالي الأداء لمنصة Sony PlayStation 2 على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Sony PlayStation 2 بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "sudachi",
@@ -134,7 +161,14 @@
       "apk_url": "https://github.com/sudachi-emu/sudachi/releases",
       "repo_url": "https://github.com/sudachi-emu/sudachi",
       "obtainium_url": "obtainium://add/https://github.com/sudachi-emu/sudachi",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "محاكي Nintendo Switch حديث وسريع لأندرويد مبني على كود Yuzu مع إصلاحات مستمرة للتوافق ودعم أحدث ألعاب الهجين.",
+      "features_ar": [
+        "تشغيل ألعاب Nintendo Switch بمعمارية ARM64 الأصلية",
+        "دعم كامل لتعريفات Mesa Turnip Vulkan لمعالجات Snapdragon",
+        "تثبيت التحديثات وملفات DLC وتعديلات 60 FPS بسهولة",
+        "دعم استشعار الحركة (الجيروسكوب) وأذرع تحكم Pro Controller"
+      ]
     },
     {
       "id": "skyline",
@@ -161,7 +195,13 @@
       "apk_url": "https://github.com/skyline-emu/skyline/releases",
       "repo_url": "https://github.com/skyline-emu/skyline",
       "obtainium_url": "",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "محاكي Skyline & Skyline Edge عالي الأداء لمنصة Nintendo Switch على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Nintendo Switch بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "suyu",
@@ -188,7 +228,14 @@
       "apk_url": "https://git.suyu.dev/suyu/suyu/releases",
       "repo_url": "https://git.suyu.dev/suyu/suyu",
       "obtainium_url": "",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "استمرار مفتوح المصدر ومدعوم من المجتمع لمحاكي Nintendo Switch يركز على استقرار النظام وإصلاح التوافق.",
+      "features_ar": [
+        "مشروع مجتمعي مفتوح المصدر بنسبة 100%",
+        "إدارة كاملة لحزم الألعاب والملفات والتحديثات",
+        "دعم معالجة Vulkan المتقدمة وتعريفات Turnip",
+        "توافق عالي مع أذرع التحكم المتصلة بالبلوتوث والـ USB"
+      ]
     },
     {
       "id": "yuzu-android",
@@ -215,7 +262,13 @@
       "apk_url": "https://archive.org/details/yuzu-android-apk-archive",
       "repo_url": "https://archive.org/details/yuzu-android-apk-archive",
       "obtainium_url": "",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "محاكي Yuzu Android (Final Archive) عالي الأداء لمنصة Nintendo Switch على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Nintendo Switch بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "strato",
@@ -241,7 +294,14 @@
       "apk_url": "https://github.com/strato-emu/strato",
       "repo_url": "https://github.com/strato-emu/strato",
       "obtainium_url": "",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "الخليفة المباشر لمحاكي Skyline، يستكمل تطوير معمارية ARM64 الأصلية لتشغيل ألعاب Switch بأعلى كفاءة ممكنة.",
+      "features_ar": [
+        "مبني على أساس محرك Skyline الثوري",
+        "معالجة رسومية محسنة لمعالجات Adreno و Mali",
+        "استهلاك فائق الانخفاض للذاكرة العشوائية RAM",
+        "كود مفتوح المصدر وتطوير مجتمعي نشط"
+      ]
     },
     {
       "id": "dolphin-official",
@@ -269,7 +329,14 @@
       "apk_url": "https://dolphin-emu.org/download/",
       "repo_url": "https://github.com/dolphin-emu/dolphin/releases",
       "obtainium_url": "obtainium://add/https://github.com/dolphin-emu/dolphin",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "المحاكي الرسمي الرائد لمنصتي GameCube و Nintendo Wii على أندرويد مع أداء متميز وميزات متقدمة.",
+      "features_ar": [
+        "تشغيل ألعاب GameCube و Wii بسرعة 60 إطاراً في الثانية",
+        "دعم كامل لواجهات Vulkan و OpenGL ES",
+        "محاكاة أجهزة تحكم Wii Remote عبر شاشة اللمس وأذرع التحكم",
+        "دعم إدراج حزم الإكساءات المخصصة عالية الدقة HD"
+      ]
     },
     {
       "id": "dolphin-mmjr",
@@ -296,7 +363,14 @@
       "apk_url": "https://github.com/Bankaimaster999/Dolphin-MMJR/releases",
       "repo_url": "https://github.com/Bankaimaster999/Dolphin-MMJR",
       "obtainium_url": "obtainium://add/https://github.com/Bankaimaster999/Dolphin-MMJR",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "تعديل مجتمعي عالي الأداء من محاكي Dolphin مصمم خصيصاً للأجهزة المتوسطة وأجهزة الألعاب المحمولة لتحقيق أعلى معدل إطارات.",
+      "features_ar": [
+        "تحسينات أداء قوية لمعالجات Snapdragon و Mediatek",
+        "إعدادات سريعة لتجاوز معالجة الرسوميات الثقيلة وتثبيت 60 FPS",
+        "واجهة مستخدم مخصصة سهلة التبديل وتحديد الإعدادات",
+        "دعم موسع لتعريفات Turnip المخصصة"
+      ]
     },
     {
       "id": "lime3ds",
@@ -323,7 +397,14 @@
       "apk_url": "https://github.com/Lime3DS/Lime3DS/releases",
       "repo_url": "https://github.com/Lime3DS/Lime3DS",
       "obtainium_url": "obtainium://add/https://github.com/Lime3DS/Lime3DS",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "استمرار مفتوح المصدر لمحاكي Nintendo 3DS الشهير Citra يركز على تحسين الأداء ودعم شاشات الأندرويد العريضة.",
+      "features_ar": [
+        "تشغيل ألعاب 3DS بدقة مضاعفة تصل إلى 4X",
+        "محرك معالجة رسومية سريع عبر Vulkan",
+        "دعم الشاشات المزدوجة مع خيارات تخصيص متعددة للحجم والموضع",
+        "دعم الميكروفون واستشعار الحركة والكاميرا"
+      ]
     },
     {
       "id": "citra-mmj",
@@ -350,7 +431,14 @@
       "apk_url": "https://github.com/weihuoya/citra/releases",
       "repo_url": "https://github.com/weihuoya/citra",
       "obtainium_url": "obtainium://add/https://github.com/weihuoya/citra",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "النسخة المحسنة الشهيرة من المطور weihuoya لمحاكاة ألعاب Nintendo 3DS بأعلى سرعة وسلاسة على معالجات أندرويد.",
+      "features_ar": [
+        "أعلى معدل إطارات ممكن لألعاب 3DS على أجهزة أندرويد",
+        "تخصيص شامل للشاشتين وترتيب الأزرار بدقة بالغة",
+        "تسريع معالجة الرسوميات وتخطي الإطارات الذكي",
+        "دعم كامل لأجهزة الألعاب المحمولة مثل Retroid و Odin"
+      ]
     },
     {
       "id": "ppsspp",
@@ -377,7 +465,13 @@
       "apk_url": "https://github.com/hrydgard/ppsspp/releases",
       "repo_url": "https://github.com/hrydgard/ppsspp",
       "obtainium_url": "obtainium://add/https://github.com/hrydgard/ppsspp",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "محاكي PPSSPP (Free) عالي الأداء لمنصة Sony PlayStation Portable على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Sony PlayStation Portable بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "ppsspp-gold",
@@ -404,7 +498,14 @@
       "apk_url": "https://play.google.com/store/apps/details?id=org.ppsspp.ppssppgold",
       "repo_url": "https://github.com/hrydgard/ppsspp",
       "obtainium_url": "",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "النسخة الذهبية المتميزة من محاكي PPSSPP، تدعم المطور Henrik Rydgård مع تقديم كافة ميزات المحاكاة الأسطورية.",
+      "features_ar": [
+        "أيقونة ذهبية حصرية مع دعم المطور المباشر",
+        "جميع ميزات PPSSPP المتقدمة وأعلى استقرار في الأداء",
+        "تكامل سلس مع أجهزة الألعاب المحمولة والشاشات الكبيرة",
+        "حفظ ومزامنة حالات اللعب عبر التخزين السحابي"
+      ]
     },
     {
       "id": "vita3k",
@@ -431,7 +532,13 @@
       "apk_url": "https://github.com/Vita3K/Vita3K-Android/releases",
       "repo_url": "https://github.com/Vita3K/Vita3K-Android",
       "obtainium_url": "obtainium://add/https://github.com/Vita3K/Vita3K-Android",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "محاكي Vita3K Android عالي الأداء لمنصة Sony PlayStation Vita على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Sony PlayStation Vita بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "winlator",
@@ -458,7 +565,14 @@
       "apk_url": "https://github.com/brunodev85/winlator/releases",
       "repo_url": "https://github.com/brunodev85/winlator",
       "obtainium_url": "obtainium://add/https://github.com/brunodev85/winlator",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "بيئة تشغيل ألعاب وتطبيقات Windows PC على أندرويد باستخدام Wine و Box86/Box64 مع دعم تسريع الرسوميات عبر DXVK.",
+      "features_ar": [
+        "تشغيل ألعاب الحاسوب الشخصي المفضلة لديك بنقرة واحدة",
+        "تكامل مسبق لمكتبات Wine و Box64 و DXVK و D8VK",
+        "دعم تعريفات Turnip Adreno لتحقيق أعلى معدل إطارات",
+        "لوحة تحكم باللمس قابلة للتخصيص بالكامل وأزرار ألعاب مدمجة"
+      ]
     },
     {
       "id": "mobox",
@@ -485,7 +599,14 @@
       "apk_url": "https://github.com/olegos2/mobox",
       "repo_url": "https://github.com/olegos2/mobox",
       "obtainium_url": "obtainium://add/https://github.com/olegos2/mobox",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "بيئة محاكاة Windows x86/x64 متقدمة وعالية الأداء لأندرويد مبنية على Termux لتحقيق أقصى عدد إطارات لألعاب الحاسوب.",
+      "features_ar": [
+        "أقصى كفاءة ممكنة لتشغيل ألعاب Windows PC على أندرويد",
+        "دعم تشغيل كبرى ألعاب AAA الكلاسيكية والحديثة",
+        "إدارة متقدمة لتعريفات Turnip ومكتبات DXVK",
+        "تحسينات حصرية لمعالجات Snapdragon الرائدة"
+      ]
     },
     {
       "id": "gamenative",
@@ -512,7 +633,14 @@
       "apk_url": "https://github.com/utkarshdalal/GameNative/releases",
       "repo_url": "https://github.com/utkarshdalal/GameNative",
       "obtainium_url": "obtainium://add/https://github.com/utkarshdalal/GameNative",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "مشغل وبيئة تشغيل ألعاب الحاسوب الشخصي بنقرة واحدة لأندرويد، يوفر تثبيتاً سهلاً وواجهة عصرية جاهزة للعب.",
+      "features_ar": [
+        "إعداد فوري بدون الحاجة لأوامر سطر الأوامر أو ضبط معقد",
+        "تحميل تلقائي للحاويات المتوافقة ومكتبات DXVK",
+        "واجهة مستخدم عصرية ملائمة لأجهزة الألعاب والشاشات اللمسية",
+        "تعيين تلقائي لأذرع التحكم والبلوتوث"
+      ]
     },
     {
       "id": "gamehub",
@@ -539,7 +667,14 @@
       "apk_url": "https://github.com/GameHub-App",
       "repo_url": "https://github.com/GameHub-App",
       "obtainium_url": "",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "مركز مشغلات ألعاب الحاسوب لأندرويد مع حاويات مسبقة الإعداد لتشغيل ألعاب x86/x64 بسهولة وسرعة.",
+      "features_ar": [
+        "حاويات معدة مسبقاً لأشهر ألعاب الكمبيوتر",
+        "تبديل سريع بين إصدارات Wine و DXVK و Turnip",
+        "أداء مستقر وسهل الاستخدام للمبتدئين",
+        "دعم كامل لأجهزة التحكم الخارجية"
+      ]
     },
     {
       "id": "box64droid",
@@ -566,7 +701,14 @@
       "apk_url": "https://github.com/Ilya114/Box64Droid/releases",
       "repo_url": "https://github.com/Ilya114/Box64Droid",
       "obtainium_url": "obtainium://add/https://github.com/Ilya114/Box64Droid",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "مشروع مبني على Termux لتشغيل ألعاب Windows x64 و x86 على أندرويد باستخدام Box64 و Wine بأداء غير مسبوق.",
+      "features_ar": [
+        "دعم معماريات x86 و x64 مع تحسينات ترجمة ثنائية فورية",
+        "تكامل مع واجهة Vulkan عبر VirGL و DXVK",
+        "تخصيص كامل لمعلمات الأداء والذاكرة",
+        "توافق عالي مع ألعاب Direct3D 9 و 10 و 11"
+      ]
     },
     {
       "id": "magic-dosbox",
@@ -593,7 +735,14 @@
       "apk_url": "https://play.google.com/store/apps/details?id=bruenor.magicbox",
       "repo_url": "https://play.google.com/store/apps/details?id=bruenor.magicbox.free",
       "obtainium_url": "",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "محاكي DOSBox المتميز والمصمم خصيصاً لأجهزة اللمس وأندرويد لتشغيل كلاسيكيات عصر MS-DOS بكل سهولة.",
+      "features_ar": [
+        "أزرار تحكم لمسية وعصي افتراضية قابلة للتخصيص بحرية مطلقة",
+        "دعم كامل للماوس ولوحة المفاتيح وأجهزة التحكم الخارجية",
+        "صوتيات فائقة النقاء مع دعم محاكاة Sound Blaster و MIDI",
+        "إنشاء اختصارات للألعاب على الشاشة الرئيسية"
+      ]
     },
     {
       "id": "exagear",
@@ -620,7 +769,14 @@
       "apk_url": "https://archive.org/details/exagear-windows-emulator-collection",
       "repo_url": "https://archive.org/details/exagear-windows-emulator-collection",
       "obtainium_url": "",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "البيئة الكلاسيكية الشهيرة لتشغيل ألعاب وتطبيقات Windows x86 على أجهزة أندرويد مع دعم التعديلات المجتمعية.",
+      "features_ar": [
+        "تشغيل ألعاب الاستراتيجية والـ RPG الكلاسيكية للحاسوب",
+        "تعديلات مجتمعية واسعة لتحسين الرسوميات والصوت",
+        "استهلاك منخفض لموارد النظام والبطارية",
+        "دعم مجموعة كبيرة من الألعاب الكلاسيكية القديمة"
+      ]
     },
     {
       "id": "joiplay",
@@ -647,7 +803,14 @@
       "apk_url": "https://joiplay.cyou/",
       "repo_url": "https://github.com/joiplay",
       "obtainium_url": "",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "مشغل ألعاب RPG Maker و Ren'Py و TyranoBuilder و HTML5 الرائد لأندرويد مع توافق استثنائي وأداء سلس.",
+      "features_ar": [
+        "تشغيل ألعاب RPG Maker (XP, VX, VX Ace, MV, MZ)",
+        "دعم ألعاب الروايات المرئية بمحرك Ren'Py و TyranoBuilder",
+        "إمكانية إضافة أزرار مخصصة وغش في الألعاب وحفظ الحالات",
+        "تحديثات مستمرة لدعم أحدث محركات الألعاب المستقلة"
+      ]
     },
     {
       "id": "touchhle",
@@ -674,7 +837,14 @@
       "apk_url": "https://github.com/touchHLE/touchHLE/releases",
       "repo_url": "https://github.com/touchHLE/touchHLE",
       "obtainium_url": "obtainium://add/https://github.com/touchHLE/touchHLE",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "محاكي عالي الأداء لتشغيل ألعاب iOS الكلاسيكية القديمة المبنية لمعمارية 32-bit مباشرة على أجهزة أندرويد.",
+      "features_ar": [
+        "إحياء كلاسيكيات متجر App Store القديمة من عصر iPhone 3GS",
+        "محاكاة عالية المستوى بدون الحاجة لنظام تشغيل iOS كامل",
+        "دعم شاشات اللمس والتسارع وعصي التحكم",
+        "كود نظيف ومفتوح المصدر بالكامل"
+      ]
     },
     {
       "id": "j2me-loader",
@@ -701,7 +871,14 @@
       "apk_url": "https://github.com/nikita36078/J2ME-Loader/releases",
       "repo_url": "https://github.com/nikita36078/J2ME-Loader",
       "obtainium_url": "obtainium://add/https://github.com/nikita36078/J2ME-Loader",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "محاكي ألعاب هواتف جافا (J2ME) الأكثر تقدماً لنظام أندرويد مع دعم الرسوميات ثنائية وثلاثية الأبعاد 3D والتخصيص الكامل.",
+      "features_ar": [
+        "تشغيل ألعاب هواتف نوكيا وسوني إريكسون القديمة بدقة متناهية",
+        "تسريع رسوميات ثلاثية الأبعاد عبر محرك Micro3D و M3G",
+        "لوحة مفاتيح رقمية لمسية قابلة للتخصيص بالكامل",
+        "تصفية وتنعيم الشاشة مع دعم الصوتيات الأصلية"
+      ]
     },
     {
       "id": "eka2l1",
@@ -728,7 +905,14 @@
       "apk_url": "https://github.com/Playdrop/EKA2L1/releases",
       "repo_url": "https://github.com/Playdrop/EKA2L1",
       "obtainium_url": "obtainium://add/https://github.com/Playdrop/EKA2L1",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "محاكي نظام Symbian OS و N-Gage لأجهزة أندرويد، يتيح تشغيل ألعاب الهواتف الذكية التاريخية بدقة متناهية.",
+      "features_ar": [
+        "محاكاة منصة N-Gage و N-Gage 2.0 وألعاب Symbian S60",
+        "تسريع عتادي ثلاثي الأبعاد وإطارات سلسة",
+        "دعم أجهزة التحكم والشاشات اللمسية",
+        "إمكانية استخراج وتثبيت حزم SIS و SISX"
+      ]
     },
     {
       "id": "kirikiroid2",
@@ -755,7 +939,14 @@
       "apk_url": "https://github.com/zeas2/Kirikiroid2",
       "repo_url": "https://github.com/zeas2/Kirikiroid2",
       "obtainium_url": "",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "مشغل ومحاكي محرك KiriKiri2 / KAG3 لألعاب الروايات المرئية اليابانية الشهيرة على شاشات أندرويد.",
+      "features_ar": [
+        "تشغيل روايات Fate/stay night و Tsukihime والمزيد",
+        "دعم كامل للخطوط العربية والترجمات المخصصة",
+        "حفظ فوري واسترجاع سريع لحالات اللعب",
+        "تحكم كامل باللمس وإيماءات السحب"
+      ]
     },
     {
       "id": "scummvm",
@@ -782,7 +973,14 @@
       "apk_url": "https://www.scummvm.org/downloads/",
       "repo_url": "https://github.com/scummvm/scummvm/releases",
       "obtainium_url": "obtainium://add/https://github.com/scummvm/scummvm",
-      "category": "PC & Engines"
+      "category": "PC & Engines",
+      "description_ar": "البرنامج الأسطوري لتشغيل مغامرات Point-and-Click الكلاسيكية من شركات LucasArts و Sierra و Revolution على أندرويد.",
+      "features_ar": [
+        "تشغيل Monkey Island و Day of the Tentacle و King's Quest",
+        "محاكاة محركات ألعاب المغامرات الكلاسيكية بدون أخطاء",
+        "دعم شاشات اللمس ومؤشر الفأرة التفاعلي",
+        "حفظ سحابي ومزامنة عبر Google Drive و Dropbox"
+      ]
     },
     {
       "id": "drastic-ds",
@@ -809,7 +1007,13 @@
       "apk_url": "https://play.google.com/store/apps/details?id=com.dsemu.drastic",
       "repo_url": "https://play.google.com/store/apps/details?id=com.dsemu.drastic",
       "obtainium_url": "",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "محاكي DraStic DS Emulator عالي الأداء لمنصة Nintendo DS على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Nintendo DS بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "melonds",
@@ -836,7 +1040,14 @@
       "apk_url": "https://github.com/rafaelvcaetano/melonDS-android/releases",
       "repo_url": "https://github.com/rafaelvcaetano/melonDS-android",
       "obtainium_url": "obtainium://add/https://github.com/rafaelvcaetano/melonDS-android",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "محاكي Nintendo DS مفتوح المصدر يركز على دقة المحاكاة وميزات الاتصال اللاسلكي Wi-Fi ودعم ألعاب DSi.",
+      "features_ar": [
+        "كود مفتوح المصدر بالكامل مع تطوير مجتمعي مستمر",
+        "دعم محاكاة نظام Nintendo DSi والكاميرا",
+        "معالجة رسومية عبر OpenGL مع دعم تكبير الدقة",
+        "دعم اللعب الجماعي اللاسلكي المحلي بين الأجهزة"
+      ]
     },
     {
       "id": "duckstation",
@@ -863,7 +1074,14 @@
       "apk_url": "https://github.com/stenzek/duckstation/releases",
       "repo_url": "https://github.com/stenzek/duckstation",
       "obtainium_url": "obtainium://add/https://github.com/stenzek/duckstation",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "المحاكي الأفضل على الإطلاق لمنصة Sony PlayStation 1، يوفر دقة تصل إلى 4K مع ميزات إزالة الارتجاج PGXP الرائدة.",
+      "features_ar": [
+        "دقة رسومية خارقة تصل إلى 4K مع تصحيح هندسي PGXP",
+        "واجهة معالجة رسومية حديثة عبر Vulkan و OpenGL",
+        "دعم الشاشات العريضة الحقيقية 16:9 بدون تشويه للشخصيات",
+        "حفظ واسترجاع الحالات مع دعم بطاقات الذاكرة المتعددة"
+      ]
     },
     {
       "id": "epsxe",
@@ -890,7 +1108,14 @@
       "apk_url": "https://play.google.com/store/apps/details?id=com.epsxe.ePSXe",
       "repo_url": "https://play.google.com/store/apps/details?id=com.epsxe.ePSXe",
       "obtainium_url": "",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "محاكي PlayStation 1 الكلاسيكي العريق لأندرويد، اشتهر باستقراره العالي وتوافقه مع كافة ألعاب المنصة.",
+      "features_ar": [
+        "توافق كامل مع أكثر من 99% من مكتبة ألعاب PS1",
+        "دعم مكوّن الرسوميات OpenGL المحسن",
+        "دعم اللعب الثنائي عبر تقسيم الشاشة",
+        "تكامل مع أجهزة التحكم عبر البلوتوث و USB"
+      ]
     },
     {
       "id": "fpse",
@@ -917,7 +1142,14 @@
       "apk_url": "https://play.google.com/store/apps/details?id=com.emulator.fpse",
       "repo_url": "https://play.google.com/store/apps/details?id=com.emulator.fpse",
       "obtainium_url": "",
-      "category": "Handhelds"
+      "category": "Handhelds",
+      "description_ar": "محاكي PS1 عالي السرعة مصمم لأجهزة أندرويد، يقدم خيارات تخصيص بصرية وصوتية واسعة ودعم الواقع الافتراضي VR.",
+      "features_ar": [
+        "سرعة فائقة وخفة ملحوظة على كافة المعالجات",
+        "دعم خوذات الواقع الافتراضي ونظارات VR",
+        "بروتوكول صوتي متقدم وتأثيرات بصرية ثلاثية الأبعاد",
+        "أزرار تحكم قابلة للتكبير والتحريك بحرية"
+      ]
     },
     {
       "id": "redream",
@@ -944,7 +1176,14 @@
       "apk_url": "https://redream.io/download",
       "repo_url": "https://play.google.com/store/apps/details?id=io.recompiled.redream",
       "obtainium_url": "",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "محاكي Sega Dreamcast المذهل لأندرويد، يقدم ترقية رسومية بدقة 4K بمعدل 60 إطاراً دون الحاجة لملفات BIOS أو إعداد معقد.",
+      "features_ar": [
+        "ترقية ألعاب Dreamcast الكلاسيكية إلى دقة 4K فائقة الوضوح",
+        "يعمل فوراً دون الحاجة لملفات BIOS معقدة",
+        "توافق مذهل مع مكتبة ألعاب سيجا دريم كاست",
+        "واجهة استعراض ألعاب سينمائية رائعة مع أغطية الألعاب"
+      ]
     },
     {
       "id": "flycast",
@@ -971,7 +1210,14 @@
       "apk_url": "https://github.com/flyinghead/flycast/releases",
       "repo_url": "https://github.com/flyinghead/flycast",
       "obtainium_url": "obtainium://add/https://github.com/flyinghead/flycast",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "محاكي متعدد لمنصات Sega Dreamcast و Naomi و Naomi 2 و Atomiswave مع دعم اللعب الجماعي عبر الإنترنت Netplay.",
+      "features_ar": [
+        "محاكاة منصات Dreamcast و Naomi و Atomiswave في تطبيق واحد",
+        "دعم اللعب التنافسي عبر الإنترنت بواسطة Netplay",
+        "معالجة رسومية سريعة عبر واجهة Vulkan",
+        "دعم الشاشات العريضة واستبدال الإكساءات المخصصة"
+      ]
     },
     {
       "id": "yaba-sanshiro-2",
@@ -998,7 +1244,14 @@
       "apk_url": "https://play.google.com/store/apps/details?id=org.uoyabause.uranus.pro",
       "repo_url": "https://github.com/devmiyax/yabause",
       "obtainium_url": "",
-      "category": "Modern 3D"
+      "category": "Modern 3D",
+      "description_ar": "المحاكي الرائد لمنصة Sega Saturn على أندرويد، نجح في ترويض المعمارية المعقدة لتقديم ألعاب زحل بدقة عالية.",
+      "features_ar": [
+        "ترقية ألعاب Sega Saturn إلى دقة 1080p وما فوق",
+        "معالجة رسومية محسنة تتجاوز قيود الجهاز الأصلي",
+        "حفظ احتياطي للبيانات في السحابة ومزامنة الحفظ",
+        "دعم أجهزة التحكم وأزرار الشاشة اللمسية"
+      ]
     },
     {
       "id": "m64plus-fz",
@@ -1025,7 +1278,14 @@
       "apk_url": "https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita.pro",
       "repo_url": "https://github.com/mupen64plus-ae/mupen64plus-ae",
       "obtainium_url": "",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "المحاكي الأقوى والأشمل لمنصة Nintendo 64 على أندرويد مع مئات خيارات المحاكاة والمقابس الرسومية الحديثة.",
+      "features_ar": [
+        "دعم مقابس GlideN64 الحديثة مع تصحيح الرسوميات بدقة عالية",
+        "إمكانية استيراد حزم الإكساءات عالية الدقة HD بنقرة واحدة",
+        "دعم أجهزة تحكم N64 الأصلية وأذرع البلوتوث الحديثة",
+        "توافق لا مثيل له مع كافة ألعاب المنصة والمودات"
+      ]
     },
     {
       "id": "pizza-boy-gba",
@@ -1052,7 +1312,14 @@
       "apk_url": "https://github.com/davideberaldo",
       "repo_url": "https://github.com/davideberaldo",
       "obtainium_url": "",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "محاكي Game Boy Advance متقن للغاية لأندرويد، يتميز بواجهة كلاسيكية أنيقة ودقة محاكاة 60 FPS وصوتيات أصلية.",
+      "features_ar": [
+        "دقة محاكاة علمية متناهية مع اجتياز كافة اختبارات التوافق",
+        "واجهة مستخدم جمالية بأشكال Game Boy ملونة وقابلة للتغيير",
+        "دعم استشعار الحركة والاهتزاز وحفظ الحالات السحابي",
+        "تسريع اللعب وتخطي المشاهد بسلاسة فائقة"
+      ]
     },
     {
       "id": "pizza-boy-gbc",
@@ -1079,7 +1346,14 @@
       "apk_url": "https://github.com/davideberaldo",
       "repo_url": "https://github.com/davideberaldo",
       "obtainium_url": "",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "محاكي Game Boy و Game Boy Color فائق الدقة لأندرويد، يمنحك أفضل تجربة للألعاب المحمولة الكلاسيكية.",
+      "features_ar": [
+        "محاكاة دقيقة للغاية لألعاب Game Boy و Game Boy Color",
+        "دعم الألوان المخصصة وفلاتر الشاشات القديمة كشاشات CRT و LCD",
+        "مزامنة الحفظ التلقائي عبر Google Drive",
+        "استهلاك بطارية فائق الانخفاض لجلسات لعب تدوم طويلاً"
+      ]
     },
     {
       "id": "my-boy-gba",
@@ -1106,7 +1380,13 @@
       "apk_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gba",
       "repo_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gba",
       "obtainium_url": "",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "محاكي My Boy! - GBA Emulator عالي الأداء لمنصة Game Boy Advance على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Game Boy Advance بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "my-oldboy-gbc",
@@ -1133,7 +1413,13 @@
       "apk_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gbc",
       "repo_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gbc",
       "obtainium_url": "",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "محاكي My OldBoy! - GBC Emulator عالي الأداء لمنصة Game Boy & Game Boy Color على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Game Boy & Game Boy Color بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "mgba",
@@ -1160,7 +1446,14 @@
       "apk_url": "https://mgba.io/downloads.html",
       "repo_url": "https://github.com/mgba-emu/mgba/releases",
       "obtainium_url": "obtainium://add/https://github.com/mgba-emu/mgba",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "المحاكي مفتوح المصدر الأكثر دقة لمنصة Game Boy Advance، يحظى بثقة مجتمعات فك الشفرة والمطورين حول العالم.",
+      "features_ar": [
+        "أعلى دقة توقيت ومحاكاة فيزيائية لمنصة GBA",
+        "كود مفتوح المصدر بالكامل مع دعم التحديث المستمر",
+        "دعم شفرات الغش وحزم التعديل وملفات IPS",
+        "متوفر كـ Core أساسي في RetroArch وتطبيقات المحاكاة"
+      ]
     },
     {
       "id": "snes9x-ex-plus",
@@ -1187,7 +1480,13 @@
       "apk_url": "https://github.com/Rakashazi/emu-ex-plus-alpha/releases",
       "repo_url": "https://github.com/Rakashazi/emu-ex-plus-alpha",
       "obtainium_url": "obtainium://add/https://github.com/Rakashazi/emu-ex-plus-alpha",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "محاكي Snes9x EX+ عالي الأداء لمنصة Super Nintendo (SNES) على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Super Nintendo (SNES) بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "retroarch-64",
@@ -1214,7 +1513,14 @@
       "apk_url": "https://www.retroarch.com/?page=platforms",
       "repo_url": "https://github.com/libretro/RetroArch/releases",
       "obtainium_url": "obtainium://add/https://github.com/libretro/RetroArch",
-      "category": "Frontend"
+      "category": "Frontend",
+      "description_ar": "الواجهة الشاملة والعملاقة لكافة محاكيات الألعاب القديمة، تجمع عشرات المنصات ومكتبات Libretro في تطبيق أندرويد واحد.",
+      "features_ar": [
+        "محاكاة مئات المنصات الكلاسيكية في مكان واحد عبر أنوية Cores",
+        "فلاتر تظليل بصرية خارقة مثل Mega Bezel و CRT-Royale",
+        "تقنية Run-Ahead لإلغاء زمن استجابة الإدخال تماماً",
+        "دعم إنجازات RetroAchievements واللعب عبر الشبكة Netplay"
+      ]
     },
     {
       "id": "lemuroid",
@@ -1241,7 +1547,14 @@
       "apk_url": "https://github.com/Swordfish90/Lemuroid/releases",
       "repo_url": "https://github.com/Swordfish90/Lemuroid",
       "obtainium_url": "obtainium://add/https://github.com/Swordfish90/Lemuroid",
-      "category": "Frontend"
+      "category": "Frontend",
+      "description_ar": "محاكي ألعاب كلاسيكي شامل ومفتوح المصدر يتميز بواجهة عصرية فائقة البساطة مبنية بنظام Material You بدون أي إعلانات.",
+      "features_ar": [
+        "واجهة مستخدم عصرية وأنيقة مبنية بتصميم أندرويد الحديث",
+        "دعم تلقائي لألعاب NES و SNES و GBA و N64 و PS1 و DS والمزيد",
+        "حفظ سحابي ومزامنة تلقائية للحالات عبر التخزين السحابي",
+        "خالٍ تماماً من الإعلانات والتتبع ومفتوح المصدر 100%"
+      ]
     },
     {
       "id": "daijisho",
@@ -1268,7 +1581,14 @@
       "apk_url": "https://github.com/TapiocaFox/Daijisho/releases",
       "repo_url": "https://github.com/TapiocaFox/Daijisho",
       "obtainium_url": "obtainium://add/https://github.com/TapiocaFox/Daijisho",
-      "category": "Frontend"
+      "category": "Frontend",
+      "description_ar": "الواجهة التفاعلية (Frontend) الأشهر والأجمل لتنظيم مكتبة ألعابك ومحاكياتك على أندرويد مع تنزيل تلقائي للبوسترات والبيانات.",
+      "features_ar": [
+        "تنزيل تلقائي لبوسترات الألعاب وبياناتها بدقة عالية (Scraping)",
+        "إطلاق الألعاب مباشرة في المحاكي المخصص بنقرة واحدة",
+        "واجهة سينمائية ملائمة للأجهزة المحمولة مثل Odin و Retroid",
+        "تكامل مدمج مع نظام إنجازات RetroAchievements"
+      ]
     },
     {
       "id": "beacon-launcher",
@@ -1295,7 +1615,14 @@
       "apk_url": "https://play.google.com/store/apps/details?id=com.radikal.gamelauncher",
       "repo_url": "https://play.google.com/store/apps/details?id=com.radikal.gamelauncher",
       "obtainium_url": "",
-      "category": "Frontend"
+      "category": "Frontend",
+      "description_ar": "واجهة مشغل ألعاب أنيقة وخفيفة وسريعة لأجهزة أندرويد، تصمم مكتبة ألعابك الكلاسيكية والحديثة بأناقة بالغة.",
+      "features_ar": [
+        "تصميم نظيف وخفيف بدون أي استهلاك زائد للذاكرة",
+        "تنزيل ذكي للأغلفة والموسيقى التصويرية وتفاصيل الألعاب",
+        "دعم ألعاب أندرويد والألعاب المعاد تجميعها والمحاكيات معاً",
+        "تنقل كامل وسلس عبر أذرع التحكم الخارجية"
+      ]
     },
     {
       "id": "mame4droid",
@@ -1322,7 +1649,14 @@
       "apk_url": "https://play.google.com/store/apps/details?id=com.seleuco.mame4droid",
       "repo_url": "https://play.google.com/store/apps/details?id=com.seleuco.mame4droid",
       "obtainium_url": "",
-      "category": "Retro 2D"
+      "category": "Retro 2D",
+      "description_ar": "محاكي ألعاب الأركيد الكلاسيكية العريق لأندرويد، يتيح تشغيل آلاف ألعاب صالات الألعاب الأسطورية من السبعينات وحتى التسعينات.",
+      "features_ar": [
+        "تشغيل آلاف ألعاب الأركيد الكلاسيكية من Neo Geo و Capcom وغيرها",
+        "أزرار تحكم لمسية وعصا أركيد افتراضية متجاوبة",
+        "دعم أذرع التحكم وأزرار الأركيد الخارجية عبر USB",
+        "محاكاة أصيلة للوحة القيادة ومسدس التصويب الضوئي"
+      ]
     },
     {
       "id": "adrenotools-turnip",
@@ -1349,7 +1683,13 @@
       "apk_url": "https://github.com/K11MCH1/AdrenoToolsDrivers/releases",
       "repo_url": "https://github.com/K11MCH1/AdrenoToolsDrivers",
       "obtainium_url": "obtainium://add/https://github.com/K11MCH1/AdrenoToolsDrivers",
-      "category": "System Driver"
+      "category": "System Driver",
+      "description_ar": "محاكي Mesa Turnip Drivers (Kimchi & Weab-chan) عالي الأداء لمنصة Mesa Turnip GPU Drivers على أجهزة أندرويد.",
+      "features_ar": [
+        "تشغيل ألعاب Mesa Turnip GPU Drivers بسرعة وسلاسة",
+        "معالجة رسومية متقدمة",
+        "دعم أذرع التحكم الخارجية"
+      ]
     }
   ]
 }

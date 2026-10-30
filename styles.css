@@ -2675,18 +2675,43 @@ html[dir="rtl"] .game-card-tags {
 
 /* Compact Language Toggle (Displays only E or ع) */
 .lang-toggle-chip {
-  min-width: 34px;
-  height: 34px;
-  padding: 0 8px;
-  font-weight: 800;
-  font-size: 0.95rem;
+  min-width: 36px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   cursor: pointer;
   line-height: 1;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+}
+.lang-toggle-chip.lang-en {
+  color: #38bdf8 !important; /* Blue for English */
+  background: rgba(56, 189, 248, 0.12) !important;
+  border-color: rgba(56, 189, 248, 0.45) !important;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+.lang-toggle-chip.lang-en:hover {
+  background: rgba(56, 189, 248, 0.22) !important;
+  border-color: rgba(56, 189, 248, 0.7) !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
+}
+.lang-toggle-chip.lang-ar {
+  color: #10b981 !important; /* Green for Arabic */
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+}
+.lang-toggle-chip.lang-ar:hover {
+  background: rgba(16, 185, 129, 0.22) !important;
+  border-color: rgba(16, 185, 129, 0.7) !important;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.45);
 }
 .lang-toggle-chip svg {
-  display: none !important;
+  display: block !important;
+  stroke: currentColor;
 }

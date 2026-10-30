@@ -210,7 +210,9 @@ class RecompGame {
   final int fpsTarget;
   final String needs;
   final String blurb;
+  final String blurbAr;
   final List<String> features;
+  final List<String> featuresAr;
   final int downloads;
   final int stars;
 
@@ -239,7 +241,9 @@ class RecompGame {
     required this.fpsTarget,
     required this.needs,
     required this.blurb,
+    this.blurbAr = '',
     required this.features,
+    this.featuresAr = const [],
     required this.downloads,
     required this.stars,
     this.customPackageName,
@@ -279,7 +283,9 @@ class RecompGame {
       fpsTarget: graphics['fps_target'] ?? 60,
       needs: json['needs'] ?? 'Original game ROM / data files required.',
       blurb: json['blurb'] ?? '',
+      blurbAr: json['blurb_ar'] ?? '',
       features: feats.map((e) => e.toString()).toList(),
+      featuresAr: (json['features_ar'] as List<dynamic>? ?? []).map((e) => e.toString()).toList(),
       downloads: json['downloads'] ?? 10000,
       stars: json['stars'] ?? 1500,
       customPackageName: json['package_name'] ?? json['customPackageName'],
@@ -327,23 +333,23 @@ class RecompGame {
 
   String get originFormatted {
     switch (origin) {
-      case 'n64': return appLanguageNotifier.value == 'ar' ? 'نينتندو 64' : 'Nintendo 64';
-      case 'x360': return appLanguageNotifier.value == 'ar' ? 'إكس بوكس 360' : 'Xbox 360';
-      case 'xbox': return appLanguageNotifier.value == 'ar' ? 'إكس بوكس' : 'Xbox';
-      case 'gc': return appLanguageNotifier.value == 'ar' ? 'جيم كيوب' : 'GameCube';
-      case 'wii': return appLanguageNotifier.value == 'ar' ? 'وي' : 'Wii';
-      case 'ps1': return appLanguageNotifier.value == 'ar' ? 'بلايستيشن 1' : 'PlayStation';
-      case 'ps2': return appLanguageNotifier.value == 'ar' ? 'بلايستيشن 2' : 'PlayStation 2';
-      case 'psp': return appLanguageNotifier.value == 'ar' ? 'بي إس بي' : 'PSP';
-      case 'pc_classic': return appLanguageNotifier.value == 'ar' ? 'حاسوب كلاسيكي' : 'Classic PC';
-      case 'snes': return appLanguageNotifier.value == 'ar' ? 'سوبر نينتندو' : 'SNES';
-      case 'gba': return appLanguageNotifier.value == 'ar' ? 'جيم بوي أدفانس' : 'GBA';
-      case 'gbc': return appLanguageNotifier.value == 'ar' ? 'جيم بوي كولور' : 'Game Boy Color';
-      case 'gb': return appLanguageNotifier.value == 'ar' ? 'جيم بوي' : 'Game Boy';
-      case 'nds': return appLanguageNotifier.value == 'ar' ? 'نينتندو دي إس' : 'Nintendo DS';
-      case 'switch': return appLanguageNotifier.value == 'ar' ? 'سويتش' : 'Switch';
-      case 'dreamcast': return appLanguageNotifier.value == 'ar' ? 'دريم كاست' : 'Dreamcast';
-      case 'android': return appLanguageNotifier.value == 'ar' ? 'أندرويد' : 'Android Port';
+      case 'n64': return 'Nintendo 64';
+      case 'x360': return 'Xbox 360';
+      case 'xbox': return 'Xbox';
+      case 'gc': return 'GameCube';
+      case 'wii': return 'Wii';
+      case 'ps1': return 'PlayStation';
+      case 'ps2': return 'PlayStation 2';
+      case 'psp': return 'PSP';
+      case 'pc_classic': return 'Classic PC';
+      case 'snes': return 'SNES';
+      case 'gba': return 'GBA';
+      case 'gbc': return 'Game Boy Color';
+      case 'gb': return 'Game Boy';
+      case 'nds': return 'Nintendo DS';
+      case 'switch': return 'Nintendo Switch';
+      case 'dreamcast': return 'Dreamcast';
+      case 'android': return 'Android Port';
       default: return origin.toUpperCase();
     }
   }
@@ -361,7 +367,9 @@ class EmulatorApp {
   final String version;
   final String icon;
   final String description;
+  final String descriptionAr;
   final List<String> features;
+  final List<String> featuresAr;
   final String minAndroid;
   final String graphicsBackend;
   final bool turnipRecommended;
@@ -382,7 +390,9 @@ class EmulatorApp {
     required this.version,
     required this.icon,
     required this.description,
+    this.descriptionAr = '',
     required this.features,
+    this.featuresAr = const [],
     required this.minAndroid,
     required this.graphicsBackend,
     required this.turnipRecommended,
@@ -405,7 +415,9 @@ class EmulatorApp {
       version: json['version'] ?? '',
       icon: json['icon'] ?? '',
       description: json['description'] ?? '',
+      descriptionAr: json['description_ar'] ?? '',
       features: List<String>.from(json['features'] ?? []),
+      featuresAr: List<String>.from(json['features_ar'] ?? []),
       minAndroid: json['min_android'] ?? 'Android 8.0+',
       graphicsBackend: json['graphics_backend'] ?? 'Vulkan 1.3',
       turnipRecommended: json['turnip_recommended'] ?? false,
@@ -992,30 +1004,23 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ValueListenableBuilder<String>(
             valueListenable: appLanguageNotifier,
             builder: (context, langCode, _) {
-              return TextButton(
-                onPressed: _toggleLanguage,
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  minimumSize: const Size(44, 32),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(color: RecompTheme.border(context)),
+              final isAr = langCode == 'ar';
+              final color = isAr ? const Color(0xFF10B981) : const Color(0xFF38BDF8);
+              return Container(
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                child: IconButton(
+                  onPressed: _toggleLanguage,
+                  tooltip: isAr ? 'Switch Language to English' : 'التحويل إلى العربية',
+                  icon: Icon(
+                    Icons.language,
+                    size: 20,
+                    color: color,
                   ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.translate, size: 16, color: RecompTheme.primary(context)),
-                    const SizedBox(width: 4),
-                    Text(
-                      langCode == 'ar' ? 'E' : 'ع',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                        color: RecompTheme.text(context),
-                      ),
-                    ),
-                  ],
+                  style: IconButton.styleFrom(
+                    backgroundColor: color.withOpacity(0.12),
+                    side: BorderSide(color: color.withOpacity(0.45)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  ),
                 ),
               );
             },
@@ -1991,16 +1996,16 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
               ],
             ),
             const SizedBox(height: 16),
-            Text('Overview', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
+            Text(appLanguageNotifier.value == 'ar' ? 'نظرة عامة' : 'Overview', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
             const SizedBox(height: 6),
             Text(
-              emu.description,
+              appLanguageNotifier.value == 'ar' && emu.descriptionAr.isNotEmpty ? emu.descriptionAr : emu.description,
               style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context), height: 1.45),
             ),
             const SizedBox(height: 18),
-            Text('Key Features', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
+            Text(appLanguageNotifier.value == 'ar' ? 'الميزات والتحسينات الرئيسية' : 'Key Features', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
             const SizedBox(height: 8),
-            ...emu.features.map(
+            ...(appLanguageNotifier.value == 'ar' && emu.featuresAr.isNotEmpty ? emu.featuresAr : emu.features).map(
               (f) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 3),
                 child: Row(
@@ -3302,8 +3307,9 @@ class GuideTab extends StatelessWidget {
 // ============================================================================
 
 String getTranslatedBlurb(RecompGame game) {
+  if (appLanguageNotifier.value != 'ar') return game.blurb;
+  if (game.blurbAr.isNotEmpty) return game.blurbAr;
   final blurb = game.blurb;
-  if (appLanguageNotifier.value != 'ar') return blurb;
   final name = game.name;
 
   if (blurb.contains('High-fidelity native Android recompilation')) {

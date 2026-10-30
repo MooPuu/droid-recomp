@@ -282,10 +282,12 @@
     document.body.classList.toggle('rtl-mode', currentLang === 'ar');
     localStorage.setItem('droidrecomp_lang', currentLang);
 
-    const langLabel = document.getElementById('lang-label');
-    if (langLabel) {
-      // User request: display only E for english and ع for arabic
-      langLabel.textContent = (currentLang === 'ar' ? 'E' : 'ع');
+    const langToggleBtn = document.getElementById('lang-toggle');
+    if (langToggleBtn) {
+      langToggleBtn.classList.remove('lang-en', 'lang-ar');
+      langToggleBtn.classList.add(currentLang === 'ar' ? 'lang-ar' : 'lang-en');
+      langToggleBtn.title = (currentLang === 'ar' ? 'Switch Language to English' : 'التحويل إلى العربية');
+      langToggleBtn.setAttribute('aria-label', (currentLang === 'ar' ? 'Switch Language to English' : 'التحويل إلى العربية'));
     }
 
     updateNavTranslations();
@@ -569,21 +571,21 @@
               <div class="hero-tags">
                 <span class="tag tag-origin">${originLabel(game.origin)}</span>
                 <span class="tag">${game.type}</span>
-                ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip">⚡ Turnip Rec.</span>` : ''}
-                ${game.input.touch ? `<span class="tag tag-touch">Touch Ready</span>` : ''}
+                ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip">⚡ ${isAr ? 'موصى بـ Turnip' : 'Turnip Rec.'}</span>` : ''}
+                ${game.input.touch ? `<span class="tag tag-touch">${isAr ? 'يدعم اللمس' : 'Touch Ready'}</span>` : ''}
                 <span class="tag">${game.graphics.fps_target || 60} FPS</span>
               </div>
               <h1 class="hero-title">${escapeHtml(game.name)}</h1>
-              <p class="hero-lead">${escapeHtml(game.blurb || '')}</p>
+              <p class="hero-lead">${escapeHtml((isAr && game.blurb_ar) ? game.blurb_ar : (game.blurb || ''))}</p>
               <div class="hero-actions">
                 <button type="button" class="btn btn-primary" onclick="window.DroidRecomp.openModal('${game.id}')">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download & Details</span>
+                  <span>${isAr ? 'التحميل والتفاصيل' : 'Download & Details'}</span>
                 </button>
                 ${game.obtainium_url ? `
                   <a class="btn btn-secondary" href="${game.obtainium_url}" title="Open in Obtainium">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    <span>Add to Obtainium</span>
+                    <span>${isAr ? 'مزامنة Obtainium' : 'Add to Obtainium'}</span>
                   </a>
                 ` : ''}
               </div>
@@ -600,9 +602,9 @@
         <div class="section-head">
           <h2 class="section-title">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" color="#34F2E8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <span>Top Community Recomps</span>
+            <span>${isAr ? 'أبرز الألعاب المعاد تجميعها' : 'Top Community Recomps'}</span>
           </h2>
-          <a class="section-link" href="#top">View full charts &rarr;</a>
+          <a class="section-link" href="#top">${isAr ? 'عرض القائمة الكاملة &larr;' : 'View full charts &rarr;'}</a>
         </div>
         <div class="rowscroll">
           ${topRanked.map((game, idx) => posterCard(game, idx + 1)).join('')}
@@ -613,9 +615,9 @@
       <section class="section-row" style="margin-top: 36px;">
         <div class="section-head">
           <h2 class="section-title">
-            <span>Nintendo 64 Recompilations</span>
+            <span>${isAr ? 'ألعاب Nintendo 64 المعاد تجميعها' : 'Nintendo 64 Recompilations'}</span>
           </h2>
-          <a class="section-link" href="#all" onclick="window.DroidRecomp.setOrigin('n64')">See all N64 &rarr;</a>
+          <a class="section-link" href="#all" onclick="window.DroidRecomp.setOrigin('n64')">${isAr ? 'عرض جميع ألعاب N64 &larr;' : 'See all N64 &rarr;'}</a>
         </div>
         <div class="rowscroll">
           ${n64Games.map((game, idx) => posterCard(game)).join('')}
@@ -626,7 +628,7 @@
       <section class="section-row" style="margin-top: 36px;">
         <div class="section-head">
           <h2 class="section-title">
-            <span>Handheld Console Verified</span>
+            <span>${isAr ? 'معتمدة للأجهزة المحمولة' : 'Handheld Console Verified'}</span>
           </h2>
           <span style="font-size: 0.85rem; color: var(--muted);">Retroid Pocket • AYN Odin • G Cloud</span>
         </div>
@@ -639,9 +641,9 @@
       <section class="section-row" style="margin-top: 36px;">
         <div class="section-head">
           <h2 class="section-title">
-            <span>Classic PC & Engine Re-implementations</span>
+            <span>${isAr ? 'ألعاب ومحركات الحاسوب الكلاسيكية' : 'Classic PC & Engine Re-implementations'}</span>
           </h2>
-          <a class="section-link" href="#all" onclick="window.DroidRecomp.setOrigin('pc_classic')">Browse PC &rarr;</a>
+          <a class="section-link" href="#all" onclick="window.DroidRecomp.setOrigin('pc_classic')">${isAr ? 'تصفح ألعاب الحاسوب &larr;' : 'Browse PC &rarr;'}</a>
         </div>
         <div class="rowscroll">
           ${pcPorts.map(game => posterCard(game)).join('')}
@@ -650,8 +652,8 @@
 
       <!-- LEGAL & ROM DISCLAIMER BOX -->
       <div class="disc-note">
-        <span class="kicker">Strict Bring-Your-Own-ROM Policy</span>
-        <p>DroidRecomp indexes only open-source native Android game recompilations, source decompilations, and their community launchers straight from developers' public repositories. <strong>Zero copyrighted ROMs, ISOs, or proprietary assets are hosted on this platform.</strong> Every game requires you to supply your own legally owned game files.</p>
+        <span class="kicker">${isAr ? 'سياسة صارمة: توفير ملفاتك الخاصة فقط (BYOR)' : 'Strict Bring-Your-Own-ROM Policy'}</span>
+        <p>${isAr ? 'يفرز DroidRecomp فقط النسخ المعاد تجميعها ومشاريع فك الشفرة المصدرية والمشغلات مفتوحة المصدر لأندرويد مباشرة من مستودعات المطورين العامة. <strong>لا تتم استضافة أي ملفات ROM أو ISO أو ملفات ذات حقوق ملكية على هذه المنصة.</strong> تتطلب كل لعبة توفير ملفات أصلية مملوكة لك بشكل قانوني.' : 'DroidRecomp indexes only open-source native Android game recompilations, source decompilations, and their community launchers straight from developers\' public repositories. <strong>Zero copyrighted ROMs, ISOs, or proprietary assets are hosted on this platform.</strong> Every game requires you to supply your own legally owned game files.'}</p>
       </div>
     `;
 
@@ -715,18 +717,19 @@
       filtered = filtered.filter(g => g.graphics && g.graphics.turnip_recommended);
     }
 
+    const isAr = (currentLang === 'ar');
     viewContent.innerHTML = `
       <div style="margin-bottom: 24px;">
-        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">All Android Recomps</h1>
-        <p style="color: var(--muted); font-size: 0.95rem;">Showing ${filtered.length} verified native ports & static recompilations for Android devices.</p>
+        <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">${isAr ? 'جميع الألعاب المعاد تجميعها' : 'All Android Recomps'}</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">${isAr ? `عرض ${filtered.length} بورت ومعاد تجميعه تم التحقق منه لأجهزة أندرويد.` : `Showing ${filtered.length} verified native ports & static recompilations for Android devices.`}</p>
       </div>
 
       <!-- QUAD-FILTER BAR -->
       <div class="filter-bar">
         <div class="filter-group">
-          <span class="filter-label">System:</span>
+          <span class="filter-label">${isAr ? 'النظام:' : 'System:'}</span>
           <select class="filter-select" id="filter-origin-select" onchange="window.DroidRecomp.setOrigin(this.value)">
-            <option value="all" ${activeOrigin === 'all' ? 'selected' : ''}>All Systems (133)</option>
+            <option value="all" ${activeOrigin === 'all' ? 'selected' : ''}>${isAr ? 'جميع الأنظمة' : 'All Systems'} (${catalogData.length})</option>
             <option value="n64" ${activeOrigin === 'n64' ? 'selected' : ''}>Nintendo 64</option>
             <option value="x360" ${activeOrigin === 'x360' ? 'selected' : ''}>Xbox 360</option>
             <option value="xbox" ${activeOrigin === 'xbox' ? 'selected' : ''}>Xbox</option>
@@ -737,26 +740,26 @@
             <option value="pc_classic" ${activeOrigin === 'pc_classic' ? 'selected' : ''}>Classic PC & Engines</option>
           </select>
 
-          <span class="filter-label">Architecture:</span>
+          <span class="filter-label">${isAr ? 'المعمارية:' : 'Architecture:'}</span>
           <select class="filter-select" id="filter-type-select" onchange="window.DroidRecomp.setType(this.value)">
-            <option value="all" ${filterType === 'all' ? 'selected' : ''}>All Types</option>
-            <option value="Static Recomp" ${filterType === 'Static Recomp' ? 'selected' : ''}>Static Recompilation</option>
-            <option value="Decompilation" ${filterType === 'Decompilation' ? 'selected' : ''}>Source Decompilation</option>
-            <option value="Native Engine Port" ${filterType === 'Native Engine Port' ? 'selected' : ''}>Engine Re-implementation</option>
+            <option value="all" ${filterType === 'all' ? 'selected' : ''}>${isAr ? 'جميع الأنواع' : 'All Types'}</option>
+            <option value="Static Recomp" ${filterType === 'Static Recomp' ? 'selected' : ''}>${isAr ? 'إعادة تجميع ثابتة' : 'Static Recompilation'}</option>
+            <option value="Decompilation" ${filterType === 'Decompilation' ? 'selected' : ''}>${isAr ? 'فك شفرة مصدرية' : 'Source Decompilation'}</option>
+            <option value="Native Engine Port" ${filterType === 'Native Engine Port' ? 'selected' : ''}>${isAr ? 'إعادة تطبيق المحرك' : 'Engine Re-implementation'}</option>
           </select>
 
-          <span class="filter-label">Input:</span>
+          <span class="filter-label">${isAr ? 'التحكم:' : 'Input:'}</span>
           <select class="filter-select" id="filter-input-select" onchange="window.DroidRecomp.setInput(this.value)">
-            <option value="all" ${filterInput === 'all' ? 'selected' : ''}>All Controls</option>
-            <option value="touch" ${filterInput === 'touch' ? 'selected' : ''}>Touch Overlay Ready</option>
-            <option value="controller" ${filterInput === 'controller' ? 'selected' : ''}>Gamepad Recommended</option>
+            <option value="all" ${filterInput === 'all' ? 'selected' : ''}>${isAr ? 'جميع أساليب التحكم' : 'All Controls'}</option>
+            <option value="touch" ${filterInput === 'touch' ? 'selected' : ''}>${isAr ? 'أزرار اللمس جاهزة' : 'Touch Overlay Ready'}</option>
+            <option value="controller" ${filterInput === 'controller' ? 'selected' : ''}>${isAr ? 'يُنصح بيد تحكم' : 'Gamepad Recommended'}</option>
           </select>
         </div>
 
         <div class="filter-group">
           <button type="button" class="filter-toggle ${filterTurnip ? 'on' : ''}" onclick="window.DroidRecomp.toggleTurnip()">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <span>Turnip Driver Tested</span>
+            <span>${isAr ? 'تم اختبار تعريف Turnip ⚡' : 'Turnip Driver Tested'}</span>
           </button>
         </div>
       </div>
@@ -968,10 +971,11 @@
       );
     }
 
+    const isAr = (currentLang === 'ar');
     const categories = [
-      { id: 'all', label: `All Emulators (${emulatorsData.length})` },
-      { id: 'free', label: '🎁 Free Only' },
-      { id: 'paid', label: '💎 Paid / Pro' },
+      { id: 'all', label: isAr ? `جميع المحاكيات (${emulatorsData.length})` : `All Emulators (${emulatorsData.length})` },
+      { id: 'free', label: isAr ? '🎁 مجاني فقط' : '🎁 Free Only' },
+      { id: 'paid', label: isAr ? '💎 مدفوع / Pro' : '💎 Paid / Pro' },
       { id: 'ps2', label: 'PlayStation 2' },
       { id: 'switch', label: 'Nintendo Switch' },
       { id: 'pc_win', label: 'PC & Translation' },
@@ -986,24 +990,24 @@
       { id: 'ps1', label: 'PlayStation 1' },
       { id: 'dc_saturn', label: 'Dreamcast & Saturn' },
       { id: 'multi', label: 'Frontends & Multi' },
-      { id: 'drivers', label: '⚡ Turnip Drivers' }
+      { id: 'drivers', label: isAr ? '⚡ تعريفات Turnip' : '⚡ Turnip Drivers' }
     ];
 
     viewContent.innerHTML = `
       <section class="emulators-header">
         <span class="emulators-badge">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          Android Emulation Suite
+          ${isAr ? 'حزمة محاكيات الأندرويد ⚡' : 'Android Emulation Suite'}
         </span>
-        <h1 class="emulators-title">Android Emulators Hub</h1>
+        <h1 class="emulators-title">${isAr ? 'مركز محاكيات الأندرويد' : 'Android Emulators Hub'}</h1>
         <p class="emulators-subtitle">
-          The curated directory of verified, high-performance console and PC emulators for Android. Compare graphics backends, download official release APKs, sync with Obtainium, and install custom Mesa Turnip Adreno GPU drivers.
+          ${isAr ? 'الدليل المنسق لمحاكيات المنصات والحاسوب المعتمدة وعالية الأداء لأندرويد. قارن واجهات معالجة الرسوميات، وحمّل ملفات APK الرسمية، وقم بالمزامنة مع Obtainium، وثبّت تعريفات Mesa Turnip المخصصة لمعالجات Adreno.' : 'The curated directory of verified, high-performance console and PC emulators for Android. Compare graphics backends, download official release APKs, sync with Obtainium, and install custom Mesa Turnip Adreno GPU drivers.'}
         </p>
 
         <div class="emulators-toolbar">
           <div class="emulators-search-box">
             <svg class="emulators-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-            <input type="search" id="emu-search-input" placeholder="Search emulators, systems, drivers..." value="${escapeHtml(emulatorSearchQuery)}" oninput="window.DroidRecomp.searchEmulators(this.value)">
+            <input type="search" id="emu-search-input" placeholder="${isAr ? 'ابحث عن المحاكيات والأنظمة والتعريفات...' : 'Search emulators, systems, drivers...'}" value="${escapeHtml(emulatorSearchQuery)}" oninput="window.DroidRecomp.searchEmulators(this.value)">
           </div>
 
           <div class="emulators-filter-pills">
@@ -1036,25 +1040,25 @@
                     <span class="emulator-name">${escapeHtml(emu.name)}</span>
                     <span class="emulator-version-chip">${escapeHtml(emu.version)}</span>
                     ${emu.is_paid 
-                      ? `<span class="tag-paid">${escapeHtml(emu.price || 'Paid')}</span>` 
-                      : `<span class="tag-free">Free</span>`}
+                      ? `<span class="tag-paid">${escapeHtml(isAr ? 'مدفوع' : (emu.price || 'Paid'))}</span>` 
+                      : `<span class="tag-free">${isAr ? 'مجاني' : 'Free'}</span>`}
                   </div>
                   <div class="emulator-system-label">${escapeHtml(emu.system_name)}</div>
-                  <div class="emulator-author">by ${escapeHtml(emu.developer)}</div>
+                  <div class="emulator-author">${isAr ? 'بواسطة' : 'by'} ${escapeHtml(emu.developer)}</div>
                 </div>
               </div>
 
               <div class="emulator-tags" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
-                <span class="tag tag-origin">${escapeHtml(emu.category)}</span>
+                <span class="tag tag-origin">${escapeHtml(isAr ? ({'Console':'منصة ألعاب','Handheld':'جهاز محمول','PC Translation':'ترجمة حاسوب','Engine / Mobile':'محرك / جوال','Multi-System':'متعدد الأنظمة','GPU Driver':'تعريف رسومي'}[emu.category] || emu.category) : emu.category)}</span>
                 <span class="tag">${escapeHtml(emu.graphics_backend.split('/')[0].trim())}</span>
-                <span class="tag ${emu.is_paid ? 'tag-price-paid' : 'tag-price-free'}">${escapeHtml(emu.license || (emu.is_paid ? 'Paid' : 'Free'))}</span>
-                ${emu.turnip_recommended ? `<span class="tag tag-turnip">⚡ Turnip Rec.</span>` : ''}
+                <span class="tag ${emu.is_paid ? 'tag-price-paid' : 'tag-price-free'}">${escapeHtml(isAr ? (emu.is_paid ? 'مدفوع' : 'مجاني') : (emu.license || (emu.is_paid ? 'Paid' : 'Free')))}</span>
+                ${emu.turnip_recommended ? `<span class="tag tag-turnip">⚡ ${isAr ? 'موصى بـ Turnip' : 'Turnip Rec.'}</span>` : ''}
               </div>
 
-              <p class="emulator-desc">${escapeHtml(emu.description)}</p>
+              <p class="emulator-desc">${escapeHtml((isAr && emu.description_ar) ? emu.description_ar : emu.description)}</p>
 
               <div class="emulator-features">
-                ${emu.features.slice(0, 4).map(f => `
+                ${((isAr && emu.features_ar) ? emu.features_ar : emu.features).slice(0, 4).map(f => `
                   <div class="emulator-feature-item">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                     <span>${escapeHtml(f)}</span>
@@ -1063,15 +1067,15 @@
               </div>
 
               <div class="emulator-specs-row">
-                <span><strong>Min OS:</strong> ${escapeHtml(emu.min_android)}</span>
-                <span><strong>Graphics:</strong> ${escapeHtml(emu.graphics_backend)}</span>
+                <span><strong>${isAr ? 'الحد الأدنى للنظام:' : 'Min OS:'}</strong> ${escapeHtml(emu.min_android)}</span>
+                <span><strong>${isAr ? 'الرسوميات:' : 'Graphics:'}</strong> ${escapeHtml(emu.graphics_backend)}</span>
               </div>
 
               <div class="emulator-actions">
                 ${emu.apk_url ? `
                   <a class="btn-emu-apk ${emu.is_paid ? 'btn-emu-paid' : ''}" href="${emu.apk_url}" target="_blank" rel="noopener" title="${emu.is_paid ? 'Get from Store / Official Site' : 'Download Release APK'}">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span>${emu.is_paid ? (emu.apk_url.includes('google.com') ? 'Google Play' : 'Get App') : 'Download APK'}</span>
+                    <span>${emu.is_paid ? (emu.apk_url.includes('google.com') ? 'Google Play' : (isAr ? 'الحصول على التطبيق' : 'Get App')) : (isAr ? 'تحميل APK' : 'Download APK')}</span>
                   </a>
                 ` : ''}
                 ${emu.obtainium_url ? `
@@ -1098,35 +1102,36 @@
     const installedList = catalogData.filter(g => installedGames.includes(g.id));
     const savedList = catalogData.filter(g => savedGames.includes(g.id));
 
+    const isAr = (currentLang === 'ar');
     viewContent.innerHTML = `
       <div class="library-header">
         <div>
-          <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">My Game Library</h1>
-          <p style="color: var(--muted); font-size: 0.95rem;">Launch your installed recompilations directly or add your own custom unlisted games.</p>
+          <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 6px;">${isAr ? 'مكتبة ألعابي' : 'My Game Library'}</h1>
+          <p style="color: var(--muted); font-size: 0.95rem;">${isAr ? 'شغّل ألعابك المعاد تجميعها والمثبتة مباشرة أو أضف ألعابك الخاصة غير المدرجة.' : 'Launch your installed recompilations directly or add your own custom unlisted games.'}</p>
         </div>
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
           <div class="library-tabs-nav">
             <button type="button" class="library-tab-btn ${librarySubTab === 'installed' ? 'active' : ''}" onclick="window.DroidRecomp.setLibraryTab('installed')">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/><path d="M12 9v6M9 12h6"/></svg>
-              <span>Installed</span>
+              <span>${isAr ? 'مثبتة' : 'Installed'}</span>
               <span class="library-tab-badge">${installedList.length}</span>
             </button>
             <button type="button" class="library-tab-btn ${librarySubTab === 'bookmarks' ? 'active' : ''}" onclick="window.DroidRecomp.setLibraryTab('bookmarks')">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-              <span>Saved</span>
+              <span>${isAr ? 'في المفضلة' : 'Saved'}</span>
               <span class="library-tab-badge">${savedList.length}</span>
             </button>
           </div>
 
           <button type="button" class="btn btn-primary" onclick="window.DroidRecomp.openAddCustomGameModal()" title="Add Custom / Unlisted Game">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <span>Add Custom Game</span>
+            <span>${isAr ? 'إضافة لعبة مخصصة +' : 'Add Custom Game +'}</span>
           </button>
 
           <a class="btn btn-secondary" href="#submit" title="Submit to Official Master Catalog">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span>Submit to Catalog</span>
+            <span>${isAr ? 'إرسال إلى الدليل' : 'Submit to Catalog'}</span>
           </a>
         </div>
       </div>
@@ -1142,8 +1147,8 @@
                     <div>
                       <h3 class="installed-card-title">${escapeHtml(game.name)}</h3>
                       <div class="installed-badge-row">
-                        <span class="badge-installed">✓ Installed</span>
-                        ${game.isCustom ? '<span class="badge-custom">Custom Sideload</span>' : ''}
+                        <span class="badge-installed">${isAr ? '✓ مثبتة' : '✓ Installed'}</span>
+                        ${game.isCustom ? `<span class="badge-custom">${isAr ? 'لعبة مخصصة' : 'Custom Sideload'}</span>` : ''}
                         <span class="tag tag-origin" style="font-size: 0.65rem; padding: 1px 6px;">${originLabel(game.origin)}</span>
                       </div>
                       <div class="badge-package">${getPackageName(game)}</div>
@@ -1153,7 +1158,7 @@
                 <div class="installed-card-actions">
                   <button type="button" class="btn-launch-game" onclick="window.DroidRecomp.launchGame('${game.id}', event)">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    <span>LAUNCH GAME</span>
+                    <span>${isAr ? 'تشغيل اللعبة' : 'LAUNCH GAME'}</span>
                   </button>
                   ${game.isCustom ? `
                     <button type="button" class="btn-remove-installed" title="Delete Custom Game" onclick="window.DroidRecomp.deleteCustomGame('${game.id}', event)">
@@ -1171,9 +1176,9 @@
         ` : `
           <div style="text-align: center; padding: 70px 20px; background: var(--glass); border-radius: var(--radius-lg); border: 1px solid var(--line);">
             <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" stroke-width="1.5" style="color: var(--muted); margin-bottom: 16px;"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/><path d="M12 9v6M9 12h6"/></svg>
-            <h3>No Installed Games Added</h3>
-            <p style="color: var(--muted); margin-top: 6px; max-width: 440px; margin-left: auto; margin-right: auto;">Open any game from the catalog and tap <strong>"+ Mark as Installed"</strong> to launch it directly from this library.</p>
-            <a class="btn btn-primary" href="#discover" style="margin-top: 18px;">Browse Recomps Catalog</a>
+            <h3>${isAr ? 'لم تتم إضافة أي ألعاب مثبتة' : 'No Installed Games Added'}</h3>
+            <p style="color: var(--muted); margin-top: 6px; max-width: 440px; margin-left: auto; margin-right: auto;">${isAr ? 'افتح أي لعبة من الدليل واضغط على <strong>"+ تحديد كمثبتة"</strong> لتشغيلها مباشرة من هذه المكتبة.' : 'Open any game from the catalog and tap <strong>"+ Mark as Installed"</strong> to launch it directly from this library.'}</p>
+            <a class="btn btn-primary" href="#discover" style="margin-top: 18px;">${isAr ? 'استعراض دليل الألعاب' : 'Browse Recomps Catalog'}</a>
           </div>
         `}
       ` : `
@@ -1181,7 +1186,7 @@
           <div style="margin-bottom: 20px;">
             <button type="button" class="btn btn-secondary" onclick="window.DroidRecomp.exportSavedToObtainium()">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span>Export Saved as Obtainium JSON</span>
+              <span>${isAr ? 'تصدير المحفوظات بصيغة Obtainium JSON' : 'Export Saved as Obtainium JSON'}</span>
             </button>
           </div>
           <div class="games-grid">
@@ -1190,9 +1195,9 @@
         ` : `
           <div style="text-align: center; padding: 70px 20px; background: var(--glass); border-radius: var(--radius-lg); border: 1px solid var(--line);">
             <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" stroke-width="1.5" style="color: var(--muted); margin-bottom: 16px;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            <h3>No Saved Bookmarks</h3>
-            <p style="color: var(--muted); margin-top: 6px;">Bookmark games to sync them via Obtainium or track updates.</p>
-            <a class="btn btn-primary" href="#all" style="margin-top: 18px;">Explore All Recomps</a>
+            <h3>${isAr ? 'لا توجد ألعاب محفوظة بعد' : 'No Saved Bookmarks'}</h3>
+            <p style="color: var(--muted); margin-top: 6px;">${isAr ? 'اضغط على أيقونة الإشارة المرجعية في أي لعبة لحفظها في مكتبتك.' : 'Bookmark games to sync them via Obtainium or track updates.'}</p>
+            <a class="btn btn-primary" href="#all" style="margin-top: 18px;">${isAr ? 'استكشاف جميع الألعاب' : 'Explore All Recomps'}</a>
           </div>
         `}
       `}
@@ -1666,7 +1671,7 @@
 
             <h4 style="font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 10px; color: var(--cyan);">${keyFeaturesTitle}</h4>
             <ul class="modal-features-list">
-              ${(game.features || []).map(f => `
+              ${((isAr && game.features_ar) ? game.features_ar : (game.features || [])).map(f => `
                 <li>
                   <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                   <span>${escapeHtml(f)}</span>
@@ -1999,8 +2004,9 @@
 
   // Helper for translating blurb while keeping game names in English
   function getTranslatedBlurb(game) {
+    if (currentLang !== 'ar') return game.blurb || '';
+    if (game.blurb_ar) return game.blurb_ar;
     const blurb = game.blurb || '';
-    if (currentLang !== 'ar') return blurb;
     const name = game.name || game.game || '';
 
     if (blurb.includes('High-fidelity native Android recompilation')) {
@@ -2030,37 +2036,16 @@
     return t;
   }
 
+  // System and Console names strictly remain in English as requested by user
   function originLabel(origin) {
-    if (currentLang === 'ar') {
-      const arMap = {
-        'n64': 'نينتندو 64',
-        'x360': 'إكس بوكس 360',
-        'xbox': 'إكس بوكس',
-        'gc': 'جيم كيوب',
-        'wii': 'وي',
-        'ps1': 'بلايستيشن 1',
-        'ps2': 'بلايستيشن 2',
-        'psp': 'بي إس بي',
-        'pc_classic': 'حاسوب كلاسيكي',
-        'snes': 'سوبر نينتندو',
-        'gba': 'جيم بوي أدفانس',
-        'gbc': 'جيم بوي كولور',
-        'gb': 'جيم بوي',
-        'nds': 'نينتندو دي إس',
-        'switch': 'سويتش',
-        'dreamcast': 'دريم كاست',
-        'android': 'أندرويد'
-      };
-      if (arMap[origin]) return arMap[origin];
-    }
     const map = {
       'n64': 'Nintendo 64',
       'x360': 'Xbox 360',
       'xbox': 'Xbox',
       'gc': 'GameCube',
       'wii': 'Wii',
-      'ps1': 'PS1',
-      'ps2': 'PS2',
+      'ps1': 'PlayStation 1',
+      'ps2': 'PlayStation 2',
       'psp': 'PSP',
       'pc_classic': 'Classic PC',
       'snes': 'SNES',
@@ -2068,11 +2053,11 @@
       'gbc': 'Game Boy Color',
       'gb': 'Game Boy',
       'nds': 'Nintendo DS',
-      'switch': 'Switch',
+      'switch': 'Nintendo Switch',
       'dreamcast': 'Dreamcast',
       'android': 'Android Port'
     };
-    return map[origin] || origin.toUpperCase();
+    return map[origin] || (origin ? origin.toUpperCase() : 'PORT');
   }
 
   function escapeHtml(str) {
