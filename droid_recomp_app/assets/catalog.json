@@ -515,8 +515,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2045.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2045.jpg",
+      "cover": "https://images.launchbox-app.com//035ab994-abe7-4487-860a-48d34ee48ebf.png",
+      "hero": "https://images.launchbox-app.com//035ab994-abe7-4487-860a-48d34ee48ebf.png",
       "description": ""
     },
     {
@@ -902,8 +902,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4o.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4o.jpg",
+      "cover": "https://images.launchbox-app.com//01cc2e7f-36e9-4cba-a564-03b1c04770d2.jpg",
+      "hero": "https://images.launchbox-app.com//01cc2e7f-36e9-4cba-a564-03b1c04770d2.jpg",
       "description": ""
     },
     {
@@ -988,8 +988,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4p.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4p.jpg",
+      "cover": "https://images.launchbox-app.com//ba642fcf-9647-42c5-811e-3fcd4597fbe9.jpg",
+      "hero": "https://images.launchbox-app.com//ba642fcf-9647-42c5-811e-3fcd4597fbe9.jpg",
       "description": ""
     },
     {
@@ -1031,8 +1031,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4t.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4t.jpg",
+      "cover": "https://images.launchbox-app.com//fb6c7676-31e5-44c6-932d-4c93a3e140c9.jpg",
+      "hero": "https://images.launchbox-app.com//fb6c7676-31e5-44c6-932d-4c93a3e140c9.jpg",
       "description": ""
     },
     {
@@ -1246,8 +1246,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/694780/header.jpg",
-      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/694780/header.jpg",
+      "cover": "https://images.launchbox-app.com//7ffddf98-a398-4bf1-98fc-bad1d833c70d.png",
+      "hero": "https://images.launchbox-app.com//7ffddf98-a398-4bf1-98fc-bad1d833c70d.png",
       "description": ""
     },
     {
@@ -1590,8 +1590,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2l0q.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2l0q.jpg",
+      "cover": "https://images.launchbox-app.com//e5f676ff-711c-4cff-8542-3f2e960eb095.png",
+      "hero": "https://images.launchbox-app.com//e5f676ff-711c-4cff-8542-3f2e960eb095.png",
       "description": ""
     },
     {
@@ -2321,8 +2321,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dragon%20Ball%20Z%20-%20Sagas%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dragon%20Ball%20Z%20-%20Sagas%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com//ce27cf1e-aaa3-4f20-814d-5918a42faf3a.jpg",
+      "hero": "https://images.launchbox-app.com//ce27cf1e-aaa3-4f20-814d-5918a42faf3a.jpg",
       "description": ""
     },
     {
@@ -2415,7 +2415,7 @@
       "id": "final-fantasy-tactics-advance",
       "name": "Final Fantasy Tactics Advance",
       "game": "Final Fantasy Tactics Advance",
-      "origin": "pc_classic",
+      "origin": "gba",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -2450,15 +2450,15 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Final%20Fantasy%20Tactics%20%28Japan%29%20%28Rev%201%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Final%20Fantasy%20Tactics%20%28Japan%29%20%28Rev%201%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Final%20Fantasy%20Tactics%20Advance%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Final%20Fantasy%20Tactics%20Advance%20%28USA%29.png",
       "description": ""
     },
     {
       "id": "fire-emblem-the-sacred-stones",
       "name": "Fire Emblem: The Sacred Stones",
       "game": "Fire Emblem: The Sacred Stones",
-      "origin": "pc_classic",
+      "origin": "gba",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -2493,8 +2493,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Fire%20Emblem%20-%20Path%20of%20Radiance%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Fire%20Emblem%20-%20Path%20of%20Radiance%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Fire%20Emblem%20-%20The%20Sacred%20Stones%20%28USA%2C%20Australia%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Fire%20Emblem%20-%20The%20Sacred%20Stones%20%28USA%2C%20Australia%29.png",
       "description": ""
     },
     {
@@ -2837,8 +2837,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1p8y.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1p8y.jpg",
+      "cover": "https://images.launchbox-app.com//a2296bc8-5745-4cd0-bd59-5f97a8e7eeb6.png",
+      "hero": "https://images.launchbox-app.com//a2296bc8-5745-4cd0-bd59-5f97a8e7eeb6.png",
       "description": ""
     },
     {
@@ -2923,8 +2923,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/2486820/library_600x900.jpg",
-      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/2486820/library_600x900.jpg",
+      "cover": "https://images.launchbox-app.com//d7bb25ed-f9cd-43e1-95f2-e0e93c651069.png",
+      "hero": "https://images.launchbox-app.com//d7bb25ed-f9cd-43e1-95f2-e0e93c651069.png",
       "description": ""
     },
     {
@@ -2966,8 +2966,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2l1b.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2l1b.jpg",
+      "cover": "https://images.launchbox-app.com//a74a770b-0763-453b-a30f-73546e095f26.jpg",
+      "hero": "https://images.launchbox-app.com//a74a770b-0763-453b-a30f-73546e095f26.jpg",
       "description": ""
     },
     {
@@ -3060,7 +3060,7 @@
       "id": "tetris-attack",
       "name": "Tetris Attack",
       "game": "Tetris Attack",
-      "origin": "xbox",
+      "origin": "snes",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -3095,8 +3095,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/C.A.T.%20-%20Cyber%20Attack%20Team%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/C.A.T.%20-%20Cyber%20Attack%20Team%20%28Japan%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/Tetris%20Attack%20%28USA%29%20%28En%2CJa%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/Tetris%20Attack%20%28USA%29%20%28En%2CJa%29.png",
       "description": ""
     },
     {
@@ -3224,8 +3224,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1yjy.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1yjy.jpg",
+      "cover": "https://images.launchbox-app.com//c8026f8f-c080-47ed-a8d7-b248a8a19231.jpg",
+      "hero": "https://images.launchbox-app.com//c8026f8f-c080-47ed-a8d7-b248a8a19231.jpg",
       "description": ""
     },
     {
@@ -4428,8 +4428,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28Europe%29%20%28Beta%29%20%282003-02-13%29%20%28GameCube%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28Europe%29%20%28Beta%29%20%282003-02-13%29%20%28GameCube%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28USA%29.png",
       "description": ""
     },
     {
@@ -4557,8 +4557,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Midnight%20Club%203%20-%20DUB%20Edition%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Midnight%20Club%203%20-%20DUB%20Edition%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com//3dfb7dc7-5738-4d9c-ba51-368104cab6b3.png",
+      "hero": "https://images.launchbox-app.com//3dfb7dc7-5738-4d9c-ba51-368104cab6b3.png",
       "description": ""
     },
     {
@@ -4643,15 +4643,15 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih5.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih5.jpg",
+      "cover": "https://images.launchbox-app.com//a9e597ac-d081-4ab5-a66c-1e12c9a3bd02.jpg",
+      "hero": "https://images.launchbox-app.com//a9e597ac-d081-4ab5-a66c-1e12c9a3bd02.jpg",
       "description": ""
     },
     {
       "id": "rampage-total-destruction",
       "name": "Rampage: Total Destruction",
       "game": "Rampage: Total Destruction",
-      "origin": "pc_classic",
+      "origin": "gc",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -4686,8 +4686,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Action%20Man%20-%20Destruction%20X%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Action%20Man%20-%20Destruction%20X%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Rampage%20-%20Total%20Destruction%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20GameCube/Named_Boxarts/Rampage%20-%20Total%20Destruction%20%28USA%29.png",
       "description": ""
     },
     {
@@ -4772,8 +4772,8 @@
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2kgt.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2kgt.jpg",
+      "cover": "https://images.launchbox-app.com//19b99366-d8b7-47da-8727-7ecd53e1ef46.jpg",
+      "hero": "https://images.launchbox-app.com//19b99366-d8b7-47da-8727-7ecd53e1ef46.jpg",
       "description": ""
     },
     {
@@ -5589,8 +5589,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blaster%20Master%20-%20Blasting%20Again%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blaster%20Master%20-%20Blasting%20Again%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "cover": "https://images.launchbox-app.com//58891481-d796-4d23-ad25-0536765100d3.png",
+      "hero": "https://images.launchbox-app.com//58891481-d796-4d23-ad25-0536765100d3.png",
       "description": ""
     },
     {
@@ -5761,8 +5761,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://raw.githubusercontent.com/tmewett/BrogueCE/master/bin/assets/icon.png",
-      "hero": "https://raw.githubusercontent.com/tmewett/BrogueCE/master/bin/assets/icon.png",
+      "cover": "https://images.launchbox-app.com//924d44d0-e2cd-466c-8c7e-1cbac1f74eb0.png",
+      "hero": "https://images.launchbox-app.com//924d44d0-e2cd-466c-8c7e-1cbac1f74eb0.png",
       "description": ""
     },
     {
@@ -6449,8 +6449,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Devil%20May%20Cry%203%20-%20Dante%27s%20Awakening%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Special%20Edition%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Devil%20May%20Cry%203%20-%20Dante%27s%20Awakening%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29%20%28Special%20Edition%29.png",
+      "cover": "https://images.launchbox-app.com//133d6a99-4700-4073-be72-834ba1c81f6c.jpg",
+      "hero": "https://images.launchbox-app.com//133d6a99-4700-4073-be72-834ba1c81f6c.jpg",
       "description": ""
     },
     {
@@ -6535,15 +6535,15 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dragon%20Ball%20Z%20-%20Sagas%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dragon%20Ball%20Z%20-%20Sagas%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com//b491e6ed-ba90-4106-a07f-3e9ff3325424.png",
+      "hero": "https://images.launchbox-app.com//b491e6ed-ba90-4106-a07f-3e9ff3325424.png",
       "description": ""
     },
     {
       "id": "dead-or-alive-xtreme-beach-volleyball-android",
       "name": "Dead or Alive: Xtreme Beach Volleyball",
       "game": "Dead or Alive: Xtreme Beach Volleyball",
-      "origin": "pc_classic",
+      "origin": "xbox",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -6578,8 +6578,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dead%20or%20Alive%20%28Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dead%20or%20Alive%20%28Europe%29.png",
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dead%20or%20Alive%20Xtreme%20Beach%20Volleyball%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Dead%20or%20Alive%20Xtreme%20Beach%20Volleyball%20%28USA%29.png",
       "description": ""
     },
     {
@@ -6707,8 +6707,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://github.com/user-attachments/assets/ee902926-6382-4ee5-b1c2-7947e8b434e9",
-      "hero": "https://github.com/user-attachments/assets/ee902926-6382-4ee5-b1c2-7947e8b434e9",
+      "cover": "https://images.launchbox-app.com//01cc2e7f-36e9-4cba-a564-03b1c04770d2.jpg",
+      "hero": "https://images.launchbox-app.com//01cc2e7f-36e9-4cba-a564-03b1c04770d2.jpg",
       "description": ""
     },
     {
@@ -6750,8 +6750,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Dead%20Rising%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Dead%20Rising%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com//1454c216-3896-492d-988b-fa4de3653963.jpg",
+      "hero": "https://images.launchbox-app.com//1454c216-3896-492d-988b-fa4de3653963.jpg",
       "description": ""
     },
     {
@@ -7059,7 +7059,7 @@
       "id": "dora64-3",
       "name": "Doraemon 3: Nobita no Machi SOS!",
       "game": "Doraemon 3: Nobita no Machi SOS!",
-      "origin": "pc_classic",
+      "origin": "n64",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -7094,8 +7094,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Doraemon%20-%20Nobita%20to%20Fukkatsu%20no%20Hoshi%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Doraemon%20-%20Nobita%20to%20Fukkatsu%20no%20Hoshi%20%28Japan%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Doraemon%203%20-%20Nobita%20no%20Machi%20SOS%21%20%28Japan%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Doraemon%203%20-%20Nobita%20no%20Machi%20SOS%21%20%28Japan%29.png",
       "description": ""
     },
     {
@@ -7137,8 +7137,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://user-images.githubusercontent.com/53099651/155904982-eb6032d8-7a4d-4af7-ae6f-b69041ecfaa4.png",
-      "hero": "https://user-images.githubusercontent.com/53099651/155904982-eb6032d8-7a4d-4af7-ae6f-b69041ecfaa4.png",
+      "cover": "https://images.launchbox-app.com//1bb2f334-4422-484a-8684-7cbe0e19ea9a.jpg",
+      "hero": "https://images.launchbox-app.com//1bb2f334-4422-484a-8684-7cbe0e19ea9a.jpg",
       "description": ""
     },
     {
@@ -7309,8 +7309,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Crash%20Nitro%20Kart%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Crash%20Nitro%20Kart%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com//2c746401-bc0e-4d88-97b3-352eb283b73d.png",
+      "hero": "https://images.launchbox-app.com//2c746401-bc0e-4d88-97b3-352eb283b73d.png",
       "description": ""
     },
     {
@@ -7352,8 +7352,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Fighting%20Eyes%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Fighting%20Eyes%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com//920d440c-8059-4ab3-ae0b-4986752b5759.jpg",
+      "hero": "https://images.launchbox-app.com//920d440c-8059-4ab3-ae0b-4986752b5759.jpg",
       "description": ""
     },
     {
@@ -7438,8 +7438,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Atelier%20Iris%20-%20Eternal%20Mana%20%28Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Atelier%20Iris%20-%20Eternal%20Mana%20%28Europe%29.png",
+      "cover": "https://images.launchbox-app.com//da34a840-79da-48ee-b601-9a038ad93f46.png",
+      "hero": "https://images.launchbox-app.com//da34a840-79da-48ee-b601-9a038ad93f46.png",
       "description": ""
     },
     {
@@ -7868,8 +7868,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Silver%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Silver%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
       "description": ""
     },
     {
@@ -8126,8 +8126,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3jik.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3jik.jpg",
+      "cover": "https://images.launchbox-app.com//1a0d1cb4-0947-4249-8954-90e34db51e1c.png",
+      "hero": "https://images.launchbox-app.com//1a0d1cb4-0947-4249-8954-90e34db51e1c.png",
       "description": ""
     },
     {
@@ -8349,7 +8349,7 @@
       "id": "hunters-recomp-dual-screen",
       "name": "Metroid Prime: Hunters",
       "game": "Metroid Prime: Hunters",
-      "origin": "pc_classic",
+      "origin": "nds",
       "type": "Static Recomp",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -8384,8 +8384,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/J.League%20Soccer%20-%20Prime%20Goal%20EX%20%28Japan%29%20%28Lawson%20Station%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/J.League%20Soccer%20-%20Prime%20Goal%20EX%20%28Japan%29%20%28Lawson%20Station%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20DS/Named_Boxarts/Metroid%20Prime%20-%20Hunters%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20DS/Named_Boxarts/Metroid%20Prime%20-%20Hunters%20%28USA%29.png",
       "description": ""
     },
     {
@@ -8556,8 +8556,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dancing%20Blade%20Katte%20ni%20Momotenshi%20II%20-%20Tears%20of%20Eden%20%28Japan%29%20%28Disc%201%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dancing%20Blade%20Katte%20ni%20Momotenshi%20II%20-%20Tears%20of%20Eden%20%28Japan%29%20%28Disc%201%29.png",
+      "cover": "https://images.launchbox-app.com//a13bbcf6-5c0d-4c00-adae-8821cc7992db.png",
+      "hero": "https://images.launchbox-app.com//a13bbcf6-5c0d-4c00-adae-8821cc7992db.png",
       "description": ""
     },
     {
@@ -8599,8 +8599,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/LEGO%20Island%202%20-%20The%20Brickster%27s%20Revenge%20%28Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/LEGO%20Island%202%20-%20The%20Brickster%27s%20Revenge%20%28Europe%29.png",
+      "cover": "https://images.launchbox-app.com//e9e6e188-28b4-4f19-b54d-62c3d0b32534.png",
+      "hero": "https://images.launchbox-app.com//e9e6e188-28b4-4f19-b54d-62c3d0b32534.png",
       "description": ""
     },
     {
@@ -8986,8 +8986,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kizuna%20toyuu%20Na%20no%20Pendant%20with%20Toybox%20Stories%20%28Japan%29%20%28Disc%201%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Kizuna%20toyuu%20Na%20no%20Pendant%20with%20Toybox%20Stories%20%28Japan%29%20%28Disc%201%29.png",
+      "cover": "https://images.launchbox-app.com//74fd4f04-21d7-44ea-bcec-561b1758087e.jpg",
+      "hero": "https://images.launchbox-app.com//74fd4f04-21d7-44ea-bcec-561b1758087e.jpg",
       "description": ""
     },
     {
@@ -9201,8 +9201,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Alice%20in%20Cyberland%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Alice%20in%20Cyberland%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com//8a48f99d-a4a8-4904-a818-bee713e07a56.jpg",
+      "hero": "https://images.launchbox-app.com//8a48f99d-a4a8-4904-a818-bee713e07a56.jpg",
       "description": ""
     },
     {
@@ -9330,8 +9330,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Aztec%20-%20The%20Curse%20in%20the%20Heart%20of%20the%20City%20of%20Gold%20%28Europe%29%20%28En%2CNl%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Aztec%20-%20The%20Curse%20in%20the%20Heart%20of%20the%20City%20of%20Gold%20%28Europe%29%20%28En%2CNl%29.png",
+      "cover": "https://images.launchbox-app.com//568cc2b7-1f44-464a-96da-d3810d6a459c.jpg",
+      "hero": "https://images.launchbox-app.com//568cc2b7-1f44-464a-96da-d3810d6a459c.jpg",
       "description": ""
     },
     {
@@ -9459,8 +9459,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/SimCity%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/SimCity%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com//084c3f94-a14a-4c90-aff5-5b265883af47.jpg",
+      "hero": "https://images.launchbox-app.com//084c3f94-a14a-4c90-aff5-5b265883af47.jpg",
       "description": ""
     },
     {
@@ -9588,8 +9588,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1y13.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1y13.jpg",
+      "cover": "https://images.launchbox-app.com//85eabb35-df87-46aa-abd5-e5c4fa4f0a1d.jpg",
+      "hero": "https://images.launchbox-app.com//85eabb35-df87-46aa-abd5-e5c4fa4f0a1d.jpg",
       "description": ""
     },
     {
@@ -9631,8 +9631,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Battlefield%202%20-%20Modern%20Combat%20%28Europe%29%20%28En%2CEs%2CNl%2CSv%29%20%28v1.00%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Battlefield%202%20-%20Modern%20Combat%20%28Europe%29%20%28En%2CEs%2CNl%2CSv%29%20%28v1.00%29.png",
+      "cover": "https://images.launchbox-app.com//733c770f-7733-440e-b7b1-efedcbe0ed6d.jpg",
+      "hero": "https://images.launchbox-app.com//733c770f-7733-440e-b7b1-efedcbe0ed6d.jpg",
       "description": ""
     },
     {
@@ -9803,8 +9803,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/America%27s%20Army%20-%20Rise%20of%20a%20Soldier%20%28Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/America%27s%20Army%20-%20Rise%20of%20a%20Soldier%20%28Europe%29.png",
+      "cover": "https://images.launchbox-app.com//269e47bf-b466-460d-abf6-3d816e754501.png",
+      "hero": "https://images.launchbox-app.com//269e47bf-b466-460d-abf6-3d816e754501.png",
       "description": ""
     },
     {
@@ -9846,8 +9846,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Broken%20Sword%20-%20The%20Sleeping%20Dragon%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Broken%20Sword%20-%20The%20Sleeping%20Dragon%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com//7cfc268d-0cd2-46d4-be39-8018e3f92b57.jpg",
+      "hero": "https://images.launchbox-app.com//7cfc268d-0cd2-46d4-be39-8018e3f92b57.jpg",
       "description": ""
     },
     {
@@ -9889,8 +9889,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Paddington%20Bear%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%2CPt%2CSv%2CNo%2CDa%2CFi%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Paddington%20Bear%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%2CPt%2CSv%2CNo%2CDa%2CFi%29.png",
+      "cover": "https://images.launchbox-app.com//bb9d6c6d-e7a8-4460-99ff-b3fea90f4fc4.png",
+      "hero": "https://images.launchbox-app.com//bb9d6c6d-e7a8-4460-99ff-b3fea90f4fc4.png",
       "description": ""
     },
     {
@@ -10147,8 +10147,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dr.%20Rin%20ni%20Kiite%20Mite%21%20Koi%20no%20Happy%20Four%20Seasons%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dr.%20Rin%20ni%20Kiite%20Mite%21%20Koi%20no%20Happy%20Four%20Seasons%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com//58ad823e-4876-45b6-a958-9c14ccaa1103.png",
+      "hero": "https://images.launchbox-app.com//58ad823e-4876-45b6-a958-9c14ccaa1103.png",
       "description": ""
     },
     {
@@ -10233,8 +10233,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://img.itch.zone/aW1hZ2UvMjY1NDc5LzEyODY2MjEuanBn/original/PO6UGX.jpg",
-      "hero": "https://img.itch.zone/aW1hZ2UvMjY1NDc5LzEyODY2MjEuanBn/original/PO6UGX.jpg",
+      "cover": "https://images.launchbox-app.com//6e140745-37d5-42e7-a965-67dd11aa1ab2.jpg",
+      "hero": "https://images.launchbox-app.com//6e140745-37d5-42e7-a965-67dd11aa1ab2.jpg",
       "description": ""
     },
     {
@@ -10276,8 +10276,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://user-images.githubusercontent.com/24377109/79051217-491a7800-7c2f-11ea-85c7-f9120b7d79dd.png",
-      "hero": "https://user-images.githubusercontent.com/24377109/79051217-491a7800-7c2f-11ea-85c7-f9120b7d79dd.png",
+      "cover": "https://images.launchbox-app.com//381cc0e5-78c0-4175-a091-a5740473eb4e.jpg",
+      "hero": "https://images.launchbox-app.com//381cc0e5-78c0-4175-a091-a5740473eb4e.jpg",
       "description": ""
     },
     {
@@ -10835,8 +10835,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Pokemon%20-%20Emerald%20Version%20%28USA%2C%20Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Advance/Named_Boxarts/Pokemon%20-%20Emerald%20Version%20%28USA%2C%20Europe%29.png",
+      "cover": "https://images.launchbox-app.com//b125445c-c303-489a-9411-803f0c83e4bf.png",
+      "hero": "https://images.launchbox-app.com//b125445c-c303-489a-9411-803f0c83e4bf.png",
       "description": ""
     },
     {
@@ -10921,8 +10921,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://pokerogue.net/logo512.png",
-      "hero": "https://pokerogue.net/logo512.png",
+      "cover": "https://images.launchbox-app.com//77dbdf0d-6e28-44f1-9de7-2ef8301c8082.png",
+      "hero": "https://images.launchbox-app.com//77dbdf0d-6e28-44f1-9de7-2ef8301c8082.png",
       "description": ""
     },
     {
@@ -11781,8 +11781,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Banjo-Kazooie%20%28Europe%29%20%28En%2CFr%2CDe%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Banjo-Kazooie%20%28Europe%29%20%28En%2CFr%2CDe%29.png",
+      "cover": "https://images.launchbox-app.com//8818404b-9b2f-497f-aadf-b6a50d7e2b48.jpg",
+      "hero": "https://images.launchbox-app.com//8818404b-9b2f-497f-aadf-b6a50d7e2b48.jpg",
       "description": ""
     },
     {
@@ -11996,8 +11996,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://road-rash.archit.xyz/og-image.png",
-      "hero": "https://road-rash.archit.xyz/og-image.png",
+      "cover": "https://images.launchbox-app.com//280b0576-3262-46bc-b23c-613addb2f572.png",
+      "hero": "https://images.launchbox-app.com//280b0576-3262-46bc-b23c-613addb2f572.png",
       "description": ""
     },
     {
@@ -12168,8 +12168,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Mobil%201%20Rally%20Championship%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Mobil%201%20Rally%20Championship%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "cover": "https://thumbnails.libretro.com/Sega%20-%20Saturn/Named_Boxarts/Sega%20Rally%20Championship%20%28Europe%29.png",
+      "hero": "https://thumbnails.libretro.com/Sega%20-%20Saturn/Named_Boxarts/Sega%20Rally%20Championship%20%28Europe%29.png",
       "description": ""
     },
     {
@@ -12684,8 +12684,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://raw.githubusercontent.com/RSDKModding/RSDKv3-Decompilation/master/header.png",
-      "hero": "https://raw.githubusercontent.com/RSDKModding/RSDKv3-Decompilation/master/header.png",
+      "cover": "https://images.launchbox-app.com//f2d39ea2-1681-44ad-b06c-d33dae1df7b9.jpg",
+      "hero": "https://images.launchbox-app.com//f2d39ea2-1681-44ad-b06c-d33dae1df7b9.jpg",
       "description": ""
     },
     {
@@ -12813,8 +12813,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sega%20-%20Mega%20Drive%20-%20Genesis/Named_Boxarts/Sonic%20The%20Hedgehog%20%28USA%2C%20Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Sega%20-%20Mega%20Drive%20-%20Genesis/Named_Boxarts/Sonic%20The%20Hedgehog%20%28USA%2C%20Europe%29.png",
+      "cover": "https://images.launchbox-app.com//a74a770b-0763-453b-a30f-73546e095f26.jpg",
+      "hero": "https://images.launchbox-app.com//a74a770b-0763-453b-a30f-73546e095f26.jpg",
       "description": ""
     },
     {
@@ -13200,15 +13200,15 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "cover": "https://images.launchbox-app.com//0ea9a652-3ee8-4ad5-91e0-46ab7c0cb3ec.png",
+      "hero": "https://images.launchbox-app.com//0ea9a652-3ee8-4ad5-91e0-46ab7c0cb3ec.png",
       "description": ""
     },
     {
       "id": "super-mario-bros-remastered-android",
       "name": "Super Mario Bros.",
       "game": "Super Mario Bros.",
-      "origin": "pc_classic",
+      "origin": "snes",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -13243,8 +13243,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/70%27s%20Robot%20Anime%20-%20Geppy-X%20-%20The%20Super%20Boosted%20Armor%20%28Japan%29%20%28Disc%201%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/70%27s%20Robot%20Anime%20-%20Geppy-X%20-%20The%20Super%20Boosted%20Armor%20%28Japan%29%20%28Disc%201%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Entertainment%20System/Named_Boxarts/Super%20Mario%20Bros.%20%28World%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Entertainment%20System/Named_Boxarts/Super%20Mario%20Bros.%20%28World%29.png",
       "description": ""
     },
     {
@@ -13802,8 +13802,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://img.itch.zone/aW1nLzQyNDA0MDIucG5n/original/N3uBtg.png",
-      "hero": "https://img.itch.zone/aW1nLzQyNDA0MDIucG5n/original/N3uBtg.png",
+      "cover": "https://images.launchbox-app.com//6d6317a4-25eb-473c-91af-ccd541a3483e.png",
+      "hero": "https://images.launchbox-app.com//6d6317a4-25eb-473c-91af-ccd541a3483e.png",
       "description": ""
     },
     {
@@ -13931,8 +13931,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coc7m0.jpg",
-      "hero": "https://images.igdb.com/igdb/image/upload/t_cover_big/coc7m0.jpg",
+      "cover": "https://images.launchbox-app.com//1d256a98-15af-4195-8d4a-6f56c8a9278d.jpg",
+      "hero": "https://images.launchbox-app.com//1d256a98-15af-4195-8d4a-6f56c8a9278d.jpg",
       "description": ""
     },
     {
@@ -13974,8 +13974,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/AI%20Mahjong%202000%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/AI%20Mahjong%202000%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com//4b161739-cccd-4a61-9424-a756231cd8f4.png",
+      "hero": "https://images.launchbox-app.com//4b161739-cccd-4a61-9424-a756231cd8f4.png",
       "description": ""
     },
     {
@@ -14060,8 +14060,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Advanced%20Dungeons%20_%20Dragons%20-%20Iron%20_%20Blood%20-%20Warriors%20of%20Ravenloft%20%28Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Advanced%20Dungeons%20_%20Dragons%20-%20Iron%20_%20Blood%20-%20Warriors%20of%20Ravenloft%20%28Europe%29.png",
+      "cover": "https://images.launchbox-app.com//4e340396-3f08-4de6-b0d6-cbdadcb72dea.png",
+      "hero": "https://images.launchbox-app.com//4e340396-3f08-4de6-b0d6-cbdadcb72dea.png",
       "description": ""
     },
     {
@@ -14146,8 +14146,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://nethackwiki.com/images/thumb/b/b4/UnNetHack.png/300px-UnNetHack.png",
-      "hero": "https://nethackwiki.com/images/thumb/b/b4/UnNetHack.png/300px-UnNetHack.png",
+      "cover": "https://images.launchbox-app.com//40ca9e60-bc33-4171-8729-3d95eff0dd9d.png",
+      "hero": "https://images.launchbox-app.com//40ca9e60-bc33-4171-8729-3d95eff0dd9d.png",
       "description": ""
     },
     {
@@ -14232,8 +14232,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20Collection%20-%20Arc%20Arena%20-%20Monster%20Tournament%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20Collection%20-%20Arc%20Arena%20-%20Monster%20Tournament%20%28USA%29.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Unreal%20Tournament%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Unreal%20Tournament%20%28USA%29.png",
       "description": ""
     },
     {
@@ -14361,15 +14361,15 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/Silva%20Saga%20II%20-%20The%20Legend%20of%20Light%20and%20Darkness%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System/Named_Boxarts/Silva%20Saga%20II%20-%20The%20Legend%20of%20Light%20and%20Darkness%20%28Japan%29.png",
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20%28USA%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20%28USA%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
       "description": ""
     },
     {
       "id": "wario-land-3-recomp",
       "name": "Wario Land 3",
       "game": "Wario Land 3",
-      "origin": "pc_classic",
+      "origin": "gbc",
       "type": "Static Recomp",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -14404,8 +14404,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Army%20Men%20-%20Land%2C%20Sea%2C%20Air%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Army%20Men%20-%20Land%2C%20Sea%2C%20Air%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Wario%20Land%203%20%28World%29%20%28En%2CJa%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Wario%20Land%203%20%28World%29%20%28En%2CJa%29.png",
       "description": ""
     },
     {
@@ -14533,8 +14533,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/FEDA%202%20-%20White%20Surge%20the%20Platoon%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/FEDA%202%20-%20White%20Surge%20the%20Platoon%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com//b7043d82-f92b-436c-b536-75bf74140687.jpg",
+      "hero": "https://images.launchbox-app.com//b7043d82-f92b-436c-b536-75bf74140687.jpg",
       "description": ""
     },
     {
@@ -14584,7 +14584,7 @@
       "id": "woodyre",
       "name": "Woody Woodpecker: Escape from Buzz Buzzard Park",
       "game": "Woody Woodpecker: Escape from Buzz Buzzard Park",
-      "origin": "pc_classic",
+      "origin": "ps2",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -14662,8 +14662,8 @@
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://raw.githubusercontent.com/FWGS/xash3d-fwgs/master/Documentation/images/example1.jpg",
-      "hero": "https://raw.githubusercontent.com/FWGS/xash3d-fwgs/master/Documentation/images/example1.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/70/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/70/header.jpg",
       "description": ""
     },
     {
@@ -14876,8 +14876,8 @@
       ],
       "downloads": 14200,
       "stars": 1650,
-      "cover": "https://apkvision.org/wp-content/uploads/2026/10/rayman_mini_icon.webp",
-      "hero": "https://apkvision.org/wp-content/uploads/2026/10/rayman_mini_icon.webp",
+      "cover": "https://images.launchbox-app.com//97d2b59e-005f-4c4c-93c2-89055e2d94cf.jpg",
+      "hero": "https://images.launchbox-app.com//97d2b59e-005f-4c4c-93c2-89055e2d94cf.jpg",
       "description": "Rayman Mini is an action platformer developed by Ubisoft Montpellier and Pastagames. Shrunk to the size of an ant by a wicked spell, Rayman runs, jumps, and glides across 48 lush macro-photographic levels to reverse the curse."
     },
     {
@@ -15759,8 +15759,8 @@
       ],
       "downloads": 14900,
       "stars": 2480,
-      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/597820/library_600x900_2x.jpg",
-      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/597820/header.jpg",
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/595500/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/595500/header.jpg",
       "description": "Freedom Planet 2 is a high-speed combat platformer that puts 4 heroic animal heroines against ancient aquatic terrors across the continent of Avalice."
     },
     {
