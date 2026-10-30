@@ -2671,3 +2671,22 @@ html[dir="rtl"] .game-card-tags {
   border: 1px solid rgba(52, 242, 232, 0.25);
   color: var(--frost);
 }
+
+
+/* Compact Language Toggle (Displays only E or ع) */
+.lang-toggle-chip {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  line-height: 1;
+}
+.lang-toggle-chip svg {
+  display: none !important;
+}

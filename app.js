@@ -184,7 +184,7 @@
       appName: 'درويد ريكومب',
       tagline: 'منافذ وإعادات ترجمة الألعاب الأصلية للأندرويد',
       discover: 'استكشاف',
-      browse: 'جميع المنافذ',
+      browse: 'تصفح',
       emulators: 'المحاكيات',
       topCharts: 'الأعلى تصنيفاً',
       handhelds: 'الأجهزة المحمولة',
@@ -252,7 +252,8 @@
 
     const langLabel = document.getElementById('lang-label');
     if (langLabel) {
-      langLabel.textContent = (currentLang === 'ar' ? 'English' : 'عربي');
+      // User request: display only E for english and ع for arabic
+      langLabel.textContent = (currentLang === 'ar' ? 'E' : 'ع');
     }
 
     updateNavTranslations();
@@ -1504,6 +1505,47 @@
     const isSaved = savedGames.includes(game.id);
     const isInstalled = installedGames.includes(game.id);
     const pkg = getPackageName(game);
+    const isAr = (currentLang === 'ar');
+
+    const isRecomp = game.type && game.type.toLowerCase().includes('recomp');
+    const aboutTitle = isAr
+      ? (isRecomp ? 'حول هذه النسخة المعاد تجميعها' : 'حول هذا البورت')
+      : (isRecomp ? 'About this Recompilation' : 'About this Port');
+
+    const keyFeaturesTitle = isAr
+      ? 'الميزات والتحسينات الرئيسية'
+      : 'Key Features & Enhancements';
+
+    const tabOverview = isAr ? 'نظرة عامة' : 'Overview';
+    const tabSetup = isAr ? 'الإعداد والملفات' : 'Setup & Assets';
+    const tabReleases = isAr ? 'التحميلات والتحديثات' : 'Downloads & Updates';
+
+    const assetSetupGuideTitle = isAr ? 'دليل إعداد الملفات' : 'Asset Setup Guide';
+    const assetSetupGuideSub = isAr
+      ? 'اتبع هذه الخطوات لاستخراج ووضع ملفاتك لهذا البورت:'
+      : 'Follow these steps to extract and place your assets for this port:';
+    const requiredFilesLabel = isAr ? 'ملفات اللعبة المطلوبة:' : 'Required Game Files:';
+    const targetStorageDirLabel = isAr ? 'مجلد التخزين المستهدف:' : 'Target Storage Directory:';
+    const testRomHashTitle = isAr ? 'فحص مطابقة ملف ROM محلياً' : 'Test Your ROM File Hash Locally';
+    const testRomHashSub = isAr ? 'انقر للتحقق من تطابق كود SHA-1' : 'Click to verify SHA-1 checksum';
+
+    const releasesSourceTitle = isAr ? 'الإصدارات والشفرة المصدرية' : 'Releases & Source Code';
+    const releasesSourceSub = isAr
+      ? 'يتم توفير الإصدارات الثنائية مباشرة من الإصدارات الرسمية للمطورين.'
+      : 'Binary builds are distributed directly from the developer\'s official releases.';
+    const directApkDownloadText = isAr ? 'تحميل APK مباشر' : 'Direct APK Download';
+    const githubRepoText = isAr ? 'مستودع GitHub' : 'GitHub Repository';
+
+    const downloadApkBtnText = isAr ? 'تحميل APK (ARM64)' : 'Download APK (ARM64)';
+    const obtainiumSyncBtnText = isAr ? 'مزامنة Obtainium بنقرة واحدة' : '1-Click Obtainium Sync';
+    const bookmarkBtnText = isSaved
+      ? (isAr ? 'في مكتبتك' : 'In Your Library')
+      : (isAr ? 'إضافة للمكتبة' : 'Bookmark to Library');
+    const markInstalledBtnText = isInstalled
+      ? (isAr ? '✓ تم التثبيت على الجهاز' : '✓ Installed on Device')
+      : (isAr ? '+ تحديد كمثبت' : '+ Mark as Installed');
+    const unmarkBtnText = isAr ? 'إلغاء' : 'Unmark';
+    const launchGameBtnText = isAr ? 'تشغيل اللعبة' : 'LAUNCH GAME';
 
     modalContent.innerHTML = `
       <div class="modal-hero" style="background-image: url('${game.hero || game.cover}');">
@@ -1515,22 +1557,22 @@
         <div class="modal-title-area">
           <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
             <span class="tag tag-origin">${originLabel(game.origin)}</span>
-            ${game.isCustom ? '<span class="badge-custom" style="padding: 4px 10px; font-size: 0.75rem;">◈ Community Sideload</span>' : '<span class="badge-master" style="padding: 4px 10px; font-size: 0.75rem;">★ Master Verified Catalog</span>'}
+            ${game.isCustom ? `<span class="badge-custom" style="padding: 4px 10px; font-size: 0.75rem;">${isAr ? '◈ مساهمات المجتمع' : '◈ Community Sideload'}</span>` : `<span class="badge-master" style="padding: 4px 10px; font-size: 0.75rem;">${isAr ? '★ دليل معتمد' : '★ Master Verified Catalog'}</span>`}
             <span class="tag">${game.type}</span>
-            <span class="tag" style="background: rgba(52, 211, 153, 0.2); color: var(--success); border-color: rgba(52, 211, 153, 0.4);">Verified Playable</span>
-            ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip">⚡ Adreno Turnip Rec.</span>` : ''}
+            <span class="tag" style="background: rgba(52, 211, 153, 0.2); color: var(--success); border-color: rgba(52, 211, 153, 0.4);">${isAr ? 'مؤكد قابل للعب' : 'Verified Playable'}</span>
+            ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip">⚡ ${isAr ? 'يوصى بـ Turnip' : 'Adreno Turnip Rec.'}</span>` : ''}
           </div>
           <h1 class="modal-title">${escapeHtml(game.name)}</h1>
-          ${game.game && game.game !== game.name ? `<p class="modal-based">Rebuilt from <strong>${escapeHtml(game.game)}</strong></p>` : ''}
-          <p style="font-size: 0.85rem; color: var(--muted);">Maintained by <strong>${escapeHtml(game.author || 'Community')}</strong></p>
+          ${game.game && game.game !== game.name ? `<p class="modal-based">${isAr ? 'مبني على' : 'Rebuilt from'} <strong>${escapeHtml(game.game)}</strong></p>` : ''}
+          <p style="font-size: 0.85rem; color: var(--muted);">${isAr ? 'تطوير وصيانة' : 'Maintained by'} <strong>${escapeHtml(game.author || (isAr ? 'المجتمع' : 'Community'))}</strong></p>
         </div>
       </div>
 
       <!-- TABS -->
       <nav class="modal-tabs" role="tablist">
-        <button type="button" class="modal-tab active" data-tab="overview">Overview</button>
-        <button type="button" class="modal-tab" data-tab="setup">Setup & Assets</button>
-        <button type="button" class="modal-tab" data-tab="releases">Downloads & Updates</button>
+        <button type="button" class="modal-tab active" data-tab="overview">${tabOverview}</button>
+        <button type="button" class="modal-tab" data-tab="setup">${tabSetup}</button>
+        <button type="button" class="modal-tab" data-tab="releases">${tabReleases}</button>
       </nav>
 
       <div class="modal-inner">
@@ -1538,10 +1580,10 @@
         <div class="modal-main-body">
           <!-- PANEL 1: OVERVIEW -->
           <div class="modal-panel" id="panel-overview">
-            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">About this Recompilation</h3>
-            <p style="color: var(--muted); margin-bottom: 16px;">${escapeHtml(game.blurb || '')}</p>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">${aboutTitle}</h3>
+            <p style="color: var(--muted); margin-bottom: 16px;">${escapeHtml(getTranslatedBlurb(game))}</p>
 
-            <h4 style="font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 10px; color: var(--cyan);">Key Features & Enhancements</h4>
+            <h4 style="font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 10px; color: var(--cyan);">${keyFeaturesTitle}</h4>
             <ul class="modal-features-list">
               ${(game.features || []).map(f => `
                 <li>
@@ -1552,23 +1594,23 @@
             </ul>
 
             <div class="disc-note" style="margin-top: 24px;">
-              <span class="kicker">No Game Files Included</span>
-              <p>DroidRecomp and its developer releases do not distribute game assets. You must own and supply your own legal dump of <em>${escapeHtml(game.game || game.name)}</em>.</p>
+              <span class="kicker">${isAr ? 'لا تتضمن ملفات اللعبة' : 'No Game Files Included'}</span>
+              <p>${isAr ? `منصة DroidRecomp وإصدارات المطورين لا تقوم بتوزيع ملفات اللعبة. يجب أن تمتلك وتوفر نسختك القانونية الخاصة من لعبة <em>${escapeHtml(game.game || game.name)}</em>.` : `DroidRecomp and its developer releases do not distribute game assets. You must own and supply your own legal dump of <em>${escapeHtml(game.game || game.name)}</em>.`}</p>
             </div>
           </div>
 
           <!-- PANEL 2: SETUP & ASSETS -->
           <div class="modal-panel" id="panel-setup" hidden>
-            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">Asset Setup Guide</h3>
-            <p style="color: var(--muted); margin-bottom: 14px;">Follow these steps to extract and place your assets for this port:</p>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">${assetSetupGuideTitle}</h3>
+            <p style="color: var(--muted); margin-bottom: 14px;">${assetSetupGuideSub}</p>
 
             <div style="background: rgba(244, 248, 252, 0.04); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; margin-bottom: 16px;">
-              <strong style="color: var(--cyan); display: block; margin-bottom: 4px;">Required Game Files:</strong>
+              <strong style="color: var(--cyan); display: block; margin-bottom: 4px;">${requiredFilesLabel}</strong>
               <div style="font-family: monospace; font-size: 0.85rem; color: #fff;">${escapeHtml(game.needs || 'Original ROM dump')}</div>
             </div>
 
             <div style="background: rgba(244, 248, 252, 0.04); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; margin-bottom: 16px;">
-              <strong style="color: var(--cyan); display: block; margin-bottom: 4px;">Target Storage Directory:</strong>
+              <strong style="color: var(--cyan); display: block; margin-bottom: 4px;">${targetStorageDirLabel}</strong>
               <div style="font-family: monospace; font-size: 0.82rem; color: #fff; word-break: break-all;">/sdcard/Android/data/com.recomp.${game.id.replace(/-/g, '.')}/files/</div>
             </div>
 
@@ -1577,8 +1619,8 @@
               <input type="file" id="modal-rom-input" style="display: none;" onchange="window.DroidRecomp.verifyRomFile(this.files[0], '${game.id}')">
               <div class="rom-drop-zone" onclick="document.getElementById('modal-rom-input').click()">
                 <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--cyan); margin-bottom: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                <div style="font-weight: 600; font-size: 0.9rem;">Test Your ROM File Hash Locally</div>
-                <div style="font-size: 0.75rem; color: var(--muted);">Click to verify SHA-1 checksum</div>
+                <div style="font-weight: 600; font-size: 0.9rem;">${testRomHashTitle}</div>
+                <div style="font-size: 0.75rem; color: var(--muted);">${testRomHashSub}</div>
               </div>
               <div id="modal-rom-output" style="margin-top: 10px; font-size: 0.8rem; font-family: monospace; display: none;"></div>
             </div>
@@ -1586,8 +1628,8 @@
 
           <!-- PANEL 3: RELEASES & UPDATES -->
           <div class="modal-panel" id="panel-releases" hidden>
-            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">Releases & Source Code</h3>
-            <p style="color: var(--muted); margin-bottom: 14px;">Binary builds are distributed directly from the developer's official releases.</p>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px;">${releasesSourceTitle}</h3>
+            <p style="color: var(--muted); margin-bottom: 14px;">${releasesSourceSub}</p>
 
             <div style="background: rgba(244, 248, 252, 0.04); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 18px; margin-bottom: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
@@ -1600,13 +1642,13 @@
                 ${game.apk_url ? `
                   <a class="btn btn-primary" href="${game.apk_url}" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span>Direct APK Download</span>
+                    <span>${directApkDownloadText}</span>
                   </a>
                 ` : ''}
                 ${game.repo_url ? `
                   <a class="btn btn-secondary" href="${game.repo_url}" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    <span>GitHub Repository</span>
+                    <span>${githubRepoText}</span>
                   </a>
                 ` : ''}
               </div>
@@ -1621,42 +1663,43 @@
               ${isInstalled ? `
                 <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
                   <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span class="badge-installed">✓ Installed on Device</span>
-                    <button type="button" class="btn btn-secondary" style="padding: 3px 8px; font-size: 0.72rem;" onclick="window.DroidRecomp.toggleInstalled('${game.id}', event)">Unmark</button>
+                    <span class="badge-installed">${markInstalledBtnText}</span>
+                    <button type="button" class="btn btn-secondary" style="padding: 3px 8px; font-size: 0.72rem;" onclick="window.DroidRecomp.toggleInstalled('${game.id}', event)">${unmarkBtnText}</button>
                   </div>
                   <button type="button" class="btn-launch-game" onclick="window.DroidRecomp.launchGame('${game.id}', event)">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    <span>LAUNCH GAME</span>
+                    <span>${launchGameBtnText}</span>
                   </button>
                 </div>
               ` : `
                 <button type="button" class="btn btn-secondary btn-full" onclick="window.DroidRecomp.toggleInstalled('${game.id}', event)">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/><path d="M12 9v6M9 12h6"/></svg>
-                  <span>+ Mark as Installed</span>
+                  <span>${markInstalledBtnText}</span>
                 </button>
               `}
             </div>
             ${game.apk_url ? `
               <a class="btn btn-primary btn-full" href="${game.apk_url}" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                <span>Download APK (ARM64)</span>
+                <span>${downloadApkBtnText}</span>
               </a>
             ` : ''}
 
             ${game.obtainium_url ? `
               <a class="btn btn-secondary btn-full" href="${game.obtainium_url}" title="Add to Obtainium">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                <span>1-Click Obtainium Sync</span>
+                <span>${obtainiumSyncBtnText}</span>
               </a>
             ` : ''}
 
             <button type="button" class="btn btn-secondary btn-full" onclick="window.DroidRecomp.toggleSave('${game.id}', true)">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-              <span id="modal-save-label">${isSaved ? 'In Your Library' : 'Bookmark to Library'}</span>
+              <span id="modal-save-label">${bookmarkBtnText}</span>
             </button>
 
+            <!-- FACTS TABLE (ALWAYS STAYS IN ENGLISH AS REQUESTED) -->
             <dl style="margin-top: 10px;">
-              <div class="fact-row"><dt>System</dt><dd>${originLabel(game.origin)}</dd></div>
+              <div class="fact-row"><dt>System</dt><dd>${englishOriginLabel(game.origin)}</dd></div>
               <div class="fact-row"><dt>Port Type</dt><dd>${game.type}</dd></div>
               <div class="fact-row"><dt>Min Android</dt><dd>${game.min_android || 'Android 8.0+'}</dd></div>
               <div class="fact-row"><dt>Input</dt><dd>${game.input.touch ? 'Touch + Gamepad' : 'Physical Gamepad'}</dd></div>
@@ -1846,6 +1889,64 @@
     if (backdropImg && imageUrl) {
       backdropImg.style.backgroundImage = `url('${imageUrl}')`;
     }
+  }
+
+  
+  // Helper for English origin labels in fact table
+  function englishOriginLabel(origin) {
+    const map = {
+      'n64': 'Nintendo 64',
+      'x360': 'Xbox 360',
+      'xbox': 'Xbox',
+      'gc': 'GameCube',
+      'wii': 'Wii',
+      'ps1': 'PlayStation',
+      'ps2': 'PlayStation 2',
+      'psp': 'PSP',
+      'pc_classic': 'Classic PC',
+      'snes': 'SNES',
+      'gba': 'GBA',
+      'gbc': 'Game Boy Color',
+      'gb': 'Game Boy',
+      'nds': 'Nintendo DS',
+      'switch': 'Switch',
+      'dreamcast': 'Dreamcast',
+      'android': 'Android Port'
+    };
+    return map[origin] || (origin ? origin.toUpperCase() : 'Custom');
+  }
+
+  // Helper for translating blurb while keeping game names in English
+  function getTranslatedBlurb(game) {
+    const blurb = game.blurb || '';
+    if (currentLang !== 'ar') return blurb;
+    const name = game.name || game.game || '';
+
+    if (blurb.includes('High-fidelity native Android recompilation')) {
+      return `نسخة أندرويد أصلية عالية الدقة ومعاد تجميعها للعبة ${name}. تعمل بشكل أصلي ومباشر بدون استهلاك المحاكي مع تحسينات حديثة.`;
+    }
+    if (blurb.includes('High-performance native Android port')) {
+      return `بورت أندرويد أصلي عالي الأداء للعبة ${name}. يعمل بشكل أصلي ومباشر على معمارية ARM64 مع تحسينات حديثة.`;
+    }
+    if (blurb.includes('Native Android port of')) {
+      return `بورت أندرويد أصلي للعبة ${name}. يعمل بشكل أصلي على أندرويد مع تحسينات الأداء والتحكم.`;
+    }
+    if (blurb.includes('Native Android source port of')) {
+      return `بورت أندرويد أصلي من الكود المصدري للعبة ${name}. يعمل بشكل مباشر على معمارية ARM64.`;
+    }
+
+    let t = blurb;
+    const phrases = [
+      [/Runs natively without emulator overhead with modern enhancements\./gi, 'تعمل بشكل أصلي ومباشر بدون استهلاك المحاكي مع تحسينات حديثة.'],
+      [/Runs natively on ARM64 architecture with modern enhancements\./gi, 'يعمل بشكل أصلي ومباشر على معمارية ARM64 مع تحسينات حديثة.'],
+      [/Runs natively on Android without emulation\./gi, 'يعمل بشكل أصلي على أندرويد بدون محاكاة.'],
+      [/Full single-player and multiplayer support\./gi, 'دعم كامل للعب الفردي والجماعي.'],
+      [/Bring your own legally owned game files\./gi, 'يتطلب توفير ملفات اللعبة المملوكة بشكل قانوني.']
+    ];
+    for (const [pattern, arText] of phrases) {
+      t = t.replace(pattern, arText);
+    }
+    return t;
   }
 
   function originLabel(origin) {

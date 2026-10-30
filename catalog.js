@@ -344,8 +344,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Pokemon%20-%20Red%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy/Named_Boxarts/Pokemon%20-%20Red%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy/master/Named_Boxarts/Pokemon%20-%20Red%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy/master/Named_Boxarts/Pokemon%20-%20Red%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced).png",
       "description": ""
     },
     {
@@ -387,8 +387,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/master/Named_Boxarts/Pokemon%20-%20Gold%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced)%20(GB%20Compatible).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/master/Named_Boxarts/Pokemon%20-%20Gold%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced)%20(GB%20Compatible).png",
       "description": ""
     },
     {
@@ -516,8 +516,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.launchbox-app.com//035ab994-abe7-4487-860a-48d34ee48ebf.png",
-      "hero": "https://images.launchbox-app.com//035ab994-abe7-4487-860a-48d34ee48ebf.png",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Sonic%20Unleashed%20(USA)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Sonic%20Unleashed%20(USA)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt).png",
       "description": ""
     },
     {
@@ -903,8 +903,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.launchbox-app.com//01cc2e7f-36e9-4cba-a564-03b1c04770d2.jpg",
-      "hero": "https://images.launchbox-app.com//01cc2e7f-36e9-4cba-a564-03b1c04770d2.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Diablo%20(USA)%20(En%2CFr%2CDe%2CSv).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Diablo%20(USA)%20(En%2CFr%2CDe%2CSv).png",
       "description": ""
     },
     {
@@ -989,8 +989,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.launchbox-app.com//ba642fcf-9647-42c5-811e-3fcd4597fbe9.jpg",
-      "hero": "https://images.launchbox-app.com//ba642fcf-9647-42c5-811e-3fcd4597fbe9.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/22320/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/22320/library_600x900.jpg",
       "description": ""
     },
     {
@@ -1032,8 +1032,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.launchbox-app.com//fb6c7676-31e5-44c6-932d-4c93a3e140c9.jpg",
-      "hero": "https://images.launchbox-app.com//fb6c7676-31e5-44c6-932d-4c93a3e140c9.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Simpsons%2C%20The%20-%20Hit%20_%20Run%20(USA).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Simpsons%2C%20The%20-%20Hit%20_%20Run%20(USA).png",
       "description": ""
     },
     {
@@ -2537,8 +2537,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.launchbox-app.com/304a7169-c4ee-44fc-a809-aae497760ed1.jpg",
-      "hero": "https://images.launchbox-app.com/304a7169-c4ee-44fc-a809-aae497760ed1.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Golden%20Sun%20(USA%2C%20Europe).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Golden%20Sun%20(USA%2C%20Europe).png",
       "description": ""
     },
     {
@@ -3225,8 +3225,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.launchbox-app.com//c8026f8f-c080-47ed-a8d7-b248a8a19231.jpg",
-      "hero": "https://images.launchbox-app.com//c8026f8f-c080-47ed-a8d7-b248a8a19231.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Wipeout%20(USA).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Wipeout%20(USA).png",
       "description": ""
     },
     {
@@ -4773,8 +4773,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://images.launchbox-app.com//19b99366-d8b7-47da-8727-7ecd53e1ef46.jpg",
-      "hero": "https://images.launchbox-app.com//19b99366-d8b7-47da-8727-7ecd53e1ef46.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_Portable/master/Named_Boxarts/Virtua%20Tennis%203%20(USA)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt)%20(v1.02).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_Portable/master/Named_Boxarts/Virtua%20Tennis%203%20(USA)%20(En%2CJa%2CFr%2CDe%2CEs%2CIt)%20(v1.02).png",
       "description": ""
     },
     {
@@ -6450,8 +6450,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com//133d6a99-4700-4073-be72-834ba1c81f6c.jpg",
-      "hero": "https://images.launchbox-app.com//133d6a99-4700-4073-be72-834ba1c81f6c.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_Portable/master/Named_Boxarts/Dante%27s%20Inferno%20(USA)%20(v1.01).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_Portable/master/Named_Boxarts/Dante%27s%20Inferno%20(USA)%20(v1.01).png",
       "description": ""
     },
     {
@@ -6493,8 +6493,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com/d23d7135-09e6-4864-bc1f-c09722837782.jpg",
-      "hero": "https://images.launchbox-app.com/d23d7135-09e6-4864-bc1f-c09722837782.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Daytona%20USA%20(USA).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Daytona%20USA%20(USA).png",
       "description": ""
     },
     {
@@ -6708,8 +6708,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com//01cc2e7f-36e9-4cba-a564-03b1c04770d2.jpg",
-      "hero": "https://images.launchbox-app.com//01cc2e7f-36e9-4cba-a564-03b1c04770d2.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Diablo%20(USA)%20(En%2CFr%2CDe%2CSv).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Diablo%20(USA)%20(En%2CFr%2CDe%2CSv).png",
       "description": ""
     },
     {
@@ -6923,8 +6923,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com/c2857553-d5c3-411d-83e0-0be4798fbfe2.jpg",
-      "hero": "https://images.launchbox-app.com/c2857553-d5c3-411d-83e0-0be4798fbfe2.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/208200/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/208200/library_600x900.jpg",
       "description": ""
     },
     {
@@ -7138,8 +7138,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com//1bb2f334-4422-484a-8684-7cbe0e19ea9a.jpg",
-      "hero": "https://images.launchbox-app.com//1bb2f334-4422-484a-8684-7cbe0e19ea9a.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/200900/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/200900/library_600x900.jpg",
       "description": ""
     },
     {
@@ -7869,8 +7869,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/master/Named_Boxarts/Pokemon%20-%20Gold%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced)%20(GB%20Compatible).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Color/master/Named_Boxarts/Pokemon%20-%20Gold%20Version%20(USA%2C%20Europe)%20(SGB%20Enhanced)%20(GB%20Compatible).png",
       "description": ""
     },
     {
@@ -8213,8 +8213,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com/3254774a-29c0-488e-8a87-4b805f8324ff.jpg",
-      "hero": "https://images.launchbox-app.com/3254774a-29c0-488e-8a87-4b805f8324ff.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/2390/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/2390/library_600x900.jpg",
       "description": ""
     },
     {
@@ -9202,8 +9202,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com//8a48f99d-a4a8-4904-a818-bee713e07a56.jpg",
-      "hero": "https://images.launchbox-app.com//8a48f99d-a4a8-4904-a818-bee713e07a56.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/19680/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/19680/library_600x900.jpg",
       "description": ""
     },
     {
@@ -10922,8 +10922,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com//77dbdf0d-6e28-44f1-9de7-2ef8301c8082.png",
-      "hero": "https://images.launchbox-app.com//77dbdf0d-6e28-44f1-9de7-2ef8301c8082.png",
+      "cover": "https://avatars.githubusercontent.com/u/164962081?v=4",
+      "hero": "https://avatars.githubusercontent.com/u/164962081?v=4",
       "description": ""
     },
     {
@@ -11997,8 +11997,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com//280b0576-3262-46bc-b23c-613addb2f572.png",
-      "hero": "https://images.launchbox-app.com//280b0576-3262-46bc-b23c-613addb2f572.png",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Road%20Rash%20(USA).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Road%20Rash%20(USA).png",
       "description": ""
     },
     {
@@ -12685,8 +12685,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com//f2d39ea2-1681-44ad-b06c-d33dae1df7b9.jpg",
-      "hero": "https://images.launchbox-app.com//f2d39ea2-1681-44ad-b06c-d33dae1df7b9.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/200940/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/200940/library_600x900.jpg",
       "description": ""
     },
     {
@@ -13717,8 +13717,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com/5c4e604b-660a-4b1a-987f-7d3c2aad7a0f.jpg",
-      "hero": "https://images.launchbox-app.com/5c4e604b-660a-4b1a-987f-7d3c2aad7a0f.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Wii_U/master/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Breath%20of%20the%20Wild%20(USA)%20(En%2CFr%2CEs).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Wii_U/master/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Breath%20of%20the%20Wild%20(USA)%20(En%2CFr%2CEs).png",
       "description": ""
     },
     {
@@ -13760,8 +13760,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://images.launchbox-app.com/fb6c7676-31e5-44c6-932d-4c93a3e140c9.jpg",
-      "hero": "https://images.launchbox-app.com/fb6c7676-31e5-44c6-932d-4c93a3e140c9.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Simpsons%2C%20The%20-%20Hit%20_%20Run%20(USA).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Simpsons%2C%20The%20-%20Hit%20_%20Run%20(USA).png",
       "description": ""
     },
     {
@@ -14362,8 +14362,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20%28USA%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20%28USA%29%20%28En%2CFr%2CDe%2CEs%2CIt%29.png",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20(USA)%20(En%2CFr%2CDe%2CEs%2CIt).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/WarCraft%20II%20-%20The%20Dark%20Saga%20(USA)%20(En%2CFr%2CDe%2CEs%2CIt).png",
       "description": ""
     },
     {
@@ -14877,8 +14877,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 14200,
       "stars": 1650,
-      "cover": "https://images.launchbox-app.com//97d2b59e-005f-4c4c-93c2-89055e2d94cf.jpg",
-      "hero": "https://images.launchbox-app.com//97d2b59e-005f-4c4c-93c2-89055e2d94cf.jpg",
+      "cover": "https://apkvision.org/wp-content/uploads/2026/10/rayman_mini_icon.webp",
+      "hero": "https://apkvision.org/wp-content/uploads/2026/10/rayman_mini_icon.webp",
       "description": "Rayman Mini is an action platformer developed by Ubisoft Montpellier and Pastagames. Shrunk to the size of an ant by a wicked spell, Rayman runs, jumps, and glides across 48 lush macro-photographic levels to reverse the curse."
     },
     {
@@ -14919,8 +14919,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 18400,
       "stars": 2400,
-      "cover": "https://images.launchbox-app.com//365edd53-045a-4b8f-987e-dc1f083349d2.jpg",
-      "hero": "https://images.launchbox-app.com//365edd53-045a-4b8f-987e-dc1f083349d2.jpg",
+      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Wii/master/Named_Boxarts/Rayman%20Origins%20(USA).png",
+      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Wii/master/Named_Boxarts/Rayman%20Origins%20(USA).png",
       "description": "Rayman Origins is a comic adventure set in a lush 2D world brimming with secrets. The Glade of Dreams is overrun by Darktoons, and Rayman and Globox must save the world across 12 distinct worlds and 60+ stages."
     },
     {
@@ -15087,8 +15087,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 31200,
       "stars": 4520,
-      "cover": "https://images.launchbox-app.com//80e9f89c-28ac-41f5-af9a-dc2e205869c8.jpg",
-      "hero": "https://images.launchbox-app.com//80e9f89c-28ac-41f5-af9a-dc2e205869c8.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/45700/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/45700/library_600x900.jpg",
       "description": "Devil May Cry 4 immerses gamers in a supernatural gothic world where a new protagonist clashes with familiar hero Dante. With the Devil Bringer arm, Nero unleashes devastating combos."
     },
     {
@@ -15171,8 +15171,8 @@ window.DROID_CATALOG = {
       ],
       "downloads": 15600,
       "stars": 2670,
-      "cover": "https://images.launchbox-app.com//990740ef-f709-42d5-b48f-f998f2411a9b.jpg",
-      "hero": "https://images.launchbox-app.com//990740ef-f709-42d5-b48f-f998f2411a9b.jpg",
+      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/488860/library_600x900.jpg",
+      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/488860/library_600x900.jpg",
       "description": "MADNESS: Project Nexus is a third-person Run n' Gun / Beat'Em Up action game set in the chaotic, bloody world of Madness Combat."
     },
     {

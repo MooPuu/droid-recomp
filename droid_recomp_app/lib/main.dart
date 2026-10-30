@@ -474,6 +474,23 @@ class AppL10n {
       'All Recomps & Ports': 'All Recomps & Ports',
       'No installed recomps yet': 'No installed recomps yet',
       'No bookmarked games yet': 'No bookmarked games yet',
+      'Download APK (ARM64)': 'Download APK (ARM64)',
+      '1-Click Obtainium Sync': '1-Click Obtainium Sync',
+      'Bookmark to Library': 'Bookmark to Library',
+      'In Your Library': 'In Your Library',
+      '+ Mark as Installed': '+ Mark as Installed',
+      '✓ Installed on Device': '✓ Installed on Device',
+      'Installed on This Device': 'Installed on This Device',
+      'Not marked as installed': 'Not marked as installed',
+      'Remove': 'Remove',
+      '+ Mark Installed': '+ Mark as Installed',
+      AppL10n.tr('▶ LAUNCH GAME'): AppL10n.tr('▶ LAUNCH GAME'),
+      '⚡ Turnip Driver Tested': '⚡ Turnip Driver Tested',
+      'All Types': 'All Types',
+      'All Controls': 'All Controls',
+      'Showing verified ports': 'Showing verified ports',
+      'Required Game Files:': 'Required Game Files:',
+      'Asset Setup Guide': 'Asset Setup Guide',
     },
     'ar': {
       'Discover': 'استكشاف',
@@ -517,6 +534,23 @@ class AppL10n {
       'All Recomps & Ports': 'جميع المنافذ وإعادات الترجمة',
       'No installed recomps yet': 'لا توجد ألعاب مثبتة بعد',
       'No bookmarked games yet': 'لا توجد ألعاب في المفضلة بعد',
+      'Download APK (ARM64)': 'تحميل APK (ARM64)',
+      '1-Click Obtainium Sync': 'مزامنة Obtainium بنقرة واحدة',
+      'Bookmark to Library': 'إضافة للمكتبة',
+      'In Your Library': 'في مكتبتك',
+      '+ Mark as Installed': '+ تحديد كمثبت',
+      '✓ Installed on Device': '✓ تم التثبيت على الجهاز',
+      'Installed on This Device': '✓ تم التثبيت على الجهاز',
+      'Not marked as installed': 'غير محدد كمثبت',
+      'Remove': 'إلغاء',
+      '+ Mark Installed': '+ تحديد كمثبت',
+      AppL10n.tr('▶ LAUNCH GAME'): '▶ تشغيل اللعبة',
+      '⚡ Turnip Driver Tested': 'تم اختبار تعريف Turnip ⚡',
+      'All Types': 'جميع الأنواع',
+      'All Controls': 'جميع أساليب التحكم',
+      'Showing verified ports': 'عرض منافذ وإعادات تجميع مؤكدة',
+      'Required Game Files:': 'ملفات اللعبة المطلوبة:',
+      'Asset Setup Guide': 'دليل إعداد الملفات',
     }
   };
 
@@ -877,7 +911,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 Navigator.pop(ctx);
                 launchUrl(Uri.parse(game.apkUrl), mode: LaunchMode.externalApplication);
               },
-              child: const Text('Download APK', style: TextStyle(fontWeight: FontWeight.w800)),
+              child: Text(AppL10n.tr('Download APK (ARM64)'), style: const TextStyle(fontWeight: FontWeight.w800)),
             ),
         ],
       ),
@@ -972,7 +1006,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                     Icon(Icons.translate, size: 16, color: RecompTheme.primary(context)),
                     const SizedBox(width: 4),
                     Text(
-                      langCode == 'ar' ? 'EN' : 'عربي',
+                      langCode == 'ar' ? 'E' : 'ع',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
@@ -1688,7 +1722,7 @@ class _BrowseTabState extends State<BrowseTab> {
           child: Row(
             children: [
               FilterChip(
-                label: const Text('⚡ Turnip Tested', style: TextStyle(fontSize: 11)),
+                label: Text(AppL10n.tr('⚡ Turnip Driver Tested'), style: const TextStyle(fontSize: 11)),
                 selected: _turnipOnly,
                 onSelected: (val) => setState(() => _turnipOnly = val),
                 selectedColor: RecompTheme.turnipGold.withOpacity(0.2),
@@ -2021,7 +2055,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                       ),
                       icon: Icon(emu.isPaid ? Icons.shopping_bag : Icons.download, size: 18),
                       label: Text(
-                        emu.isPaid ? (emu.apkUrl.contains('google.com') ? 'Google Play' : 'Get App') : 'Download APK',
+                        emu.isPaid ? (emu.apkUrl.contains('google.com') ? 'Google Play' : 'Get App') : AppL10n.tr('Download APK (ARM64)'),
                         style: const TextStyle(fontWeight: FontWeight.w900),
                       ),
                       onPressed: () => launchUrl(Uri.parse(emu.apkUrl), mode: LaunchMode.externalApplication),
@@ -2297,7 +2331,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                                         ),
                                         icon: Icon(emu.isPaid ? Icons.shopping_bag : Icons.download, size: 16),
                                         label: Text(
-                                          emu.isPaid ? (emu.apkUrl.contains('google.com') ? 'Google Play' : 'Get App') : 'Download APK',
+                                          emu.isPaid ? (emu.apkUrl.contains('google.com') ? 'Google Play' : 'Get App') : AppL10n.tr('Download APK (ARM64)'),
                                           style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12),
                                         ),
                                         onPressed: () => launchUrl(Uri.parse(emu.apkUrl), mode: LaunchMode.externalApplication),
@@ -3264,6 +3298,39 @@ class GuideTab extends StatelessWidget {
 // ============================================================================
 // GAME DETAIL SCREEN
 // ============================================================================
+
+String getTranslatedBlurb(RecompGame game) {
+  final blurb = game.blurb;
+  if (appLanguageNotifier.value != 'ar') return blurb;
+  final name = game.name;
+
+  if (blurb.contains('High-fidelity native Android recompilation')) {
+    return 'نسخة أندرويد أصلية عالية الدقة ومعاد تجميعها للعبة $name. تعمل بشكل أصلي ومباشر بدون استهلاك المحاكي مع تحسينات حديثة.';
+  }
+  if (blurb.contains('High-performance native Android port')) {
+    return 'بورت أندرويد أصلي عالي الأداء للعبة $name. يعمل بشكل أصلي ومباشر على معمارية ARM64 مع تحسينات حديثة.';
+  }
+  if (blurb.contains('Native Android port of')) {
+    return 'بورت أندرويد أصلي للعبة $name. يعمل بشكل أصلي على أندرويد مع تحسينات الأداء والتحكم.';
+  }
+  if (blurb.contains('Native Android source port of')) {
+    return 'بورت أندرويد أصلي من الكود المصدري للعبة $name. يعمل بشكل مباشر على معمارية ARM64.';
+  }
+
+  String t = blurb;
+  final replacements = [
+    ['Runs natively without emulator overhead with modern enhancements.', 'تعمل بشكل أصلي ومباشر بدون استهلاك المحاكي مع تحسينات حديثة.'],
+    ['Runs natively on ARM64 architecture with modern enhancements.', 'يعمل بشكل أصلي ومباشر على معمارية ARM64 مع تحسينات حديثة.'],
+    ['Runs natively on Android without emulation.', 'يعمل بشكل أصلي على أندرويد بدون محاكاة.'],
+    ['Full single-player and multiplayer support.', 'دعم كامل للعب الفردي والجماعي.'],
+    ['Bring your own legally owned game files.', 'يتطلب توفير ملفات اللعبة المملوكة بشكل قانوني.'],
+  ];
+  for (final pair in replacements) {
+    t = t.replaceAll(pair[0], pair[1]);
+  }
+  return t;
+}
+
 class GameDetailScreen extends StatelessWidget {
   final RecompGame game;
   final bool isBookmarked;
@@ -3449,7 +3516,7 @@ class GameDetailScreen extends StatelessWidget {
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                isInstalled ? 'Installed on This Device' : 'Not marked as installed',
+                                isInstalled ? AppL10n.tr('Installed on This Device') : AppL10n.tr('Not marked as installed'),
                                 style: TextStyle(
                                   color: isInstalled ? RecompTheme.primary(context) : RecompTheme.textMuted(context),
                                   fontWeight: FontWeight.w700,
@@ -3464,7 +3531,7 @@ class GameDetailScreen extends StatelessWidget {
                                 minimumSize: Size.zero,
                               ),
                               child: Text(
-                                isInstalled ? 'Remove' : '+ Mark Installed',
+                                isInstalled ? AppL10n.tr('Remove') : AppL10n.tr('+ Mark Installed'),
                                 style: TextStyle(
                                   color: isInstalled ? Colors.redAccent : RecompTheme.primary(context),
                                   fontSize: 12,
@@ -3486,8 +3553,8 @@ class GameDetailScreen extends StatelessWidget {
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                               ),
                               icon: const Icon(Icons.play_arrow, size: 22),
-                              label: const Text(
-                                '▶ LAUNCH GAME',
+                              label: Text(
+                                AppL10n.tr('▶ LAUNCH GAME'),
                                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 0.5),
                               ),
                               onPressed: onLaunchGame,
@@ -3514,7 +3581,7 @@ class GameDetailScreen extends StatelessWidget {
                             ),
                             onPressed: () => launchUrl(Uri.parse(game.apkUrl), mode: LaunchMode.externalApplication),
                             icon: const Icon(Icons.download, size: 18),
-                            label: const Text('Download APK', style: TextStyle(fontWeight: FontWeight.w800)),
+                            label: Text(AppL10n.tr('Download APK (ARM64)'), style: TextStyle(fontWeight: FontWeight.w800)),
                           ),
                         ),
                       const SizedBox(width: 10),
@@ -3530,7 +3597,7 @@ class GameDetailScreen extends StatelessWidget {
                             ),
                             onPressed: () => launchUrl(Uri.parse(game.obtainiumUrl), mode: LaunchMode.externalApplication),
                             icon: Icon(Icons.sync, size: 18, color: RecompTheme.primary(context)),
-                            label: const Text('Add to Obtainium', style: TextStyle(fontWeight: FontWeight.w700)),
+                            label: Text(AppL10n.tr('1-Click Obtainium Sync'), style: TextStyle(fontWeight: FontWeight.w700)),
                           ),
                         ),
                     ],
@@ -3539,17 +3606,17 @@ class GameDetailScreen extends StatelessWidget {
                   const SizedBox(height: 28),
 
                   // Overview / Blurb
-                  Text('Overview', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
+                  Text(appLanguageNotifier.value == 'ar' ? (game.type.toLowerCase().contains('recomp') ? 'حول هذه النسخة المعاد تجميعها' : 'حول هذا البورت') : (game.type.toLowerCase().contains('recomp') ? 'About this Recompilation' : 'About this Port'), style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
                   const SizedBox(height: 8),
                   Text(
-                    game.blurb,
+                    getTranslatedBlurb(game),
                     style: TextStyle(fontSize: 14, color: RecompTheme.textMuted(context), height: 1.5),
                   ),
 
                   const SizedBox(height: 24),
 
                   // Features List
-                  Text('Key Enhancements', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
+                  Text(appLanguageNotifier.value == 'ar' ? 'الميزات والتحسينات الرئيسية' : 'Key Features & Enhancements', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: RecompTheme.text(context))),
                   const SizedBox(height: 10),
                   ...game.features.map(
                     (f) => Padding(
@@ -3578,7 +3645,7 @@ class GameDetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Required Original Files:',
+                          AppL10n.tr('Required Game Files:'),
                           style: TextStyle(color: RecompTheme.primary(context), fontWeight: FontWeight.w700, fontSize: 13),
                         ),
                         const SizedBox(height: 4),
