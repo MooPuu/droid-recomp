@@ -7,6 +7,38 @@ import 'package:url_launcher/url_launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return Material(
+      color: const Color(0xFF0B1220),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.error_outline, color: Color(0xFF34F2E8), size: 48),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'DroidRecomp',
+                    style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    details.exceptionAsString(),
+                    style: const TextStyle(color: Color(0xFFA7B3C4), fontSize: 13),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  };
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -497,7 +529,7 @@ class AppL10n {
       'Not marked as installed': 'Not marked as installed',
       'Remove': 'Remove',
       '+ Mark Installed': '+ Mark as Installed',
-      AppL10n.tr('▶ LAUNCH GAME'): AppL10n.tr('▶ LAUNCH GAME'),
+      '▶ LAUNCH GAME': '▶ LAUNCH GAME',
       '⚡ Turnip Driver Tested': '⚡ Turnip Driver Tested',
       'All Types': 'All Types',
       'All Controls': 'All Controls',
@@ -558,7 +590,7 @@ class AppL10n {
       'Not marked as installed': 'غير محدد كمثبت',
       'Remove': 'إلغاء',
       '+ Mark Installed': '+ تحديد كمثبت',
-      AppL10n.tr('▶ LAUNCH GAME'): '▶ تشغيل اللعبة',
+      '▶ LAUNCH GAME': '▶ تشغيل اللعبة',
       '⚡ Turnip Driver Tested': 'تم اختبار تعريف Turnip ⚡',
       'All Types': 'جميع الأنواع',
       'All Controls': 'جميع أساليب التحكم',
@@ -1486,6 +1518,19 @@ class _DiscoverTabState extends State<DiscoverTab> {
             ],
           ),
         ),
+        const SizedBox(height: 24),
+        Center(
+          child: Text(
+            'DroidRecomp By Mahdi Kareem © 2026',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 12,
+              color: RecompTheme.textMuted(context),
+              letterSpacing: 0.4,
+            ),
+          ),
+        ),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -3264,6 +3309,31 @@ class GuideTab extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(height: 28),
+        Center(
+          child: Column(
+            children: [
+              Text(
+                'DroidRecomp By Mahdi Kareem © 2026',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13,
+                  color: RecompTheme.textMuted(context),
+                  letterSpacing: 0.4,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Open-Source Android Recompilation Hub',
+                style: TextStyle(
+                  fontSize: 11,
+                  color: RecompTheme.textMuted(context).withOpacity(0.7),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 28),
       ],
     );
   }
