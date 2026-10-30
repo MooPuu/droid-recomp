@@ -536,6 +536,37 @@ class AppL10n {
       'Showing verified ports': 'Showing verified ports',
       'Required Game Files:': 'Required Game Files:',
       'Asset Setup Guide': 'Asset Setup Guide',
+      'Android Recomp Setup Guide': 'Android Recomp Setup Guide',
+      'guideSub': 'Learn how static recompilations work on mobile devices and how to supply your own game assets legally.',
+      'Download Native ARM64 APK': 'Download Native ARM64 APK',
+      'guideStep1Body': 'Each recomp compiles to a clean, native Android APK. Download the build directly from the developer’s GitHub release or sync it using Obtainium.',
+      'Extract Your Original Game ROM': 'Extract Your Original Game ROM',
+      'guideStep2Body': 'Because recompilations distribute zero copyrighted game assets, you must dump your own retail ROM or disc image (e.g. .z64, .iso, PC data files).',
+      'Scoped Storage & Asset Placement': 'Scoped Storage & Asset Placement',
+      'guideStep3Body': 'Place your extracted assets in your internal storage directory at /Android/data/{package_name}/files/ or use the app’s built-in Storage Access Framework (SAF) folder selector.',
+      'Obtainium Integration': 'Obtainium Integration',
+      'guideObtainiumBody': 'Obtainium allows you to track and auto-update your installed recompilations straight from GitHub releases in the background without Google Play.',
+      'Get Obtainium App': 'Get Obtainium App',
+      'Open-Source Android Recompilation Hub': 'Open-Source Android Recompilation Hub',
+      'Touch Ready': 'Touch Ready',
+      'No recomps match your filters': 'No recomps match your filters',
+      'Recomps': 'Recomps',
+      'No emulators match your filter': 'No emulators match your filter',
+      'Minimum Android': 'Minimum Android',
+      'Graphics Backend': 'Graphics Backend',
+      'Official Releases / Repo': 'Official Releases / Repo',
+      'Phone Apps': 'Phone Apps',
+      'Manual': 'Manual',
+      'Catalog': 'Catalog',
+      'Submit via GitHub': 'Submit via GitHub',
+      'No launchable applications found on device': 'No launchable applications found on device',
+      'Add': 'Add',
+      'Save to My Launcher': 'Save to My Launcher',
+      'No catalog games found': 'No catalog games found',
+      'Add Installed Game': 'Add Installed Game',
+      '+ Add Game': '+ Add Game',
+      'Search 371+ Android recompilations...': 'Search 371+ Android recompilations...',
+      'No results for': 'No results for',
     },
     'ar': {
       'Discover': 'استكشاف',
@@ -597,6 +628,37 @@ class AppL10n {
       'Showing verified ports': 'عرض منافذ وإعادات تجميع مؤكدة',
       'Required Game Files:': 'ملفات اللعبة المطلوبة:',
       'Asset Setup Guide': 'دليل إعداد الملفات',
+      'Android Recomp Setup Guide': 'دليل إعداد إعادات التجميع للأندرويد',
+      'guideSub': 'تعرف على كيفية عمل إعادات التجميع المباشرة على الأجهزة المحمولة وكيفية توفير ملفات ألعابك بشكل قانوني.',
+      'Download Native ARM64 APK': 'تحميل حزمة APK الأصلية لمعمارية ARM64',
+      'guideStep1Body': 'تُبنى كل إعادة تجميع كحزمة APK أصلية ومباشرة للأندرويد. حمّل الإصدار مباشرة من مستودع المطور على GitHub أو زامن عبر تطبيق أوبتينيوم.',
+      'Extract Your Original Game ROM': 'استخراج ملفات اللعبة الأصلية (ROM)',
+      'guideStep2Body': 'نظراً لأن إعادات التجميع لا تتضمن أي ملفات ألعاب محمية بحقوق النشر، يجب عليك استخراج نسختك الخاصة من شريط اللعبة أو القرص (مثل .z64 أو .iso أو ملفات الحاسوب).',
+      'Scoped Storage & Asset Placement': 'التخزين المعزول ونقل الملفات',
+      'guideStep3Body': 'ضع الملفات المستخرجة في مجلد التخزين الداخلي /Android/data/{package_name}/files/ أو استخدم منتقي المجلدات المدمج في اللعبة (SAF).',
+      'Obtainium Integration': 'مزامنة تطبيق Obtainium',
+      'guideObtainiumBody': 'يتيح لك تطبيق Obtainium تتبع وتحديث ألعابك المعاد تجميعها تلقائياً مباشرة من إصدارات GitHub في الخلفية دون الحاجة لمتجر Google Play.',
+      'Get Obtainium App': 'الحصول على تطبيق Obtainium',
+      'Open-Source Android Recompilation Hub': 'دليل ومنصة إعادات تجميع أندرويد مفتوحة المصدر',
+      'Touch Ready': 'جاهز للمس',
+      'No recomps match your filters': 'لا توجد ألعاب تطابق عوامل التصفية',
+      'Recomps': 'ألعاب',
+      'No emulators match your filter': 'لا توجد محاكيات تطابق عامل التصفية',
+      'Minimum Android': 'الحد الأدنى للأندرويد',
+      'Graphics Backend': 'محرك الرسوميات',
+      'Official Releases / Repo': 'الإصدارات الرسمية / المستودع',
+      'Phone Apps': 'تطبيقات الهاتف',
+      'Manual': 'يدوي',
+      'Catalog': 'الكتالوج',
+      'Submit via GitHub': 'إرسال عبر GitHub',
+      'No launchable applications found on device': 'لم يتم العثور على تطبيقات قابلة للتشغيل على الجهاز',
+      'Add': 'إضافة',
+      'Save to My Launcher': 'حفظ في مشغلي',
+      'No catalog games found': 'لم يتم العثور على ألعاب في الكتالوج',
+      'Add Installed Game': 'إضافة لعبة مثبتة',
+      '+ Add Game': '+ إضافة لعبة',
+      'Search 371+ Android recompilations...': 'ابحث في أكثر من 371 لعبة أندرويد معاد تجميعها...',
+      'No results for': 'لا توجد نتائج لـ',
     }
   };
 
@@ -1085,13 +1147,13 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.menu_book_outlined),
-            tooltip: 'Setup & ROM Guide',
+            tooltip: AppL10n.tr('Setup & ROM Guide'),
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => Scaffold(
                     appBar: AppBar(
-                      title: const Text('Setup & ROM Guide', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18)),
+                      title: Text(AppL10n.tr('Setup & ROM Guide'), style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 18)),
                     ),
                     body: const GuideTab(),
                   ),
@@ -1784,7 +1846,7 @@ class _BrowseTabState extends State<BrowseTab> {
               ),
               const SizedBox(width: 8),
               FilterChip(
-                label: const Text('Touch Ready', style: TextStyle(fontSize: 11)),
+                label: Text(AppL10n.tr('Touch Ready'), style: const TextStyle(fontSize: 11)),
                 selected: _touchOnly,
                 onSelected: (val) => setState(() => _touchOnly = val),
                 selectedColor: RecompTheme.successGreen.withOpacity(0.2),
@@ -1794,7 +1856,7 @@ class _BrowseTabState extends State<BrowseTab> {
               ),
               const Spacer(),
               Text(
-                '${filtered.length} Recomps',
+                '${filtered.length} ${AppL10n.tr('Recomps')}',
                 style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context), fontWeight: FontWeight.w600),
               ),
             ],
@@ -1807,7 +1869,7 @@ class _BrowseTabState extends State<BrowseTab> {
         Expanded(
           child: filtered.isEmpty
               ? Center(
-                  child: Text('No recomps match your filters', style: TextStyle(color: RecompTheme.textMuted(context))),
+                  child: Text(AppL10n.tr('No recomps match your filters'), style: TextStyle(color: RecompTheme.textMuted(context))),
                 )
               : ListView.builder(
                   padding: const EdgeInsets.all(12),
@@ -2078,7 +2140,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Minimum Android', style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
+                      Text(AppL10n.tr('Minimum Android'), style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
                       Text(emu.minAndroid, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: RecompTheme.text(context))),
                     ],
                   ),
@@ -2086,7 +2148,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Graphics Backend', style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
+                      Text(AppL10n.tr('Graphics Backend'), style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
                       Text(emu.graphicsBackend, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: RecompTheme.text(context))),
                     ],
                   ),
@@ -2256,7 +2318,7 @@ class _EmulatorsTabState extends State<EmulatorsTab> {
         Expanded(
           child: filtered.isEmpty
               ? Center(
-                  child: Text('No emulators match your filter', style: TextStyle(color: RecompTheme.textMuted(context))),
+                  child: Text(AppL10n.tr('No emulators match your filter'), style: TextStyle(color: RecompTheme.textMuted(context))),
                 )
               : ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -3242,12 +3304,12 @@ class GuideTab extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       children: [
         Text(
-          'Android Recomp Setup Guide',
+          AppL10n.tr('Android Recomp Setup Guide'),
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: RecompTheme.text(context)),
         ),
         const SizedBox(height: 8),
         Text(
-          'Learn how static recompilations work on mobile devices and how to supply your own game assets legally.',
+          AppL10n.tr('guideSub'),
           style: TextStyle(fontSize: 13, color: RecompTheme.textMuted(context), height: 1.4),
         ),
         const SizedBox(height: 24),
@@ -3255,20 +3317,20 @@ class GuideTab extends StatelessWidget {
         _buildStepCard(
           context,
           '1',
-          'Download Native ARM64 APK',
-          'Each recomp compiles to a clean, native Android APK. Download the build directly from the developer’s GitHub release or sync it using Obtainium.',
+          AppL10n.tr('Download Native ARM64 APK'),
+          AppL10n.tr('guideStep1Body'),
         ),
         _buildStepCard(
           context,
           '2',
-          'Extract Your Original Game ROM',
-          'Because recompilations distribute zero copyrighted game assets, you must dump your own retail ROM or disc image (e.g. .z64, .iso, PC data files).',
+          AppL10n.tr('Extract Your Original Game ROM'),
+          AppL10n.tr('guideStep2Body'),
         ),
         _buildStepCard(
           context,
           '3',
-          'Scoped Storage & Asset Placement',
-          'Place your extracted assets in your internal storage directory at /Android/data/{package_name}/files/ or use the app’s built-in Storage Access Framework (SAF) folder selector.',
+          AppL10n.tr('Scoped Storage & Asset Placement'),
+          AppL10n.tr('guideStep3Body'),
         ),
 
         const SizedBox(height: 20),
@@ -3287,12 +3349,12 @@ class GuideTab extends StatelessWidget {
                 children: [
                   Icon(Icons.sync, color: RecompTheme.primary(context)),
                   const SizedBox(width: 8),
-                  Text('Obtainium Integration', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: RecompTheme.text(context))),
+                  Text(AppL10n.tr('Obtainium Integration'), style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: RecompTheme.text(context))),
                 ],
               ),
               const SizedBox(height: 8),
               Text(
-                'Obtainium allows you to track and auto-update your installed recompilations straight from GitHub releases in the background without Google Play.',
+                AppL10n.tr('guideObtainiumBody'),
                 style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context), height: 1.4),
               ),
               const SizedBox(height: 12),
@@ -3304,7 +3366,7 @@ class GuideTab extends StatelessWidget {
                 ),
                 onPressed: () => launchUrl(Uri.parse('https://github.com/ImranR98/Obtainium')),
                 icon: const Icon(Icons.open_in_new, size: 16),
-                label: const Text('Get Obtainium App', style: TextStyle(fontWeight: FontWeight.w700)),
+                label: Text(AppL10n.tr('Get Obtainium App'), style: const TextStyle(fontWeight: FontWeight.w700)),
               ),
             ],
           ),
@@ -3324,7 +3386,7 @@ class GuideTab extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Open-Source Android Recompilation Hub',
+                AppL10n.tr('Open-Source Android Recompilation Hub'),
                 style: TextStyle(
                   fontSize: 11,
                   color: RecompTheme.textMuted(context).withOpacity(0.7),

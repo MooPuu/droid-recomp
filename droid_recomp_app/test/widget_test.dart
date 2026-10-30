@@ -40,9 +40,22 @@ void main() {
   test('Check AppL10n translations', () {
     expect(AppL10n.tr('Discover'), equals('Discover'));
     expect(AppL10n.tr('▶ LAUNCH GAME'), equals('▶ LAUNCH GAME'));
+    expect(AppL10n.tr('Android Recomp Setup Guide'), equals('Android Recomp Setup Guide'));
+    expect(AppL10n.tr('Download Native ARM64 APK'), equals('Download Native ARM64 APK'));
+    expect(AppL10n.tr('Extract Your Original Game ROM'), equals('Extract Your Original Game ROM'));
+    expect(AppL10n.tr('Scoped Storage & Asset Placement'), equals('Scoped Storage & Asset Placement'));
+
     appLanguageNotifier.value = 'ar';
     expect(AppL10n.tr('Discover'), equals('استكشاف'));
     expect(AppL10n.tr('▶ LAUNCH GAME'), equals('▶ تشغيل اللعبة'));
+    expect(AppL10n.tr('Setup & ROM Guide'), equals('دليل التثبيت والملفات'));
+    expect(AppL10n.tr('Android Recomp Setup Guide'), equals('دليل إعداد إعادات التجميع للأندرويد'));
+    expect(AppL10n.tr('Download Native ARM64 APK'), equals('تحميل حزمة APK الأصلية لمعمارية ARM64'));
+    expect(AppL10n.tr('Extract Your Original Game ROM'), equals('استخراج ملفات اللعبة الأصلية (ROM)'));
+    expect(AppL10n.tr('Scoped Storage & Asset Placement'), equals('التخزين المعزول ونقل الملفات'));
+    expect(AppL10n.tr('Obtainium Integration'), equals('مزامنة تطبيق Obtainium'));
+    expect(AppL10n.tr('Get Obtainium App'), equals('الحصول على تطبيق Obtainium'));
+    expect(AppL10n.tr('Touch Ready'), equals('جاهز للمس'));
     appLanguageNotifier.value = 'en';
   });
 }
