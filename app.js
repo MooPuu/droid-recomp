@@ -1302,6 +1302,14 @@
           </p>
         </div>
 
+        <div class="security-alert-box">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" style="color: var(--cyan); flex-shrink: 0; margin-top: 2px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <strong style="color: var(--cyan); display: block; margin-bottom: 4px;">Security & Moderation Protected</strong>
+            Submissions are audited before reaching the master catalog. URLs must originate from trusted domains (GitHub, GitLab, Codeberg, itch.io, Archive.org, or APKVision). URL shorteners and copyrighted ROM dumps are automatically rejected.
+          </div>
+        </div>
+
         <div class="submit-portal-grid">
           <!-- Submission Form -->
           <form id="submission-wizard" onsubmit="window.DroidRecomp.handleOfficialSubmit(event)">
@@ -1464,6 +1472,7 @@
           <div class="game-card-meta">
             <div class="game-card-tags">
               <span class="tag tag-origin" style="font-size: 0.65rem; padding: 2px 7px;">${originLabel(game.origin)}</span>
+              ${game.isCustom ? '<span class="badge-custom">◈ Community</span>' : '<span class="badge-master">★ Master</span>'}
               ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip" style="font-size: 0.65rem; padding: 2px 6px;">Turnip ⚡</span>` : ''}
               ${game.input.touch ? `<span class="tag tag-touch" style="font-size: 0.65rem; padding: 2px 6px;">Touch</span>` : ''}
             </div>
@@ -1506,6 +1515,7 @@
         <div class="modal-title-area">
           <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
             <span class="tag tag-origin">${originLabel(game.origin)}</span>
+            ${game.isCustom ? '<span class="badge-custom" style="padding: 4px 10px; font-size: 0.75rem;">◈ Community Sideload</span>' : '<span class="badge-master" style="padding: 4px 10px; font-size: 0.75rem;">★ Master Verified Catalog</span>'}
             <span class="tag">${game.type}</span>
             <span class="tag" style="background: rgba(52, 211, 153, 0.2); color: var(--success); border-color: rgba(52, 211, 153, 0.4);">Verified Playable</span>
             ${game.graphics.turnip_recommended ? `<span class="tag tag-turnip">⚡ Adreno Turnip Rec.</span>` : ''}

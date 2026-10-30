@@ -3359,6 +3359,31 @@ class GameDetailScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
+                          color: game.customPackageName != null
+                              ? Colors.purple.withOpacity(0.18)
+                              : RecompTheme.primary(context).withOpacity(0.15),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: game.customPackageName != null
+                                ? Colors.purpleAccent
+                                : RecompTheme.primary(context),
+                          ),
+                        ),
+                        child: Text(
+                          game.customPackageName != null ? '◈ Community' : '★ Master Verified',
+                          style: TextStyle(
+                            color: game.customPackageName != null
+                                ? Colors.purpleAccent
+                                : RecompTheme.primary(context),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
                           color: RecompTheme.cardBg(context),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: RecompTheme.border(context)),

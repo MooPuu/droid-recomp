@@ -2642,3 +2642,32 @@ html[dir="rtl"] .hero-tags {
 html[dir="rtl"] .game-card-tags {
   justify-content: flex-start;
 }
+
+.badge-master {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  background: rgba(52, 242, 232, 0.15);
+  border: 1px solid rgba(52, 242, 232, 0.4);
+  color: var(--cyan);
+  font-size: 0.65rem;
+  font-weight: 800;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.security-alert-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  background: rgba(52, 242, 232, 0.08);
+  border: 1px solid rgba(52, 242, 232, 0.25);
+  color: var(--frost);
+}

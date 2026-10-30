@@ -1,0 +1,96 @@
+name: 🎮 Submit New Recomp / Port
+description: Submit an open-source Android static recompilation or game port to the official catalog.
+title: "[Recomp Submission]: "
+labels: ["community-submission", "pending-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🛡️ DroidRecomp Catalog Submission Form
+        Thank you for submitting a game port! All submissions are audited by the repository owner before being published to the master catalog.
+
+  - type: input
+    id: game_name
+    attributes:
+      label: Game Title & Port Name
+      placeholder: "e.g. The Legend of Zelda: Majora's Mask (2Ship2Harkinian)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: origin_system
+    attributes:
+      label: Original Console / System
+      options:
+        - Nintendo 64 (n64)
+        - Xbox 360 (x360)
+        - Xbox (xbox)
+        - GameCube (gc)
+        - Wii (wii)
+        - PlayStation 1 (ps1)
+        - PlayStation 2 (ps2)
+        - PSP (psp)
+        - Classic PC / Source Port (pc_classic)
+        - SNES (snes)
+        - Game Boy Advance (gba)
+        - Game Boy Color (gbc)
+        - Nintendo DS (nds)
+        - Nintendo Switch (switch)
+        - Dreamcast (dreamcast)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: port_type
+    attributes:
+      label: Port Architecture Type
+      options:
+        - Static Recomp
+        - PC Source Port
+        - Native Mobile Port
+        - Decompilation
+        - Fan Recreation
+    validations:
+      required: true
+
+  - type: input
+    id: repo_url
+    attributes:
+      label: Source Code Repository URL
+      placeholder: "https://github.com/author/repo or https://codeberg.org/..."
+    validations:
+      required: true
+
+  - type: input
+    id: apk_url
+    attributes:
+      label: Direct APK Release / Download URL
+      placeholder: "https://github.com/author/repo/releases/download/... or trusted release page"
+    validations:
+      required: true
+
+  - type: input
+    id: cover_url
+    attributes:
+      label: Boxart / Cover Image URL
+      placeholder: "https://images.launchbox-app.com/... or Steam header"
+    validations:
+      required: false
+
+  - type: textarea
+    id: needs
+    attributes:
+      label: ROM / Disc Dump / Asset Requirements
+      placeholder: "e.g. Requires original Majora's Mask (USA) ROM to extract assets."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Clean-Room & Legal BYOR Certification
+      options:
+        - label: "I confirm this submission contains clean-room code and DOES NOT distribute copyrighted ROMs or proprietary binaries."
+          required: true
+        - label: "I have verified the repository is active and the APK is safe."
+          required: true

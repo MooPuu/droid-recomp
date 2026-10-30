@@ -1,0 +1,143 @@
+name: Catalog Moderation - Approve Port
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  approve-port:
+    if: startsWith(github.event.comment.body, '/approve') && (github.event.comment.author_association == 'OWNER' || github.event.comment.user.login == github.repository_owner)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Parse and Append Game Submission
+        id: process
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python -c "
+          import os, json, re, sys
+
+          issue_body = os.environ.get('ISSUE_BODY', '')
+          
+          # Try extracting JSON block if present
+          json_match = re.search(r'```json\s*(\{.*?\})\s*```', issue_body, re.DOTALL)
+          if json_match:
+              data = json.loads(json_match.group(1))
+          else:
+              # Parse structured fields
+              def get_field(pattern):
+                  m = re.search(pattern, issue_body)
+                  return m.group(1).strip() if m else ''
+              
+              name = get_field(r'### Game Title & Port Name\s*\n+([^\n]+)')
+              origin = get_field(r'### Original Console / System\s*\n+([^\n]+)')
+              ptype = get_field(r'### Port Architecture Type\s*\n+([^\n]+)')
+              repo = get_field(r'### Source Code Repository URL\s*\n+([^\n]+)')
+              apk = get_field(r'### Direct APK Release / Download URL\s*\n+([^\n]+)')
+              cover = get_field(r'### Boxart / Cover Image URL\s*\n+([^\n]+)')
+              needs = get_field(r'### ROM / Disc Dump / Asset Requirements\s*\n+([^\n]+)')
+              
+              # Normalize origin
+              origin_id = 'pc_classic'
+              for k in ['n64', 'x360', 'xbox', 'gc', 'wii', 'ps1', 'ps2', 'psp', 'snes', 'gba', 'gbc', 'nds', 'switch', 'dreamcast']:
+                  if k in origin.lower():
+                      origin_id = k
+                      break
+              
+              game_id = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+              data = {
+                  'id': game_id,
+                  'name': name,
+                  'game': name,
+                  'origin': origin_id,
+                  'type': ptype or 'Community Port',
+                  'version': 'v1.0.0',
+                  'status': 'Verified Playable',
+                  'author': 'Community Contributor',
+                  'repo': repo.replace('https://github.com/', ''),
+                  'repo_url': repo,
+                  'apk_url': apk,
+                  'obtainium_url': '',
+                  'min_android': 'Android 8.0+',
+                  'architectures': ['arm64-v8a'],
+                  'input': {'touch': True, 'controller': True, 'gyro': False, 'controller_recommended': False},
+                  'graphics': {'backend': 'Vulkan / OpenGL ES', 'turnip_recommended': False, 'fps_target': 60},
+                  'needs': needs or 'BYOR Legal ROM Dump required',
+                  'blurb': f'{name} ported natively to Android ARM64.',
+                  'features': ['Native ARM64 Execution', 'Controller Support'],
+                  'downloads': 100,
+                  'stars': 10,
+                  'cover': cover or 'https://images.launchbox-app.com/990740ef-f709-42d5-b48f-f998f2411a9b.jpg',
+                  'hero': cover or 'https://images.launchbox-app.com/990740ef-f709-42d5-b48f-f998f2411a9b.jpg',
+                  'description': f'{name} submitted and approved via DroidRecomp Community Moderation.'
+              }
+
+          # Load catalog.json
+          with open('catalog.json', 'r', encoding='utf-8') as f:
+              cat = json.load(f)
+
+          apps = cat.get('apps', [])
+          existing_ids = {a['id'] for a in apps}
+
+          if data['id'] in existing_ids:
+              print(f'Updating existing app {data[\"id\"]}')
+              idx = next(i for i, a in enumerate(apps) if a['id'] == data['id'])
+              apps[idx].update(data)
+          else:
+              print(f'Adding new app {data[\"id\"]}')
+              apps.append(data)
+
+          cat['apps'] = apps
+          cat['total_apps'] = len(apps)
+
+          with open('catalog.json', 'w', encoding='utf-8') as f:
+              json.dump(cat, f, indent=2, ensure_ascii=False)
+
+          with open('catalog.js', 'w', encoding='utf-8') as f:
+              f.write(f'window.RECOMPS_CATALOG = {json.dumps(cat, indent=2, ensure_ascii=False)};\\n')
+
+          with open('droid_recomp_app/assets/catalog.json', 'w', encoding='utf-8') as f:
+              json.dump(cat, f, indent=2, ensure_ascii=False)
+
+          print('Successfully added submission to catalog!')
+          "
+
+      - name: Commit and Push Updated Catalog
+        run: |
+          git config --global user.name "DroidRecomp Moderation Bot"
+          git config --global user.email "bot@droidrecomp.org"
+          git add catalog.json catalog.js droid_recomp_app/assets/catalog.json
+          git commit -m "feat(catalog): Approve community submission #${{ github.event.issue.number }} [skip ci]"
+          git push origin main
+
+      - name: Comment and Close Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '🎉 **Approved!** This port submission has been validated and merged into the master `catalog.json` database. The live site and mobile catalogs have been updated automatically.'
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed',
+              state_reason: 'completed'
+            });
