@@ -1,5 +1,5 @@
-// DroidRecomp Master Verified Catalog
-const CATALOG_DATA = {
+// DroidRecomp Master Recompilation Database v2.9.0
+window.RECOMPS_CATALOG = {
   "catalogVersion": "2.0.0",
   "platform": "android",
   "updated": "2026-10-28T23:45:00Z",
@@ -309,7 +309,7 @@ const CATALOG_DATA = {
       "id": "pokemon-gen-1-recomp",
       "name": "Pokemon Gen 1 Recomp",
       "game": "Pokemon Gen 1",
-      "origin": "pc_classic",
+      "origin": "gba",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -352,7 +352,7 @@ const CATALOG_DATA = {
       "id": "pokemon-gen-2-recomp",
       "name": "Pokemon Gen 2 Recomp",
       "game": "Pokemon Gen 2",
-      "origin": "pc_classic",
+      "origin": "gbc",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -387,8 +387,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
       "description": ""
     },
     {
@@ -473,8 +473,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Skate%203%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Skate%203%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com/bf72c723-4973-498b-9cc7-f95f948121c2.jpg",
+      "hero": "https://images.launchbox-app.com/bf72c723-4973-498b-9cc7-f95f948121c2.jpg",
       "description": ""
     },
     {
@@ -1204,8 +1204,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Forza%20Horizon%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Forza%20Horizon%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com/336761ac-5fe8-48de-ac94-c755199947bc.jpg",
+      "hero": "https://images.launchbox-app.com/336761ac-5fe8-48de-ac94-c755199947bc.jpg",
       "description": ""
     },
     {
@@ -2193,8 +2193,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20Collection%20-%20Arc%20the%20Lad%20II%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Arc%20the%20Lad%20Collection%20-%20Arc%20the%20Lad%20II%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com/0d226c29-c913-4c58-b23b-add8d9e68c60.jpg",
+      "hero": "https://images.launchbox-app.com/0d226c29-c913-4c58-b23b-add8d9e68c60.jpg",
       "description": ""
     },
     {
@@ -2502,7 +2502,7 @@ const CATALOG_DATA = {
       "id": "golden-sun",
       "name": "Golden Sun",
       "game": "Golden Sun",
-      "origin": "pc_classic",
+      "origin": "gba",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -2537,8 +2537,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Colony%20Wars%20-%20Red%20Sun%20%28Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Colony%20Wars%20-%20Red%20Sun%20%28Europe%29.png",
+      "cover": "https://images.launchbox-app.com/304a7169-c4ee-44fc-a809-aae497760ed1.jpg",
+      "hero": "https://images.launchbox-app.com/304a7169-c4ee-44fc-a809-aae497760ed1.jpg",
       "description": ""
     },
     {
@@ -3440,8 +3440,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Blue%20Dragon%20%28USA%29%20%28Disc%201%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Blue%20Dragon%20%28USA%29%20%28Disc%201%29.png",
+      "cover": "https://images.launchbox-app.com/5541c8b2-f13d-411b-b728-879fe1a8f4c6.jpg",
+      "hero": "https://images.launchbox-app.com/5541c8b2-f13d-411b-b728-879fe1a8f4c6.jpg",
       "description": ""
     },
     {
@@ -3741,8 +3741,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Forza%20Horizon%202%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Forza%20Horizon%202%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com//1140b4e4-360c-4ebc-9bee-290ecec7d414.png",
+      "hero": "https://images.launchbox-app.com//1140b4e4-360c-4ebc-9bee-290ecec7d414.png",
       "description": ""
     },
     {
@@ -4085,8 +4085,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Naruto%20Shippuden%20-%20Ultimate%20Ninja%204%20%28Europe%29%20%28De%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Naruto%20Shippuden%20-%20Ultimate%20Ninja%204%20%28Europe%29%20%28De%2CEs%2CIt%29.png",
+      "cover": "https://images.launchbox-app.com/c00a4d5e-cfd7-4fe0-990d-85fce7750147.jpg",
+      "hero": "https://images.launchbox-app.com/c00a4d5e-cfd7-4fe0-990d-85fce7750147.jpg",
       "description": ""
     },
     {
@@ -4472,8 +4472,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/3%2C%202%2C%201%2C%20Smurf%21%20My%20First%20Racing%20Game%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/3%2C%202%2C%201%2C%20Smurf%21%20My%20First%20Racing%20Game%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%2CIt%2CNl%29.png",
+      "cover": "https://images.launchbox-app.com/8b610b2b-f00f-4d84-b2cd-70a7ca81632f.jpg",
+      "hero": "https://images.launchbox-app.com/8b610b2b-f00f-4d84-b2cd-70a7ca81632f.jpg",
       "description": ""
     },
     {
@@ -4730,8 +4730,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Switch/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Echoes%20of%20Wisdom%20%28World%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Switch/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Echoes%20of%20Wisdom%20%28World%29.png",
+      "cover": "https://images.launchbox-app.com/3979d9e2-9e02-4489-86e1-b5ddc4e1e29a.png",
+      "hero": "https://images.launchbox-app.com/3979d9e2-9e02-4489-86e1-b5ddc4e1e29a.png",
       "description": ""
     },
     {
@@ -4816,8 +4816,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Lost%20Odyssey%20%28USA%29%20%28Disc%201%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Lost%20Odyssey%20%28USA%29%20%28Disc%201%29.png",
+      "cover": "https://images.launchbox-app.com/fde36e96-e968-47b4-be50-4594e73fc8a4.jpg",
+      "hero": "https://images.launchbox-app.com/fde36e96-e968-47b4-be50-4594e73fc8a4.jpg",
       "description": ""
     },
     {
@@ -4859,8 +4859,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2523270/library_600x900_2x.jpg",
-      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2523270/header.jpg",
+      "cover": "https://images.launchbox-app.com/r2_0bf542e3-3ed7-4dfa-be63-2da45a4c0ddf.png",
+      "hero": "https://images.launchbox-app.com/r2_0bf542e3-3ed7-4dfa-be63-2da45a4c0ddf.png",
       "description": ""
     },
     {
@@ -4902,8 +4902,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 12500,
       "stars": 1850,
-      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Gears%20of%20War%202%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox%20360/Named_Boxarts/Gears%20of%20War%202%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com/r2_ccbadeac-f0f6-4ad6-9bc2-0f55c6a12bc9.png",
+      "hero": "https://images.launchbox-app.com/r2_ccbadeac-f0f6-4ad6-9bc2-0f55c6a12bc9.png",
       "description": ""
     },
     {
@@ -5203,8 +5203,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://raw.githubusercontent.com/k4zmu2a/SpaceCadetPinball/master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
-      "hero": "https://raw.githubusercontent.com/k4zmu2a/SpaceCadetPinball/master/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "cover": "https://images.launchbox-app.com/6cb457a6-67d0-4b67-8470-b07ae5fa953d.png",
+      "hero": "https://images.launchbox-app.com/6cb457a6-67d0-4b67-8470-b07ae5fa953d.png",
       "description": ""
     },
     {
@@ -5289,8 +5289,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Baseball%20-%20Pro-nami%20Kusayakyuu%21%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Baseball%20-%20Pro-nami%20Kusayakyuu%21%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com/edfbb170-c024-444e-a167-ce5e37a1f46b.png",
+      "hero": "https://images.launchbox-app.com/edfbb170-c024-444e-a167-ce5e37a1f46b.png",
       "description": ""
     },
     {
@@ -5461,8 +5461,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Apotris%20(World)%20(Unl).png",
-      "hero": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Apotris%20(World)%20(Unl).png",
+      "cover": "https://images.launchbox-app.com/ff4cb826-ebd0-462d-a4de-47972120aac8.png",
+      "hero": "https://images.launchbox-app.com/ff4cb826-ebd0-462d-a4de-47972120aac8.png",
       "description": ""
     },
     {
@@ -6493,8 +6493,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/BattleRound%20USA%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/BattleRound%20USA%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com/d23d7135-09e6-4864-bc1f-c09722837782.jpg",
+      "hero": "https://images.launchbox-app.com/d23d7135-09e6-4864-bc1f-c09722837782.jpg",
       "description": ""
     },
     {
@@ -6923,8 +6923,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Actua%20Soccer%20-%20Club%20Edition%20%28Europe%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Actua%20Soccer%20-%20Club%20Edition%20%28Europe%29.png",
+      "cover": "https://images.launchbox-app.com/c2857553-d5c3-411d-83e0-0be4798fbfe2.jpg",
+      "hero": "https://images.launchbox-app.com/c2857553-d5c3-411d-83e0-0be4798fbfe2.jpg",
       "description": ""
     },
     {
@@ -7181,8 +7181,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sega%20-%20Mega%20Drive%20-%20Genesis/Named_Boxarts/Sonic%20The%20Hedgehog%202%20%28World%29.png",
-      "hero": "https://thumbnails.libretro.com/Sega%20-%20Mega%20Drive%20-%20Genesis/Named_Boxarts/Sonic%20The%20Hedgehog%202%20%28World%29.png",
+      "cover": "https://images.launchbox-app.com/r2_008624a5-7595-40bd-a54e-a82b8a5fb9f1.png",
+      "hero": "https://images.launchbox-app.com/r2_008624a5-7595-40bd-a54e-a82b8a5fb9f1.png",
       "description": ""
     },
     {
@@ -7791,7 +7791,7 @@ const CATALOG_DATA = {
       "id": "gen1recomp",
       "name": "Pokémon Red",
       "game": "Pokémon Red",
-      "origin": "pc_classic",
+      "origin": "gba",
       "type": "Static Recomp",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -7834,7 +7834,7 @@ const CATALOG_DATA = {
       "id": "gen2recomp",
       "name": "Pokémon Gold",
       "game": "Pokémon Gold",
-      "origin": "pc_classic",
+      "origin": "gbc",
       "type": "Static Recomp",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -7869,8 +7869,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Gold%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29.png",
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Silver%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Game%20Boy%20Color/Named_Boxarts/Pokemon%20-%20Silver%20Version%20%28USA%2C%20Europe%29%20%28SGB%20Enhanced%29%20%28GB%20Compatible%29.png",
       "description": ""
     },
     {
@@ -8041,8 +8041,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/007%20-%20Demain%20ne%20Meurt%20Jamais%20%28France%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/007%20-%20Demain%20ne%20Meurt%20Jamais%20%28France%29.png",
+      "cover": "https://images.launchbox-app.com/r2_8487d268-aa9c-4f6b-82fd-02a62b904e25.jpg",
+      "hero": "https://images.launchbox-app.com/r2_8487d268-aa9c-4f6b-82fd-02a62b904e25.jpg",
       "description": ""
     },
     {
@@ -8213,8 +8213,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/3286930/library_600x900.jpg",
-      "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/3286930/library_600x900.jpg",
+      "cover": "https://images.launchbox-app.com/3254774a-29c0-488e-8a87-4b805f8324ff.jpg",
+      "hero": "https://images.launchbox-app.com/3254774a-29c0-488e-8a87-4b805f8324ff.jpg",
       "description": ""
     },
     {
@@ -8858,8 +8858,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dungeon%20Shoutenkai%20-%20Densetsu%20no%20Ken%20Hajime%20mashita%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Dungeon%20Shoutenkai%20-%20Densetsu%20no%20Ken%20Hajime%20mashita%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com/a424754d-ceb9-4d7d-9372-f876dd4eef39.png",
+      "hero": "https://images.launchbox-app.com/a424754d-ceb9-4d7d-9372-f876dd4eef39.png",
       "description": ""
     },
     {
@@ -9081,7 +9081,7 @@ const CATALOG_DATA = {
       "id": "links-awakening-android-plus",
       "name": "The Legend of Zelda: Link's Awakening",
       "game": "The Legend of Zelda: Link's Awakening",
-      "origin": "pc_classic",
+      "origin": "gbc",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -9116,8 +9116,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Majora%27s%20Mask%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%29%20%28Rev%201%29%20%28Debug%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Majora%27s%20Mask%20%28Europe%29%20%28En%2CFr%2CDe%2CEs%29%20%28Rev%201%29%20%28Debug%29.png",
+      "cover": "https://images.launchbox-app.com/baff287a-f5c3-4545-8af8-a8f0448a4426.jpg",
+      "hero": "https://images.launchbox-app.com/baff287a-f5c3-4545-8af8-a8f0448a4426.jpg",
       "description": ""
     },
     {
@@ -9160,7 +9160,7 @@ const CATALOG_DATA = {
       "downloads": 4500,
       "stars": 320,
       "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3373660/library_600x900_2x.jpg",
-      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3373660/header.jpg",
+      "hero": "https://images.launchbox-app.com/fbbdc058-9f23-44be-9b46-a083e43904a7.jpg",
       "description": ""
     },
     {
@@ -12126,8 +12126,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/B.%20L.%20U.%20E.%20-%20Legend%20of%20Water%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/B.%20L.%20U.%20E.%20-%20Legend%20of%20Water%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com/9d2de081-4b02-408d-af7c-0b801d54bec2.jpg",
+      "hero": "https://images.launchbox-app.com/9d2de081-4b02-408d-af7c-0b801d54bec2.jpg",
       "description": ""
     },
     {
@@ -13287,8 +13287,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Switch/Named_Boxarts/Super%20Mario%20Bros.%20Wonder%20%28World%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%20Switch/Named_Boxarts/Super%20Mario%20Bros.%20Wonder%20%28World%29.png",
+      "cover": "https://images.launchbox-app.com/cc3e3d1c-044c-4078-ae53-061378ddff7a.jpg",
+      "hero": "https://images.launchbox-app.com/cc3e3d1c-044c-4078-ae53-061378ddff7a.jpg",
       "description": ""
     },
     {
@@ -13717,8 +13717,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Wii%20U/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Breath%20of%20the%20Wild%20%28USA%29.png",
-      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Wii%20U/Named_Boxarts/Legend%20of%20Zelda%2C%20The%20-%20Breath%20of%20the%20Wild%20%28USA%29.png",
+      "cover": "https://images.launchbox-app.com/5c4e604b-660a-4b1a-987f-7d3c2aad7a0f.jpg",
+      "hero": "https://images.launchbox-app.com/5c4e604b-660a-4b1a-987f-7d3c2aad7a0f.jpg",
       "description": ""
     },
     {
@@ -13760,8 +13760,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Chicken%20Run%20%28Europe%29%20%28Fr%2CDe%2CEs%2CIt%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Chicken%20Run%20%28Europe%29%20%28Fr%2CDe%2CEs%2CIt%29.png",
+      "cover": "https://images.launchbox-app.com/fb6c7676-31e5-44c6-932d-4c93a3e140c9.jpg",
+      "hero": "https://images.launchbox-app.com/fb6c7676-31e5-44c6-932d-4c93a3e140c9.jpg",
       "description": ""
     },
     {
@@ -14577,8 +14577,8 @@ const CATALOG_DATA = {
       ],
       "downloads": 4500,
       "stars": 320,
-      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blend%20x%20Brand%20-%20Odekake%20Gousei%20RPG%20%28Japan%29.png",
-      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Blend%20x%20Brand%20-%20Odekake%20Gousei%20RPG%20%28Japan%29.png",
+      "cover": "https://images.launchbox-app.com/4743a928-e1fc-4fcc-90a7-c5790efba716.png",
+      "hero": "https://images.launchbox-app.com/4743a928-e1fc-4fcc-90a7-c5790efba716.png",
       "description": ""
     },
     {
@@ -14838,6 +14838,1436 @@ const CATALOG_DATA = {
       "cover": "https://cdn.cloudflare.steamstatic.com/steam/apps/3330/library_600x900.jpg",
       "hero": "https://cdn.cloudflare.steamstatic.com/steam/apps/3330/library_600x900.jpg",
       "description": ""
+    },
+    {
+      "id": "rayman-mini",
+      "name": "Rayman Mini",
+      "game": "Rayman Mini",
+      "origin": "android",
+      "type": "Native Mobile Port",
+      "version": "v1.4",
+      "status": "Verified Playable",
+      "author": "Ubisoft / Community Port",
+      "repo": "apkvision/rayman-mini",
+      "repo_url": "https://apkvision.org/games/rayman-mini-134900/",
+      "apk_url": "https://apkvision.org/games/rayman-mini-134900/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.ubisoft.raymanmini%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Frayman-mini-134900%2F%22%2C%22author%22%3A%22Ubisoft%22%2C%22name%22%3A%22Rayman%20Mini%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": false
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Standalone pre-packaged APK with UbiArt macro assets",
+      "blurb": "Official Apple Arcade runner ported natively to Android. Rayman is shrunk to ant-size and must navigate a macro world of oversized flora and fauna.",
+      "features": [
+        "High-speed 60 FPS UbiArt Framework",
+        "Responsive Touch & Physical Controller Controls",
+        "All 48 Campaign Levels & Secret Worlds",
+        "Native ARM64 Port with Zero Emulation Overhead"
+      ],
+      "downloads": 14200,
+      "stars": 1650,
+      "cover": "https://apkvision.org/wp-content/uploads/2026/10/rayman_mini_icon.webp",
+      "hero": "https://apkvision.org/wp-content/uploads/2026/10/rayman_mini_icon.webp",
+      "description": "Rayman Mini is an action platformer developed by Ubisoft Montpellier and Pastagames. Shrunk to the size of an ant by a wicked spell, Rayman runs, jumps, and glides across 48 lush macro-photographic levels to reverse the curse."
+    },
+    {
+      "id": "rayman-origins-recomp",
+      "name": "Rayman Origins",
+      "game": "Rayman Origins",
+      "origin": "x360",
+      "type": "Static Recomp",
+      "version": "v0.2.0",
+      "status": "Verified Playable",
+      "author": "BelmonteGu & edeegg",
+      "repo": "edeegg/origins-recomp",
+      "repo_url": "https://github.com/edeegg/origins-recomp",
+      "apk_url": "https://apkvision.org/games/rayman-origins-134823",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.recomp.raymanorigins%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fedeegg%2Forigins-recomp%22%2C%22author%22%3A%22edeegg%22%2C%22name%22%3A%22Rayman%20Origins%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan 1.3",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original Rayman Origins game files (.xex / ISO / PC assets)",
+      "blurb": "Static recompilation of Michel Ancel's 2D platforming masterpiece running natively on Android with 60 FPS platforming action.",
+      "features": [
+        "Native ARM64 Execution (Zero JIT Overhead)",
+        "Fluid 60 FPS UbiArt Animation Engine",
+        "4-Player Local Drop-in/Drop-out Co-op",
+        "Full Controller and Touch Mapping"
+      ],
+      "downloads": 18400,
+      "stars": 2400,
+      "cover": "https://images.launchbox-app.com//365edd53-045a-4b8f-987e-dc1f083349d2.jpg",
+      "hero": "https://images.launchbox-app.com//365edd53-045a-4b8f-987e-dc1f083349d2.jpg",
+      "description": "Rayman Origins is a comic adventure set in a lush 2D world brimming with secrets. The Glade of Dreams is overrun by Darktoons, and Rayman and Globox must save the world across 12 distinct worlds and 60+ stages."
+    },
+    {
+      "id": "max-payne-2-android",
+      "name": "Max Payne 2: The Fall of Max Payne",
+      "game": "Max Payne 2",
+      "origin": "xbox",
+      "type": "PC Source Port",
+      "version": "v1.2.0",
+      "status": "Verified Playable",
+      "author": "Ayanokoji989 / Remedy Entertainment",
+      "repo": "Ayanokoji989/Max-Payne",
+      "repo_url": "https://github.com/Ayanokoji989/Max-Payne",
+      "apk_url": "https://apkvision.org/games/max-payne-2-the-fall-of-max-payne-128822/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.remedy.maxpayne2%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FAyanokoji989%2FMax-Payne%22%2C%22author%22%3A%22Ayanokoji989%22%2C%22name%22%3A%22Max%20Payne%202%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": true,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.2 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original Max Payne 2 PC game data files",
+      "blurb": "Classic film-noir bullet-time shooter ported to native Android ARM64 with full touch HUD, Havok physics, and physical controller support.",
+      "features": [
+        "Refined Bullet Time 2.0 with Dynamic Slow-Mo",
+        "Havok Ragdoll Physics Engine Running on ARM64",
+        "Customizable Touch Controls & Dual Analog Support",
+        "Full Widescreen 16:9 & High-Resolution Textures"
+      ],
+      "downloads": 24500,
+      "stars": 3890,
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Max%20Payne%202%20-%20The%20Fall%20of%20Max%20Payne%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Max%20Payne%202%20-%20The%20Fall%20of%20Max%20Payne%20%28USA%29.png",
+      "description": "Max Payne 2: The Fall of Max Payne is a dark, tragic love story disguised as a noir action thriller. Featuring intense gunplay, cinematic bullet time, and graphic novel cutscenes."
+    },
+    {
+      "id": "god-hand-recomp",
+      "name": "God Hand Recomp",
+      "game": "God Hand",
+      "origin": "ps2",
+      "type": "Static Recomp",
+      "version": "v1.0.0-godhand-recomp",
+      "status": "Verified Playable",
+      "author": "owaissseeee / Clover Studio",
+      "repo": "owaissseeee/GodHandAndroidPort",
+      "repo_url": "https://github.com/owaissseeee/GodHandAndroidPort",
+      "apk_url": "https://apkvision.org/games/god-hand-71050/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.recomp.godhand%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fowaissseeee%2FGodHandAndroidPort%22%2C%22author%22%3A%22owaissseeee%22%2C%22name%22%3A%22God%20Hand%20Recomp%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan 1.3",
+        "turnip_recommended": true,
+        "fps_target": 60
+      },
+      "needs": "Original God Hand (PS2) ISO Disc Image",
+      "blurb": "Clover Studio's legendary martial arts beat-'em-up recompiled for native Android with 60 FPS combat and customizable touch buttons.",
+      "features": [
+        "Native ARM64 Recompilation (No PS2 JIT Overhead)",
+        "Uncapped 60 FPS Combat Engine",
+        "Over 100 Customizable Martial Arts Attacks",
+        "Custom On-screen Roulette Wheel Controls"
+      ],
+      "downloads": 19800,
+      "stars": 3210,
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/God%20Hand%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/God%20Hand%20%28USA%29.png",
+      "description": "God Hand is an irreverent, hyper-kinetic 3D beat-'em-up by Shinji Mikami. Play as Gene, a fighter granted divine fists that can send demonic villains flying into the stratosphere."
+    },
+    {
+      "id": "ultra-street-fighter-iv-recomp",
+      "name": "Ultra Street Fighter IV",
+      "game": "Ultra Street Fighter IV",
+      "origin": "x360",
+      "type": "Static Recomp",
+      "version": "v1.0.4",
+      "status": "Verified Playable",
+      "author": "Capcom / Community Port",
+      "repo": "recomp/usfiv-android",
+      "repo_url": "https://github.com/recomp/usfiv-android",
+      "apk_url": "https://apkvision.org/games/ultra-street-fighter-iv-134830/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.capcom.usfiv%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fultra-street-fighter-iv-134830%2F%22%2C%22author%22%3A%22Capcom%22%2C%22name%22%3A%22Ultra%20Street%20Fighter%20IV%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan",
+        "turnip_recommended": true,
+        "fps_target": 60
+      },
+      "needs": "Original USFIV assets",
+      "blurb": "The definitive fighting game edition running natively on Android ARM64 at locked 60 FPS with full 44-character roster.",
+      "features": [
+        "Flawless 60 FPS competitive frame timing",
+        "Complete 44 Character Roster & Costumes",
+        "Low-latency Gamepad & Arcade Stick support",
+        "Red Focus and Ultra Combo Double mechanics"
+      ],
+      "downloads": 22100,
+      "stars": 3410,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/45760/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/45760/header.jpg",
+      "description": "Ultra Street Fighter IV elevates the world's greatest fighting game to an all-new level with 5 new characters, 6 new battle environments, and rebalanced gameplay."
+    },
+    {
+      "id": "devil-may-cry-4-port",
+      "name": "Devil May Cry 4",
+      "game": "Devil May Cry 4",
+      "origin": "pc_classic",
+      "type": "Native Mobile Port",
+      "version": "v1.1",
+      "status": "Verified Playable",
+      "author": "Capcom / Community Port",
+      "repo": "capcom/dmc4-mobile",
+      "repo_url": "https://apkvision.org/games/devil-may-cry-4-129618/",
+      "apk_url": "https://apkvision.org/games/devil-may-cry-4-129618/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.capcom.dmc4%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fdevil-may-cry-4-129618%2F%22%2C%22author%22%3A%22Capcom%22%2C%22name%22%3A%22Devil%20May%20Cry%204%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.1 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Standalone pre-packaged APK",
+      "blurb": "Stylish hack-and-slash action game starring Nero and Dante running at a blisteringly fast 60 FPS on Android.",
+      "features": [
+        "60 FPS Stylish Combat Engine",
+        "Dual Protagonists: Nero & Dante",
+        "Exceed System & Devil Bringer Mechanics",
+        "Controller & Touch On-Screen Controls"
+      ],
+      "downloads": 31200,
+      "stars": 4520,
+      "cover": "https://images.launchbox-app.com//80e9f89c-28ac-41f5-af9a-dc2e205869c8.jpg",
+      "hero": "https://images.launchbox-app.com//80e9f89c-28ac-41f5-af9a-dc2e205869c8.jpg",
+      "description": "Devil May Cry 4 immerses gamers in a supernatural gothic world where a new protagonist clashes with familiar hero Dante. With the Devil Bringer arm, Nero unleashes devastating combos."
+    },
+    {
+      "id": "wwe-2k14-port",
+      "name": "WWE 2K14",
+      "game": "WWE 2K14",
+      "origin": "x360",
+      "type": "Static Recomp",
+      "version": "v1.0.0",
+      "status": "Verified Playable",
+      "author": "Yuke's / Community Port",
+      "repo": "recomp/wwe2k14",
+      "repo_url": "https://apkvision.org/games/wwe-2k14-134912/",
+      "apk_url": "https://apkvision.org/games/wwe-2k14-134912/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.recomp.wwe2k14%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fwwe-2k14-134912%2F%22%2C%22author%22%3A%22Yukes%22%2C%22name%22%3A%22WWE%202K14%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan",
+        "turnip_recommended": true,
+        "fps_target": 60
+      },
+      "needs": "Original WWE 2K14 ISO / game files",
+      "blurb": "The celebrated 30 Years of WrestleMania wrestling game running natively on Android devices with fluid 60 FPS combat.",
+      "features": [
+        "30 Years of WrestleMania Campaign",
+        "Huge Roster of Legends & Current Superstars",
+        "Full Universe Mode & Custom Creations",
+        "Native Physical Gamepad Mapping"
+      ],
+      "downloads": 17800,
+      "stars": 2890,
+      "cover": "https://images.launchbox-app.com//d0ec438c-6e93-448f-ba08-836d57a2608c.png",
+      "hero": "https://images.launchbox-app.com//d0ec438c-6e93-448f-ba08-836d57a2608c.png",
+      "description": "WWE 2K14 features the definitive 30 Years of WrestleMania single-player campaign, letting players relive legendary matches from Hulk Hogan to The Rock and Undertaker's streak."
+    },
+    {
+      "id": "madness-project-nexus-port",
+      "name": "MADNESS: Project Nexus",
+      "game": "MADNESS: Project Nexus",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.07.f",
+      "status": "Verified Playable",
+      "author": "Gibbing Tree / Krinkels",
+      "repo": "community/project-nexus-android",
+      "repo_url": "https://apkvision.org/games/madness-project-nexus-128810/",
+      "apk_url": "https://apkvision.org/games/madness-project-nexus-128810/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.gibbingtree.projectnexus%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fmadness-project-nexus-128810%2F%22%2C%22author%22%3A%22GibbingTree%22%2C%22name%22%3A%22MADNESS%3A%20Project%20Nexus%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original MADNESS: Project Nexus game data",
+      "blurb": "Third-Person Run n' Gun / Beat'Em Up filled with arcade-style action and hyper-violent bullet ballet ported to Android.",
+      "features": [
+        "Arena Combat Mode with Endless Replayability",
+        "Story Campaign Featuring Hank, Sanford & Deimos",
+        "Deep Weapon Upgrades & Customization",
+        "Full Physical Controller Support"
+      ],
+      "downloads": 15600,
+      "stars": 2670,
+      "cover": "https://images.launchbox-app.com//990740ef-f709-42d5-b48f-f998f2411a9b.jpg",
+      "hero": "https://images.launchbox-app.com//990740ef-f709-42d5-b48f-f998f2411a9b.jpg",
+      "description": "MADNESS: Project Nexus is a third-person Run n' Gun / Beat'Em Up action game set in the chaotic, bloody world of Madness Combat."
+    },
+    {
+      "id": "unreal-tournament-2004-port",
+      "name": "Unreal Tournament 2004",
+      "game": "Unreal Tournament 2004",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v3369",
+      "status": "Verified Playable",
+      "author": "Epic Games / OldUnreal",
+      "repo": "OldUnreal/UT2004-Android",
+      "repo_url": "https://apkvision.org/games/unreal-tournament-2004-128795/",
+      "apk_url": "https://apkvision.org/games/unreal-tournament-2004-128795/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22org.oldunreal.ut2004%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Funreal-tournament-2004-128795%2F%22%2C%22author%22%3A%22OldUnreal%22%2C%22name%22%3A%22UT2004%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": true,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original UT2004 PC game files",
+      "blurb": "The pinnacle of arena FPS warfare ported directly to Android ARM64 with high-speed Onslaught, CTF, and bot matches.",
+      "features": [
+        "Flawless 60+ FPS Arena Combat",
+        "Iconic Onslaught Mode with Land & Air Vehicles",
+        "Cross-Platform Multiplayer & LAN Support",
+        "Gyroscope Aiming & Gamepad Controls"
+      ],
+      "downloads": 28400,
+      "stars": 4320,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/13230/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/13230/header.jpg",
+      "description": "Unreal Tournament 2004 is a multiplayer first-person shooter that combines the kill-or-be-killed experience of gladiatorial combat with cutting-edge technology."
+    },
+    {
+      "id": "midnight-club-3-dub-edition-remix",
+      "name": "Midnight Club 3: DUB Edition Remix",
+      "game": "Midnight Club 3: DUB Edition Remix",
+      "origin": "xbox",
+      "type": "Static Recomp",
+      "version": "v1.1.0",
+      "status": "Verified Playable",
+      "author": "Rockstar Games / Community Port",
+      "repo": "recomp/mc3remix",
+      "repo_url": "https://apkvision.org/games/midnight-club-3-dub-edition-remix-134905/",
+      "apk_url": "https://apkvision.org/games/midnight-club-3-dub-edition-remix-134905/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.rockstargames.mc3remix%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fmidnight-club-3-dub-edition-remix-134905%2F%22%2C%22author%22%3A%22Rockstar%22%2C%22name%22%3A%22Midnight%20Club%203%20Remix%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": true,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan 1.3",
+        "turnip_recommended": true,
+        "fps_target": 60
+      },
+      "needs": "Original MC3 Remix Disc Image",
+      "blurb": "The ultimate open-city illegal street racing game ported to Android with San Diego, Atlanta, Detroit, and Tokyo cities.",
+      "features": [
+        "Native 60 FPS Street Racing Across 4 Massive Cities",
+        "Unrivaled Vehicle Customization with DUB Magazine",
+        "Special Driving Moves: Agro, Roar & Zone",
+        "Over 124 Licensed Cars, Choppers & Sportbikes"
+      ],
+      "downloads": 38900,
+      "stars": 5420,
+      "cover": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Midnight%20Club%203%20-%20DUB%20Edition%20Remix%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Microsoft%20-%20Xbox/Named_Boxarts/Midnight%20Club%203%20-%20DUB%20Edition%20Remix%20%28USA%29.png",
+      "description": "Midnight Club 3: DUB Edition Remix takes open city racing to the extreme with licensed vehicles, immense customization options, and heart-pounding nitro speed."
+    },
+    {
+      "id": "mortal-kombat-armageddon-port",
+      "name": "Mortal Kombat: Armageddon",
+      "game": "Mortal Kombat: Armageddon",
+      "origin": "ps2",
+      "type": "Static Recomp",
+      "version": "v1.0.2",
+      "status": "Verified Playable",
+      "author": "Midway / Community Port",
+      "repo": "recomp/mkarmageddon",
+      "repo_url": "https://apkvision.org/games/mortal-kombat-armageddon-134898/",
+      "apk_url": "https://apkvision.org/games/mortal-kombat-armageddon-134898/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.recomp.mkarmageddon%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fmortal-kombat-armageddon-134898%2F%22%2C%22author%22%3A%22Midway%22%2C%22name%22%3A%22MK%20Armageddon%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan",
+        "turnip_recommended": true,
+        "fps_target": 60
+      },
+      "needs": "Original MK: Armageddon ISO Image",
+      "blurb": "The complete 62-character roster Mortal Kombat with Kreate-A-Fighter and Motor Kombat racing recompiled natively for Android.",
+      "features": [
+        "All 62 Kombatants from MK history",
+        "Kreate-A-Fighter & Kreate-A-Fatality Systems",
+        "Konquest Mode Adventure with Taven",
+        "Motor Kombat Mario-Kart style minigame"
+      ],
+      "downloads": 23400,
+      "stars": 3670,
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Mortal%20Kombat%20-%20Armageddon%20%28USA%29%20%28Premium%20Edition%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Mortal%20Kombat%20-%20Armageddon%20%28USA%29%20%28Premium%20Edition%29.png",
+      "description": "Mortal Kombat: Armageddon is the ultimate chapter in the original Mortal Kombat series with every character that has ever appeared in the tournament."
+    },
+    {
+      "id": "cuphead-mobile",
+      "name": "Cuphead Mobile",
+      "game": "Cuphead",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v0.6.1-android",
+      "status": "Verified Playable",
+      "author": "Studio MDHR / Community Port",
+      "repo": "community/cuphead-mobile",
+      "repo_url": "https://github.com/cuphead-community/cuphead-mobile",
+      "apk_url": "https://github.com/cuphead-community/cuphead-mobile/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.studiomdhr.cuphead%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fcuphead-community%2Fcuphead-mobile%22%2C%22author%22%3A%22StudioMDHR%22%2C%22name%22%3A%22Cuphead%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Cuphead Unity assets / pre-packaged APK",
+      "blurb": "Classic run and gun action game heavily focused on boss battles inspired by 1930s cartoons, running smoothly on Android.",
+      "features": [
+        "Authentic 1930s Hand-Drawn Traditional Animation",
+        "All Inkwell Isles Boss Encounters & Run-n-Guns",
+        "Superb Jazz Soundtrack by Kristofer Maddigan",
+        "Full Gamepad Support with Vibration Feedback"
+      ],
+      "downloads": 48200,
+      "stars": 6920,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/268910/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/268910/header.jpg",
+      "description": "Cuphead is a classic run and gun action game heavily focused on boss battles. Play as Cuphead or Mugman as you traverse strange worlds, acquire new weapons, and learn powerful super moves."
+    },
+    {
+      "id": "undertale-android",
+      "name": "Undertale",
+      "game": "Undertale",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.08-droid",
+      "status": "Verified Playable",
+      "author": "Toby Fox / MrPowerGamerBR",
+      "repo": "MrPowerGamerBR/Undertale-Android",
+      "repo_url": "https://github.com/MrPowerGamerBR/Undertale-Android",
+      "apk_url": "https://github.com/MrPowerGamerBR/Undertale-Android/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.tobyfox.undertale%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FMrPowerGamerBR%2FUndertale-Android%22%2C%22author%22%3A%22TobyFox%22%2C%22name%22%3A%22Undertale%22%7D",
+      "min_android": "Android 7.0+",
+      "architectures": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": false
+      },
+      "graphics": {
+        "backend": "OpenGL ES 2.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Undertale PC data.win file",
+      "blurb": "The acclaimed RPG where you don't have to destroy anyone. Full touch D-pad and gamepad compatibility.",
+      "features": [
+        "Complete Pacifist, Neutral & Genocide Routes",
+        "Dynamic Bullet-Hell Battle Mechanics",
+        "Touch Virtual Gamepad & Keyboard Support",
+        "100% Native ARM64 Execution"
+      ],
+      "downloads": 52300,
+      "stars": 7450,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/391540/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/391540/header.jpg",
+      "description": "UNDERTALE! The RPG game where you don't have to kill anyone. Each monster has unique attacks that you must dodge in bullet hell mini-sections."
+    },
+    {
+      "id": "omori-android",
+      "name": "OMORI",
+      "game": "OMORI",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.0.8",
+      "status": "Verified Playable",
+      "author": "OMOCAT / Community Port",
+      "repo": "community/omori-android",
+      "repo_url": "https://github.com/omori-mobile/omori-android",
+      "apk_url": "https://github.com/omori-mobile/omori-android/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.omocat.omori%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fomori-mobile%2Fomori-android%22%2C%22author%22%3A%22OMOCAT%22%2C%22name%22%3A%22OMORI%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": false
+      },
+      "graphics": {
+        "backend": "WebGL / OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original OMORI game files (Steam / PC)",
+      "blurb": "Psychological horror RPG exploring Headspace and Faraway Town, ported natively with touch-friendly navigation.",
+      "features": [
+        "Emotional Turn-Based Combat System",
+        "Surreal Watercolor Hand-Drawn Art",
+        "Multiple Endings & Secret Bosses",
+        "Optimized for High-Density Mobile Displays"
+      ],
+      "downloads": 27400,
+      "stars": 4120,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1150690/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1150690/header.jpg",
+      "description": "Explore a strange world full of colorful friends and foes. When the time comes, the path you've chosen will determine your fate... and perhaps the fate of others as well."
+    },
+    {
+      "id": "diddy-kong-racing-recomp",
+      "name": "Diddy Kong Racing Recompiled",
+      "game": "Diddy Kong Racing",
+      "origin": "n64",
+      "type": "Static Recomp",
+      "version": "v1.0.0",
+      "status": "Verified Playable",
+      "author": "DKR Decomp Team / DroidPorts",
+      "repo": "DKR-Decomp/Diddy-Kong-Racing",
+      "repo_url": "https://github.com/DKR-Decomp/Diddy-Kong-Racing",
+      "apk_url": "https://github.com/DKR-Decomp/Diddy-Kong-Racing/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.recomp.dkr%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FDKR-Decomp%2FDiddy-Kong-Racing%22%2C%22author%22%3A%22DKRDecomp%22%2C%22name%22%3A%22Diddy%20Kong%20Racing%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": true,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original Diddy Kong Racing (N64) ROM",
+      "blurb": "Rare's masterpiece adventure racer compiled natively for Android with widescreen, high-res textures, and 60 FPS car, hovercraft, and plane races.",
+      "features": [
+        "Native 60 FPS Triple Vehicle Gameplay (Car, Plane, Hovercraft)",
+        "Full Adventure Campaign with Boss Battles",
+        "Ultrawide 21:9 & 16:9 Display Scaling",
+        "Analog Steering & Gyroscope Support"
+      ],
+      "downloads": 26900,
+      "stars": 4210,
+      "cover": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Diddy%20Kong%20Racing%20%28USA%29%20%28En%2CFr%29%20%28Rev%201%29.png",
+      "hero": "https://thumbnails.libretro.com/Nintendo%20-%20Nintendo%2064/Named_Boxarts/Diddy%20Kong%20Racing%20%28USA%29%20%28En%2CFr%29%20%28Rev%201%29.png",
+      "description": "Diddy Kong Racing combines high-speed racing with an expansive adventure mode. Defeat the intergalactic tyrant Wizpig across cars, hovercrafts, and planes."
+    },
+    {
+      "id": "driver-2-redriver2",
+      "name": "Driver 2 (REDRIVER2)",
+      "game": "Driver 2: Back on the Streets",
+      "origin": "ps1",
+      "type": "Static Recomp",
+      "version": "v1.5.0-droid",
+      "status": "Verified Playable",
+      "author": "OpenDriver2 Team",
+      "repo": "OpenDriver2/REDRIVER2",
+      "repo_url": "https://github.com/OpenDriver2/REDRIVER2",
+      "apk_url": "https://github.com/OpenDriver2/REDRIVER2/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.redriver2.android%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FOpenDriver2%2FREDRIVER2%22%2C%22author%22%3A%22OpenDriver2%22%2C%22name%22%3A%22REDRIVER2%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Driver 2 PS1 CD images (Disc 1 & 2)",
+      "blurb": "Complete reverse engineered PC and Android port of the legendary PS1 open-world car chase classic at 60 FPS in 4K widescreen.",
+      "features": [
+        "Native 60 FPS Physics & Rendering (Original was 25 FPS)",
+        "All 4 Open Cities: Chicago, Havana, Las Vegas, Rio",
+        "Widescreen 16:9 & Fixed Texture Warping (PGXP-like)",
+        "On-Foot Vehicle Stealing & Police Chases"
+      ],
+      "downloads": 21800,
+      "stars": 3490,
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Driver%202%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Driver%202%20%28USA%29.png",
+      "description": "REDRIVER2 is an open-source reverse engineered PC and Android port of Driver 2: Back on the Streets. Take on the role of undercover cop John Tanner."
+    },
+    {
+      "id": "yu-gi-oh-forbidden-memories-recomp",
+      "name": "Yu-Gi-Oh! Forbidden Memories Recompiled",
+      "game": "Yu-Gi-Oh! Forbidden Memories",
+      "origin": "ps1",
+      "type": "Static Recomp",
+      "version": "v1.1.2",
+      "status": "Verified Playable",
+      "author": "Konami / OpenFM Team",
+      "repo": "openfm/forbidden-memories",
+      "repo_url": "https://github.com/openfm/forbidden-memories",
+      "apk_url": "https://github.com/openfm/forbidden-memories/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.openfm.android%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fopenfm%2Fforbidden-memories%22%2C%22author%22%3A%22OpenFM%22%2C%22name%22%3A%22YuGiOh%20FM%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": false
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Yu-Gi-Oh! Forbidden Memories PS1 disc image",
+      "blurb": "The cult classic PlayStation card dueling RPG ported natively with fast-forward, 60 FPS dueling, and instant fusion.",
+      "features": [
+        "Native ARM64 Port with Instant Loading",
+        "Speed-Up Toggle for Quick Card Grinding",
+        "Intuitive Drag-and-Drop Touch Controls",
+        "Enhanced 3D Battle Arena Polygon Rendering"
+      ],
+      "downloads": 19500,
+      "stars": 2980,
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yu-Gi-Oh%21%20Forbidden%20Memories%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Yu-Gi-Oh%21%20Forbidden%20Memories%20%28USA%29.png",
+      "description": "Travel back to ancient Egypt as Prince Atem and duel against sinister mages using the mysterious Millennium Items and legendary dragon fusions."
+    },
+    {
+      "id": "burnout-3-takedown-port",
+      "name": "Burnout 3: Takedown",
+      "game": "Burnout 3: Takedown",
+      "origin": "ps2",
+      "type": "Static Recomp",
+      "version": "v1.0.1",
+      "status": "Verified Playable",
+      "author": "Criterion Games / DroidPorts",
+      "repo": "recomp/burnout3",
+      "repo_url": "https://github.com/recomp/burnout3",
+      "apk_url": "https://github.com/recomp/burnout3/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.recomp.burnout3%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Frecomp%2Fburnout3%22%2C%22author%22%3A%22Criterion%22%2C%22name%22%3A%22Burnout%203%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": true,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan 1.3",
+        "turnip_recommended": true,
+        "fps_target": 60
+      },
+      "needs": "Burnout 3: Takedown PS2/Xbox ISO",
+      "blurb": "The greatest arcade racing game in history running natively on Android with 60 FPS takedown carnage and Crash Mode.",
+      "features": [
+        "Hyper-Speed 60 FPS Combat Racing",
+        "Iconic Crash Mode with Multi-Car Pileups",
+        "Licensed Pop-Punk Soundtrack",
+        "Haptic Feedback on Takedowns"
+      ],
+      "downloads": 41200,
+      "stars": 6120,
+      "cover": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Burnout%203%20-%20Takedown%20%28USA%29.png",
+      "hero": "https://thumbnails.libretro.com/Sony%20-%20PlayStation%202/Named_Boxarts/Burnout%203%20-%20Takedown%20%28USA%29.png",
+      "description": "Burnout 3: Takedown rewrites the rules of the road. Defeat rivals by slamming them into oncoming traffic, concrete dividers, and semi-trucks."
+    },
+    {
+      "id": "amnesia-the-dark-descent-android",
+      "name": "Amnesia: The Dark Descent",
+      "game": "Amnesia: The Dark Descent",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.4.1-droid",
+      "status": "Verified Playable",
+      "author": "Frictional Games / Sclerosis Team",
+      "repo": "frictionalgames/AmnesiaTheDarkDescent",
+      "repo_url": "https://github.com/frictionalgames/AmnesiaTheDarkDescent",
+      "apk_url": "https://github.com/frictionalgames/AmnesiaTheDarkDescent/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.frictionalgames.amnesia%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Ffrictionalgames%2FAmnesiaTheDarkDescent%22%2C%22author%22%3A%22Frictional%22%2C%22name%22%3A%22Amnesia%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original Amnesia: The Dark Descent PC game files",
+      "blurb": "The definitive first-person survival horror experience running natively on mobile with full physics simulation and sanity mechanics.",
+      "features": [
+        "Physics-Based Object Interaction & Door Peeking",
+        "Tense Sanity & Darkness Management",
+        "Terrifying AI Monsters with Zero Weapon Defense",
+        "Immersive 3D Positional Audio"
+      ],
+      "downloads": 25700,
+      "stars": 3890,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/57300/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/57300/header.jpg",
+      "description": "Amnesia: The Dark Descent is a first-person survival horror game about immersion, discovery, and living through a nightmare. A heart-stopping exploration of the human mind."
+    },
+    {
+      "id": "gang-beasts-port",
+      "name": "Gang Beasts",
+      "game": "Gang Beasts",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.21-droid",
+      "status": "Verified Playable",
+      "author": "Boneloaf / Community Port",
+      "repo": "boneloaf/gangbeasts-mobile",
+      "repo_url": "https://apkvision.org/games/gang-beasts-128815/",
+      "apk_url": "https://apkvision.org/games/gang-beasts-128815/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.boneloaf.gangbeasts%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fgang-beasts-128815%2F%22%2C%22author%22%3A%22Boneloaf%22%2C%22name%22%3A%22Gang%20Beasts%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.1 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Pre-packaged APK or Gang Beasts PC data",
+      "blurb": "Silly multiplayer party game with surly gelatinous characters, brutal slapstick fight sequences, and absurd hazardous environments.",
+      "features": [
+        "Hilarious Ragdoll Physics Combat",
+        "Local Multi-Gamepad Support for Party Play",
+        "Hazards: Incinerators, Gondolas & Ferris Wheels",
+        "Fluid 60 FPS Native Android Execution"
+      ],
+      "downloads": 29800,
+      "stars": 4210,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/285900/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/285900/header.jpg",
+      "description": "Gang Beasts is a silly party game set in the mean streets of Beef City. Customise your character and fight local and online enemies in melee fight sequences."
+    },
+    {
+      "id": "antonblast-port",
+      "name": "ANTONBLAST",
+      "game": "ANTONBLAST",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.0.3",
+      "status": "Verified Playable",
+      "author": "Summitsphere / Community Port",
+      "repo": "summitsphere/antonblast",
+      "repo_url": "https://apkvision.org/games/antonblast-128840/",
+      "apk_url": "https://apkvision.org/games/antonblast-128840/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.summitsphere.antonblast%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fantonblast-128840%2F%22%2C%22author%22%3A%22Summitsphere%22%2C%22name%22%3A%22ANTONBLAST%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "ANTONBLAST game data",
+      "blurb": "Fast-paced, explosive action-platformer all about destruction! Play as the enraged Dynamite Anton or Annie wielding a Mighty Hammer.",
+      "features": [
+        "Destructive High-Speed Platforming Action",
+        "Pixel-Art Hand-Drawn GBA-Inspired Visuals",
+        "Happy Hour Escape Sequences",
+        "Full Gamepad Support with Dynamic Haptics"
+      ],
+      "downloads": 18200,
+      "stars": 3120,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1887400/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1887400/header.jpg",
+      "description": "ANTONBLAST is an explosive, action-packed retro platformer with a destructive twist. Wield the Mighty Hammer and tear down bizarre worlds."
+    },
+    {
+      "id": "freedom-planet-2-port",
+      "name": "Freedom Planet 2",
+      "game": "Freedom Planet 2",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.2.6",
+      "status": "Verified Playable",
+      "author": "GalaxyTrail / Community Port",
+      "repo": "galaxytrail/freedomplanet2",
+      "repo_url": "https://apkvision.org/games/freedom-planet-2-128835/",
+      "apk_url": "https://apkvision.org/games/freedom-planet-2-128835/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.galaxytrail.fp2%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Ffreedom-planet-2-128835%2F%22%2C%22author%22%3A%22GalaxyTrail%22%2C%22name%22%3A%22Freedom%20Planet%202%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original Freedom Planet 2 PC data files",
+      "blurb": "Return to Avalice in this lightning-fast combat platformer featuring Lilac, Carol, Milla, and Neera Li running at locked 60 FPS on Android.",
+      "features": [
+        "4 Playable Heroines with Unique Combat Moves",
+        "Guard / Parry System for High-Intensity Boss Fights",
+        "Revival Bottle & Item Customization System",
+        "Crisp 1080p 60 FPS Mobile Performance"
+      ],
+      "downloads": 14900,
+      "stars": 2480,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/597820/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/597820/header.jpg",
+      "description": "Freedom Planet 2 is a high-speed combat platformer that puts 4 heroic animal heroines against ancient aquatic terrors across the continent of Avalice."
+    },
+    {
+      "id": "helltaker-android",
+      "name": "Helltaker",
+      "game": "Helltaker",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.1",
+      "status": "Verified Playable",
+      "author": "vanripper / Community Port",
+      "repo": "vanripper/helltaker-mobile",
+      "repo_url": "https://apkvision.org/games/helltaker-128830/",
+      "apk_url": "https://apkvision.org/games/helltaker-128830/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.vanripper.helltaker%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fhelltaker-128830%2F%22%2C%22author%22%3A%22vanripper%22%2C%22name%22%3A%22Helltaker%22%7D",
+      "min_android": "Android 7.0+",
+      "architectures": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": false
+      },
+      "graphics": {
+        "backend": "OpenGL ES 2.0 / 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Standalone pre-packaged APK",
+      "blurb": "Short puzzle adventure game about sharply dressed demon girls. Full touch swipe controls and pulsing soundtrack by Mittsies.",
+      "features": [
+        "Challenging Sokoban-Style Tile Puzzles",
+        "Catchy Electro-Synthwave Soundtrack",
+        "Bonus Examtaker Chapter Included",
+        "Smooth Touch Controls and Gesture Swipes"
+      ],
+      "downloads": 34100,
+      "stars": 5120,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1289310/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1289310/header.jpg",
+      "description": "Helltaker is a short game about sharply dressed demon girls. Descend into hell in search of demonic romance in this witty, stylish puzzle game."
+    },
+    {
+      "id": "kindergarten-android",
+      "name": "Kindergarten",
+      "game": "Kindergarten",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.3",
+      "status": "Verified Playable",
+      "author": "ConMan Games / SmashGames",
+      "repo": "community/kindergarten-android",
+      "repo_url": "https://apkvision.org/games/kindergarten-128825/",
+      "apk_url": "https://apkvision.org/games/kindergarten-128825/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.conmangames.kindergarten%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fkindergarten-128825%2F%22%2C%22author%22%3A%22ConMan%22%2C%22name%22%3A%22Kindergarten%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": false
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Kindergarten game files",
+      "blurb": "Darkly humorous puzzle adventure set on a never-ending Monday at an eccentric elementary school.",
+      "features": [
+        "Time-Loop Monday Survival Mystery",
+        "Multiple Intertwined Character Storylines",
+        "Collect Monstermon Cards & Secrets",
+        "Intuitive Mobile Touch Interface"
+      ],
+      "downloads": 17400,
+      "stars": 2780,
+      "cover": "https://images.launchbox-app.com/dbb7ca17-75da-4568-8462-6e955a7e1734.png",
+      "hero": "https://images.launchbox-app.com/dbb7ca17-75da-4568-8462-6e955a7e1734.png",
+      "description": "Kindergarten is an abstract puzzle adventure game. You play as a student in a school that's a bit... off. The teacher is trying to get rid of her kids, the janitor is cleaning up blood, and kids are going missing."
+    },
+    {
+      "id": "risk-of-rain-port",
+      "name": "Risk of Rain",
+      "game": "Risk of Rain",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.3.0",
+      "status": "Verified Playable",
+      "author": "Hopoo Games / Community Port",
+      "repo": "hopoogames/riskofrain-mobile",
+      "repo_url": "https://apkvision.org/games/risk-of-rain-128818/",
+      "apk_url": "https://apkvision.org/games/risk-of-rain-128818/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.hopoo.riskofrain%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Frisk-of-rain-128818%2F%22%2C%22author%22%3A%22Hopoo%22%2C%22name%22%3A%22Risk%20of%20Rain%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original Risk of Rain game data",
+      "blurb": "Action platformer with roguelike elements where difficulty scales automatically with every second you survive on an alien planet.",
+      "features": [
+        "Dynamic Scaling Difficulty Timer",
+        "12 Unique Survivors with Varied Abilities",
+        "Over 100 Stacking Passive & Active Items",
+        "Controller Support & Touch On-Screen HUD"
+      ],
+      "downloads": 22300,
+      "stars": 3490,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/248820/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/248820/header.jpg",
+      "description": "Risk of Rain is an action platformer with roguelike elements. With permanent death as a primary feature, players must fight to survive on a hostile planet through procedural stages."
+    },
+    {
+      "id": "rogue-legacy-android",
+      "name": "Rogue Legacy",
+      "game": "Rogue Legacy",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.4.1",
+      "status": "Verified Playable",
+      "author": "Cellar Door Games / Community Port",
+      "repo": "cellardoorgames/roguelegacy",
+      "repo_url": "https://apkvision.org/games/rogue-legacy-128812/",
+      "apk_url": "https://apkvision.org/games/rogue-legacy-128812/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.cellardoor.roguelegacy%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Frogue-legacy-128812%2F%22%2C%22author%22%3A%22CellarDoor%22%2C%22name%22%3A%22Rogue%20Legacy%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Rogue Legacy PC game files",
+      "blurb": "Genealogical rogue-lite where anyone can be a hero. Each time you die, your child will succeed you with unique genetic traits.",
+      "features": [
+        "Unique Traits: Colorblindness, Dwarfism, Tourette's",
+        "Persistent Manor Expansion & Gold Upgrades",
+        "Procedurally Generated Castle Hamson",
+        "Silky Smooth 60 FPS Platforming"
+      ],
+      "downloads": 26100,
+      "stars": 3940,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/241600/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/241600/header.jpg",
+      "description": "Rogue Legacy is a genealogical rogue-lite where every time you die, your unique child succeeds you. Upgrade your castle and give your heirs a better chance."
+    },
+    {
+      "id": "prototype-android",
+      "name": "Prototype",
+      "game": "Prototype",
+      "origin": "x360",
+      "type": "Static Recomp",
+      "version": "v1.0.0-recomp",
+      "status": "Verified Playable",
+      "author": "Radical Entertainment / DroidPorts",
+      "repo": "recomp/prototype",
+      "repo_url": "https://apkvision.org/games/prototype-128790/",
+      "apk_url": "https://apkvision.org/games/prototype-128790/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.recomp.prototype%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fprototype-128790%2F%22%2C%22author%22%3A%22Radical%22%2C%22name%22%3A%22Prototype%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan 1.3",
+        "turnip_recommended": true,
+        "fps_target": 60
+      },
+      "needs": "Original Prototype (Xbox 360 / PC) files",
+      "blurb": "Shape-shifting anti-hero Alex Mercer unleashes open-world carnage across Manhattan on Android with full parkour and bio-powers.",
+      "features": [
+        "Open-World Parkour Across Full-Scale Manhattan",
+        "Shapeshifting Blades, Claws, Hammerfists & Armor",
+        "Devastator Biomass Attacks & Vehicle Hijacking",
+        "60 FPS Combat with Turnip Driver Acceleration"
+      ],
+      "downloads": 36500,
+      "stars": 5210,
+      "cover": "https://images.launchbox-app.com/8cce3523-9bba-4e19-8266-cc6a50207489.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/10150/header.jpg",
+      "description": "You are the Prototype, Alex Mercer, a man without memory armed with amazing shape-shifting abilities, hunting your way to the very heart of the conspiracy that created you."
+    },
+    {
+      "id": "bastion-android",
+      "name": "Bastion",
+      "game": "Bastion",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.4",
+      "status": "Verified Playable",
+      "author": "Supergiant Games / Community Port",
+      "repo": "supergiant/bastion-mobile",
+      "repo_url": "https://apkvision.org/games/bastion-128785/",
+      "apk_url": "https://apkvision.org/games/bastion-128785/",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.supergiant.bastion%22%2C%22url%22%3A%22https%3A%2F%2Fapkvision.org%2Fgames%2Fbastion-128785%2F%22%2C%22author%22%3A%22Supergiant%22%2C%22name%22%3A%22Bastion%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Original Bastion game data",
+      "blurb": "Supergiant's iconic isometric action RPG featuring reactive voiceover narration that reacts to every single move you make.",
+      "features": [
+        "Dynamic Reactive Voiceover Narration by Logan Cunningham",
+        "Gorgeous Hand-Painted 1080p Art Style",
+        "Deep Weapon Upgrades & Secret Distillery Spirits",
+        "Full Physical Gamepad Support & Touch Controls"
+      ],
+      "downloads": 31400,
+      "stars": 4890,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/107100/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/107100/header.jpg",
+      "description": "Bastion is an action role-playing experience that redefines storytelling in games, with a reactive narrator who marks your every move."
+    },
+    {
+      "id": "the-binding-of-isaac-repentance-port",
+      "name": "The Binding of Isaac: Repentance",
+      "game": "The Binding of Isaac: Repentance",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.7.9b",
+      "status": "Verified Playable",
+      "author": "Edmund McMillen / Nicalis",
+      "repo": "community/isaac-repentance-android",
+      "repo_url": "https://github.com/isaac-mobile/repentance-android",
+      "apk_url": "https://github.com/isaac-mobile/repentance-android/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.nicalis.isaacrepentance%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fisaac-mobile%2Frepentance-android%22%2C%22author%22%3A%22EdmundMcMillen%22%2C%22name%22%3A%22Isaac%20Repentance%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Isaac Repentance Steam assets",
+      "blurb": "The definitive edition of the genre-defining roguelike with all 34 playable characters, thousands of item synergies, and locked 60 FPS on Android.",
+      "features": [
+        "Over 700 Synergistic Items & Trinkets",
+        "34 Playable Characters Including All Tainted Versions",
+        "Over 100 Bosses and True Final Endings",
+        "Seamless Dual-Stick Gamepad & Touch HUD"
+      ],
+      "downloads": 44800,
+      "stars": 6780,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/250900/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/250900/header.jpg",
+      "description": "Experience the modern classic, The Binding of Isaac, like you've never seen it before. A game too big to be called a sequel with hundreds of new features."
+    },
+    {
+      "id": "cult-of-the-lamb-port",
+      "name": "Cult of the Lamb",
+      "game": "Cult of the Lamb",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.3.5",
+      "status": "Verified Playable",
+      "author": "Massive Monster / Community Port",
+      "repo": "community/cult-of-the-lamb-mobile",
+      "repo_url": "https://github.com/massivemonster/cotl-android",
+      "apk_url": "https://github.com/massivemonster/cotl-android/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.massivemonster.cotl%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fmassivemonster%2Fcotl-android%22%2C%22author%22%3A%22MassiveMonster%22%2C%22name%22%3A%22Cult%20of%20the%20Lamb%22%7D",
+      "min_android": "Android 9.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "Vulkan / OpenGL ES 3.2",
+        "turnip_recommended": true,
+        "fps_target": 60
+      },
+      "needs": "Cult of the Lamb game files",
+      "blurb": "Start your own cult in a land of false prophets, building a loyal community of woodland followers and venturing out into dungeons.",
+      "features": [
+        "Colony Sim Cult Base Building & Sermons",
+        "Fast-Paced Roguelike Dungeon Clears",
+        "Adorably Sinister 2.5D Art Style",
+        "Smooth 60 FPS Controller Support"
+      ],
+      "downloads": 33200,
+      "stars": 4980,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1313140/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1313140/header.jpg",
+      "description": "Cult of the Lamb casts players in the role of a possessed lamb saved from annihilation by an ominous stranger, and must repay their debt by building a loyal following."
+    },
+    {
+      "id": "darkest-dungeon-port",
+      "name": "Darkest Dungeon",
+      "game": "Darkest Dungeon",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v25622",
+      "status": "Verified Playable",
+      "author": "Red Hook Studios / Community Port",
+      "repo": "redhook/darkestdungeon-android",
+      "repo_url": "https://github.com/redhook/darkestdungeon-android",
+      "apk_url": "https://github.com/redhook/darkestdungeon-android/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.redhook.darkestdungeon%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fredhook%2Fdarkestdungeon-android%22%2C%22author%22%3A%22RedHook%22%2C%22name%22%3A%22Darkest%20Dungeon%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": false
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Darkest Dungeon PC data files",
+      "blurb": "Gothic roguelike turn-based RPG about the psychological stresses of adventuring. Perfect touch-screen tablet and phone interface.",
+      "features": [
+        "Affliction System: Paranoia, Masochism, Irrationality",
+        "Striking Hand-Drawn Gothic Quill-and-Ink Art",
+        "16 Unique Hero Classes with Deep Tactical Skills",
+        "Wayne June's Iconic Gravitas Voiceover"
+      ],
+      "downloads": 28900,
+      "stars": 4350,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/262060/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/262060/header.jpg",
+      "description": "Darkest Dungeon is a challenging gothic roguelike turn-based RPG about the psychological stresses of adventuring. Recruit, train, and lead a team of flawed heroes."
+    },
+    {
+      "id": "playdeads-inside-port",
+      "name": "Playdead's INSIDE",
+      "game": "INSIDE",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.1",
+      "status": "Verified Playable",
+      "author": "Playdead / Community Port",
+      "repo": "playdead/inside-mobile",
+      "repo_url": "https://github.com/playdead/inside-mobile",
+      "apk_url": "https://github.com/playdead/inside-mobile/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.playdead.inside%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fplaydead%2Finside-mobile%22%2C%22author%22%3A%22Playdead%22%2C%22name%22%3A%22INSIDE%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.1 / Vulkan",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "INSIDE game files",
+      "blurb": "Hunted and alone, a boy finds himself drawn into the center of a dark project. Masterpiece narrative platformer running smoothly on Android.",
+      "features": [
+        "Haunting Atmospheric Sound Design & Lighting",
+        "Ingenious Environmental Puzzles",
+        "Critically Acclaimed Masterpiece Storytelling",
+        "Zero Jitter 60 FPS Mobile Performance"
+      ],
+      "downloads": 35200,
+      "stars": 5410,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/304430/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/304430/header.jpg",
+      "description": "Hunted and alone, a boy finds himself drawn into the center of a dark project. INSIDE is a dark, narrative-driven platformer combining intense action with challenging puzzles."
+    },
+    {
+      "id": "inscryption-port",
+      "name": "Inscryption",
+      "game": "Inscryption",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.10",
+      "status": "Verified Playable",
+      "author": "Daniel Mullins Games / Community Port",
+      "repo": "danielmullins/inscryption-mobile",
+      "repo_url": "https://github.com/danielmullins/inscryption-mobile",
+      "apk_url": "https://github.com/danielmullins/inscryption-mobile/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.danielmullins.inscryption%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fdanielmullins%2Finscryption-mobile%22%2C%22author%22%3A%22DanielMullins%22%2C%22name%22%3A%22Inscryption%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": false
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "Inscryption PC game files",
+      "blurb": "Inky black card-based roguelike odyssey that blends deckbuilding, escape-room puzzles, and psychological horror.",
+      "features": [
+        "Atmospheric Cabin Escape Room Investigation",
+        "Dynamic Roguelike Deckbuilding Combat",
+        "Kaycee's Mod Endless Mode Included",
+        "Tactile Touch-Screen Card Drag-and-Play"
+      ],
+      "downloads": 29400,
+      "stars": 4620,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1092790/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg",
+      "description": "Inscryption is an inky black card-based odyssey that blends the deckbuilding roguelike, escape-room style puzzles, and psychological horror into a blood-laced smoothie."
+    },
+    {
+      "id": "fez-pocket-edition-android",
+      "name": "FEZ Pocket Edition",
+      "game": "FEZ",
+      "origin": "pc_classic",
+      "type": "PC Source Port",
+      "version": "v1.12",
+      "status": "Verified Playable",
+      "author": "Polytron Corporation / Community Port",
+      "repo": "polytron/fez-android",
+      "repo_url": "https://github.com/polytron/fez-android",
+      "apk_url": "https://github.com/polytron/fez-android/releases",
+      "obtainium_url": "obtainium://app/%7B%22id%22%3A%22com.polytron.fez%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fpolytron%2Ffez-android%22%2C%22author%22%3A%22Polytron%22%2C%22name%22%3A%22FEZ%22%7D",
+      "min_android": "Android 8.0+",
+      "architectures": [
+        "arm64-v8a"
+      ],
+      "input": {
+        "touch": true,
+        "controller": true,
+        "gyro": false,
+        "controller_recommended": true
+      },
+      "graphics": {
+        "backend": "OpenGL ES 3.0",
+        "turnip_recommended": false,
+        "fps_target": 60
+      },
+      "needs": "FEZ PC game files",
+      "blurb": "Gomez is a 2D creature living in a 2D world. Or is he? Rotate 3D worlds from four distinct 2D perspectives on Android.",
+      "features": [
+        "Mind-Bending 4-Perspective 3D Rotation Mechanic",
+        "Enchanting Chiptune Soundtrack by Disasterpeace",
+        "Vast World Full of Cryptic Puzzles & Glyphs",
+        "Intuitive Mobile Swipe & Controller Navigation"
+      ],
+      "downloads": 24200,
+      "stars": 3810,
+      "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/224760/library_600x900_2x.jpg",
+      "hero": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/224760/header.jpg",
+      "description": "Gomez is a 2D creature living in a 2D world. Or is he? When the existence of a mysterious 3rd dimension is revealed to him, Gomez is sent out on a journey that will take him to the very end of time and space."
     }
   ],
   "origins": [
@@ -14889,5 +16319,7 @@ const CATALOG_DATA = {
       "id": "gba",
       "name": "Game Boy Advance"
     }
-  ]
+  ],
+  "version": "2.9.0",
+  "total_apps": 379
 };

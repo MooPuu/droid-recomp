@@ -2537,3 +2537,108 @@ img {
   filter: brightness(1.06);
   transform: translateY(-1px);
 }
+
+
+/* ============================================================================
+   RTL & ARABIC LOCALIZATION SUPPORT
+   ============================================================================ */
+html[dir="rtl"],
+body.rtl-mode {
+  direction: rtl;
+  text-align: right;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, "Noto Sans Arabic", "Cairo", Roboto, sans-serif;
+}
+
+html[dir="rtl"] .top-actions {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .brand {
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+html[dir="rtl"] .brand-logo {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+html[dir="rtl"] .search-trigger-btn svg {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+html[dir="rtl"] .search-shortcut {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .poster-badge {
+  right: auto;
+  left: 8px;
+}
+
+html[dir="rtl"] .poster-rank {
+  left: auto;
+  right: 8px;
+}
+
+html[dir="rtl"] .section-head {
+  flex-direction: row;
+}
+
+html[dir="rtl"] .section-title {
+  text-align: right;
+}
+
+html[dir="rtl"] .section-link {
+  direction: rtl;
+}
+
+html[dir="rtl"] .fact-row {
+  flex-direction: row;
+}
+
+html[dir="rtl"] .modal-close {
+  right: auto;
+  left: 16px;
+}
+
+html[dir="rtl"] .foot-cols {
+  direction: rtl;
+}
+
+html[dir="rtl"] .foot-brand {
+  text-align: right;
+}
+
+html[dir="rtl"] .mobile-nav {
+  direction: rtl;
+}
+
+html[dir="rtl"] .sub-nav-in {
+  direction: rtl;
+}
+
+html[dir="rtl"] .origin-pills {
+  direction: rtl;
+}
+
+html[dir="rtl"] .search-box svg {
+  left: auto;
+  right: 14px;
+}
+
+html[dir="rtl"] .search-box input {
+  padding-left: 16px;
+  padding-right: 42px;
+}
+
+html[dir="rtl"] .hero-tags {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .game-card-tags {
+  justify-content: flex-start;
+}

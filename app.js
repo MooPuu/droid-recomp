@@ -27,6 +27,7 @@
   let librarySubTab = 'installed';
   let uiMode = localStorage.getItem('droidrecomp_uimode') || 'auto'; // 'auto', 'desktop', 'mobile'
   let currentTheme = localStorage.getItem('droidrecomp_theme') || 'dark'; // 'dark', 'light', 'oled'
+  let currentLang = localStorage.getItem('droidrecomp_lang') || 'en'; // 'en', 'ar'
 
   // DOM Elements
   const viewContent = document.getElementById('view-content');
@@ -58,6 +59,7 @@
 
     updateSavedCount();
     applyTheme();
+    applyLanguage();
     applyUiMode();
     setupEventListeners();
 
@@ -120,6 +122,202 @@
   }
 
   // Theme Engine (Dark Midnight / Clean Light / AMOLED OLED)
+
+  // Comprehensive Bilingual Dictionary (English & Arabic)
+  const I18N = {
+    en: {
+      appName: 'DroidRecomp',
+      tagline: 'Native Android Recompilations & Ports',
+      discover: 'Discover',
+      browse: 'All Recomps',
+      emulators: 'Emulators',
+      topCharts: 'Top Charts',
+      handhelds: 'Handhelds',
+      setupGuide: 'Setup Guide',
+      library: 'Library',
+      searchPlaceholder: 'Search 370+ recomps & ports...',
+      obtainiumSync: 'Obtainium Sync',
+      getApk: 'Get APK (v1.0)',
+      submitPort: 'Submit Port',
+      allSystems: 'All Systems',
+      classicPc: 'Classic PC & Engines',
+      featuredRecomp: 'Featured Recompilation',
+      topRankedTitle: 'Top Ranked Ports',
+      topRankedSub: 'Most downloaded community recompilations & verified native ports',
+      n64Title: 'Nintendo 64 Recompilations',
+      seeAllN64: 'See all N64',
+      handheldTitle: 'Handheld Console Verified',
+      handheldSub: 'Retroid Pocket • AYN Odin • G Cloud',
+      pcPortsTitle: 'Classic PC & Engine Re-implementations',
+      browsePc: 'Browse PC',
+      emulatorsTitle: 'Emulators Directory',
+      emulatorsSub: 'Official Standalone Android Emulators',
+      install: 'Install',
+      installed: 'Installed',
+      directApk: 'Direct APK',
+      obtainium: 'Obtainium',
+      sourceCode: 'Source Code',
+      verifiedPlayable: 'Verified Playable',
+      turnipRec: 'Turnip Rec.',
+      touch: 'Touch',
+      controller: 'Controller',
+      system: 'System',
+      portType: 'Port Type',
+      minAndroid: 'Min Android',
+      architecture: 'Architecture',
+      graphicsBackend: 'Graphics Backend',
+      targetFps: 'Target FPS',
+      requirements: 'Requirements',
+      features: 'Features',
+      overview: 'Overview',
+      share: 'Share',
+      save: 'Save to Library',
+      saved: 'Saved in Library',
+      close: 'Close',
+      searchPrompt: 'Type to search recomps, ports & emulators...',
+      noResults: 'No matches found',
+      all: 'All',
+      search: 'Search',
+      langButton: 'عربي'
+    },
+    ar: {
+      appName: 'درويد ريكومب',
+      tagline: 'منافذ وإعادات ترجمة الألعاب الأصلية للأندرويد',
+      discover: 'استكشاف',
+      browse: 'جميع المنافذ',
+      emulators: 'المحاكيات',
+      topCharts: 'الأعلى تصنيفاً',
+      handhelds: 'الأجهزة المحمولة',
+      setupGuide: 'دليل التثبيت',
+      library: 'المكتبة',
+      searchPlaceholder: 'ابحث في أكثر من 370+ لعبة ومنفذ...',
+      obtainiumSync: 'مزامنة أوبتينيوم',
+      getApk: 'تحميل التطبيق',
+      submitPort: 'إرسال منفذ',
+      allSystems: 'جميع الأنظمة',
+      classicPc: 'ألعاب وحزم الحاسوب',
+      featuredRecomp: 'إصدار مميز',
+      topRankedTitle: 'الأعلى تحميلاً وتقييماً',
+      topRankedSub: 'أفضل إعادات الترجمة المجتمعية والمنافذ الأصلية المؤكدة',
+      n64Title: 'إعادات ترجمة نينتندو 64',
+      seeAllN64: 'عرض جميع ألعاب N64',
+      handheldTitle: 'متوافق مع الأجهزة المحمولة',
+      handheldSub: 'Retroid Pocket • AYN Odin • G Cloud',
+      pcPortsTitle: 'منافذ ومحركات الحاسوب الكلاسيكية',
+      browsePc: 'تصفح ألعاب الحاسوب',
+      emulatorsTitle: 'دليل المحاكيات',
+      emulatorsSub: 'محاكيات الأندرويد الرسمية المستقلة',
+      install: 'تثبيت',
+      installed: 'مثبت',
+      directApk: 'APK مباشر',
+      obtainium: 'أوبتينيوم',
+      sourceCode: 'المصدر',
+      verifiedPlayable: 'مؤكد - قابل للعب',
+      turnipRec: 'يوصى بـ Turnip',
+      touch: 'شاشة لمس',
+      controller: 'يد تحكم',
+      system: 'النظام الأصلي',
+      portType: 'نوع المنفذ',
+      minAndroid: 'أقل إصدار أندرويد',
+      architecture: 'المعمارية المدعومة',
+      graphicsBackend: 'محرك الرسوميات',
+      targetFps: 'معدل الإطارات المستهدف',
+      requirements: 'متطلبات التشغيل والملفات',
+      features: 'الميزات الرئيسية',
+      overview: 'نبذة عن اللعبة',
+      share: 'مشاركة',
+      save: 'حفظ في المكتبة',
+      saved: 'محفوظ في المكتبة',
+      close: 'إغلاق',
+      searchPrompt: 'اكتب للبحث عن الألعاب والمنافذ والمحاكيات...',
+      noResults: 'لم يتم العثور على نتائج',
+      all: 'الكل',
+      search: 'بحث',
+      langButton: 'English'
+    }
+  };
+
+  function t(key) {
+    if (I18N[currentLang] && I18N[currentLang][key]) {
+      return I18N[currentLang][key];
+    }
+    return (I18N['en'] && I18N['en'][key]) || key;
+  }
+
+  function applyLanguage() {
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = (currentLang === 'ar' ? 'rtl' : 'ltr');
+    document.body.classList.toggle('rtl-mode', currentLang === 'ar');
+    localStorage.setItem('droidrecomp_lang', currentLang);
+
+    const langLabel = document.getElementById('lang-label');
+    if (langLabel) {
+      langLabel.textContent = (currentLang === 'ar' ? 'English' : 'عربي');
+    }
+
+    updateNavTranslations();
+  }
+
+  function toggleLanguage() {
+    currentLang = (currentLang === 'en' ? 'ar' : 'en');
+    applyLanguage();
+    renderRoute(currentRoute);
+  }
+
+  function updateNavTranslations() {
+    // Desktop Nav
+    const navLinks = document.querySelectorAll('.main-nav .nav-link');
+    navLinks.forEach(link => {
+      const navKey = link.getAttribute('data-nav');
+      if (navKey === 'discover') link.textContent = t('discover');
+      else if (navKey === 'all') link.textContent = t('browse');
+      else if (navKey === 'emulators') link.textContent = t('emulators');
+      else if (navKey === 'top') link.textContent = t('topCharts');
+      else if (navKey === 'handheld') link.innerHTML = `${t('handhelds')} <span class="tag-sub">Odin / Retroid</span>`;
+      else if (navKey === 'how') link.textContent = t('setupGuide');
+      else if (navKey === 'library') link.innerHTML = `${t('library')} <span class="badge-count" id="saved-count">${savedGames.length}</span>`;
+    });
+
+    // Mobile Nav
+    const mItems = document.querySelectorAll('.mobile-nav .mobile-nav-item');
+    mItems.forEach(item => {
+      const navKey = item.getAttribute('data-nav');
+      const span = item.querySelector('span');
+      if (!span) return;
+      if (navKey === 'discover') span.textContent = t('discover');
+      else if (navKey === 'all') span.textContent = t('browse');
+      else if (navKey === 'emulators') span.textContent = t('emulators');
+      else if (navKey === 'library') span.textContent = t('library');
+      else if (item.id === 'mobile-search-btn') span.textContent = t('search');
+    });
+
+    // Top Action Buttons
+    const searchPlaceholder = document.querySelector('.search-placeholder');
+    if (searchPlaceholder) searchPlaceholder.textContent = t('searchPlaceholder');
+
+    const searchInputEl = document.getElementById('search-input');
+    if (searchInputEl) searchInputEl.placeholder = t('searchPrompt');
+
+    const obtainiumBtn = document.getElementById('btn-obtainium-pack');
+    if (obtainiumBtn) {
+      const span = obtainiumBtn.querySelector('span');
+      if (span) span.textContent = t('obtainiumSync');
+    }
+
+    const apkBtn = document.querySelector('.header-apk-cta span');
+    if (apkBtn) apkBtn.textContent = t('getApk');
+
+    const submitBtn = document.querySelector('a[data-nav="submit"] span');
+    if (submitBtn) submitBtn.textContent = t('submitPort');
+
+    // Sub nav pills
+    const allPill = document.querySelector('.origin-pills [data-origin="all"]');
+    if (allPill) allPill.textContent = t('allSystems');
+
+    const pcPill = document.querySelector('.origin-pills [data-origin="pc_classic"]');
+    if (pcPill) pcPill.textContent = t('classicPc');
+  }
+
   function applyTheme() {
     document.documentElement.setAttribute('data-theme', currentTheme);
     localStorage.setItem('droidrecomp_theme', currentTheme);
@@ -1641,6 +1839,28 @@
   }
 
   function originLabel(origin) {
+    if (currentLang === 'ar') {
+      const arMap = {
+        'n64': 'نينتندو 64',
+        'x360': 'إكس بوكس 360',
+        'xbox': 'إكس بوكس',
+        'gc': 'جيم كيوب',
+        'wii': 'وي',
+        'ps1': 'بلايستيشن 1',
+        'ps2': 'بلايستيشن 2',
+        'psp': 'بي إس بي',
+        'pc_classic': 'حاسوب كلاسيكي',
+        'snes': 'سوبر نينتندو',
+        'gba': 'جيم بوي أدفانس',
+        'gbc': 'جيم بوي كولور',
+        'gb': 'جيم بوي',
+        'nds': 'نينتندو دي إس',
+        'switch': 'سويتش',
+        'dreamcast': 'دريم كاست',
+        'android': 'أندرويد'
+      };
+      if (arMap[origin]) return arMap[origin];
+    }
     const map = {
       'n64': 'Nintendo 64',
       'x360': 'Xbox 360',
@@ -1650,9 +1870,15 @@
       'ps1': 'PS1',
       'ps2': 'PS2',
       'psp': 'PSP',
-      'pc_classic': 'PC Engine',
+      'pc_classic': 'Classic PC',
       'snes': 'SNES',
-      'gba': 'GBA'
+      'gba': 'GBA',
+      'gbc': 'Game Boy Color',
+      'gb': 'Game Boy',
+      'nds': 'Nintendo DS',
+      'switch': 'Switch',
+      'dreamcast': 'Dreamcast',
+      'android': 'Android Port'
     };
     return map[origin] || origin.toUpperCase();
   }
@@ -1681,6 +1907,9 @@
     if (mobileSearchBtn) mobileSearchBtn.addEventListener('click', openSearch);
     if (searchCloseBtn) searchCloseBtn.addEventListener('click', closeSearch);
     if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+
+    const langToggleBtn = document.getElementById('lang-toggle');
+    if (langToggleBtn) langToggleBtn.addEventListener('click', toggleLanguage);
 
     // Close on backdrop click
     if (searchModal) {

@@ -327,17 +327,23 @@ class RecompGame {
 
   String get originFormatted {
     switch (origin) {
-      case 'n64': return 'Nintendo 64';
-      case 'x360': return 'Xbox 360';
-      case 'xbox': return 'Xbox';
-      case 'gc': return 'GameCube';
-      case 'wii': return 'Wii';
-      case 'ps1': return 'PlayStation';
-      case 'ps2': return 'PlayStation 2';
-      case 'psp': return 'PSP';
-      case 'pc_classic': return 'PC Classic';
-      case 'snes': return 'SNES';
-      case 'gba': return 'GBA';
+      case 'n64': return appLanguageNotifier.value == 'ar' ? 'نينتندو 64' : 'Nintendo 64';
+      case 'x360': return appLanguageNotifier.value == 'ar' ? 'إكس بوكس 360' : 'Xbox 360';
+      case 'xbox': return appLanguageNotifier.value == 'ar' ? 'إكس بوكس' : 'Xbox';
+      case 'gc': return appLanguageNotifier.value == 'ar' ? 'جيم كيوب' : 'GameCube';
+      case 'wii': return appLanguageNotifier.value == 'ar' ? 'وي' : 'Wii';
+      case 'ps1': return appLanguageNotifier.value == 'ar' ? 'بلايستيشن 1' : 'PlayStation';
+      case 'ps2': return appLanguageNotifier.value == 'ar' ? 'بلايستيشن 2' : 'PlayStation 2';
+      case 'psp': return appLanguageNotifier.value == 'ar' ? 'بي إس بي' : 'PSP';
+      case 'pc_classic': return appLanguageNotifier.value == 'ar' ? 'حاسوب كلاسيكي' : 'Classic PC';
+      case 'snes': return appLanguageNotifier.value == 'ar' ? 'سوبر نينتندو' : 'SNES';
+      case 'gba': return appLanguageNotifier.value == 'ar' ? 'جيم بوي أدفانس' : 'GBA';
+      case 'gbc': return appLanguageNotifier.value == 'ar' ? 'جيم بوي كولور' : 'Game Boy Color';
+      case 'gb': return appLanguageNotifier.value == 'ar' ? 'جيم بوي' : 'Game Boy';
+      case 'nds': return appLanguageNotifier.value == 'ar' ? 'نينتندو دي إس' : 'Nintendo DS';
+      case 'switch': return appLanguageNotifier.value == 'ar' ? 'سويتش' : 'Switch';
+      case 'dreamcast': return appLanguageNotifier.value == 'ar' ? 'دريم كاست' : 'Dreamcast';
+      case 'android': return appLanguageNotifier.value == 'ar' ? 'أندرويد' : 'Android Port';
       default: return origin.toUpperCase();
     }
   }
@@ -419,6 +425,111 @@ class EmulatorApp {
 // ============================================================================
 final ValueNotifier<String> appThemeNotifier = ValueNotifier<String>('dark');
 
+// ============================================================================
+// LOCALIZATION (ENGLISH & ARABIC)
+// ============================================================================
+final ValueNotifier<String> appLanguageNotifier = ValueNotifier<String>('en');
+
+class AppL10n {
+  static final Map<String, Map<String, String>> _localizedValues = {
+    'en': {
+      'Discover': 'Discover',
+      'Browse': 'Browse',
+      'Emulators': 'Emulators',
+      'Library': 'Library',
+      'Search': 'Search',
+      'Setup & ROM Guide': 'Setup & ROM Guide',
+      'Search recomps & ports...': 'Search recomps & ports...',
+      'Install': 'Install',
+      'Installed': 'Installed',
+      'Verified Playable': 'Verified Playable',
+      'Turnip Rec.': 'Turnip Rec.',
+      'Touch': 'Touch',
+      'Controller': 'Controller',
+      'All Systems': 'All Systems',
+      'Top Rated': 'Top Rated',
+      'Handheld Verified': 'Handheld Verified',
+      'Classic PC': 'Classic PC',
+      'Features': 'Features',
+      'System Requirements': 'System Requirements',
+      'Obtainium Sync': 'Obtainium Sync',
+      'Direct APK': 'Direct APK',
+      'Source Code': 'Source Code',
+      'Launch': 'Launch',
+      'Close': 'Close',
+      'Cancel': 'Cancel',
+      'Top Community Recomps': 'Top Community Recomps',
+      'Nintendo 64 Recompilations': 'Nintendo 64 Recompilations',
+      'Handheld Optimized Recomps': 'Handheld Optimized Recomps',
+      'Xbox 360 Recompilations': 'Xbox 360 Recompilations',
+      'Classic PC & Engine Ports': 'Classic PC & Engine Ports',
+      'See all': 'See all',
+      'View full charts': 'View full charts',
+      'Browse PC': 'Browse PC',
+      'NO GAME FILES DISTRIBUTED': 'NO GAME FILES DISTRIBUTED',
+      'Overview': 'Overview',
+      'Bookmarks': 'Bookmarks',
+      'Custom Ports': 'Custom Ports',
+      'Submit Port': 'Submit Port',
+      'All Recomps & Ports': 'All Recomps & Ports',
+      'No installed recomps yet': 'No installed recomps yet',
+      'No bookmarked games yet': 'No bookmarked games yet',
+    },
+    'ar': {
+      'Discover': 'استكشاف',
+      'Browse': 'تصفح',
+      'Emulators': 'المحاكيات',
+      'Library': 'المكتبة',
+      'Search': 'بحث',
+      'Setup & ROM Guide': 'دليل التثبيت والملفات',
+      'Search recomps & ports...': 'ابحث في الألعاب والمنافذ...',
+      'Install': 'تثبيت',
+      'Installed': 'مثبت',
+      'Verified Playable': 'مؤكد قابل للعب',
+      'Turnip Rec.': 'يوصى بـ Turnip',
+      'Touch': 'شاشة لمس',
+      'Controller': 'يد تحكم',
+      'All Systems': 'جميع الأنظمة',
+      'Top Rated': 'الأعلى تقييماً',
+      'Handheld Verified': 'متوافق مع المحمولة',
+      'Classic PC': 'ألعاب الحاسوب',
+      'Features': 'الميزات',
+      'System Requirements': 'متطلبات التشغيل',
+      'Obtainium Sync': 'مزامنة أوبتينيوم',
+      'Direct APK': 'APK مباشر',
+      'Source Code': 'كود المصدر',
+      'Launch': 'تشغيل',
+      'Close': 'إغلاق',
+      'Cancel': 'إلغاء',
+      'Top Community Recomps': 'أفضل إعادات الترجمة المجتمعية',
+      'Nintendo 64 Recompilations': 'إعادات ترجمة نينتندو 64',
+      'Handheld Optimized Recomps': 'متوافق مع الأجهزة المحمولة',
+      'Xbox 360 Recompilations': 'إعادات ترجمة إكس بوكس 360',
+      'Classic PC & Engine Ports': 'منافذ ومحركات الحاسوب الكلاسيكية',
+      'See all': 'عرض الكل',
+      'View full charts': 'عرض القائمة الكاملة',
+      'Browse PC': 'تصفح ألعاب الحاسوب',
+      'NO GAME FILES DISTRIBUTED': 'لا يتم توزيع أي ملفات ألعاب',
+      'Overview': 'نظرة عامة',
+      'Bookmarks': 'المفضلة',
+      'Custom Ports': 'المنافذ المخصصة',
+      'Submit Port': 'إرسال منفذ',
+      'All Recomps & Ports': 'جميع المنافذ وإعادات الترجمة',
+      'No installed recomps yet': 'لا توجد ألعاب مثبتة بعد',
+      'No bookmarked games yet': 'لا توجد ألعاب في المفضلة بعد',
+    }
+  };
+
+  static String tr(String key) {
+    final lang = appLanguageNotifier.value;
+    if (_localizedValues.containsKey(lang) && _localizedValues[lang]!.containsKey(key)) {
+      return _localizedValues[lang]![key]!;
+    }
+    return key;
+  }
+}
+
+
 class DroidRecompApp extends StatelessWidget {
   const DroidRecompApp({super.key});
 
@@ -436,11 +547,24 @@ class DroidRecompApp extends StatelessWidget {
           activeTheme = RecompTheme.darkTheme;
         }
 
-        return MaterialApp(
-          title: 'DroidRecomp',
-          debugShowCheckedModeBanner: false,
-          theme: activeTheme,
-          home: const MainNavigationScreen(),
+        return ValueListenableBuilder<String>(
+          valueListenable: appLanguageNotifier,
+          builder: (context, langCode, _) {
+            final isArabic = langCode == 'ar';
+            return MaterialApp(
+              title: isArabic ? 'درويد ريكومب' : 'DroidRecomp',
+              debugShowCheckedModeBanner: false,
+              theme: activeTheme,
+              locale: Locale(langCode),
+              builder: (context, child) {
+                return Directionality(
+                  textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
+                  child: child!,
+                );
+              },
+              home: const MainNavigationScreen(),
+            );
+          },
         );
       },
     );
@@ -468,6 +592,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   void initState() {
     super.initState();
     _loadTheme();
+    _loadLanguage();
     _loadCatalog();
     _loadEmulators();
     _loadBookmarks();
@@ -479,6 +604,21 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     final savedTheme = prefs.getString('app_theme') ?? 'dark';
     appThemeNotifier.value = savedTheme;
   }
+
+  Future<void> _loadLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedLang = prefs.getString('app_language') ?? 'en';
+    appLanguageNotifier.value = savedLang;
+  }
+
+  Future<void> _toggleLanguage() async {
+    final newLang = appLanguageNotifier.value == 'en' ? 'ar' : 'en';
+    appLanguageNotifier.value = newLang;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('app_language', newLang);
+    setState(() {});
+  }
+
 
   Future<void> _cycleTheme() async {
     final current = appThemeNotifier.value;
@@ -814,6 +954,37 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
         actions: [
           ValueListenableBuilder<String>(
+            valueListenable: appLanguageNotifier,
+            builder: (context, langCode, _) {
+              return TextButton(
+                onPressed: _toggleLanguage,
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  minimumSize: const Size(44, 32),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: BorderSide(color: RecompTheme.border(context)),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.translate, size: 16, color: RecompTheme.primary(context)),
+                    const SizedBox(width: 4),
+                    Text(
+                      langCode == 'ar' ? 'EN' : 'عربي',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: RecompTheme.text(context),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ValueListenableBuilder<String>(
             valueListenable: appThemeNotifier,
             builder: (context, themeName, _) {
               IconData icon;
@@ -872,10 +1043,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         },
         type: BottomNavigationBarType.fixed,
         items: [
-          const BottomNavigationBarItem(icon: Icon(Icons.explore_outlined), activeIcon: Icon(Icons.explore), label: 'Discover'),
-          const BottomNavigationBarItem(icon: Icon(Icons.grid_view_outlined), activeIcon: Icon(Icons.grid_view), label: 'Browse'),
-          const BottomNavigationBarItem(icon: Icon(Icons.memory_outlined), activeIcon: Icon(Icons.memory), label: 'Emulators'),
-          const BottomNavigationBarItem(icon: Icon(Icons.sports_esports_outlined), activeIcon: Icon(Icons.sports_esports), label: 'Library'),
+          BottomNavigationBarItem(icon: const Icon(Icons.explore_outlined), activeIcon: const Icon(Icons.explore), label: AppL10n.tr('Discover')),
+          BottomNavigationBarItem(icon: const Icon(Icons.grid_view_outlined), activeIcon: const Icon(Icons.grid_view), label: AppL10n.tr('Browse')),
+          BottomNavigationBarItem(icon: const Icon(Icons.memory_outlined), activeIcon: const Icon(Icons.memory), label: AppL10n.tr('Emulators')),
+          BottomNavigationBarItem(icon: const Icon(Icons.sports_esports_outlined), activeIcon: const Icon(Icons.sports_esports), label: AppL10n.tr('Library')),
           BottomNavigationBarItem(
             icon: Container(
               width: 32,
@@ -888,7 +1059,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               ),
               child: const Icon(Icons.search, color: RecompTheme.midnight, size: 18),
             ),
-            label: 'Search',
+            label: AppL10n.tr('Search'),
           ),
         ],
       ),
@@ -1221,31 +1392,31 @@ class _DiscoverTabState extends State<DiscoverTab> {
         const SizedBox(height: 24),
 
         // Section: Top Ranked
-        _buildSectionHeader(context, 'Top Community Recomps', icon: Icons.star_rounded),
+        _buildSectionHeader(context, AppL10n.tr('Top Community Recomps'), icon: Icons.star_rounded),
         _buildHorizontalRow(topRanked.take(10).toList(), showRank: true),
 
         const SizedBox(height: 24),
 
         // Section: N64 Recomps
-        _buildSectionHeader(context, 'Nintendo 64 Recompilations', icon: Icons.sports_esports),
+        _buildSectionHeader(context, AppL10n.tr('Nintendo 64 Recompilations'), icon: Icons.sports_esports),
         _buildHorizontalRow(n64Games.take(10).toList()),
 
         const SizedBox(height: 24),
 
         // Section: Handheld Optimized
-        _buildSectionHeader(context, 'Handheld Optimized Recomps', icon: Icons.gamepad),
+        _buildSectionHeader(context, AppL10n.tr('Handheld Optimized Recomps'), icon: Icons.gamepad),
         _buildHorizontalRow(handheldGames.take(10).toList()),
 
         const SizedBox(height: 24),
 
         // Section: Xbox 360 Static Recomps
-        _buildSectionHeader(context, 'Xbox 360 Recompilations', icon: Icons.album),
+        _buildSectionHeader(context, AppL10n.tr('Xbox 360 Recompilations'), icon: Icons.album),
         _buildHorizontalRow(x360Games.take(10).toList()),
 
         const SizedBox(height: 24),
 
         // Section: Classic PC Source Ports
-        _buildSectionHeader(context, 'Classic PC & Engine Ports', icon: Icons.computer),
+        _buildSectionHeader(context, AppL10n.tr('Classic PC & Engine Ports'), icon: Icons.computer),
         _buildHorizontalRow(pcPorts.take(10).toList()),
 
         const SizedBox(height: 20),
