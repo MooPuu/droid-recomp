@@ -30,13 +30,28 @@ class MainActivity: FlutterActivity() {
                     val packageName = call.argument<String>("packageName")
                     if (packageName != null) {
                         try {
-                            val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
+                            var launchIntent = packageManager.getLaunchIntentForPackage(packageName)
                             if (launchIntent != null) {
                                 launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(launchIntent)
                                 result.success(true)
                             } else {
-                                result.success(false)
+                                val intent = Intent(Intent.ACTION_MAIN, null).apply {
+                                    addCategory(Intent.CATEGORY_LAUNCHER)
+                                    `package` = packageName
+                                }
+                                val resolves = packageManager.queryIntentActivities(intent, 0)
+                                if (resolves.isNotEmpty()) {
+                                    val actInfo = resolves[0].activityInfo
+                                    val explicitIntent = Intent().apply {
+                                        setClassName(actInfo.packageName, actInfo.name)
+                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    }
+                                    startActivity(explicitIntent)
+                                    result.success(true)
+                                } else {
+                                    result.success(false)
+                                }
                             }
                         } catch (e: Exception) {
                             result.error("LAUNCH_ERROR", e.message, null)
@@ -62,13 +77,33 @@ class MainActivity: FlutterActivity() {
                         val resolveInfos = packageManager.queryIntentActivities(intent, 0)
                         val appList = mutableListOf<Map<String, String>>()
                         val myPackage = applicationContext.packageName
+                        val seen = mutableSetOf<String>()
+
                         for (info in resolveInfos) {
                             val pkg = info.activityInfo.packageName
-                            if (pkg != myPackage) {
+                            if (pkg != myPackage && !seen.contains(pkg)) {
+                                seen.add(pkg)
                                 val label = info.loadLabel(packageManager).toString()
                                 appList.add(mapOf("packageName" to pkg, "label" to label))
                             }
                         }
+
+                        // Fallback: If queryIntentActivities returned nothing, try getInstalledApplications
+                        if (appList.isEmpty()) {
+                            val installed = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+                            for (app in installed) {
+                                val pkg = app.packageName
+                                if (pkg != myPackage && !seen.contains(pkg)) {
+                                    val launchIntent = packageManager.getLaunchIntentForPackage(pkg)
+                                    if (launchIntent != null) {
+                                        seen.add(pkg)
+                                        val label = app.loadLabel(packageManager).toString()
+                                        appList.add(mapOf("packageName" to pkg, "label" to label))
+                                    }
+                                }
+                            }
+                        }
+
                         appList.sortBy { it["label"]?.lowercase() ?: "" }
                         result.success(appList)
                     } catch (e: Exception) {

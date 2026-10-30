@@ -567,6 +567,19 @@ class AppL10n {
       '+ Add Game': '+ Add Game',
       'Search 371+ Android recompilations...': 'Search 371+ Android recompilations...',
       'No results for': 'No results for',
+      'Select App for': 'Select App for',
+      'Select the installed APK on your device to link and launch:': 'Select the installed APK on your device to link and launch:',
+      'Search apps on phone...': 'Search apps on phone...',
+      'No matching applications found on phone': 'No matching applications found on phone',
+      'Link & Launch': 'Link & Launch',
+      'Haven’t installed the APK yet?': 'Haven’t installed the APK yet?',
+      'Download APK': 'Download APK',
+      'Linked': 'Linked',
+      'No app linked yet • Tap to link installed app': 'No app linked yet • Tap to link installed app',
+      'Change': 'Change',
+      'Scanning device applications...': 'Scanning device applications...',
+      'Added custom game': 'Added custom game',
+      'Linked to': 'Linked to',
     },
     'ar': {
       'Discover': 'استكشاف',
@@ -659,6 +672,19 @@ class AppL10n {
       '+ Add Game': '+ إضافة لعبة',
       'Search 371+ Android recompilations...': 'ابحث في أكثر من 371 لعبة أندرويد معاد تجميعها...',
       'No results for': 'لا توجد نتائج لـ',
+      'Select App for': 'اختر التطبيق لـ',
+      'Select the installed APK on your device to link and launch:': 'اختر حزمة APK المثبتة على هاتفك لربطها وتشغيلها:',
+      'Search apps on phone...': 'ابحث في تطبيقات الهاتف...',
+      'No matching applications found on phone': 'لم يتم العثور على تطبيقات مطابقة على الهاتف',
+      'Link & Launch': 'ربط وتشغيل',
+      'Haven’t installed the APK yet?': 'لم تقم بتثبيت حزمة APK بعد؟',
+      'Download APK': 'تحميل APK',
+      'Linked': 'مرتبط',
+      'No app linked yet • Tap to link installed app': 'لم يتم ربط تطبيق بعد • اضغط للربط بالتطبيق المثبت',
+      'Change': 'تغيير',
+      'Scanning device applications...': 'جاري فحص التطبيقات على الهاتف...',
+      'Added custom game': 'تمت إضافة اللعبة المخصصة',
+      'Linked to': 'مرتبط بـ',
     }
   };
 
@@ -728,6 +754,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   bool _isLoading = true;
   Set<String> _bookmarkedIds = {};
   Set<String> _installedIds = {};
+  Map<String, String> _linkedPackages = {};
+  List<Map<dynamic, dynamic>> _deviceApps = [];
   static const MethodChannel _launcherChannel = MethodChannel('com.droidrecomp/launcher');
 
   @override
@@ -859,35 +887,220 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     await prefs.setStringList('saved_recomps', _bookmarkedIds.toList());
   }
 
-  Future<void> _loadInstalled() async {
-    final prefs = await SharedPreferences.getInstance();
-    List<String>? list = prefs.getStringList('installed_recomps');
-    if (list == null) {
-      list = ['super-mario-64-ghostship', 'zelda-ocarina-of-time-shipwright', 'another-metroid-2-remake-am2r'];
-      await prefs.setStringList('installed_recomps', list);
-    }
-    setState(() {
-      _installedIds = list!.toSet();
-    });
+  static const Map<String, List<String>> _knownPackageVariants = {
+    'banjo-kazooie-recomp': [
+      'com.aurelio.banjokazooie',
+      'com.n64recomp.banjokazooie',
+      'com.banjokazooie.recomp',
+      'com.recomp.bk',
+      'com.banjokazooie',
+      'org.libsdl.banjokazooie',
+      'com.n64.banjokazooie',
+    ],
+    'super-mario-64-ghostship': [
+      'com.n64.sm64',
+      'com.sm64.android',
+      'com.retro.sm64',
+      'org.sm64.app',
+      'com.sm64',
+      'com.ghostship.sm64',
+    ],
+    'zelda-ocarina-of-time-shipwright': [
+      'com.soh.android',
+      'org.shipwright.soh',
+      'com.zelda.oot',
+      'com.shipwright.oot',
+      'org.harbourmasters.soh',
+    ],
+    '2-ship-2-harkinian-2s2h': [
+      'com.soh.twoship',
+      'com.twoship.android',
+      'org.harbourmasters.2s2h',
+      'com.majora.recomp',
+    ],
+    'another-metroid-2-remake-am2r': [
+      'com.am2r.android',
+      'com.am2r.remake',
+      'com.am2r.app',
+      'com.am2r',
+    ],
+    'morrowind-openmw': [
+      'org.libsdl.app',
+      'com.libsdl.openmw',
+      'org.openmw.android',
+      'com.openmw.android',
+    ],
+    'diablo-1-devilutionx': [
+      'org.diasurgical.devilutionx',
+      'com.diasurgical.devilutionx',
+    ],
+    'sonic-mania-decompilation-android': [
+      'org.sonicteam.sonicmania',
+      'com.sonic.mania',
+      'com.sonicmania.android',
+    ],
+    'sonic-1-forever': ['com.sonic1.forever', 'org.teamforever.sonic1'],
+    'sonic-2-absolute': ['com.sonic2.absolute', 'org.teamforever.sonic2'],
+    'sonic-cd-restoration': ['com.soniccd.restoration', 'org.teamforever.soniccd'],
+    'half-life-amp-goldsrc-games': ['in.celest.xash3d.hl', 'in.celest.xash3d'],
+    'half-life-2-amp-portal': ['org.srceng.source', 'com.valvesoftware.source'],
+    'fallout-1': ['com.alexander.fo1'],
+    'fallout-2': ['com.alexander.fo2'],
+    'celeste-classic-android': ['com.celeste.android'],
+    'hollow-knight-mobile': ['com.teamcherry.hollowknight'],
+    'balatro-mobile': ['com.localthunk.balatro'],
+    'pizza-tower-android': ['com.tourdepizza.pizzatower'],
+    'crash-team-racing': ['com.recomp.ctr'],
+    'silent-hill': ['com.recomp.silenthill'],
+    'halo-combat-evolved': ['com.recomp.halo'],
+    'resident-evil-4': ['com.recomp.re4'],
+    'metroid-prime': ['com.recomp.metroidprime'],
+    'perfect-dark-recomp': ['com.fgs.perfectdark', 'com.n64recomp.perfectdark', 'com.recomp.perfectdark'],
+    'undertale-android': ['com.undertale.android', 'com.tobyfox.undertale'],
+    'cuphead-mobile': ['com.studiomdhr.cuphead'],
+    'crosscode-android': ['com.crosscode.android'],
+    'gta-iii-re3': ['com.re3.android'],
+    'gta-vice-city-revc': ['com.revc.android'],
+  };
 
-    try {
-      final List<dynamic>? devicePkgs = await _launcherChannel.invokeMethod('getInstalledPackages');
-      if (devicePkgs != null) {
-        final deviceSet = devicePkgs.map((e) => e.toString().toLowerCase()).toSet();
-        bool changed = false;
-        for (final g in _allGames) {
-          final pkg = _getPackageName(g).toLowerCase();
-          if (deviceSet.contains(pkg) && !_installedIds.contains(g.id)) {
-            _installedIds.add(g.id);
-            changed = true;
+  List<String> _getGameKeywords(String id, String name) {
+    if (id.contains('banjo')) return ['banjo'];
+    if (id.contains('mario-64')) return ['mario'];
+    if (id.contains('ocarina') || id.contains('shipwright')) return ['harkinian', 'oot'];
+    if (id.contains('2s2h') || id.contains('majora')) return ['twoship', 'majora'];
+    if (id.contains('am2r') || id.contains('another-metroid')) return ['am2r'];
+    if (id.contains('sonic-mania')) return ['sonic', 'mania'];
+    if (id.contains('sonic-1')) return ['sonic', '1'];
+    if (id.contains('sonic-2')) return ['sonic', '2'];
+    if (id.contains('sonic-cd')) return ['sonic', 'cd'];
+    if (id.contains('hollow-knight')) return ['hollow', 'knight'];
+    if (id.contains('balatro')) return ['balatro'];
+    if (id.contains('celeste')) return ['celeste'];
+    if (id.contains('pizza-tower')) return ['pizza', 'tower'];
+    if (id.contains('undertale')) return ['undertale'];
+    if (id.contains('fallout')) return ['fallout'];
+    if (id.contains('diablo') || id.contains('devilution')) return ['devilution', 'diablo'];
+    if (id.contains('morrowind') || id.contains('openmw')) return ['openmw'];
+    if (id.contains('half-life') || id.contains('xash3d')) return ['xash'];
+    if (id.contains('portal') || id.contains('source')) return ['srceng'];
+    if (id.contains('crash-team-racing') || id.contains('ctr')) return ['ctr'];
+    if (id.contains('silent-hill')) return ['silent', 'hill'];
+    if (id.contains('halo')) return ['halo'];
+    if (id.contains('resident-evil') || id.contains('re4')) return ['re4'];
+    if (id.contains('metroid-prime')) return ['metroid', 'prime'];
+    if (id.contains('perfect-dark')) return ['perfect', 'dark'];
+    if (id.contains('cuphead')) return ['cuphead'];
+    if (id.contains('crosscode')) return ['crosscode'];
+    if (id.contains('gta-iii') || id.contains('re3')) return ['re3'];
+    if (id.contains('vice-city') || id.contains('revc')) return ['revc'];
+    if (id.contains('wipeout')) return ['wipeout'];
+    if (id.contains('quake')) return ['quake'];
+    if (id.contains('doom')) return ['doom'];
+    if (id.contains('wolfenstein')) return ['wolfenstein'];
+
+    final stopWords = {
+      'the', 'a', 'an', 'and', 'or', 'of', 'for', 'to', 'in', 'on', 'at',
+      'recomp', 'recompilation', 'decomp', 'decompilation', 'port', 'native',
+      'android', 'arm64', 'mobile', 'engine', 'edition', 'remake', 'classic', 'game'
+    };
+    final words = name
+        .toLowerCase()
+        .replaceAll(RegExp(r'[^a-z0-9\s]'), ' ')
+        .split(RegExp(r'\s+'))
+        .where((w) => w.length >= 3 && !stopWords.contains(w))
+        .toList();
+    if (words.isNotEmpty) {
+      return [words.first];
+    }
+    return [];
+  }
+
+  String? _findMatchingPackage(RecompGame game, List<Map<dynamic, dynamic>> deviceApps) {
+    if (game.customPackageName != null && game.customPackageName!.isNotEmpty) {
+      return game.customPackageName;
+    }
+    if (_linkedPackages.containsKey(game.id)) {
+      final savedPkg = _linkedPackages[game.id]!;
+      for (final a in deviceApps) {
+        if (a['packageName']?.toString().toLowerCase() == savedPkg.toLowerCase()) {
+          return savedPkg;
+        }
+      }
+    }
+
+    final knownList = _knownPackageVariants[game.id];
+    if (knownList != null) {
+      for (final kp in knownList) {
+        for (final a in deviceApps) {
+          if (a['packageName']?.toString().toLowerCase() == kp.toLowerCase()) {
+            return a['packageName']?.toString();
           }
         }
-        if (changed) {
-          setState(() {});
+      }
+    }
+
+    final keywords = _getGameKeywords(game.id, game.name);
+    if (keywords.isNotEmpty) {
+      for (final a in deviceApps) {
+        final label = (a['label']?.toString() ?? '').toLowerCase();
+        final pkg = (a['packageName']?.toString() ?? '').toLowerCase();
+        bool matches = false;
+        for (final kw in keywords) {
+          if (label.contains(kw) || pkg.contains(kw)) {
+            matches = true;
+            break;
+          }
+        }
+        if (matches) {
+          return a['packageName']?.toString();
+        }
+      }
+    }
+
+    return null;
+  }
+
+  Future<void> _loadInstalled() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final linkedJson = prefs.getString('linked_packages_json');
+    if (linkedJson != null) {
+      try {
+        final decoded = json.decode(linkedJson);
+        if (decoded is Map) {
+          _linkedPackages = decoded.map((k, v) => MapEntry(k.toString(), v.toString()));
+        }
+      } catch (_) {}
+    }
+
+    final savedList = prefs.getStringList('installed_recomps') ?? [];
+    _installedIds = savedList.toSet();
+
+    try {
+      final List<dynamic>? rawApps = await _launcherChannel.invokeMethod('getInstalledApps');
+      if (rawApps != null) {
+        _deviceApps = rawApps.cast<Map<dynamic, dynamic>>();
+        bool changed = false;
+
+        for (final game in _allGames) {
+          final matchedPkg = _findMatchingPackage(game, _deviceApps);
+          if (matchedPkg != null) {
+            _linkedPackages[game.id] = matchedPkg;
+            if (!_installedIds.contains(game.id)) {
+              _installedIds.add(game.id);
+              changed = true;
+            }
+          }
+        }
+
+        if (changed || _linkedPackages.isNotEmpty) {
           await prefs.setStringList('installed_recomps', _installedIds.toList());
+          await prefs.setString('linked_packages_json', json.encode(_linkedPackages));
         }
       }
     } catch (_) {}
+
+    if (mounted) setState(() {});
   }
 
   Future<void> _toggleInstalled(String id) async {
@@ -902,127 +1115,250 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     await prefs.setStringList('installed_recomps', _installedIds.toList());
   }
 
-  static const Map<String, String> _knownPackages = {
-    'super-mario-64-ghostship': 'com.n64.sm64',
-    'zelda-ocarina-of-time-shipwright': 'com.soh.android',
-    '2-ship-2-harkinian-2s2h': 'com.soh.twoship',
-    'another-metroid-2-remake-am2r': 'com.am2r.android',
-    'morrowind-openmw': 'org.libsdl.app',
-    'diablo-1-devilutionx': 'org.diasurgical.devilutionx',
-    'sonic-mania-decompilation-android': 'org.sonicteam.sonicmania',
-    'sonic-1-forever': 'com.sonic1.forever',
-    'half-life-amp-goldsrc-games': 'in.celest.xash3d.hl',
-    'half-life-2-amp-portal': 'org.srceng.source',
-    'fallout-1': 'com.alexander.fo1',
-    'fallout-2': 'com.alexander.fo2',
-    'celeste-classic-android': 'com.celeste.android',
-    'hollow-knight-mobile': 'com.teamcherry.hollowknight',
-    'balatro-mobile': 'com.localthunk.balatro',
-    'pizza-tower-android': 'com.tourdepizza.pizzatower',
-    'crash-team-racing': 'com.recomp.ctr',
-    'silent-hill': 'com.recomp.silenthill',
-    'halo-combat-evolved': 'com.recomp.halo',
-    'resident-evil-4': 'com.recomp.re4',
-    'metroid-prime': 'com.recomp.metroidprime',
-    'banjo-kazooie-recomp': 'com.recomp.bk',
-    'perfect-dark-recomp': 'com.recomp.perfectdark',
-  };
-
-  String _getPackageName(RecompGame game) {
-    if (game.customPackageName != null && game.customPackageName!.isNotEmpty) {
-      return game.customPackageName!;
-    }
-    if (_knownPackages.containsKey(game.id)) {
-      return _knownPackages[game.id]!;
-    }
-    return 'com.recomp.${game.id.replaceAll(RegExp(r'[^a-zA-Z0-9]'), '_')}';
-  }
-
   Future<void> _launchGame(RecompGame game) async {
-    final pkg = _getPackageName(game);
-    try {
-      final bool? launched = await _launcherChannel.invokeMethod('launchApp', {'packageName': pkg});
-      if (launched == true) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Launching ${game.name}...'),
-              backgroundColor: const Color(0xFF0B1220),
-              behavior: SnackBarBehavior.floating,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-                side: const BorderSide(color: RecompTheme.cyan),
+    String? pkg = _linkedPackages[game.id];
+
+    if (pkg == null) {
+      if (_deviceApps.isEmpty) {
+        try {
+          final List<dynamic>? rawApps = await _launcherChannel.invokeMethod('getInstalledApps');
+          if (rawApps != null) {
+            _deviceApps = rawApps.cast<Map<dynamic, dynamic>>();
+          }
+        } catch (_) {}
+      }
+      pkg = _findMatchingPackage(game, _deviceApps);
+      if (pkg != null) {
+        _linkedPackages[game.id] = pkg;
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('linked_packages_json', json.encode(_linkedPackages));
+      }
+    }
+
+    if (pkg != null && pkg.isNotEmpty) {
+      try {
+        final bool? launched = await _launcherChannel.invokeMethod('launchApp', {'packageName': pkg});
+        if (launched == true) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Launching ${game.name}...'),
+                backgroundColor: const Color(0xFF0B1220),
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: const BorderSide(color: RecompTheme.cyan),
+                ),
               ),
-            ),
-          );
+            );
+          }
+          return;
         }
-      } else {
-        if (mounted) {
-          _showInstallOrLaunchDialog(game, pkg);
-        }
-      }
-    } catch (_) {
-      if (mounted) {
-        _showInstallOrLaunchDialog(game, pkg);
-      }
+      } catch (_) {}
+    }
+
+    if (mounted) {
+      _showAppPickerDialog(game);
     }
   }
 
-  void _showInstallOrLaunchDialog(RecompGame game, String pkg) {
-    showDialog(
+  void _showAppPickerDialog(RecompGame game) {
+    showModalBottomSheet(
       context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: RecompTheme.midnightAlt,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: RecompTheme.line),
-        ),
-        title: Row(
-          children: [
-            const Icon(Icons.sports_esports, color: RecompTheme.cyan),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                game.name,
-                style: const TextStyle(color: RecompTheme.frost, fontWeight: FontWeight.w800, fontSize: 18),
-              ),
-            ),
-          ],
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Package "$pkg" was not found on this device.',
-              style: const TextStyle(color: RecompTheme.muted, fontSize: 13),
-            ),
-            const SizedBox(height: 12),
-            const Text(
-              'To play, download and install the native Android APK from the official release page.',
-              style: TextStyle(color: RecompTheme.frost, fontSize: 13),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel', style: TextStyle(color: RecompTheme.muted)),
-          ),
-          if (game.apkUrl.isNotEmpty)
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: RecompTheme.cyan,
-                foregroundColor: RecompTheme.midnight,
-              ),
-              onPressed: () {
-                Navigator.pop(ctx);
-                launchUrl(Uri.parse(game.apkUrl), mode: LaunchMode.externalApplication);
-              },
-              child: Text(AppL10n.tr('Download APK (ARM64)'), style: const TextStyle(fontWeight: FontWeight.w800)),
-            ),
-        ],
+      isScrollControlled: true,
+      backgroundColor: RecompTheme.isLight(context) ? Colors.white : RecompTheme.midnightAlt,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
+      builder: (sheetCtx) {
+        String filter = '';
+        List<Map<dynamic, dynamic>> apps = List.from(_deviceApps);
+        bool loading = apps.isEmpty;
+
+        return StatefulBuilder(
+          builder: (ctx, setSheetState) {
+            if (loading && apps.isEmpty) {
+              _launcherChannel.invokeMethod('getInstalledApps').then((res) {
+                if (res != null && res is List) {
+                  apps = res.cast<Map<dynamic, dynamic>>();
+                  _deviceApps = apps;
+                }
+                loading = false;
+                setSheetState(() {});
+              }).catchError((_) {
+                loading = false;
+                setSheetState(() {});
+              });
+            }
+
+            final filteredApps = filter.isEmpty
+                ? apps
+                : apps.where((a) {
+                    final l = (a['label']?.toString() ?? '').toLowerCase();
+                    final p = (a['packageName']?.toString() ?? '').toLowerCase();
+                    return l.contains(filter.toLowerCase()) || p.contains(filter.toLowerCase());
+                  }).toList();
+
+            return Container(
+              height: MediaQuery.of(context).size.height * 0.85,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Icon(Icons.sports_esports, color: RecompTheme.cyan),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                '${AppL10n.tr('Select App for')} ${game.name}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800,
+                                  color: RecompTheme.text(context),
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.close, color: RecompTheme.textMuted(context)),
+                        onPressed: () => Navigator.pop(sheetCtx),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    AppL10n.tr('Select the installed APK on your device to link and launch:'),
+                    style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12),
+                  ),
+                  const SizedBox(height: 12),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: RecompTheme.cardBg(context),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: RecompTheme.border(context)),
+                    ),
+                    child: TextField(
+                      onChanged: (val) => setSheetState(() => filter = val),
+                      style: TextStyle(color: RecompTheme.text(context), fontSize: 13),
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.search, size: 18, color: RecompTheme.textMuted(context)),
+                        hintText: AppL10n.tr('Search apps on phone...'),
+                        hintStyle: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12),
+                        border: InputBorder.none,
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Expanded(
+                    child: loading && apps.isEmpty
+                        ? Center(child: CircularProgressIndicator(color: RecompTheme.primary(context)))
+                        : filteredApps.isEmpty
+                            ? Center(
+                                child: Text(
+                                  AppL10n.tr('No matching applications found on phone'),
+                                  style: TextStyle(color: RecompTheme.textMuted(context)),
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount: filteredApps.length,
+                                itemBuilder: (ctx, idx) {
+                                  final app = filteredApps[idx];
+                                  final label = app['label']?.toString() ?? '';
+                                  final pkg = app['packageName']?.toString() ?? '';
+                                  final isCurrentlyLinked = _linkedPackages[game.id] == pkg;
+
+                                  return ListTile(
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                                    leading: Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: RecompTheme.cardBg(context),
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                          color: isCurrentlyLinked ? RecompTheme.primary(context) : RecompTheme.border(context),
+                                        ),
+                                      ),
+                                      child: Icon(Icons.android, color: isCurrentlyLinked ? RecompTheme.primary(context) : RecompTheme.textMuted(context)),
+                                    ),
+                                    title: Text(label, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.text(context))),
+                                    subtitle: Text(pkg, style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context))),
+                                    trailing: ElevatedButton.icon(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: RecompTheme.primary(context),
+                                        foregroundColor: RecompTheme.primaryText(context),
+                                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                      ),
+                                      icon: const Icon(Icons.play_arrow, size: 15),
+                                      label: Text(
+                                        isCurrentlyLinked ? AppL10n.tr('Launch') : AppL10n.tr('Link & Launch'),
+                                        style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 11),
+                                      ),
+                                      onPressed: () async {
+                                        Navigator.pop(sheetCtx);
+                                        _linkedPackages[game.id] = pkg;
+                                        _installedIds.add(game.id);
+                                        final prefs = await SharedPreferences.getInstance();
+                                        await prefs.setStringList('installed_recomps', _installedIds.toList());
+                                        await prefs.setString('linked_packages_json', json.encode(_linkedPackages));
+                                        setState(() {});
+
+                                        try {
+                                          await _launcherChannel.invokeMethod('launchApp', {'packageName': pkg});
+                                        } catch (_) {}
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                  ),
+                  if (game.apkUrl.isNotEmpty) ...[
+                    Divider(color: RecompTheme.border(context)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            AppL10n.tr('Haven’t installed the APK yet?'),
+                            style: TextStyle(fontSize: 12, color: RecompTheme.textMuted(context)),
+                          ),
+                          ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: RecompTheme.cardBg(context),
+                              foregroundColor: RecompTheme.primary(context),
+                              side: BorderSide(color: RecompTheme.primary(context)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                            ),
+                            icon: const Icon(Icons.download, size: 14),
+                            label: Text(AppL10n.tr('Download APK'), style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+                            onPressed: () {
+                              Navigator.pop(sheetCtx);
+                              launchUrl(Uri.parse(game.apkUrl), mode: LaunchMode.externalApplication);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -1208,9 +1544,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           game: game,
           isBookmarked: _bookmarkedIds.contains(game.id),
           isInstalled: _installedIds.contains(game.id),
+          linkedPackage: _linkedPackages[game.id],
           onToggleBookmark: () => _toggleBookmark(game.id),
           onToggleInstalled: () => _toggleInstalled(game.id),
           onLaunchGame: () => _launchGame(game),
+          onPickApp: () => _showAppPickerDialog(game),
         ),
       ),
     );
@@ -2535,6 +2873,8 @@ class _LibraryTabState extends State<LibraryTab> {
         List<Map<dynamic, dynamic>> deviceApps = [];
         bool loadingApps = true;
 
+        String phoneAppFilter = '';
+
         // Fetch installed apps on device
         widget.launcherChannel.invokeMethod('getInstalledApps').then((res) {
           if (res != null && res is List) {
@@ -2553,6 +2893,18 @@ class _LibraryTabState extends State<LibraryTab> {
 
         return StatefulBuilder(
           builder: (ctx, setModalState) {
+            if (loadingApps && deviceApps.isEmpty) {
+              widget.launcherChannel.invokeMethod('getInstalledApps').then((res) {
+                if (res != null && res is List) {
+                  deviceApps = res.cast<Map<dynamic, dynamic>>();
+                }
+                loadingApps = false;
+                setModalState(() {});
+              }).catchError((_) {
+                loadingApps = false;
+                setModalState(() {});
+              });
+            }
             return Container(
               height: MediaQuery.of(context).size.height * 0.85,
               padding: const EdgeInsets.all(16),
@@ -2625,7 +2977,7 @@ class _LibraryTabState extends State<LibraryTab> {
                   // TAB CONTENT
                   Expanded(
                     child: sheetTab == 0
-                        ? _buildPhoneAppsPicker(deviceApps, loadingApps, setModalState, ctx)
+                        ? _buildPhoneAppsPicker(deviceApps, loadingApps, phoneAppFilter, (f) => setModalState(() => phoneAppFilter = f), setModalState, ctx)
                         : sheetTab == 1
                             ? _buildManualEntryForm(nameCtrl, pkgCtrl, coverCtrl, selectedOrigin, (orig) => setModalState(() => selectedOrigin = orig), ctx)
                             : _buildCatalogPicker(filter, (f) => setModalState(() => filter = f), ctx),
@@ -2673,45 +3025,87 @@ class _LibraryTabState extends State<LibraryTab> {
     );
   }
 
-  Widget _buildPhoneAppsPicker(List<Map<dynamic, dynamic>> apps, bool loading, StateSetter setModalState, BuildContext sheetCtx) {
+  Widget _buildPhoneAppsPicker(List<Map<dynamic, dynamic>> apps, bool loading, String filter, Function(String) onFilterChanged, StateSetter setModalState, BuildContext sheetCtx) {
     if (loading && apps.isEmpty) {
-      return Center(child: CircularProgressIndicator(color: RecompTheme.primary(context)));
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CircularProgressIndicator(color: RecompTheme.primary(context)),
+            const SizedBox(height: 12),
+            Text(AppL10n.tr('Scanning device applications...'), style: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12)),
+          ],
+        ),
+      );
     }
     if (apps.isEmpty) {
-      return Center(child: Text('No launchable applications found on device', style: TextStyle(color: RecompTheme.textMuted(context))));
+      return Center(child: Text(AppL10n.tr('No launchable applications found on device'), style: TextStyle(color: RecompTheme.textMuted(context))));
     }
 
-    return ListView.builder(
-      itemCount: apps.length,
-      itemBuilder: (ctx, idx) {
-        final item = apps[idx];
-        final label = item['label']?.toString() ?? 'App';
-        final pkg = item['packageName']?.toString() ?? '';
+    final filtered = filter.isEmpty
+        ? apps
+        : apps.where((a) {
+            final l = (a['label']?.toString() ?? '').toLowerCase();
+            final p = (a['packageName']?.toString() ?? '').toLowerCase();
+            return l.contains(filter.toLowerCase()) || p.contains(filter.toLowerCase());
+          }).toList();
 
-        return ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-          leading: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: RecompTheme.cardBg(context),
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: RecompTheme.border(context)),
-            ),
-            child: Icon(Icons.android, color: RecompTheme.primary(context)),
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          decoration: BoxDecoration(
+            color: RecompTheme.cardBg(context),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: RecompTheme.border(context)),
           ),
-          title: Text(label, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.text(context))),
-          subtitle: Text(pkg, style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context))),
-          trailing: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: RecompTheme.primary(context),
-              foregroundColor: RecompTheme.primaryText(context),
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          child: TextField(
+            onChanged: onFilterChanged,
+            style: TextStyle(color: RecompTheme.text(context), fontSize: 13),
+            decoration: InputDecoration(
+              icon: Icon(Icons.search, size: 18, color: RecompTheme.textMuted(context)),
+              hintText: AppL10n.tr('Search apps on phone...'),
+              hintStyle: TextStyle(color: RecompTheme.textMuted(context), fontSize: 12),
+              border: InputBorder.none,
+              isDense: true,
             ),
-            icon: const Icon(Icons.add, size: 15),
-            label: const Text('Add', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 11)),
-            onPressed: () {
+          ),
+        ),
+        Expanded(
+          child: filtered.isEmpty
+              ? Center(child: Text(AppL10n.tr('No matching applications found on phone'), style: TextStyle(color: RecompTheme.textMuted(context))))
+              : ListView.builder(
+                  itemCount: filtered.length,
+                  itemBuilder: (ctx, idx) {
+                    final item = filtered[idx];
+                    final label = item['label']?.toString() ?? 'App';
+                    final pkg = item['packageName']?.toString() ?? '';
+
+                    return ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                      leading: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: RecompTheme.cardBg(context),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: RecompTheme.border(context)),
+                        ),
+                        child: Icon(Icons.android, color: RecompTheme.primary(context)),
+                      ),
+                      title: Text(label, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: RecompTheme.text(context))),
+                      subtitle: Text(pkg, style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context))),
+                      trailing: ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: RecompTheme.primary(context),
+                          foregroundColor: RecompTheme.primaryText(context),
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                        icon: const Icon(Icons.add, size: 15),
+                        label: Text(AppL10n.tr('Add'), style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 11)),
+                        onPressed: () {
               final newGame = RecompGame(
                 id: 'custom_${pkg.replaceAll(RegExp(r"[^a-zA-Z0-9]"), "_")}_${DateTime.now().millisecondsSinceEpoch}',
                 name: label,
@@ -2749,7 +3143,10 @@ class _LibraryTabState extends State<LibraryTab> {
           ),
         );
       },
-    );
+    ),
+  ),
+],
+);
   }
 
   Widget _buildManualEntryForm(
@@ -3475,18 +3872,22 @@ class GameDetailScreen extends StatelessWidget {
   final RecompGame game;
   final bool isBookmarked;
   final bool isInstalled;
+  final String? linkedPackage;
   final VoidCallback onToggleBookmark;
   final VoidCallback onToggleInstalled;
   final VoidCallback onLaunchGame;
+  final VoidCallback? onPickApp;
 
   const GameDetailScreen({
     super.key,
     required this.game,
     required this.isBookmarked,
     required this.isInstalled,
+    this.linkedPackage,
     required this.onToggleBookmark,
     required this.onToggleInstalled,
     required this.onLaunchGame,
+    this.onPickApp,
   });
 
   @override
@@ -3695,11 +4096,40 @@ class GameDetailScreen extends StatelessWidget {
                               icon: const Icon(Icons.play_arrow, size: 22),
                               label: Text(
                                 AppL10n.tr('▶ LAUNCH GAME'),
-                                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 0.5),
+                                style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 0.5),
                               ),
                               onPressed: onLaunchGame,
                             ),
                           ),
+                          if (onPickApp != null) ...[
+                            const SizedBox(height: 8),
+                            InkWell(
+                              onTap: onPickApp,
+                              borderRadius: BorderRadius.circular(8),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 2),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.link, size: 14, color: RecompTheme.primary(context)),
+                                    const SizedBox(width: 6),
+                                    Expanded(
+                                      child: Text(
+                                        linkedPackage != null
+                                            ? '${AppL10n.tr('Linked')}: $linkedPackage'
+                                            : AppL10n.tr('No app linked yet • Tap to link installed app'),
+                                        style: TextStyle(fontSize: 11, color: RecompTheme.textMuted(context)),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    Text(
+                                      AppL10n.tr('Change'),
+                                      style: TextStyle(fontSize: 11, color: RecompTheme.primary(context), fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ],
                       ],
                     ),
