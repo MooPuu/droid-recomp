@@ -28,6 +28,7 @@
   let uiMode = localStorage.getItem('droidrecomp_uimode') || 'auto'; // 'auto', 'desktop', 'mobile'
   let currentTheme = localStorage.getItem('droidrecomp_theme') || 'dark'; // 'dark', 'light', 'oled'
   let currentLang = localStorage.getItem('droidrecomp_lang') || 'en'; // 'en', 'ar'
+  let isAr = (currentLang === 'ar');
 
   // DOM Elements
   const viewContent = document.getElementById('view-content');
@@ -308,7 +309,7 @@
       else if (navKey === 'all') link.textContent = t('browse');
       else if (navKey === 'emulators') link.textContent = t('emulators');
       else if (navKey === 'top') link.textContent = t('topCharts');
-      else if (navKey === 'handheld') link.innerHTML = `${t('handhelds')} <span class="tag-sub">Odin / Retroid</span>`;
+      else if (navKey === 'handheld') link.textContent = t('handhelds');
       else if (navKey === 'how') link.textContent = t('setupGuide');
       else if (navKey === 'library') link.innerHTML = `${t('library')} <span class="badge-count" id="saved-count">${savedGames.length}</span>`;
     });
@@ -536,6 +537,7 @@
   // VIEW: DISCOVER (HOME)
   // =========================================================================
   function renderDiscoverView() {
+    const isAr = (currentLang === 'ar');
     // Top featured games for carousel
     const featuredGames = [
       'zelda-64-recomp-android',

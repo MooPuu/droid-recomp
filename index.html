@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css?v=2.7.1">
+  <link rel="stylesheet" href="styles.css?v=2.7.2">
 
   <!-- Immediate Critical Display Guard (Never allow overlays to render on load) -->
   <style>
@@ -77,7 +77,7 @@
         <a href="#all" data-nav="all" class="nav-link">All Recomps</a>
         <a href="#emulators" data-nav="emulators" class="nav-link">Emulators</a>
         <a href="#top" data-nav="top" class="nav-link">Top Charts</a>
-        <a href="#handheld" data-nav="handheld" class="nav-link">Handhelds <span class="tag-sub">Odin / Retroid</span></a>
+        <a href="#handheld" data-nav="handheld" class="nav-link">Handhelds</a>
         <a href="#how" data-nav="how" class="nav-link">Setup Guide</a>
         <a href="#library" data-nav="library" class="nav-link">Library <span class="badge-count" id="saved-count">0</span></a>
       </nav>
@@ -86,48 +86,51 @@
       <div class="top-actions">
         <!-- Search Trigger Button -->
         <button type="button" class="search-trigger-btn desktop-only" id="search-open" aria-label="Search Recomps">
-          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-          <span class="search-placeholder desktop-only">Search 370+ recomps & ports...</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2.2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+          <span class="search-placeholder desktop-only">Search 379+ games...</span>
           <kbd class="search-shortcut desktop-only">/</kbd>
         </button>
 
-        <!-- Theme Switcher Button -->
-        <button type="button" class="icon-chip" id="theme-toggle" title="Switch Theme (Midnight / Light / OLED)" aria-label="Switch Theme">
-          <svg class="theme-icon" id="theme-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <span id="theme-label" class="desktop-only">Midnight</span>
-        </button>
+        <!-- Icon Controls Pod -->
+        <div class="icon-controls-group">
+          <!-- Theme Switcher Button -->
+          <button type="button" class="icon-chip" id="theme-toggle" title="Switch Theme (Midnight / Light / OLED)" aria-label="Switch Theme">
+            <svg class="theme-icon" id="theme-icon" viewBox="0 0 24 24" width="17" height="17" stroke="currentColor" fill="none" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span id="theme-label" class="sr-only">Midnight</span>
+          </button>
 
-        <!-- Language Switcher Button (Displays only E or ع) -->
-        <button type="button" class="icon-chip lang-toggle-chip" id="lang-toggle" title="Switch Language / تغيير اللغة" aria-label="Switch Language">
-          <svg class="globe-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-          </svg>
-        </button>
+          <!-- Language Switcher Button (Displays only E or ع) -->
+          <button type="button" class="icon-chip lang-toggle-chip" id="lang-toggle" title="Switch Language / تغيير اللغة" aria-label="Switch Language">
+            <svg class="globe-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </button>
 
-        <!-- UI Mode Switcher (Desktop vs Mobile Preview) -->
-        <button type="button" class="icon-chip desktop-only" id="ui-mode-toggle" title="Switch UI Mode">
-          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-          <span id="ui-mode-label">Mobile UI</span>
-        </button>
+          <!-- UI Mode Switcher (Desktop vs Mobile Preview) -->
+          <button type="button" class="icon-chip desktop-only" id="ui-mode-toggle" title="Switch UI Mode" aria-label="Switch UI Mode">
+            <svg viewBox="0 0 24 24" width="17" height="17" stroke="currentColor" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <span id="ui-mode-label" class="sr-only">Mobile UI</span>
+          </button>
 
-        <!-- Obtainium Pack Export CTA -->
-        <button type="button" class="btn btn-secondary desktop-only" id="btn-obtainium-pack" title="Get Obtainium Pack">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span>Obtainium Sync</span>
-        </button>
+          <!-- Obtainium Pack Export CTA -->
+          <button type="button" class="icon-chip desktop-only" id="btn-obtainium-pack" title="Get Obtainium Sync Pack" aria-label="Obtainium Sync">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span class="sr-only">Obtainium Sync</span>
+          </button>
+        </div>
 
         <!-- Download Android APK Button -->
-        <a class="btn btn-secondary header-apk-cta" href="https://github.com/MooPuu/droid-recomp/releases/download/v1.0.0/DroidRecomp-v1.0.0-release.apk" target="_blank" rel="noopener" title="Download Android APK (v1.0.0)">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <a class="btn btn-apk-nav desktop-only" href="https://github.com/MooPuu/droid-recomp/releases/download/v1.0.0/DroidRecomp-v1.0.0-release.apk" target="_blank" rel="noopener" title="Download Android APK (v1.0.0)">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span class="desktop-only">Get APK (v1.0)</span>
         </a>
 
         <!-- Submit Recomp CTA -->
-        <a class="btn btn-primary" href="#submit" data-nav="submit">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          <span class="desktop-only">Submit Port</span>
+        <a class="btn btn-primary" href="#submit" data-nav="submit" title="Submit Port to Catalog">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span class="desktop-only">Submit</span>
         </a>
       </div>
     </div>
@@ -293,8 +296,8 @@
     </div>
   </footer>
 
-  <script src="catalog.js?v=2.7.0"></script>
+  <script src="catalog.js?v=2.7.2"></script>
   <script src="emulators.js?v=2.7.0"></script>
-  <script src="app.js?v=2.7.1"></script>
+  <script src="app.js?v=2.7.2"></script>
 </body>
 </html>

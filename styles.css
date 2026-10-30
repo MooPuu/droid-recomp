@@ -1,3 +1,16 @@
+/* Screen Reader / Text Hidden Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ==========================================================================
    DROIDRECOMP — Modern Design System for Android
    ========================================================================== */
@@ -298,13 +311,16 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-inline-end: 16px;
+  text-decoration: none;
 }
 
 .brand-logo {
@@ -359,89 +375,102 @@ img {
 }
 
 .nav-link {
-  font-size: 0.92rem;
-  font-weight: 500;
-  padding: 8px 14px;
-  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 7px 13px;
+  border-radius: var(--radius-full);
   color: var(--muted);
-  transition: color 0.2s, background-color 0.2s;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
+  text-decoration: none;
 }
 
-.nav-link:hover, .nav-link.on {
+.nav-link:hover {
   color: var(--frost);
-  background: var(--glass);
+  background: var(--glass-hover);
 }
 
 .nav-link.on {
   color: var(--cyan);
-  font-weight: 600;
+  background: rgba(52, 242, 232, 0.12);
+  border: 1px solid rgba(52, 242, 232, 0.3);
+  box-shadow: 0 0 10px rgba(52, 242, 232, 0.15);
 }
 
 .tag-sub {
-  font-size: 0.68rem;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: rgba(244, 248, 252, 0.08);
-  color: var(--muted);
+  display: none;
 }
 
 .badge-count {
   background: var(--cyan);
   color: var(--midnight);
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 1px 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 7px;
   border-radius: var(--radius-full);
+  line-height: 1;
 }
 
 /* Header Actions */
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .search-trigger-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: var(--glass);
-  border: 1px solid var(--line);
-  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  padding: 0 14px;
+  height: 38px;
+  box-sizing: border-box;
   border-radius: var(--radius-full);
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .search-trigger-btn:hover {
   background: var(--glass-hover);
-  border-color: rgba(52, 242, 232, 0.4);
+  border-color: rgba(52, 242, 232, 0.45);
   color: var(--frost);
+  box-shadow: 0 2px 10px rgba(52, 242, 232, 0.15);
 }
 
 .search-shortcut {
   font-size: 0.7rem;
-  background: rgba(244, 248, 252, 0.12);
+  background: rgba(244, 248, 252, 0.1);
   padding: 1px 6px;
   border-radius: 4px;
   border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: inherit;
+  font-weight: 600;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 8px 18px;
+  gap: 7px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 0 16px;
+  height: 38px;
+  box-sizing: border-box;
   border-radius: var(--radius-full);
   transition: all 0.2s ease;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .btn-primary {
@@ -470,24 +499,65 @@ img {
   color: var(--frost);
 }
 
-.icon-chip {
+.icon-controls-group {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 12px;
+  flex-shrink: 0;
+}
+
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  box-sizing: border-box;
   border-radius: var(--radius-full);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   background: var(--glass);
   border: 1px solid var(--line-strong);
   color: var(--frost);
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .icon-chip:hover {
   background: var(--glass-hover);
   border-color: var(--cyan);
   color: var(--cyan);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--cyan-glow);
+}
+
+.btn-apk-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 16px;
+  height: 38px;
+  box-sizing: border-box;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(52, 242, 232, 0.16), rgba(55, 123, 182, 0.22));
+  border: 1px solid rgba(52, 242, 232, 0.45);
+  color: var(--cyan);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(52, 242, 232, 0.12);
+}
+
+.btn-apk-nav:hover {
+  background: linear-gradient(135deg, rgba(52, 242, 232, 0.3), rgba(55, 123, 182, 0.4));
+  border-color: var(--cyan);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--cyan-glow);
 }
 
 /* ==========================================================================
@@ -2714,4 +2784,65 @@ html[dir="rtl"] .game-card-tags {
 .lang-toggle-chip svg {
   display: block !important;
   stroke: currentColor;
+}
+
+
+/* ==========================================================================
+   DESKTOP RESPONSIVE NAV POLISH (Clean, tidy, spacious at all resolutions)
+   ========================================================================== */
+@media (min-width: 769px) {
+  .top-in {
+    gap: 16px;
+  }
+  
+  .brand {
+    margin-inline-end: 8px;
+  }
+}
+
+@media (max-width: 1360px) and (min-width: 769px) {
+  .search-placeholder {
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .nav-link {
+    padding: 7px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 769px) {
+  .main-nav a[data-nav="top"],
+  .main-nav a[data-nav="handheld"] {
+    display: none !important;
+  }
+
+  .search-trigger-btn {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .search-placeholder,
+  .search-shortcut {
+    display: none !important;
+  }
+
+  .btn-apk-nav span {
+    display: none;
+  }
+  
+  .btn-apk-nav {
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 960px) and (min-width: 769px) {
+  .main-nav a[data-nav="how"] {
+    display: none !important;
+  }
 }
