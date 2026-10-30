@@ -51,7 +51,7 @@ void main() async {
 }
 
 // ============================================================================
-// THEME & COLOR TOKENS (RecompLauncher Design System)
+// THEME & COLOR TOKENS (DroidRecomp Design System)
 // ============================================================================
 class RecompTheme {
   static const Color midnight = Color(0xFF0B1220);
@@ -370,17 +370,23 @@ class RecompGame {
       case 'xbox': return 'Xbox';
       case 'gc': return 'GameCube';
       case 'wii': return 'Wii';
-      case 'ps1': return 'PlayStation';
+      case 'switch': return 'Nintendo Switch';
+      case 'ps1': return 'PlayStation 1';
       case 'ps2': return 'PlayStation 2';
+      case 'ps3': return 'PlayStation 3';
       case 'psp': return 'PSP';
+      case 'apple_arcade': return 'Apple Arcade / iOS';
       case 'pc_classic': return 'Classic PC';
       case 'snes': return 'SNES';
+      case 'nes': return 'NES';
       case 'gba': return 'GBA';
       case 'gbc': return 'Game Boy Color';
       case 'gb': return 'Game Boy';
       case 'nds': return 'Nintendo DS';
-      case 'switch': return 'Nintendo Switch';
+      case 'genesis': return 'Sega Genesis';
+      case 'saturn': return 'Sega Saturn';
       case 'dreamcast': return 'Dreamcast';
+      case 'arcade': return 'Arcade';
       case 'android': return 'Android Port';
       default: return origin.toUpperCase();
     }
@@ -2107,12 +2113,22 @@ class _BrowseTabState extends State<BrowseTab> {
     {'id': 'xbox', 'name': 'Xbox'},
     {'id': 'gc', 'name': 'GameCube'},
     {'id': 'wii', 'name': 'Wii'},
+    {'id': 'switch', 'name': 'Nintendo Switch'},
     {'id': 'ps1', 'name': 'PlayStation 1'},
     {'id': 'ps2', 'name': 'PlayStation 2'},
+    {'id': 'ps3', 'name': 'PlayStation 3'},
     {'id': 'psp', 'name': 'PSP'},
+    {'id': 'apple_arcade', 'name': 'Apple Arcade / iOS'},
     {'id': 'pc_classic', 'name': 'Classic PC'},
     {'id': 'snes', 'name': 'SNES'},
-    {'id': 'gba', 'name': 'Game Boy Adv.'},
+    {'id': 'nes', 'name': 'NES'},
+    {'id': 'gba', 'name': 'GBA'},
+    {'id': 'gbc', 'name': 'Game Boy Color'},
+    {'id': 'gb', 'name': 'Game Boy'},
+    {'id': 'genesis', 'name': 'Sega Genesis'},
+    {'id': 'saturn', 'name': 'Sega Saturn'},
+    {'id': 'dreamcast', 'name': 'Dreamcast'},
+    {'id': 'arcade', 'name': 'Arcade'},
   ];
 
   @override
@@ -3202,10 +3218,22 @@ class _LibraryTabState extends State<LibraryTab> {
             DropdownMenuItem(value: 'xbox', child: Text('Xbox')),
             DropdownMenuItem(value: 'gc', child: Text('GameCube')),
             DropdownMenuItem(value: 'wii', child: Text('Wii')),
+            DropdownMenuItem(value: 'switch', child: Text('Nintendo Switch')),
             DropdownMenuItem(value: 'ps1', child: Text('PlayStation 1')),
             DropdownMenuItem(value: 'ps2', child: Text('PlayStation 2')),
+            DropdownMenuItem(value: 'ps3', child: Text('PlayStation 3')),
             DropdownMenuItem(value: 'psp', child: Text('PSP')),
+            DropdownMenuItem(value: 'apple_arcade', child: Text('Apple Arcade / iOS')),
             DropdownMenuItem(value: 'pc_classic', child: Text('Classic PC / Source Port')),
+            DropdownMenuItem(value: 'snes', child: Text('SNES')),
+            DropdownMenuItem(value: 'nes', child: Text('NES')),
+            DropdownMenuItem(value: 'gba', child: Text('GBA')),
+            DropdownMenuItem(value: 'gbc', child: Text('Game Boy Color')),
+            DropdownMenuItem(value: 'gb', child: Text('Game Boy')),
+            DropdownMenuItem(value: 'genesis', child: Text('Sega Genesis')),
+            DropdownMenuItem(value: 'saturn', child: Text('Sega Saturn')),
+            DropdownMenuItem(value: 'dreamcast', child: Text('Dreamcast')),
+            DropdownMenuItem(value: 'arcade', child: Text('Arcade')),
           ],
           onChanged: (val) {
             if (val != null) onOriginChange(val);

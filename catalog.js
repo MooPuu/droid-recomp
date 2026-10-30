@@ -160,7 +160,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "goldeneye-007-xbla-recomp",
       "name": "GoldenEye 007 (XBLA) Recomp",
       "game": "GoldenEye 007",
-      "origin": "xbox",
+      "origin": "x360",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -364,7 +364,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "pokemon-gen-1-recomp",
       "name": "Pokemon Gen 1 Recomp",
       "game": "Pokemon Gen 1",
-      "origin": "gba",
+      "origin": "gb",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -1180,7 +1180,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "simpsons-hit-and-run",
       "name": "Simpsons Hit and Run",
       "game": "The Simpsons: Hit and Run",
-      "origin": "pc_classic",
+      "origin": "ps2",
       "type": "Native Engine Port",
       "version": "v1.0.9",
       "status": "Verified Playable",
@@ -1435,7 +1435,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "god-of-war-iii-remastered",
       "name": "God of War III Remastered",
       "game": "God of War III Remastered",
-      "origin": "pc_classic",
+      "origin": "ps3",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -1843,7 +1843,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "sonic-3-amp-knuckles",
       "name": "Sonic 3 & Knuckles",
       "game": "Sonic 3 &amp; Knuckles",
-      "origin": "pc_classic",
+      "origin": "genesis",
       "type": "Native Engine Port",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -2200,7 +2200,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "ace-combat-3-electrosphere",
       "name": "Ace Combat 3: Electrosphere",
       "game": "Ace Combat 3: Electrosphere",
-      "origin": "pc_classic",
+      "origin": "ps1",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -2506,7 +2506,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "classic-tomb-raider-i-amp-ii",
       "name": "Classic Tomb Raider I & II",
       "game": "Classic Tomb Raider I &amp; II",
-      "origin": "pc_classic",
+      "origin": "ps1",
       "type": "Native Engine Port",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -2557,7 +2557,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "diablo-ii-resurrected",
       "name": "Diablo II: Resurrected",
       "game": "Diablo 1 & Hellfire",
-      "origin": "pc_classic",
+      "origin": "switch",
       "type": "Native Engine Port",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -3424,7 +3424,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "sonic-r",
       "name": "Sonic R",
       "game": "Sonic R",
-      "origin": "pc_classic",
+      "origin": "saturn",
       "type": "Decompilation",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -3730,7 +3730,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "tomb-raider-i-iii-remastered",
       "name": "Tomb Raider I-III Remastered",
       "game": "Tomb Raider I-III Remastered",
-      "origin": "pc_classic",
+      "origin": "ps1",
       "type": "Native Engine Port",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -3781,7 +3781,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "wipeout",
       "name": "wipEout",
       "game": "wipEout",
-      "origin": "pc_classic",
+      "origin": "ps1",
       "type": "Decompilation",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -4087,7 +4087,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "call-of-duty-black-ops-ii",
       "name": "Call of Duty: Black Ops II",
       "game": "Call of Duty: Black Ops II",
-      "origin": "pc_classic",
+      "origin": "x360",
       "type": "Decompilation",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -4240,7 +4240,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "dragon-ball-z-budokai-tenkaichi-3",
       "name": "Dragon Ball Z: Budokai Tenkaichi 3",
       "game": "Dragon Ball Z: Budokai Tenkaichi 3",
-      "origin": "pc_classic",
+      "origin": "ps2",
       "type": "Decompilation",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -4495,7 +4495,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "jak-and-daxter-the-precursor-legacy",
       "name": "Jak and Daxter: The Precursor Legacy",
       "game": "Jak and Daxter: The Precursor Legacy",
-      "origin": "pc_classic",
+      "origin": "ps2",
       "type": "Decompilation",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -5464,7 +5464,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "pok-mon-let-39-s-go-eevee",
       "name": "Pokémon: Let's Go, Eevee!",
       "game": "Pokémon: Let&#39;s Go, Eevee!",
-      "origin": "pc_classic",
+      "origin": "switch",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -5566,7 +5566,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "the-legend-of-zelda-echoes-of-wisdom",
       "name": "The Legend of Zelda: Echoes of Wisdom",
       "game": "The Legend of Zelda: Echoes of Wisdom",
-      "origin": "pc_classic",
+      "origin": "switch",
       "type": "Static Recomp",
       "version": "1.0.0",
       "status": "Verified Playable",
@@ -5719,7 +5719,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "sonic-dream-team",
       "name": "Sonic Dream Team",
       "game": "Sonic Dream Team",
-      "origin": "pc_classic",
+      "origin": "apple_arcade",
       "type": "Native Engine Port",
       "version": "v1.10.0",
       "status": "Verified Playable",
@@ -5821,7 +5821,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "sonic-and-the-secret-rings",
       "name": "Sonic and the Secret Rings",
       "game": "Sonic and the Secret Rings",
-      "origin": "pc_classic",
+      "origin": "wii",
       "type": "Native Engine Port",
       "version": "v1.0.9",
       "status": "Verified Playable",
@@ -7657,7 +7657,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "daytona-usa-3ds-pc-android",
       "name": "Daytona USA",
       "game": "Daytona USA",
-      "origin": "pc_classic",
+      "origin": "arcade",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -8218,7 +8218,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "doom-64-remastered-classic-core-engines",
       "name": "Doom 64 Remastered",
       "game": "Doom 64 Remastered",
-      "origin": "pc_classic",
+      "origin": "n64",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -9238,7 +9238,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "gen1recomp",
       "name": "Pokémon Red",
       "game": "Pokémon Red",
-      "origin": "gba",
+      "origin": "gb",
       "type": "Static Recomp",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -9493,7 +9493,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "golden-eye-recomp-dual-screen",
       "name": "GoldenEye 007: Reloaded",
       "game": "GoldenEye 007: Reloaded",
-      "origin": "pc_classic",
+      "origin": "x360",
       "type": "Static Recomp",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -9646,7 +9646,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "heart-of-darkness-port",
       "name": "Heart of Darkness",
       "game": "Heart of Darkness",
-      "origin": "pc_classic",
+      "origin": "ps1",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -15766,7 +15766,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "super-mario-land-2-recomp",
       "name": "Super Mario Land 2: 6 Golden Coins",
       "game": "Super Mario Land 2: 6 Golden Coins",
-      "origin": "pc_classic",
+      "origin": "gb",
       "type": "Static Recomp",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -16225,7 +16225,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "botw-android",
       "name": "The Legend of Zelda: Breath of the Wild",
       "game": "The Legend of Zelda: Breath of the Wild",
-      "origin": "pc_classic",
+      "origin": "switch",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -17449,7 +17449,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "zelda-ii-2p-splitscreen-android",
       "name": "Zelda II: The Adventure of Link",
       "game": "Zelda II: The Adventure of Link",
-      "origin": "pc_classic",
+      "origin": "nes",
       "type": "Native Source Port",
       "version": "Latest Rolling",
       "status": "Verified Playable",
@@ -17602,7 +17602,7 @@ window.DROIDRECOMP_CATALOG = {
       "id": "rayman-mini",
       "name": "Rayman Mini",
       "game": "Rayman Mini",
-      "origin": "android",
+      "origin": "apple_arcade",
       "type": "Native Mobile Port",
       "version": "v1.4",
       "status": "Verified Playable",
@@ -19293,12 +19293,20 @@ window.DROIDRECOMP_CATALOG = {
       "name": "Wii"
     },
     {
+      "id": "switch",
+      "name": "Nintendo Switch"
+    },
+    {
       "id": "ps1",
-      "name": "PlayStation"
+      "name": "PlayStation 1"
     },
     {
       "id": "ps2",
       "name": "PlayStation 2"
+    },
+    {
+      "id": "ps3",
+      "name": "PlayStation 3"
     },
     {
       "id": "psp",
@@ -19309,12 +19317,48 @@ window.DROIDRECOMP_CATALOG = {
       "name": "Classic PC & Source Ports"
     },
     {
+      "id": "apple_arcade",
+      "name": "Apple Arcade / iOS"
+    },
+    {
       "id": "snes",
       "name": "SNES"
     },
     {
+      "id": "nes",
+      "name": "NES"
+    },
+    {
       "id": "gba",
       "name": "Game Boy Advance"
+    },
+    {
+      "id": "gbc",
+      "name": "Game Boy Color"
+    },
+    {
+      "id": "gb",
+      "name": "Game Boy"
+    },
+    {
+      "id": "nds",
+      "name": "Nintendo DS"
+    },
+    {
+      "id": "genesis",
+      "name": "Sega Genesis"
+    },
+    {
+      "id": "saturn",
+      "name": "Sega Saturn"
+    },
+    {
+      "id": "dreamcast",
+      "name": "Dreamcast"
+    },
+    {
+      "id": "arcade",
+      "name": "Arcade"
     }
   ],
   "version": "2.9.0",

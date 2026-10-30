@@ -1,6 +1,6 @@
 /**
  * DROIDRECOMP — Main Application Logic & Router
- * Modern RecompLauncher Design for Android Recompilations
+ * Modern DroidRecomp Platform for Android Recompilations
  */
 
 (function () {
@@ -729,15 +729,11 @@
         <div class="filter-group">
           <span class="filter-label">${isAr ? 'النظام:' : 'System:'}</span>
           <select class="filter-select" id="filter-origin-select" onchange="window.DroidRecomp.setOrigin(this.value)">
-            <option value="all" ${activeOrigin === 'all' ? 'selected' : ''}>${isAr ? 'جميع الأنظمة' : 'All Systems'} (${catalogData.length})</option>
-            <option value="n64" ${activeOrigin === 'n64' ? 'selected' : ''}>Nintendo 64</option>
-            <option value="x360" ${activeOrigin === 'x360' ? 'selected' : ''}>Xbox 360</option>
-            <option value="xbox" ${activeOrigin === 'xbox' ? 'selected' : ''}>Xbox</option>
-            <option value="gc" ${activeOrigin === 'gc' ? 'selected' : ''}>GameCube</option>
-            <option value="wii" ${activeOrigin === 'wii' ? 'selected' : ''}>Wii</option>
-            <option value="ps1" ${activeOrigin === 'ps1' ? 'selected' : ''}>PlayStation 1</option>
-            <option value="ps2" ${activeOrigin === 'ps2' ? 'selected' : ''}>PlayStation 2</option>
-            <option value="pc_classic" ${activeOrigin === 'pc_classic' ? 'selected' : ''}>Classic PC & Engines</option>
+            ${originsData.map(o => `
+              <option value="${o.id}" ${activeOrigin === o.id ? 'selected' : ''}>
+                ${o.id === 'all' ? (isAr ? 'جميع الأنظمة' : 'All Systems') : o.name} (${o.id === 'all' ? catalogData.length : catalogData.filter(g => g.origin === o.id).length})
+              </option>
+            `).join('')}
           </select>
 
           <span class="filter-label">${isAr ? 'المعمارية:' : 'Architecture:'}</span>
@@ -1293,6 +1289,16 @@
                 <option value="pc_classic" selected>Classic PC / Source Port</option>
                 <option value="snes">SNES</option>
                 <option value="gba">GBA</option>
+                <option value="gbc">Game Boy Color</option>
+                <option value="gb">Game Boy</option>
+                <option value="switch">Nintendo Switch</option>
+                <option value="apple_arcade">Apple Arcade / iOS</option>
+                <option value="genesis">Sega Genesis</option>
+                <option value="saturn">Sega Saturn</option>
+                <option value="dreamcast">Dreamcast</option>
+                <option value="arcade">Arcade</option>
+                <option value="ps3">PlayStation 3</option>
+                <option value="nes">NES</option>
               </select>
             </div>
 
@@ -1997,6 +2003,12 @@
       'nds': 'Nintendo DS',
       'switch': 'Switch',
       'dreamcast': 'Dreamcast',
+      'apple_arcade': 'Apple Arcade / iOS',
+      'ps3': 'PlayStation 3',
+      'nes': 'NES',
+      'genesis': 'Sega Genesis',
+      'saturn': 'Sega Saturn',
+      'arcade': 'Arcade',
       'android': 'Android Port'
     };
     return map[origin] || (origin ? origin.toUpperCase() : 'Custom');
@@ -2055,6 +2067,12 @@
       'nds': 'Nintendo DS',
       'switch': 'Nintendo Switch',
       'dreamcast': 'Dreamcast',
+      'apple_arcade': 'Apple Arcade / iOS',
+      'ps3': 'PlayStation 3',
+      'nes': 'NES',
+      'genesis': 'Sega Genesis',
+      'saturn': 'Sega Saturn',
+      'arcade': 'Arcade',
       'android': 'Android Port'
     };
     return map[origin] || (origin ? origin.toUpperCase() : 'PORT');
